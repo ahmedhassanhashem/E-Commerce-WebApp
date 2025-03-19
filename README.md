@@ -39,4 +39,4 @@ The system includes user authentication, profile management, and an admin interf
 - **Backend**: Java Servlets & JSP
 - **Database**: MySQL
 - **ORM**:
-- **Build/Deployment**: Tomcat 10
+- **Build/Deployment**: Tomcat10
