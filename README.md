@@ -35,8 +35,9 @@ The system includes user authentication, profile management, and an admin interf
 - Responsive, user-friendly interface
 
 ## Technologies Used
-- **Frontend**: HTML5, CSS3, JavaScript
-- **Backend**: Java Servlets & JSP
+- **Frontend**: HTML5, CSS3, JavaScript, Bootstrap, JQuery
+- **Backend**: Java Servlets & JSP, Jakarta EE
 - **Database**: MySQL
-- **ORM**:
-- **Build/Deployment**: Tomcat10
+- **ORM**: Hibernate
+- **Build/Deployment**: Maven
+- **Web Server**: Tomcat10
