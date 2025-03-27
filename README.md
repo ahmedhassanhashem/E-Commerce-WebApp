@@ -40,4 +40,4 @@ The system includes user authentication, profile management, and an admin interf
 - **Database**: MySQL
 - **ORM**: Hibernate
 - **Build/Deployment**: Maven
-- **Web Server**: Tomcat10
+- **Web Server**: Tomcat
