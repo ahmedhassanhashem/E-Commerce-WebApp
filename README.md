@@ -36,7 +36,7 @@ The system includes user authentication, profile management, and an admin interf
 
 ## Technologies Used
 - **Frontend**: HTML5, CSS3, JavaScript, Bootstrap, JQuery
-- **Backend**: Java Servlets & JSP, Jakarta EE
+- **Backend**: Java, Jakarta EE (Servlets & JSP)
 - **Database**: MySQL
 - **ORM**: Hibernate
 - **Build/Deployment**: Maven
