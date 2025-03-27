@@ -1950,6 +1950,8 @@ input::-ms-clear {
   box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.07); }
 
 /* 6.1 Primary Nav */
+.nav-link:hover {background-color: #ff4500;}
+
 .primary-nav-wrapper--border {
   border-bottom: 1px solid #f8f8f8; }
 

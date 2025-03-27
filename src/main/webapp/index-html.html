@@ -31,7 +31,7 @@
     <!--====== Main App ======-->
     <div id="app">
         <div class="fixed-list">
-            <ul class="nav" id="init-scrollspy">
+            <ul class="nav" id="init-scrollspy" style="background: #242424">
                 <li>
                     
                     <a class="nav-link" href="#electronic-01" data-click-scroll="#electronic-01"><i><img src="images/nav-ico/beans.png" width="20" height="24"></i></a>
@@ -55,6 +55,7 @@
 
                     <!--====== Primary Nav ======-->
                     <div class="primary-nav">
+                        
 
                         <!--====== Main Logo ======-->
 
@@ -64,19 +65,32 @@
                         <!--====== End - Main Logo ======-->
 
 
-                        <!--====== Search Form ======-->
-                        <form class="main-form">
 
-                            <label for="main-search"></label>
+                        <!--====== Dropdown Main plugin ======-->
 
-                            <input class="input-text input-text--border-radius input-text--style-2" type="text" id="main-search" placeholder="Search">
+                        <div class="menu-init" id="navigation">
 
-                            <button class="btn btn--icon fas fa-search main-search-button" type="submit"></button></form>
-                        <!--====== End - Search Form ======-->
+                            <button class="btn btn--icon toggle-button fas fa-user-cog u-c-white" type="button"></button>
 
-    
+                            <!--====== Menu ======-->
+                            <div class="ah-lg-mode">
+
+                                <span class="ah-close">✕ Close</span>
+
                                 <!--====== List ======-->
                                 <ul class="ah-list ah-list--design1 ah-list--link-color-white">
+                                    <li>
+
+                                        <a href="signup.html"><i class="fas fa-search-plus u-s-m-r-4"></i>
+
+                                            <span>About Us</span></a>
+                                    </li>
+                                    <li>
+
+                                        <a href="signup.html"><i class="fas fa-envelope u-s-m-r-4"></i>
+
+                                            <span>Contact Us</span></a>
+                                    </li>
 
                                             <li>
 
@@ -104,6 +118,11 @@
                                     </li>
                                 </ul>
                                 <!--====== End - List ======-->
+                            </div>
+                            <!--====== End - Menu ======-->
+                        </div>
+                        <!--====== End - Dropdown Main plugin ======-->
+
                     </div>
                     <!--====== End - Primary Nav ======-->
                 </div>
@@ -116,35 +135,13 @@
                 <div class="container">
 
                     <!--====== Secondary Nav ======-->
-                    <div class="secondary-nav">
-
-                        <div class="menu-init" id="navigation1">
-
-                            <button class="btn btn--icon toggle-button toggle-button--white fas fa-cog" type="button"></button>
-
-                            <!--empty home-->
-                            <ul class="ah-list ah-list--design1 ah-list--link-color-white">
-                                <li>
-
-                                    <a href="index-2.html"><i class="fas fa-home u-c-brand"></i></a>
-                                </li>
-                            </ul>
-
-                            <!--====== Menu ======-->
-                            <div class="ah-lg-mode">
-
-                                <span class="ah-close">✕ Close</span>
-
-
-                            </div>
-                        </div>
-                        
+                    <div class="secondary-nav">            
 
 
                         <!--====== Dropdown Main plugin ======-->
                         <div class="menu-init" id="navigation2">
 
-                            <button class="btn btn--icon toggle-button toggle-button--white fas fa-cog" type="button"></button>
+                            <button class="btn btn--icon toggle-button toggle-button--white fas fa-truck u-c-white" type="button"></button>
 
                             <!--====== Menu ======-->
                             <div class="ah-lg-mode">
@@ -152,7 +149,7 @@
                                 <span class="ah-close">✕ Close</span>
 
                                 <!--====== List ======-->
-                                <ul class="ah-list ah-list--design2 ah-list--link-color-white">
+                                <ul class="ah-list ah-list--design1 ah-list--link-color-white">
                                     <li>
 
                                         <a href="shop-side-version-2.html">Coffee Beans</a></li>
@@ -172,13 +169,24 @@
                         </div>
                         <!--====== End - Dropdown Main plugin ======-->
 
+                        <!--====== Search Form ======-->
+                        <form class="main-form">
+
+                            <label for="main-search"></label>
+
+                            <input class="input-text input-text--border-radius input-text--style-2" type="text" id="main-search" placeholder="Search">
+
+                            <button class="btn btn--icon fas fa-search main-search-button" type="submit"></button></form>
+                        <!--====== End - Search Form ======-->
+
+
 
                         <!--====== Dropdown Main plugin ======-->
                         <div class="menu-init" id="navigation3">
 
-                            <button class="btn btn--icon toggle-button toggle-button--white fas fa-shopping-bag toggle-button-shop" type="button"></button>
+                            <button class="btn btn--icon toggle-button toggle-button--white fas fa-shopping-bag toggle-button-shop u-c-white delte" type="button"></button>
 
-                            <span class="total-item-round">2</span>
+                           
 
                             <!--====== Menu ======-->
                             <div class="ah-lg-mode">
@@ -187,9 +195,64 @@
 
                                 <!--====== List ======-->
                                 <ul class="ah-list ah-list--design1 ah-list--link-color-white">
-                                   <li>
+                                   <li class="has-dropdown">
+                                    
 
-                                        <a href="wishlist.html"><i class="far fa-heart"></i></a></li>
+                                    <a class="mini-cart-shop-link"><i class="far fa-heart"></i>
+                                        <span class="total-item-round">2</span></a>
+
+                                         <!--====== Dropdown ======-->
+
+                                         <span class="js-menu-toggle"></span>
+                                         <div class="mini-cart">
+ 
+                                             <!--====== Mini Product Container ======-->
+                                             <div class="mini-product-container gl-scroll u-s-m-b-15">
+ 
+                                                 <!--====== Card for mini cart ======-->
+                                                 <div class="card-mini-product">
+                                                     <div class="mini-product">
+                                                         <div class="mini-product__image-wrapper">
+ 
+                                                             <a class="mini-product__link" href="product-detail.html">
+ 
+                                                                 <img class="u-img-fluid" src="images/product/men/product8.jpg" alt=""></a></div>
+                                                         <div class="mini-product__info-wrapper">
+ 
+                                                             <span class="mini-product__category">
+ 
+                                                                 <a href="shop-side-version-2.html">Men Clothing</a></span>
+ 
+                                                             <span class="mini-product__name">
+ 
+                                                                 <a href="product-detail.html">New Fashion D Nice Elegant</a></span>
+ 
+                                                             <span class="mini-product__quantity">1 x</span>
+ 
+                                                             <span class="mini-product__price">$8</span></div>
+                                                     </div>
+                                                     <a class="mini-product__delete-link fas fa-shopping-bag"></a>
+                                                     <a class="mini-product__delete-link far fa-trash-alt"></a>
+                                                 </div>
+                                                 <!--====== End - Card for mini cart ======-->
+                                             </div>
+                                             <!--====== End - Mini Product Container ======-->
+
+                                              <!--====== Mini Product Statistics ======-->
+                                            <div class="mini-product-stat">
+                                                <div class="mini-action">
+
+                                                    <a class="mini-link btn--e-brand-b-2" href="">PROCEED TO CART</a>
+
+                                                    <a class="mini-link btn--e-transparent-secondary-b-2" href="wishlist.html">VIEW WISHLIST</a></div>
+                                            </div>
+                                            <!--====== End - Mini Product Statistics ======-->
+
+                                         </div>
+                                         <!--====== End - Dropdown ======-->
+
+                                        
+                                        </a></li>
                                     <li class="has-dropdown">
 
                                         <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
@@ -203,90 +266,6 @@
 
                                             <!--====== Mini Product Container ======-->
                                             <div class="mini-product-container gl-scroll u-s-m-b-15">
-
-                                                <!--====== Card for mini cart ======-->
-                                                <div class="card-mini-product">
-                                                    <div class="mini-product">
-                                                        <div class="mini-product__image-wrapper">
-
-                                                            <a class="mini-product__link" href="product-detail.html">
-
-                                                                <img class="u-img-fluid" src="images/product/electronic/product3.jpg" alt=""></a></div>
-                                                        <div class="mini-product__info-wrapper">
-
-                                                            <span class="mini-product__category">
-
-                                                                <a href="shop-side-version-2.html">Electronics</a></span>
-
-                                                            <span class="mini-product__name">
-
-                                                                <a href="product-detail.html">Yellow Wireless Headphone</a></span>
-
-                                                            <span class="mini-product__quantity">1 x</span>
-
-                                                            <span class="mini-product__price">$8</span></div>
-                                                    </div>
-
-                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                                </div>
-                                                <!--====== End - Card for mini cart ======-->
-
-
-                                                <!--====== Card for mini cart ======-->
-                                                <div class="card-mini-product">
-                                                    <div class="mini-product">
-                                                        <div class="mini-product__image-wrapper">
-
-                                                            <a class="mini-product__link" href="product-detail.html">
-
-                                                                <img class="u-img-fluid" src="images/product/electronic/product18.jpg" alt=""></a></div>
-                                                        <div class="mini-product__info-wrapper">
-
-                                                            <span class="mini-product__category">
-
-                                                                <a href="shop-side-version-2.html">Electronics</a></span>
-
-                                                            <span class="mini-product__name">
-
-                                                                <a href="product-detail.html">Nikon DSLR Camera 4k</a></span>
-
-                                                            <span class="mini-product__quantity">1 x</span>
-
-                                                            <span class="mini-product__price">$8</span></div>
-                                                    </div>
-
-                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                                </div>
-                                                <!--====== End - Card for mini cart ======-->
-
-
-                                                <!--====== Card for mini cart ======-->
-                                                <div class="card-mini-product">
-                                                    <div class="mini-product">
-                                                        <div class="mini-product__image-wrapper">
-
-                                                            <a class="mini-product__link" href="product-detail.html">
-
-                                                                <img class="u-img-fluid" src="images/product/women/product8.jpg" alt=""></a></div>
-                                                        <div class="mini-product__info-wrapper">
-
-                                                            <span class="mini-product__category">
-
-                                                                <a href="shop-side-version-2.html">Women Clothing</a></span>
-
-                                                            <span class="mini-product__name">
-
-                                                                <a href="product-detail.html">New Dress D Nice Elegant</a></span>
-
-                                                            <span class="mini-product__quantity">1 x</span>
-
-                                                            <span class="mini-product__price">$8</span></div>
-                                                    </div>
-
-                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                                </div>
-                                                <!--====== End - Card for mini cart ======-->
-
 
                                                 <!--====== Card for mini cart ======-->
                                                 <div class="card-mini-product">
