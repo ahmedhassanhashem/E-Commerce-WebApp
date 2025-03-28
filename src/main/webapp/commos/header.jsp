@@ -79,7 +79,7 @@
                   <span>Login</span></a>
               </li>
               <li>
-                <a href="dashboard.html"><i class="fas fa-user-cog u-s-m-r-4"></i>
+                <a href="dashboard.jsp"><i class="fas fa-user-cog u-s-m-r-4"></i>
 
                   <span>Account</span></a>
               </li>

@@ -103,5 +103,28 @@
 <%@include file="commos/script.html"%>
 
 
+
+
+
+
+
+<!-- Test user data -->
+<%@ page import="com.ecommerce.webapp.ecommercewebapp.model.User" %>
+<%@ page import="java.util.Date" %>
+
+<%
+    User user = new User();
+    user.setFirstName("kerellos");
+    user.setLastName("samy");
+    user.setEmail("kerolos@example.com");
+    user.setPhone("1234567890");
+    user.setGender("Male");
+    user.setAddress("Smart village, 123 Coffee St.");
+    user.setBirthDate(new Date());
+    user.setBalance(300.59);
+
+    session.setAttribute("currentUser", user);
+%>
+
 </body>
 </html>
