@@ -2464,7 +2464,7 @@ input::-ms-clear {
 .banner-bg {
   padding: 7em 0;
   position: relative;
-  background: #f5f5f5 url(../../../images/banners/banner-bg.jpg) repeat fixed center center;
+  background: #f5f5f5 url(../images/banners/banner-bg.jpg) repeat fixed center center;
   background-size: cover; }
   .banner-bg__wrap {
     text-align: center; }
@@ -6037,23 +6037,23 @@ input::-ms-clear {
 .hero-slide {
   background: center center/cover no-repeat; }
   .hero-slide--1 {
-    background-image: url(../../../images/slider/slide-1.jpg); }
+    background-image: url(../images/slider/slide-1.jpg); }
   .hero-slide--2 {
-    background-image: url(../../../images/slider/slide-2.jpg); }
+    background-image: url(../images/slider/slide-2.jpg); }
   .hero-slide--3 {
-    background-image: url(../../../images/slider/slide-3.jpg); }
+    background-image: url(../images/slider/slide-3.jpg); }
   .hero-slide--4 {
-    background-image: url(../../../images/slider/slide-4.jpg); }
+    background-image: url(../images/slider/slide-4.jpg); }
   .hero-slide--5 {
-    background-image: url(../../../images/slider/slide-5.jpg); }
+    background-image: url(../images/slider/slide-5.jpg); }
   .hero-slide--6 {
-    background-image: url(../../../images/slider/slide-6.jpg); }
+    background-image: url(../images/slider/slide-6.jpg); }
   .hero-slide--7 {
-    background-image: url(../../../images/slider/slide-7.jpg); }
+    background-image: url(../images/slider/slide-7.jpg); }
   .hero-slide--8 {
-    background-image: url(../../../images/slider/slide-8.jpg); }
+    background-image: url(../images/slider/slide-8.jpg); }
   .hero-slide--9 {
-    background-image: url(../../../images/slider/slide-9.jpg); }
+    background-image: url(../images/slider/slide-9.jpg); }
 
 .owl-carousel .owl-dots {
   position: absolute; }
