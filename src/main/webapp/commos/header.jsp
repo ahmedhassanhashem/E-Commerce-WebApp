@@ -131,9 +131,9 @@
             <ul class="ah-list ah-list--design1 ah-list--link-color-white">
               <li>
 
-                <a href="shop-side-version-2.html">Coffee Beans</a></li>
-
+                <a href="shop-side-version-2.html">Coffee Beans</a>
               </li>
+
               <li>
 
                 <a href="shop-side-version-2.html">Coffee Mugs</a>
@@ -174,6 +174,9 @@
 
             <!--====== List ======-->
             <ul class="ah-list ah-list--design1 ah-list--link-color-white">
+              <li>
+                <a href="index.jsp"><i class="fas fa-home"></i></a>
+              </li>
               <li class="has-dropdown">
 
 
