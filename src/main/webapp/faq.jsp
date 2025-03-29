@@ -1,16 +1,50 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: AHMED
-  Date: 2025-03-29
-  Time: 16:24
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+
+<%@include file="commos/head.html"%>
+
+
+
+<body class="config" id="js-scrollspy-trigger">
+
+<%@include file="commos/preloader.html"%>
+
+<!--====== Main App ======-->
+<div id="app">
+
+
+    <jsp:include page="commos/header.jsp"/>
+
+
+    <!--====== App Content ======-->
+    <div class="app-content">
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+
+
+    </div>
+    <!--====== End -App Content ======-->
+
+
+    <%@include file="commos/footer.html"%>
+
+</div>
+<!--====== End - Main App  ======-->
+
+
+
+
+
+<jsp:include page="commos/modals.jsp"/>
+
+<%@include file="commos/script.html"%>
 
 </body>
 </html>
