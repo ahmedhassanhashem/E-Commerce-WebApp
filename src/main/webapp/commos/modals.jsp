@@ -101,8 +101,12 @@
                                             <!--====== End - Input Counter ======-->
                                         </div>
                                         <div class="u-s-m-b-15">
+                                            <button class="btn btn--e-brand-b-2" type="submit">Checkout</button>
+                                        </div>
+                                        <div class="u-s-m-b-15">
+                                            <button class="btn btn--e-brand-shadow" data-dismiss="modal" type="button" >CONTINUE SHOPPING</button>
 
-                                            <button class="btn btn--e-brand-b-2" type="submit">Checkout</button></div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
