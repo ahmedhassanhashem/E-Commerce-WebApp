@@ -1,6 +1,6 @@
-package com.ecommerce.webapp.ecommercewebapp.servlet;
+package com.ecommerce.webapp.controller;
 
-import com.ecommerce.webapp.ecommercewebapp.model.User;
+import com.ecommerce.webapp.model.User;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;

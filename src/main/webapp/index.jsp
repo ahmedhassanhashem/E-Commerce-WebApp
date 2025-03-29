@@ -1,4 +1,21 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!-- Test user data -->
+<%@ page import="com.ecommerce.webapp.model.User" %>
+<%@ page import="java.util.Date" %>
+
+<%
+  User user = new User();
+  user.setFirstName("kerellos");
+  user.setLastName("samy");
+  user.setEmail("kerolos@example.com");
+  user.setPhone("1234567890");
+  user.setGender("Male");
+  user.setAddress("Smart village, 123 Coffee St.");
+  user.setBirthDate(new Date());
+  user.setBalance(300.59);
+
+  session.setAttribute("currentUser", user);
+%>
 
 
 <!DOCTYPE html>
@@ -81,6 +98,8 @@
 
 
 
+          <%@include file="commos/footer.html"%>
+
 
 </div>
 <!--====== End - White Container ======-->
@@ -91,40 +110,15 @@
 
 </div>
 
+    <!--====== End - Main App ======-->
 
-<%@include file="commos/footer.html"%>
 
 
 <jsp:include page="commos/modals.jsp"/>
 
-<!--====== End - Main App ======-->
 
 
 <%@include file="commos/script.html"%>
-
-
-
-
-
-
-
-<!-- Test user data -->
-<%@ page import="com.ecommerce.webapp.ecommercewebapp.model.User" %>
-<%@ page import="java.util.Date" %>
-
-<%
-    User user = new User();
-    user.setFirstName("kerellos");
-    user.setLastName("samy");
-    user.setEmail("kerolos@example.com");
-    user.setPhone("1234567890");
-    user.setGender("Male");
-    user.setAddress("Smart village, 123 Coffee St.");
-    user.setBirthDate(new Date());
-    user.setBalance(300.59);
-
-    session.setAttribute("currentUser", user);
-%>
 
 </body>
 </html>

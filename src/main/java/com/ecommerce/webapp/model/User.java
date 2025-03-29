@@ -1,4 +1,4 @@
-package com.ecommerce.webapp.ecommercewebapp.model;
+package com.ecommerce.webapp.model;
 
 import java.util.Date;
 
