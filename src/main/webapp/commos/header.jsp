@@ -60,6 +60,12 @@
               </li>
               <li>
 
+                <a href="signup.html"><i class="fas fa-clipboard u-s-m-r-4"></i>
+
+                  <span>FAQ</span></a>
+              </li>
+              <li>
+
                 <a href="signup.html"><i class="fas fa-envelope u-s-m-r-4"></i>
 
                   <span>Contact Us</span></a>
@@ -74,7 +80,7 @@
 
               <li>
 
-                <a href="signin.html"><i class="fas fa-lock u-s-m-r-4"></i>
+                <a href="signin.html"><i class="fas fa-sign-in-alt u-s-m-r-4"></i>
 
                   <span>Login</span></a>
               </li>
@@ -85,7 +91,7 @@
               </li>
               <li>
 
-                <a href="signup.html"><i class="fas fa-lock-open u-s-m-r-4"></i>
+                <a href="signup.html"><i class="fas fa-sign-out-alt u-s-m-r-4"></i>
 
                   <span>Logout</span></a></li>
               </li>
