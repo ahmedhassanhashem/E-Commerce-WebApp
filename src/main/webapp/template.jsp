@@ -19,7 +19,19 @@
 
     <jsp:include page="commos/header.jsp"/>
 
+
+        <!--====== App Content ======-->
+        <div class="app-content">
+
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+
+
+        </div>
+        <!--====== End -App Content ======-->
+
 
     <%@include file="commos/footer.html"%>
 
