@@ -43,7 +43,7 @@
 
         <div class="menu-init" id="navigation">
 
-          <button class="btn btn--icon toggle-button fas fa-user-cog u-c-white" type="button"></button>
+          <button class="btn btn--icon toggle-button fas fa-user-alt u-c-white" type="button"></button>
 
           <!--====== Menu ======-->
           <div class="ah-lg-mode">
@@ -120,7 +120,7 @@
         <!--====== Dropdown Main plugin ======-->
         <div class="menu-init" id="navigation2">
 
-          <button class="btn btn--icon toggle-button toggle-button--white fas fa-truck u-c-white" type="button"></button>
+          <button class="btn btn--icon toggle-button toggle-button--white fas fa-shopping-bag u-c-white" type="button"></button>
 
           <!--====== Menu ======-->
           <div class="ah-lg-mode">
@@ -163,7 +163,7 @@
         <!--====== Dropdown Main plugin ======-->
         <div class="menu-init" id="navigation3">
 
-          <button class="btn btn--icon toggle-button toggle-button--white fas fa-shopping-bag toggle-button-shop u-c-white delte" type="button"></button>
+          <button class="btn btn--icon toggle-button toggle-button--white fas fa-shopping-cart toggle-button-shop u-c-white delte" type="button"></button>
 
 
 
@@ -237,7 +237,7 @@
                 </li>
               <li class="has-dropdown">
 
-                <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
+                <a class="mini-cart-shop-link"><i class="fas fa-shopping-cart"></i>
 
                   <span class="total-item-round">2</span></a>
 

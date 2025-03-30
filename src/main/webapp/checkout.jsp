@@ -25,8 +25,7 @@
 
         <!-- page content -->
         <!--====== Section 3 ======-->
-        <div class="u-s-p-b-60">
-
+            <br><br>
             <!--====== Section Content ======-->
             <div class="section__content">
                 <div class="container">
@@ -110,10 +109,6 @@
                 <!--====== End - Section Content ======-->
             </div>
 
-
-
-
-        </div>
     <!--====== End -App Content ======-->
 
 
