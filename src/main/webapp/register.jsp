@@ -65,12 +65,13 @@
 
                                         <button class="btn btn--e-transparent-brand-b-2" type="submit">CREATE</button></div>
 
-                                    <a class="gl-link" href="#">Return to Store</a>
+                                    <a class="gl-link" href="#">LOGIN</a>
                                 </form>
                             </div>
-
-
-    </div>
+                        </div>
+                     </div>
+                </div>
+            </div>
     <!--====== End -App Content ======-->
 
 
