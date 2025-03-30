@@ -43,6 +43,13 @@
                                         <input class="input-text input-text--primary-style" type="text" id="reg-name" placeholder="Name">
                                     </div>
 
+                                    <div class="u-s-m-b-30">
+
+                                        <label class="gl-label" for="reg-address">ADDRESS *</label>
+
+                                        <input class="input-text input-text--primary-style" type="text" id="reg-address" placeholder="Name">
+                                    </div>
+
 
                                     <div class="u-s-m-b-30">
 
