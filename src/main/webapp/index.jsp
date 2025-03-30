@@ -63,7 +63,27 @@
 
         <!--====== Section 2 ======-->
 
-          <jsp:include page="home/beans-dynamic.jsp"/>
+          <!--====== Product Tab ======-->
+          <div class="u-s-p-b-60" id="electronic-01">
+            <!--====== Section Intro ======-->
+            <div class="section__intro u-s-m-b-46">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="block">
+
+                      <span class="block__title">Beans Products</span>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--====== End - Section Intro ======-->
+
+            <jsp:include page="commos/product-card.jsp"/>
+          </div>
+          <!--====== End - Product Tab ======-->
 
 
 
@@ -75,7 +95,27 @@
       <!--====== Section 4 ======-->
 
 
-          <jsp:include page="home/mugs-dynamic.jsp"/>
+          <!--====== Product Tab ======-->
+          <div class="u-s-p-b-60" id="female-02">
+            <!--====== Section Intro ======-->
+            <div class="section__intro u-s-m-b-46">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="block">
+
+                      <span class="block__title">Mugs Products</span>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--====== End - Section Intro ======-->
+
+            <jsp:include page="commos/product-card.jsp"/>
+          </div>
+          <!--====== End - Product Tab ======-->
 
 
 
@@ -86,19 +126,35 @@
 
 
           <!--====== Section 6 ======-->
-          <jsp:include page="home/machines-dynamic.jsp"/>
+          <!--====== Product Tab ======-->
+          <div class="u-s-p-b-60" id="male-03">
+            <!--====== Section Intro ======-->
+            <div class="section__intro u-s-m-b-46">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="block">
+
+                      <span class="block__title">Machines Products</span>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--====== End - Section Intro ======-->
+
+            <jsp:include page="commos/product-card.jsp"/>
+          </div>
+          <!--====== End - Product Tab ======-->
 
 
           <!--====== Section 7 ======-->
           <%@include file="home/services.html"%>
 
 
-          <!--====== Section 8 ======-->
-          <%@include file="home/developers.html"%>
 
 
-
-          <%@include file="commos/footer.html"%>
 
 
 </div>
@@ -109,12 +165,13 @@
 <!--====== End - App Content ======-->
 
 </div>
-
     <!--====== End - Main App ======-->
 
+    <%@include file="commos/footer.html"%>
 
 
-<jsp:include page="commos/modals.jsp"/>
+
+  <jsp:include page="commos/modals.jsp"/>
 
 
 
