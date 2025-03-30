@@ -24,11 +24,9 @@
 
 
         <!-- page content -->
-
         <!--====== Section 2 ======-->
         <div class="u-s-p-b-60">
-
-
+            <br>
             <!--====== Section Content ======-->
             <div class="section__content">
                 <div class="container">
