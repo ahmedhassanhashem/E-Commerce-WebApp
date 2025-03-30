@@ -51,7 +51,8 @@
 
                                     <!--====== Dashboard Features ======-->
                                     <div class="col-lg-3 col-md-12">
-                                        <%@ include file="dashboard-sidebar.html" %>
+                                        <% request.setAttribute("activePage", "dashboard"); %>
+                                        <%@ include file="dashboard-sidebar.jsp" %>
                                         <jsp:include page="orders-statistics.jsp" />
                                     </div>
                                     <!--====== End - Dashboard Features ======-->

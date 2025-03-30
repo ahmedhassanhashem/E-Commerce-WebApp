@@ -3424,16 +3424,19 @@ input::-ms-clear {
 
 
 .dash__w-icon-style-1 {
+  margin-bottom: 5px;
   background-color: rgba(255, 69, 0, 0.14); }
   .dash__w-icon-style-1 > i {
     color: #ff4500; }
 
 .dash__w-icon-style-2 {
+  margin-bottom: 5px;
   background-color: rgba(0, 148, 68, 0.14); }
   .dash__w-icon-style-2 > i {
     color: #009444; }
 
 .dash__w-icon-style-3 {
+  margin-bottom: 5px;
   background-color: rgba(49, 133, 252, 0.14); }
   .dash__w-icon-style-3 > i {
     color: #3185FC; }

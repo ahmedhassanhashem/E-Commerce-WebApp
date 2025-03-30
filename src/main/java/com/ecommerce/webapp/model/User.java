@@ -10,6 +10,7 @@ public class User {
     private String email;
     private String phone;
     private String address;
+    private String password;
 
     public Double getBalance() {
         return balance;
@@ -22,10 +23,10 @@ public class User {
     private Double balance;
 
     // Constructors
-    public User() {}
+    public User() {
+    }
 
-    public User(String firstName, String lastName, Date birthDate, String gender,
-                String email, String phone, String address) {
+    public User(String firstName, String lastName, Date birthDate, String gender, String email, String phone, String address, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -33,6 +34,7 @@ public class User {
         this.email = email;
         this.phone = phone;
         this.address = address;
+        this.password = password;
     }
 
     // Getters and Setters
@@ -90,5 +92,13 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

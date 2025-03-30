@@ -67,7 +67,7 @@
                         <div class="dash__box dash__box--bg-grey dash__box--shadow-2 u-h-100">
                             <div class="dash__pad-3">
                                 <h2 class="dash__h2 u-s-m-b-8">PHONE NUMBER</h2>
-                                <span class="dash__text"> 0${currentUser.phone}</span>
+                                <span class="dash__text"> ${currentUser.phone}</span>
                             </div>
                         </div>
                     </div>
