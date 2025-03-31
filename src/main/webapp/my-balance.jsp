@@ -1,4 +1,8 @@
+<!--
+
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@include file="commos/preloader.html"%>
 <%@include file="commos/head.html"%>
 <jsp:include page="commos/header.jsp"/>
@@ -96,57 +100,57 @@
                                     <div class="col-lg-9 col-md-12">
                                         <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
                                             <div class="dash__pad-2">
-                                                <h1 class="dash__h1 u-s-m-b-14">My Profile</h1>
+                                                <h1 class="dash__h1 u-s-m-b-14">My Balance</h1>
 
-                                                <span class="dash__text u-s-m-b-30">Look all your info, you could customize your profile.</span>
+                                                <span class="dash__text u-s-m-b-30">here you can show your balance.</span>
                                                 <div class="row">
                                                     <div class="col-lg-4 u-s-m-b-30">
-                                                        <h2 class="dash__h2 u-s-m-b-8">Full Name</h2>
+                                                        <h2 class="dash__h2 u-s-m-b-8">Balance</h2>
 
-                                                        <span class="dash__text">${currentUser.firstName} ${currentUser.lastName}</span>
+                                                        <span class="dash__text">
+                                                            <fmt:formatNumber value="${currentUser.balance}" type="number" minFractionDigits="2" maxFractionDigits="2" />
+                                                        </span>
                                                     </div>
 
-                                                    <div class="col-lg-4 u-s-m-b-30">
-                                                        <h2 class="dash__h2 u-s-m-b-8">E-mail</h2>
 
-                                                        <span class="dash__text">${currentUser.email}</span>
-                                                    </div>
 
-                                                    <div class="col-lg-4 u-s-m-b-30">
-                                                        <h2 class="dash__h2 u-s-m-b-8">Phone</h2>
-
-                                                        <span class="dash__text">${currentUser.phone}</span>
-
-                                                    </div>
-                                                    <div class="col-lg-4 u-s-m-b-30">
-                                                        <h2 class="dash__h2 u-s-m-b-8">Birthday</h2>
-
-                                                        <span class="dash__text">${currentUser.birthDate}</span>
-                                                    </div>
-                                                    <div class="col-lg-4 u-s-m-b-30">
-                                                        <h2 class="dash__h2 u-s-m-b-8">Gender</h2>
-
-                                                        <span class="dash__text">${currentUser.gender}</span>
-                                                    </div>
-                                                    <div class="col-lg-4 u-s-m-b-30">
-                                                        <h2 class="dash__h2 u-s-m-b-8">Address</h2>
-
-                                                        <span class="dash__text">${currentUser.address}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="dash__link dash__link--secondary u-s-m-b-30">
+                                                    <div class="col-lg-8 u-s-m-b-30">
+                                                        <h2 class="dash__h2 u-s-m-b-8">Add to Balance</h2>
+                                                        <div class="dash__form-wrap">
+                                                            <input id="amountInput" class="input-text input-text--primary-style"
+                                                                   type="text"
+                                                                   name="amount"
+                                                                   placeholder="Enter amount to add" required />
                                                         </div>
-                                                        <div class="u-s-m-b-16">
-
-                                                            <a class="dash__custom-link btn--e-transparent-brand-b-2"
-                                                               href="dash-edit-profile.html">Edit Profile</a></div>
-                                                        <div>
-
-                                                            <a class="dash__custom-link btn--e-brand-b-2" href="#">Change
-                                                                Password</a></div>
+                                                        <div class="u-s-m-t-10">
+                                                            <button class="btn btn--e-brand-b-2" onclick="addBalance()">Add</button>
+                                                        </div>
                                                     </div>
+
+                                                    <script>
+                                                        function addBalance() {
+                                                            const amount = document.getElementById("amountInput").value;
+
+                                                            fetch('add-balance', {  // Servlet URL mapping
+                                                                method: 'POST',
+                                                                headers: {
+                                                                    'Content-Type': 'application/x-www-form-urlencoded'
+                                                                },
+                                                                body: 'amount=' + encodeURIComponent(amount)
+                                                            })
+                                                            .then(response => response.text())
+                                                            .then(data => {
+                                                                alert(data); // Show popup with response text
+                                                                window.location.reload(); // Reload to show updated balance
+                                                            })
+                                                            .catch(error => {
+                                                                alert("Error updating balance: " + error);
+                                                            });
+                                                        }
+                                                    </script>
+
+
+
                                                 </div>
                                             </div>
                                         </div>
@@ -402,3 +406,8 @@
         </noscript>
     </body>
 </html>
+
+
+
+
+-->
