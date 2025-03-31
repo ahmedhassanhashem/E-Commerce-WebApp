@@ -1,16 +1,72 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: AHMED
-  Date: 2025-03-29
-  Time: 16:23
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+
+<%@include file="commos/head.html"%>
+
+
+
+<body class="config" id="js-scrollspy-trigger">
+
+<%@include file="commos/preloader.html"%>
+
+<!--====== Main App ======-->
+<div id="app">
+
+
+    <jsp:include page="commos/header.jsp"/>
+
+
+    <!--====== App Content ======-->
+    <div class="app-content">
+
+
+        <!--====== Section 1 ======-->
+        <div class="u-s-p-y-60">
+
+            <!--====== Section Content ======-->
+            <div class="section__content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 u-s-m-b-30">
+                            <div class="empty">
+                                <div class="empty__wrap">
+
+                                    <span class="empty__big-text">EMPTY</span>
+
+                                    <span class="empty__text-1">No items found on your cart.</span>
+
+                                    <a class="empty__redirect-link btn--e-brand" href="shop-side-version-2.html">CONTINUE SHOPPING</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--====== End - Section Content ======-->
+        </div>
+        <!--====== End - Section 1 ======-->
+
+
+
+    </div>
+    <!--====== End -App Content ======-->
+
+
+    <%@include file="commos/footer.html"%>
+
+</div>
+<!--====== End - Main App  ======-->
+
+
+
+
+
+<jsp:include page="commos/modals.jsp"/>
+
+<%@include file="commos/script.html"%>
 
 </body>
 </html>

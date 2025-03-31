@@ -43,7 +43,7 @@
 
         <div class="menu-init" id="navigation">
 
-          <button class="btn btn--icon toggle-button fas fa-user-cog u-c-white" type="button"></button>
+          <button class="btn btn--icon toggle-button fas fa-user-alt u-c-white" type="button"></button>
 
           <!--====== Menu ======-->
           <div class="ah-lg-mode">
@@ -57,6 +57,12 @@
                 <a href="signup.html"><i class="fas fa-search-plus u-s-m-r-4"></i>
 
                   <span>About Us</span></a>
+              </li>
+              <li>
+
+                <a href="signup.html"><i class="fas fa-clipboard u-s-m-r-4"></i>
+
+                  <span>FAQ</span></a>
               </li>
               <li>
 
@@ -74,7 +80,7 @@
 
               <li>
 
-                <a href="signin.html"><i class="fas fa-lock u-s-m-r-4"></i>
+                <a href="signin.html"><i class="fas fa-sign-in-alt u-s-m-r-4"></i>
 
                   <span>Login</span></a>
               </li>
@@ -85,7 +91,7 @@
               </li>
               <li>
 
-                <a href="signup.html"><i class="fas fa-lock-open u-s-m-r-4"></i>
+                <a href="signup.html"><i class="fas fa-sign-out-alt u-s-m-r-4"></i>
 
                   <span>Logout</span></a></li>
               </li>
@@ -114,7 +120,7 @@
         <!--====== Dropdown Main plugin ======-->
         <div class="menu-init" id="navigation2">
 
-          <button class="btn btn--icon toggle-button toggle-button--white fas fa-truck u-c-white" type="button"></button>
+          <button class="btn btn--icon toggle-button toggle-button--white fas fa-shopping-bag u-c-white" type="button"></button>
 
           <!--====== Menu ======-->
           <div class="ah-lg-mode">
@@ -125,9 +131,9 @@
             <ul class="ah-list ah-list--design1 ah-list--link-color-white">
               <li>
 
-                <a href="shop-side-version-2.html">Coffee Beans</a></li>
-
+                <a href="shop-side-version-2.html">Coffee Beans</a>
               </li>
+
               <li>
 
                 <a href="shop-side-version-2.html">Coffee Mugs</a>
@@ -157,7 +163,7 @@
         <!--====== Dropdown Main plugin ======-->
         <div class="menu-init" id="navigation3">
 
-          <button class="btn btn--icon toggle-button toggle-button--white fas fa-shopping-bag toggle-button-shop u-c-white delte" type="button"></button>
+          <button class="btn btn--icon toggle-button toggle-button--white fas fa-shopping-cart toggle-button-shop u-c-white delte" type="button"></button>
 
 
 
@@ -168,6 +174,9 @@
 
             <!--====== List ======-->
             <ul class="ah-list ah-list--design1 ah-list--link-color-white">
+              <li>
+                <a href="index.jsp"><i class="fas fa-home"></i></a>
+              </li>
               <li class="has-dropdown">
 
 
@@ -228,7 +237,7 @@
                 </li>
               <li class="has-dropdown">
 
-                <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
+                <a class="mini-cart-shop-link"><i class="fas fa-shopping-cart"></i>
 
                   <span class="total-item-round">2</span></a>
 

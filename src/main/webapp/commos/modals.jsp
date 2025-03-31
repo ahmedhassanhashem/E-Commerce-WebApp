@@ -77,7 +77,7 @@
                             <div class="u-s-m-b-15">
                                 <div class="pd-detail__inline">
 
-                                    <span class="pd-detail__click-wrap"><i class="fas fa-shopping-bag u-s-m-r-6"></i></span>
+                                    <span class="pd-detail__click-wrap"><i class="fas fa-shopping-cart u-s-m-r-6"></i></span>
 
                                     <a data-modal="modal" data-modal-id="#add-to-cart2" data-tooltip="tooltip" data-placement="top" title="Add to Cart">Add to Cart</a>
                                 </div>
@@ -101,8 +101,12 @@
                                             <!--====== End - Input Counter ======-->
                                         </div>
                                         <div class="u-s-m-b-15">
+                                            <button class="btn btn--e-brand-b-2" type="submit">Checkout</button>
+                                        </div>
+                                        <div class="u-s-m-b-15">
+                                            <button class="btn btn--e-white-brand-shadow" data-dismiss="modal" type="button" >CONTINUE SHOPPING</button>
 
-                                            <button class="btn btn--e-brand-b-2" type="submit">Checkout</button></div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -140,7 +144,7 @@
 
                             <span class="success__price">$170.00</span></div>
 
-                        <a class="s-option__link btn--e-brand-shadow" data-dismiss="modal">CONTINUE SHOPPING</a>
+                        <a class="s-option__link btn--e-white-brand-shadow" data-dismiss="modal">CONTINUE SHOPPING</a>
 
                     </div>
                 </div>
