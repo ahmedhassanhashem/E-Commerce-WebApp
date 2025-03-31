@@ -296,7 +296,10 @@
                                                             <div class="product-m__wishlist">
 
                                                                 <a class="far fa-heart" data-tooltip="tooltip" data-placement="top" data-modal="modal" data-modal-id="#add-to-wishlist" title="Add to Wishlist"></a>
-                                                                <a class="far fa-plus-circle" href="#" data-tooltip="tooltip" data-placement="top" title="Checkout"></a></div>
+                                                                <a class="fa fa-plus-circle" data-tooltip="tooltip" data-placement="top"  href="#" title="Checkout"></a>
+
+                                                        </div>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -345,9 +348,6 @@
                 </div>
                 <!--====== End - Section 1 ======-->
             </div>
-
-
-
 
 
 
