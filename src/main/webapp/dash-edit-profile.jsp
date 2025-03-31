@@ -63,7 +63,7 @@
                                     <div class="col-lg-9 col-md-12">
 
                                         <jsp:include page="edit-profile-section.jsp" /> <br>
-                                        <jsp:include page="edit-profile-section.jsp" /> <br>
+                                        <%@include file="change-password-section.html"%> <br>
                                         <jsp:include page="my-balance-section.jsp" />   <br>
 
                                     </div>
