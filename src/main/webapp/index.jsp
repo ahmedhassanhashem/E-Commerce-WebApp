@@ -82,7 +82,104 @@
             </div>
             <!--====== End - Section Intro ======-->
 
-            <jsp:include page="commos/product-card.jsp"/>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--====== Section Content ======-->
+<div class="section__content">
+    <div class="container">
+        <div class="tab-content">
+            <!--======  Tab ======-->
+            <div class="tab-pane fade show active" id="item">
+                <div class="slider-fouc">
+                    <div class="owl-carousel tab-slider" data-item="4">
+
+                        <div class="u-s-m-b-30">
+                            <div class="product-o product-o--hover-on">
+                                <div class="product-o__wrap">
+
+                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+
+                                        <img class="aspect__img" src="images/product/electronic/product2.jpg" alt=""></a>
+                                    <div class="product-o__action-wrap">
+                                        <ul class="product-o__action-list">
+                                            <li>
+
+                                                <a data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a></li>
+                                            <li>
+
+                                                <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
+                                            </li>
+
+                                            <li>
+
+                                                <a data-modal="modal" data-modal-id="#add-to-wishlist" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a>
+                                            </li>
+
+
+                                            <li>
+
+                                                <a data-modal="modal" data-modal-id="checkout" data-tooltip="tooltip" data-placement="top" title="Checkout"><i class="fas fa-plus"></i></a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <span class="product-o__category">
+
+                                                            <a href="shop-side-version-2.html">Electronics</a></span>
+
+                                <span class="product-o__name">
+
+                                                            <a href="product-detail.html">Red Wireless Headphone</a></span>
+
+
+                                <span class="product-o__price">$125.00</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--====== End -  Tab ======-->
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           </div>
           <!--====== End - Product Tab ======-->
 
@@ -114,7 +211,104 @@
             </div>
             <!--====== End - Section Intro ======-->
 
-            <jsp:include page="commos/product-card.jsp"/>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--====== Section Content ======-->
+<div class="section__content">
+    <div class="container">
+        <div class="tab-content">
+            <!--======  Tab ======-->
+            <div class="tab-pane fade show active" id="item">
+                <div class="slider-fouc">
+                    <div class="owl-carousel tab-slider" data-item="4">
+
+                        <div class="u-s-m-b-30">
+                            <div class="product-o product-o--hover-on">
+                                <div class="product-o__wrap">
+
+                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+
+                                        <img class="aspect__img" src="images/product/electronic/product2.jpg" alt=""></a>
+                                    <div class="product-o__action-wrap">
+                                        <ul class="product-o__action-list">
+                                            <li>
+
+                                                <a data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a></li>
+                                            <li>
+
+                                                <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
+                                            </li>
+
+                                            <li>
+
+                                                <a data-modal="modal" data-modal-id="#add-to-wishlist" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a>
+                                            </li>
+
+
+                                            <li>
+
+                                                <a data-modal="modal" data-modal-id="checkout" data-tooltip="tooltip" data-placement="top" title="Checkout"><i class="fas fa-plus"></i></a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <span class="product-o__category">
+
+                                                            <a href="shop-side-version-2.html">Electronics</a></span>
+
+                                <span class="product-o__name">
+
+                                                            <a href="product-detail.html">Red Wireless Headphone</a></span>
+
+
+                                <span class="product-o__price">$125.00</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--====== End -  Tab ======-->
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           </div>
           <!--====== End - Product Tab ======-->
 
@@ -145,7 +339,104 @@
             </div>
             <!--====== End - Section Intro ======-->
 
-            <jsp:include page="commos/product-card.jsp"/>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--====== Section Content ======-->
+<div class="section__content">
+    <div class="container">
+        <div class="tab-content">
+            <!--======  Tab ======-->
+            <div class="tab-pane fade show active" id="item">
+                <div class="slider-fouc">
+                    <div class="owl-carousel tab-slider" data-item="4">
+
+                        <div class="u-s-m-b-30">
+                            <div class="product-o product-o--hover-on">
+                                <div class="product-o__wrap">
+
+                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+
+                                        <img class="aspect__img" src="images/product/electronic/product2.jpg" alt=""></a>
+                                    <div class="product-o__action-wrap">
+                                        <ul class="product-o__action-list">
+                                            <li>
+
+                                                <a data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a></li>
+                                            <li>
+
+                                                <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
+                                            </li>
+
+                                            <li>
+
+                                                <a data-modal="modal" data-modal-id="#add-to-wishlist" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a>
+                                            </li>
+
+
+                                            <li>
+
+                                                <a data-modal="modal" data-modal-id="checkout" data-tooltip="tooltip" data-placement="top" title="Checkout"><i class="fas fa-plus"></i></a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <span class="product-o__category">
+
+                                                            <a href="shop-side-version-2.html">Electronics</a></span>
+
+                                <span class="product-o__name">
+
+                                                            <a href="product-detail.html">Red Wireless Headphone</a></span>
+
+
+                                <span class="product-o__price">$125.00</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--====== End -  Tab ======-->
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           </div>
           <!--====== End - Product Tab ======-->
 

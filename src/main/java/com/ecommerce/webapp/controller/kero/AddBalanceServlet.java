@@ -1,4 +1,4 @@
-package com.ecommerce.webapp.controller;
+package com.ecommerce.webapp.controller.kero;
 
 import com.ecommerce.webapp.model.User;
 import jakarta.servlet.annotation.WebServlet;

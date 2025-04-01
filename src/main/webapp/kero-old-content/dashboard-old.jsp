@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@include file="commos/preloader.html"%>
-<%@include file="commos/head.html"%>
-<jsp:include page="commos/header.jsp"/>
+<%@include file="../commos/preloader.html"%>
+<%@include file="../commos/head.html"%>
+<jsp:include page="../commos/header.jsp"/>
 
 
 <!DOCTYPE html>
@@ -59,7 +59,7 @@
 
                                     <div class="col-lg-9 col-md-12">
                                         <jsp:include page="my-account-info.jsp" />
-                                        <jsp:include page="recent-orders.jsp" />
+                                        <jsp:include page="../recent-orders.jsp" />
                                     </div>
                                 </div>
                             </div>
@@ -73,11 +73,11 @@
 
 
             <!--====== Main Footer ======-->
-            <%@include file="commos/footer.html"%>
+            <%@include file="../commos/footer.html"%>
         </div>
         <!--====== End - Main App ======-->
 
-        <jsp:include page="commos/modals.jsp"/>
-        <%@include file="commos/script.html"%>
+        <jsp:include page="../commos/modals.jsp"/>
+        <%@include file="../commos/script.html"%>
     </body>
 </html>
