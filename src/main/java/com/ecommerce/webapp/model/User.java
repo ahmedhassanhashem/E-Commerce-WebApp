@@ -1,104 +1,54 @@
 package com.ecommerce.webapp.model;
 
-import java.util.Date;
-
 public class User {
-    private String firstName;
-    private String lastName;
-    private Date birthDate;
-    private String gender;
+    private int userId;
     private String email;
-    private String phone;
-    private String address;
     private String password;
-
-    public Double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Double balance) {
-        this.balance = balance;
-    }
-
-    private Double balance;
+    private String name;
+    private String address;
+    private double creditLimit;
+    private String phone;
+    private String cart; //Json String
+    private String wishlist;//Json String
 
     // Constructors
-    public User() {
-    }
+    public User() {}
 
-    public User(String firstName, String lastName, Date birthDate, String gender, String email, String phone, String address, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.gender = gender;
+    public User(String email, String password, String name, String address, double creditLimit, String phone) {
         this.email = email;
-        this.phone = phone;
-        this.address = address;
         this.password = password;
+        this.name = name;
+        this.address = address;
+        this.creditLimit = creditLimit;
+        this.phone = phone;
+        this.cart = "";
+        this.wishlist = "";
     }
 
     // Getters and Setters
-    public String getFirstName() {
-        return firstName;
-    }
+    public int getUserId() { return userId; }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-    public String getLastName() {
-        return lastName;
-    }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public Date getBirthDate() {
-        return birthDate;
-    }
+    public String getAddress() { return address; }
+    public void setAddress(String address) { this.address = address; }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
+    public double getCreditLimit() { return creditLimit; }
+    public void setCreditLimit(double creditLimit) { this.creditLimit = creditLimit; }
 
-    public String getGender() {
-        return gender;
-    }
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+    public String getCart() { return cart; }    
+    public void setCart(String cart) { this.cart = cart; }  
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public String getWishlist() { return wishlist; }
+    public void setWishlist(String wishlist) { this.wishlist = wishlist;}
 }

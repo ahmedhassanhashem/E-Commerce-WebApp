@@ -1,28 +1,26 @@
 package com.ecommerce.webapp.model;
 
 public class Order {
-    private int order_Id;
-    private int user_Id;
-    private double total_Price;
+    private int order_id;
+    private int user_id;
+    private double total_price;
     private OrderStatus status;
 
     public Order() {}
 
-    public Order(int order_Id, int user_Id, double total_Price, OrderStatus status) {
-        this.order_Id = order_Id;
-        this.user_Id = user_Id;
-        this.total_Price = total_Price;
+    public Order( int user_id, double total_price, OrderStatus status) {
+        this.user_id = user_id;
+        this.total_price = total_price;
         this.status = status;
     }
 
-    public int getOrderId() { return order_Id; }
-    public void setOrderId(int order_Id) { this.order_Id = order_Id; }
+    public int getOrderId() { return order_id; }
 
-    public int getUserId() { return user_Id; }
-    public void setUserId(int user_Id) { this.user_Id = user_Id; }
+    public int getUserId() { return user_id; }
+    public void setUserId(int user_id) { this.user_id = user_id; }
 
-    public double getTotalPrice() { return total_Price; }
-    public void setTotalPrice(double total_Price) { this.total_Price = total_Price; }
+    public double getTotalPrice() { return total_price; }
+    public void setTotalPrice(double total_price) { this.total_price = total_price; }
 
     public OrderStatus getStatus() { return status; }
     public void setStatus(OrderStatus status) { this.status = status; }

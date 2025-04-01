@@ -1,6 +1,5 @@
 package com.ecommerce.webapp.controller.kero;
 
-import com.ecommerce.webapp.model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -8,6 +7,8 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.Calendar;
+
+import com.ecommerce.webapp.model.kero.User;
 
 @WebServlet("/update-profile")
 public class UpdateProfileServlet extends HttpServlet {

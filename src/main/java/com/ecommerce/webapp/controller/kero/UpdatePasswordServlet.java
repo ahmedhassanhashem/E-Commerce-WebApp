@@ -1,6 +1,5 @@
 package com.ecommerce.webapp.controller.kero;
 
-import com.ecommerce.webapp.model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,6 +9,8 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import com.ecommerce.webapp.model.kero.User;
 
 @WebServlet("/update-password")
 public class UpdatePasswordServlet extends HttpServlet {
