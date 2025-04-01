@@ -236,7 +236,7 @@
                             <div class="product-o product-o--hover-on">
                                 <div class="product-o__wrap">
 
-                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-details.jsp">
 
                                         <img class="aspect__img" src="images/product/electronic/product2.jpg" alt=""></a>
                                     <div class="product-o__action-wrap">
@@ -265,11 +265,11 @@
 
                                 <span class="product-o__category">
 
-                                                            <a href="shop-side-version-2.html">Electronics</a></span>
+                                                            <a href="product-list.jsp">Electronics</a></span>
 
                                 <span class="product-o__name">
 
-                                                            <a href="product-detail.html">Red Wireless Headphone</a></span>
+                                                            <a href="product-details.jsp">Red Wireless Headphone</a></span>
 
 
                                 <span class="product-o__price">$125.00</span>

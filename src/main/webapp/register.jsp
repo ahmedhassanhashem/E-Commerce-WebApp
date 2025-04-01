@@ -95,7 +95,7 @@
 
                                         <button class="btn btn--e-brand-b-2" type="submit">CREATE</button></div>
 
-                                    <a class="gl-link" href="#">LOGIN</a>
+                                    <a class="gl-link" href="login.jsp">LOGIN</a>
                                 </form>
                             </div>
                         </div>

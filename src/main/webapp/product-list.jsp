@@ -268,7 +268,7 @@
                                             <div class="product-m">
                                                 <div class="product-m__thumb">
 
-                                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-details.jsp">
 
                                                         <img class="aspect__img" src="images/product/electronic/product7.jpg" alt=""></a>
                                                     <div class="product-m__quick-look">
@@ -281,10 +281,10 @@
                                                 <div class="product-m__content">
                                                     <div class="product-m__category">
 
-                                                        <a href="shop-side-version-2.html">Electronics</a></div>
+                                                        <a href="product-list.jsp">Electronics</a></div>
                                                     <div class="product-m__name">
 
-                                                        <a href="product-detail.html">Nikon DSLR Camera 4k</a></div>
+                                                        <a href="product-details.jsp">Nikon DSLR Camera 4k</a></div>
 
 
                                                     <div class="product-m__price">$125.00
@@ -296,7 +296,7 @@
                                                             <div class="product-m__wishlist">
 
                                                                 <a class="far fa-heart" data-tooltip="tooltip" data-placement="top" data-modal="modal" data-modal-id="#add-to-wishlist" title="Add to Wishlist"></a>
-                                                                <a class="fa fa-plus-circle" data-tooltip="tooltip" data-placement="top"  href="#" title="Checkout"></a>
+                                                                <a class="fa fa-plus-circle" data-tooltip="tooltip" data-placement="top"  href="checkout.jsp" title="Checkout"></a>
 
                                                         </div>
 
@@ -328,14 +328,14 @@
                                         <ul class="shop-p__pagination">
                                             <li class="is-active">
 
-                                                <a href="shop-grid-left.html">1</a>
+                                                <a href="product-list.jsp">1</a>
                                             </li>
                                             <li class="is-active">
 
-                                                <a href="shop-grid-left.html">2</a>
+                                                <a href="product-list.jsp">2</a>
                                             </li>
                                             <li>
-                                                <a class="fas fa-angle-right" href="shop-grid-left.html"></a>
+                                                <a class="fas fa-angle-right" href="product-list.jsp"></a>
                                             </li>
                                         </ul>
                                         <!--====== End - Pagination ======-->
