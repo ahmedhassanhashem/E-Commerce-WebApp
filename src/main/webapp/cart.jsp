@@ -45,11 +45,11 @@
 
                                                             <span class="table-p__name">
 
-                                                                <a href="product-detail.html">New Fashion D Nice Elegant</a></span>
+                                                                <a href="product-details.jsp">New Fashion D Nice Elegant</a></span>
 
                                                 <span class="table-p__category">
 
-                                                                <a href="shop-side-version-2.html">Men Clothing</a></span>
+                                                                <a href="product-list.jsp">Men Clothing</a></span>
                                                 <ul class="table-p__variant-list">
                                                     <li>
 
@@ -128,12 +128,12 @@
                         <div class="route-box">
                             <div class="route-box__g1">
 
-                                <a class="route-box__link" href="shop-side-version-2.html"><i class="fas fa-long-arrow-alt-left"></i>
+                                <a class="route-box__link" href="product-list.jsp"><i class="fas fa-long-arrow-alt-left"></i>
 
                                     <span>CONTINUE SHOPPING</span></a></div>
                             <div class="route-box__g2">
 
-                                <a class="route-box__link" href="cart.html"><i class="fas fa-trash"></i>
+                                <a class="route-box__link" href="#"><i class="fas fa-trash"></i>
 
                                     <span>CLEAR CART</span></a>
 

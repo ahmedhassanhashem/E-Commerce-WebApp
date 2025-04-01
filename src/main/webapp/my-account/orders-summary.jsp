@@ -42,7 +42,7 @@
                     <span class="manage-o__badge badge--processing">Processing</span>
 
                     <div class="dash__link dash__link--brand">
-                        <a href="dash-manage-order.html">MANAGE</a>
+                        <a href="order-details.jsp">MANAGE</a>
                     </div>
                 </td>
 

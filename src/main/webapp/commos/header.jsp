@@ -36,36 +36,49 @@
             <!--====== List ======-->
             <ul class="ah-list ah-list--design1 ah-list--link-color-white">
               <li>
-                <a href="about-us.jsp"><i class="fas fa-search-plus u-s-m-r-4"></i>
+
+                <a href="about.jsp"><i class="fas fa-search-plus u-s-m-r-4"></i>
+
                   <span>About Us</span></a>
               </li>
               <li>
+
                 <a href="faq.jsp"><i class="fas fa-clipboard u-s-m-r-4"></i>
+
                   <span>FAQ</span></a>
               </li>
               <li>
-                <a href="contact-us.jsp"><i class="fas fa-envelope u-s-m-r-4"></i>
+
+                <a href="contact.jsp"><i class="fas fa-envelope u-s-m-r-4"></i>
+
                   <span>Contact Us</span></a>
               </li>
 
               <% if(session.getAttribute("user") == null) { %>
               <!-- Show only when NOT logged in -->
               <li>
-                <a href="signup.html"><i class="fas fa-user-plus u-s-m-r-4"></i>
+
+                <a href="register.jsp"><i class="fas fa-user-plus u-s-m-r-4"></i>
+
                   <span>Register</span></a>
               </li>
               <li>
-                <a href="signin.html"><i class="fas fa-sign-in-alt u-s-m-r-4"></i>
+
+                <a href="login.jsp"><i class="fas fa-sign-in-alt u-s-m-r-4"></i>
+
                   <span>Login</span></a>
               </li>
               <% } else { %>
               <!-- Show only when logged in -->
               <li>
-                <a href="dashboard.jsp"><i class="fas fa-user-cog u-s-m-r-4"></i>
+                <a href="my-account.jsp"><i class="fas fa-user-cog u-s-m-r-4"></i>
+
                   <span>Account</span></a>
               </li>
               <li>
-                <a href="logout.jsp"><i class="fas fa-sign-out-alt u-s-m-r-4"></i>
+
+                <a href=""><i class="fas fa-sign-out-alt u-s-m-r-4"></i>
+
                   <span>Logout</span></a>
               </li>
               <% } %>
@@ -102,14 +115,16 @@
             <!--====== List ======-->
             <ul class="ah-list ah-list--design1 ah-list--link-color-white">
               <li>
-                <a href="shop-side-version-2.html">Coffee Beans</a>
+
+                <a href="product-list.jsp">Coffee Beans</a>
               </li>
               <li>
-                <a href="shop-side-version-2.html">Coffee Mugs</a>
+
+                <a href="product-list.jsp">Coffee Mugs</a>
               </li>
               <li>
-                <a href="shop-side-version-2.html">Coffee Machines</a>
-              </li>
+
+                <a href="product-list.jsp">Coffee Machines</a></li>
             </ul>
             <!--====== End - List ======-->
           </div>
@@ -155,17 +170,20 @@
                     <div class="card-mini-product">
                       <div class="mini-product">
                         <div class="mini-product__image-wrapper">
-                          <a class="mini-product__link" href="product-detail.html">
-                            <img class="u-img-fluid" src="images/product/men/product8.jpg" alt="">
-                          </a>
-                        </div>
+
+                          <a class="mini-product__link" href="product-details.jsp">
+
+                            <img class="u-img-fluid" src="images/product/men/product8.jpg" alt=""></a></div>
                         <div class="mini-product__info-wrapper">
-                          <span class="mini-product__category">
-                            <a href="shop-side-version-2.html">Men Clothing</a>
-                          </span>
+
+                                                            <span class="mini-product__category">
+
+                                                                <a href="product-list.jsp">Men Clothing</a></span>
+
                           <span class="mini-product__name">
-                            <a href="product-detail.html">New Fashion D Nice Elegant</a>
-                          </span>
+
+                                                                <a href="product-details.jsp">New Fashion D Nice Elegant</a></span>
+
                           <span class="mini-product__quantity">1 x</span>
                           <span class="mini-product__price">$8</span>
                         </div>
@@ -179,9 +197,10 @@
                   <!--====== Mini Product Statistics ======-->
                   <div class="mini-product-stat">
                     <div class="mini-action">
-                      <a class="mini-link btn--e-brand-b-2" href="">PROCEED TO CART</a>
-                      <a class="mini-link btn--e-transparent-secondary-b-2" href="wishlist.html">VIEW WISHLIST</a>
-                    </div>
+
+                      <a class="mini-link btn--e-brand-b-2" href="cart.jsp">PROCEED TO CART</a>
+
+                      <a class="mini-link btn--e-transparent-secondary-b-2" href="wishlist.jsp">VIEW WISHLIST</a></div>
                   </div>
                   <!--====== End - Mini Product Statistics ======-->
 
@@ -203,17 +222,20 @@
                     <div class="card-mini-product">
                       <div class="mini-product">
                         <div class="mini-product__image-wrapper">
-                          <a class="mini-product__link" href="product-detail.html">
-                            <img class="u-img-fluid" src="images/product/men/product8.jpg" alt="">
-                          </a>
-                        </div>
+
+                          <a class="mini-product__link" href="product-details.jsp">
+
+                            <img class="u-img-fluid" src="images/product/men/product8.jpg" alt=""></a></div>
                         <div class="mini-product__info-wrapper">
-                          <span class="mini-product__category">
-                            <a href="shop-side-version-2.html">Men Clothing</a>
-                          </span>
+
+                                                            <span class="mini-product__category">
+
+                                                                <a href="product-list.jsp">Men Clothing</a></span>
+
                           <span class="mini-product__name">
-                            <a href="product-detail.html">New Fashion D Nice Elegant</a>
-                          </span>
+
+                                                                <a href="product-details.jsp">New Fashion D Nice Elegant</a></span>
+
                           <span class="mini-product__quantity">1 x</span>
                           <span class="mini-product__price">$8</span>
                         </div>
@@ -231,9 +253,10 @@
                       <span class="subtotal-value">$16</span>
                     </div>
                     <div class="mini-action">
-                      <a class="mini-link btn--e-brand-b-2" href="checkout.html">PROCEED TO CHECKOUT</a>
-                      <a class="mini-link btn--e-transparent-secondary-b-2" href="cart.html">VIEW CART</a>
-                    </div>
+
+                      <a class="mini-link btn--e-brand-b-2" href="checkout.jsp">PROCEED TO CHECKOUT</a>
+
+                      <a class="mini-link btn--e-transparent-secondary-b-2" href="cart.jsp">VIEW CART</a></div>
                   </div>
                   <!--====== End - Mini Product Statistics ======-->
                 </div>

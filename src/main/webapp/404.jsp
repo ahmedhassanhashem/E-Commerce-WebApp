@@ -39,7 +39,7 @@
 
                                     <span class="empty__text-1">Looks like you're in wrong place.</span>
 
-                                    <a class="empty__redirect-link btn--e-brand" href="index.html">GO TO HOME</a></div>
+                                    <a class="empty__redirect-link btn--e-brand" href="index.jsp">GO TO HOME</a></div>
                             </div>
                         </div>
                     </div>

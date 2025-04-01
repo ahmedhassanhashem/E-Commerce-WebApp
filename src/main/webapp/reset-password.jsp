@@ -48,7 +48,7 @@
                                             <button class="btn btn--e-transparent-brand-b-2" type="submit">SUBMIT</button></div>
                                         <div class="u-s-m-b-30">
 
-                                            <a class="gl-link" href="signin.html">Back to Login</a></div>
+                                            <a class="gl-link" href="login.jsp">Back to Login</a></div>
                                     </form>
                                 </div>
                             </div>
