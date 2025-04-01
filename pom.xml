@@ -19,6 +19,14 @@
 
     <build>
         <plugins>
+        <plugin> 
+            <groupId>org.apache.maven.plugins</groupId> 
+                <artifactId>maven-war-plugin</artifactId> 
+                <version>3.3.0</version> 
+                <configuration> 
+                <failOnMissingWebXml>false</failOnMissingWebXml> 
+                </configuration> 
+            </plugin> 
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -26,7 +34,7 @@
                 <configuration>
                     <username>admin</username>
                     <password>admin</password>
-                    <url>http://localhost:8080/manager/text</url>
+                    <url>http://localhost:9090/manager/text</url>
                     <path>/webapp</path>
                 </configuration>
             </plugin>
@@ -122,6 +130,13 @@
           <version>5.16.0</version>
           <scope>test</scope>
       </dependency>
+      <!--maven war plugin-->
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>3.3.2</version>
+            <scope>provided</scope>
+        </dependency>
 
 
   </dependencies>
