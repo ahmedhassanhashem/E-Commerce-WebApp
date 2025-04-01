@@ -194,9 +194,9 @@
 
                                 <a class="s-option__link btn--e-white-brand-shadow" data-dismiss="modal">CONTINUE SHOPPING</a>
 
-                                <a class="s-option__link btn--e-white-brand-shadow" href="cart.html">VIEW CART</a>
+                                <a class="s-option__link btn--e-white-brand-shadow" href="cart.jsp">VIEW CART</a>
 
-                                <a class="s-option__link btn--e-brand-shadow" href="checkout.html">PROCEED TO CHECKOUT</a></div>
+                                <a class="s-option__link btn--e-brand-shadow" href="checkout.jsp">PROCEED TO CHECKOUT</a></div>
                         </div>
                     </div>
                 </div>
@@ -276,9 +276,9 @@
 
                                 <a class="s-option__link btn--e-white-brand-shadow" data-dismiss="modal">CONTINUE SHOPPING</a>
 
-                                <a class="s-option__link btn--e-white-brand-shadow" href="wishlist.html">VIEW WISHLIST</a>
+                                <a class="s-option__link btn--e-white-brand-shadow" href="wishlist.jsp">VIEW WISHLIST</a>
 
-                                <a class="s-option__link btn--e-brand-shadow" href="checkout.html">PROCEED TO CHECKOUT</a></div>
+                                <a class="s-option__link btn--e-brand-shadow" href="checkout.jsp">PROCEED TO CHECKOUT</a></div>
                         </div>
                     </div>
                 </div>
@@ -299,7 +299,7 @@
                 <div class="row u-s-m-x-0">
                     <div class="col-lg-6 new-l__col-1 u-s-p-x-0">
 
-                        <a class="new-l__img-wrap u-d-block" href="shop-side-version-2.html">
+                        <a class="new-l__img-wrap u-d-block" href="product-list.jsp">
 
                             <img class="u-img-fluid u-d-block" src="images/newsletter/newsletter.jpg" alt=""></a></div>
                     <div class="col-lg-6 new-l__col-2">

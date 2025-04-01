@@ -54,7 +54,7 @@
                                             <button class="btn btn--e-transparent-brand-b-2" type="submit">LOGIN</button></div>
                                         <div class="u-s-m-b-30">
 
-                                            <a class="gl-link" href="lost-password.html">Lost Your Password?</a></div>
+                                            <a class="gl-link" href="reset-password.jsp">Lost Your Password?</a></div>
                                     </div>
                                     <div class="u-s-m-b-30">
 
@@ -73,7 +73,7 @@
                                         <span class="gl-text u-s-m-b-30">By creating an account with our store, you will be able to move through the checkout process faster, store shipping addresses, view and track your orders in your account and more.</span>
                                         <div class="u-s-m-b-15">
 
-                                            <a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="signup.html">CREATE AN ACCOUNT</a>
+                                            <a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="register.jsp">CREATE AN ACCOUNT</a>
                                         </div>
                                 </form>
                             </div>

@@ -44,11 +44,11 @@
 
                                                 <span class="w-r__name">
 
-                                                    <a href="product-detail.html">New Fashion D Nice Elegant</a></span>
+                                                    <a href="product-details.jsp">New Fashion D Nice Elegant</a></span>
 
                                         <span class="w-r__category">
 
-                                                    <a href="shop-side-version-2.html">Men Clothing</a></span>
+                                                    <a href="product-list.jsp">Men Clothing</a></span>
 
                                         <span class="w-r__price">$125.00
 
@@ -58,7 +58,7 @@
 
                                     <a class="w-r__link btn--e-brand-b-2" data-modal="modal" data-modal-id="#add-to-cart">ADD TO CART</a>
 
-                                    <a class="w-r__link btn--e-transparent-platinum-b-2" href="product-detail.html">VIEW</a>
+                                    <a class="w-r__link btn--e-transparent-platinum-b-2" href="product-details.jsp">VIEW</a>
 
                                     <a class="w-r__link btn--e-transparent-platinum-b-2" href="#">REMOVE</a></div>
                             </div>
@@ -69,12 +69,12 @@
                         <div class="route-box">
                             <div class="route-box__g">
 
-                                <a class="route-box__link" href="shop-side-version-2.html"><i class="fas fa-long-arrow-alt-left"></i>
+                                <a class="route-box__link" href="product-list.jsp"><i class="fas fa-long-arrow-alt-left"></i>
 
                                     <span>CONTINUE SHOPPING</span></a></div>
                             <div class="route-box__g">
 
-                                <a class="route-box__link" href="wishlist.html"><i class="fas fa-trash"></i>
+                                <a class="route-box__link" href="wishlist.jsp"><i class="fas fa-trash"></i>
 
                                     <span>CLEAR WISHLIST</span></a></div>
                         </div>

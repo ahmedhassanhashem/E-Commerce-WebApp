@@ -48,7 +48,7 @@
 
                                                             <span class="o-card__name">
 
-                                                                <a href="product-detail.html">New Fashion D Nice Elegant</a></span>
+                                                                <a href="product-details.jsp">New Fashion D Nice Elegant</a></span>
 
                                                         <span class="o-card__quantity">Quantity x 1</span>
 

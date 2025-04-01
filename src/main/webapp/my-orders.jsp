@@ -70,7 +70,7 @@
                                                         </div>
                                                         <div>
                                                             <div class="dash__link dash__link--brand">
-                                                                <a href="dash-manage-order.html">MANAGE</a>
+                                                                <a href="order-details.jsp">MANAGE</a>
                                                             </div>
                                                         </div>
                                                     </div>
