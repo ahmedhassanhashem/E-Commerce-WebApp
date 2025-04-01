@@ -126,7 +126,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize birth date
+    // Initialize birthdate
     var birthDay = ${currentUser.birthDate != null ? currentUser.birthDate.getDate() : 0};
     var birthMonth = ${currentUser.birthDate != null ? currentUser.birthDate.getMonth() + 1 : 0};
     var birthYear = ${currentUser.birthDate != null ? currentUser.birthDate.getYear() + 1900 : 0};
@@ -235,3 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
         border: 2px solid #dc3545 !important;
     }
     </style>
+
+
+
+

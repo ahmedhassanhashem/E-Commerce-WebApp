@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="commos/preloader.html"%>
-<%@include file="commos/head.html"%>
-<jsp:include page="commos/header.jsp"/>
+<%@include file="../commos/preloader.html"%>
+<%@include file="../commos/head.html"%>
+<jsp:include page="../commos/header.jsp"/>
 
 
 <!DOCTYPE html>
@@ -27,7 +27,7 @@
                                     <ul class="breadcrumb__list">
                                         <li class="has-separator">
 
-                                            <a href="index.jsp">Home</a></li>
+                                            <a href="../index.jsp">Home</a></li>
                                         <li class="is-marked">
                                             <a href="dash-edit-profile.jsp">Edit Profile</a></li>
                                     </ul>
@@ -81,12 +81,12 @@
 
 
             <!--====== Main Footer ======-->
-            <%@include file="commos/footer.html"%>
+            <%@include file="../commos/footer.html"%>
 
         </div>
         <!--====== End - Main App ======-->
 
-        <jsp:include page="commos/modals.jsp"/>
-        <%@include file="commos/script.html"%>
+        <jsp:include page="../commos/modals.jsp"/>
+        <%@include file="../commos/script.html"%>
     </body>
 </html>

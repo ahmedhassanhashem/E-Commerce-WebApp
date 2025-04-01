@@ -45,25 +45,55 @@
 
                                     <div class="u-s-m-b-30">
 
+                                        <label class="gl-label" for="reg-email">E-MAIL *</label>
+
+                                        <input class="input-text input-text--primary-style" type="text" id="reg-email" placeholder="E-mail">
+                                    </div>
+
+                                    <div class="u-s-m-b-30">
+
+                                        <label class="gl-label" for="reg-phone">PHONE *</label>
+
+                                        <input class="input-text input-text--primary-style" type="text" id="reg-phone" placeholder="Phone">
+                                    </div>
+
+
+
+                                    <div class="u-s-m-b-30">
+
                                         <label class="gl-label" for="reg-address">ADDRESS *</label>
 
-                                        <input class="input-text input-text--primary-style" type="text" id="reg-address" placeholder="Name">
+                                        <input class="input-text input-text--primary-style" type="text" id="reg-address" placeholder="Address">
                                     </div>
 
 
                                     <div class="u-s-m-b-30">
 
-                                        <label class="gl-label" for="reg-email">E-MAIL *</label>
+                                        <label class="gl-label" for="reg-credit">CREDIT *</label>
 
-                                        <input class="input-text input-text--primary-style" type="text" id="reg-email" placeholder="Enter E-mail"></div>
+                                        <input class="input-text input-text--primary-style" type="text" id="reg-credit" placeholder="Credit Balance">
+                                    </div>
+
+
+
                                     <div class="u-s-m-b-30">
 
                                         <label class="gl-label" for="reg-password">PASSWORD *</label>
 
-                                        <input class="input-text input-text--primary-style" type="text" id="reg-password" placeholder="Enter Password"></div>
+                                        <input class="input-text input-text--primary-style" type="text" id="reg-password" placeholder="Password">
+                                    </div>
+
+
+                                    <div class="u-s-m-b-30">
+
+                                        <label class="gl-label" for="reg-confirm-password">CONFIRM PASSWORD *</label>
+
+                                        <input class="input-text input-text--primary-style" type="text" id="reg-confirm-password" placeholder="Confirm Password">
+                                    </div>
+
                                     <div class="u-s-m-b-15">
 
-                                        <button class="btn btn--e-transparent-brand-b-2" type="submit">CREATE</button></div>
+                                        <button class="btn btn--e-brand-b-2" type="submit">CREATE</button></div>
 
                                     <a class="gl-link" href="#">LOGIN</a>
                                 </form>
