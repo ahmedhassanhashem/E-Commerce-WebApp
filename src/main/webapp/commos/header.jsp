@@ -37,7 +37,7 @@
             <ul class="ah-list ah-list--design1 ah-list--link-color-white">
               <li>
 
-                <a href="about.jsp"><i class="fas fa-search-plus u-s-m-r-4"></i>
+                <a href="about.jsp"><i class="fas fa-book-reader u-s-m-r-4"></i>
 
                   <span>About Us</span></a>
               </li>
