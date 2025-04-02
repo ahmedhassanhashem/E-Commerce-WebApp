@@ -1,0 +1,32 @@
+package com.ecommerce.webapp.model;
+
+public class OrderItem {
+    private int order_item_id;
+    private int order_id;
+    private int product_id;
+    private int order_item_quantity;
+    private double item_price;
+
+    public OrderItem() {}
+
+    public OrderItem( int order_id, int product_id, int order_item_quantity, double item_price) {
+        this.order_id = order_id;
+        this.product_id = product_id;
+        this.order_item_quantity = order_item_quantity;
+        this.item_price = item_price;
+    }
+
+    public int get_Order_ItemId() { return order_item_id; }
+
+    public int getOrderId() { return order_id; }
+    public void setOrderId(int order_id) { this.order_id = order_id; }
+
+    public int getProductId() { return product_id; }
+    public void setProductId(int product_id) { this.product_id = product_id; }
+
+    public int getOrderItemQuantity() { return order_item_quantity; }
+    public void setOrderItemQuantity(int order_item_quantity) { this.order_item_quantity = order_item_quantity; }
+
+    public double getItemPrice() { return item_price; }
+    public void setItemPrice(double item_price) { this.item_price = item_price; }
+}

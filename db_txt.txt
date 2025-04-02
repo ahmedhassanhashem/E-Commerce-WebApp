@@ -1,11 +1,11 @@
 -user (user_id, email , password , name , address, credit_limit , phone)
 
--product (product_id, name, description, product_price, category, gallery,stock_quantity)
+-product (product_id, name, description, product_price, category, image ,stock_quantity)
 
--order(order_id, user_id, total_price, status{pending,cancelled,delivered})
+-order(order_id, user_id, total_price, status{accepted,cancelled,delivered})
 
 -order_item(order_item_id, order_id, product_id, order_item_quantity, item_price)
 
--cart(cart_id, user_id, created_at)
 
--cart_item(cart_item_id, product_id,cart_id cart_item_quanitity)
+//Json Object
+-Item(product_id, name, description, product_price, category, image ,quantity)

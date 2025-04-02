@@ -77,7 +77,7 @@
                             <div class="u-s-m-b-15">
                                 <div class="pd-detail__inline">
 
-                                    <span class="pd-detail__click-wrap"><i class="fas fa-shopping-bag u-s-m-r-6"></i></span>
+                                    <span class="pd-detail__click-wrap"><i class="fas fa-shopping-cart u-s-m-r-6"></i></span>
 
                                     <a data-modal="modal" data-modal-id="#add-to-cart2" data-tooltip="tooltip" data-placement="top" title="Add to Cart">Add to Cart</a>
                                 </div>
@@ -101,8 +101,12 @@
                                             <!--====== End - Input Counter ======-->
                                         </div>
                                         <div class="u-s-m-b-15">
+                                            <button class="btn btn--e-brand-b-2" type="submit">Checkout</button>
+                                        </div>
+                                        <div class="u-s-m-b-15">
+                                            <button class="btn btn--e-white-brand-shadow" data-dismiss="modal" type="button" >CONTINUE SHOPPING</button>
 
-                                            <button class="btn btn--e-brand-b-2" type="submit">Checkout</button></div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -140,7 +144,7 @@
 
                             <span class="success__price">$170.00</span></div>
 
-                        <a class="s-option__link btn--e-brand-shadow" data-dismiss="modal">CONTINUE SHOPPING</a>
+                        <a class="s-option__link btn--e-white-brand-shadow" data-dismiss="modal">CONTINUE SHOPPING</a>
 
                     </div>
                 </div>
@@ -190,9 +194,9 @@
 
                                 <a class="s-option__link btn--e-white-brand-shadow" data-dismiss="modal">CONTINUE SHOPPING</a>
 
-                                <a class="s-option__link btn--e-white-brand-shadow" href="cart.html">VIEW CART</a>
+                                <a class="s-option__link btn--e-white-brand-shadow" href="cart.jsp">VIEW CART</a>
 
-                                <a class="s-option__link btn--e-brand-shadow" href="checkout.html">PROCEED TO CHECKOUT</a></div>
+                                <a class="s-option__link btn--e-brand-shadow" href="checkout.jsp">PROCEED TO CHECKOUT</a></div>
                         </div>
                     </div>
                 </div>
@@ -272,9 +276,9 @@
 
                                 <a class="s-option__link btn--e-white-brand-shadow" data-dismiss="modal">CONTINUE SHOPPING</a>
 
-                                <a class="s-option__link btn--e-white-brand-shadow" href="wishlist.html">VIEW WISHLIST</a>
+                                <a class="s-option__link btn--e-white-brand-shadow" href="wishlist.jsp">VIEW WISHLIST</a>
 
-                                <a class="s-option__link btn--e-brand-shadow" href="checkout.html">PROCEED TO CHECKOUT</a></div>
+                                <a class="s-option__link btn--e-brand-shadow" href="checkout.jsp">PROCEED TO CHECKOUT</a></div>
                         </div>
                     </div>
                 </div>
@@ -295,7 +299,7 @@
                 <div class="row u-s-m-x-0">
                     <div class="col-lg-6 new-l__col-1 u-s-p-x-0">
 
-                        <a class="new-l__img-wrap u-d-block" href="shop-side-version-2.html">
+                        <a class="new-l__img-wrap u-d-block" href="product-list.jsp">
 
                             <img class="u-img-fluid u-d-block" src="images/newsletter/newsletter.jpg" alt=""></a></div>
                     <div class="col-lg-6 new-l__col-2">
