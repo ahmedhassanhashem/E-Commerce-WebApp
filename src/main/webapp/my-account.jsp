@@ -23,7 +23,6 @@
     <div class="app-content">
 
 
-
         <!-- page content -->
         <br>
         <div class="u-s-p-b-60">
@@ -34,20 +33,14 @@
                         <div class="row">
 
 
-
-
-
                             <div class="col-lg-3 col-md-12">
 
 
-                                <%@include file="commos/dashboard-sidebar-links.html"%>
+                                <%@include file="commos/dashboard-sidebar-links.html" %>
                                 <jsp:include page="commos/dashboard-sidebar-orders-statistics.jsp"/>
 
 
                             </div>
-
-
-
 
 
                             <div class="col-lg-9 col-md-12">
@@ -60,20 +53,12 @@
                             </div>
 
 
-
                         </div>
                     </div>
                 </div>
             </div>
             <!--====== End - Section Content ======-->
         </div>
-
-
-
-
-
-
-
 
 
     </div>
