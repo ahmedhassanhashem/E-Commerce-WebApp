@@ -34,69 +34,49 @@
                         <div class="l-f-o">
                             <div class="l-f-o__pad-box">
                                 <h1 class="gl-h1">PERSONAL INFORMATION</h1>
-                                <form class="l-f-o__form">
-
+                                <form class="l-f-o__form" action="register" method="post">
                                     <div class="u-s-m-b-30">
-
                                         <label class="gl-label" for="reg-name">NAME *</label>
-
-                                        <input class="input-text input-text--primary-style" type="text" id="reg-name" placeholder="Name">
+                                        <input class="input-text input-text--primary-style" type="text" id="reg-name" name="name" placeholder="Name" required>
                                     </div>
-
+                                
                                     <div class="u-s-m-b-30">
-
                                         <label class="gl-label" for="reg-email">E-MAIL *</label>
-
-                                        <input class="input-text input-text--primary-style" type="text" id="reg-email" placeholder="E-mail">
+                                        <input class="input-text input-text--primary-style" type="email" id="reg-email" name="email" placeholder="E-mail" required>
                                     </div>
-
+                                
                                     <div class="u-s-m-b-30">
-
                                         <label class="gl-label" for="reg-phone">PHONE *</label>
-
-                                        <input class="input-text input-text--primary-style" type="text" id="reg-phone" placeholder="Phone">
+                                        <input class="input-text input-text--primary-style" type="text" id="reg-phone" name="phone" placeholder="Phone" required>
                                     </div>
-
-
-
+                                
                                     <div class="u-s-m-b-30">
-
                                         <label class="gl-label" for="reg-address">ADDRESS *</label>
-
-                                        <input class="input-text input-text--primary-style" type="text" id="reg-address" placeholder="Address">
+                                        <input class="input-text input-text--primary-style" type="text" id="reg-address" name="address" placeholder="Address" required>
                                     </div>
-
-
+                                
                                     <div class="u-s-m-b-30">
-
                                         <label class="gl-label" for="reg-credit">CREDIT *</label>
-
-                                        <input class="input-text input-text--primary-style" type="text" id="reg-credit" placeholder="Credit Balance">
+                                        <input class="input-text input-text--primary-style" type="number" id="reg-credit" name="credit" placeholder="Credit Balance" required>
                                     </div>
-
-
-
+                                
                                     <div class="u-s-m-b-30">
-
                                         <label class="gl-label" for="reg-password">PASSWORD *</label>
-
-                                        <input class="input-text input-text--primary-style" type="text" id="reg-password" placeholder="Password">
+                                        <input class="input-text input-text--primary-style" type="password" id="reg-password" name="password" placeholder="Password" required>
                                     </div>
-
-
+                                
                                     <div class="u-s-m-b-30">
-
                                         <label class="gl-label" for="reg-confirm-password">CONFIRM PASSWORD *</label>
-
-                                        <input class="input-text input-text--primary-style" type="text" id="reg-confirm-password" placeholder="Confirm Password">
+                                        <input class="input-text input-text--primary-style" type="password" id="reg-confirm-password" name="confirmPassword" placeholder="Confirm Password" required>
                                     </div>
-
+                                
                                     <div class="u-s-m-b-15">
-
-                                        <button class="btn btn--e-brand-b-2" type="submit">CREATE</button></div>
-
+                                        <button class="btn btn--e-brand-b-2" type="submit">CREATE</button>
+                                    </div>
+                                
                                     <a class="gl-link" href="login.jsp">LOGIN</a>
                                 </form>
+                                
                             </div>
                         </div>
                      </div>
@@ -105,7 +85,7 @@
     <!--====== End -App Content ======-->
 
 
-    <%@include file="commos/footer.html" %>
+    <%@include file="commos/footer.jsp" %>
 
 </div>
 <!--====== End - Main App  ======-->

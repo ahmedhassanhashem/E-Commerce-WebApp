@@ -36,7 +36,7 @@
                                 <h1 class="gl-h1">Login</h1>
 
                                 <span class="gl-text u-s-m-b-30">If you have an account with us, please log in.</span>
-                                <form class="l-f-o__form">
+                                <form class="l-f-o__form" action="login" method="post">
 
                                     <div class="u-s-m-b-30">
 
@@ -90,7 +90,7 @@
     <!--====== End -App Content ======-->
 
 
-    <%@include file="commos/footer.html" %>
+    <%@include file="commos/footer.jsp" %>
 
 
 <!--====== End - Main App  ======-->
@@ -99,6 +99,9 @@
 <jsp:include page="commos/modals.jsp"/>
 
 <%@include file="commos/script.html" %>
+
+<!-- Add my login.js file here -->
+<!-- <script src="${pageContext.request.contextPath}/js/login.js"></script> -->
 
 </body>
 </html>

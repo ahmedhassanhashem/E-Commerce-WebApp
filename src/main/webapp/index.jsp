@@ -440,7 +440,7 @@
 </div>
     <!--====== End - Main App ======-->
 
-    <%@include file="commos/footer.html"%>
+    <%@include file="commos/footer.jsp"%>
 
 
 
