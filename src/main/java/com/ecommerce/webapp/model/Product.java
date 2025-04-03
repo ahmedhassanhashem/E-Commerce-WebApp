@@ -14,7 +14,7 @@ public class Product {
 
     public Product() {}
 
-    public Product( String name, String description, double product_price, ProductCategory category, String image, int stock_quantity , ProductColor color) {
+    public Product( String name, String description, double product_price, ProductCategory category, String image, int stock_quantity , ProductColor color, ProductSize size) {
         this.name = name;
         this.description = description;
         this.product_price = product_price;
@@ -22,6 +22,7 @@ public class Product {
         this.image = image;
         this.stock_quantity = stock_quantity;
         this.color = color;
+        this.size = size;
     }
 
     public int getProductId() { return product_Id; }
