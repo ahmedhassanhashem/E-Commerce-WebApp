@@ -23,7 +23,6 @@
     <div class="app-content">
 
 
-
         <!-- page content -->
         <br>
         <div class="u-s-p-b-60">
@@ -34,20 +33,14 @@
                         <div class="row">
 
 
-
-
-
                             <div class="col-lg-3 col-md-12">
 
 
-                                <%@include file="commos/dashboard-sidebar-links.html"%>
+                                <%@include file="commos/dashboard-sidebar-links.html" %>
                                 <jsp:include page="commos/dashboard-sidebar-orders-statistics.jsp"/>
 
 
                             </div>
-
-
-
 
 
                             <div class="col-lg-9 col-md-12">
@@ -58,71 +51,54 @@
                                         <h1 class="dash__h1 u-s-m-b-14">Edit Profile</h1><br>
 
                                         <div class="row">
-                                            <div class="col-lg-4">
-                                                <form class="dash-edit-p" action="update-profile" method="POST" id="profileForm">
+                                            <div class="col-lg-7">
+                                                <form class="dash-edit-p" action="update-profile" method="POST"
+                                                      id="profileForm">
 
 
+                                                    <div class="u-s-m-b-30">
+                                                        <label class="gl-label" for="reg-name">NAME</label>
+                                                        <input class="input-text input-text--primary-style"
+                                                               type="text"
+                                                               id="reg-name"
+                                                               name="name"
+                                                               value="${currentUser.name}">
+                                                        <div class="error-message" id="name-error"></div>
+                                                    </div>
 
 
-
-                                                        <div class="u-s-m-b-30">
-                                                            <label class="gl-label" for="reg-name">NAME</label>
-                                                            <input class="input-text input-text--primary-style"
-                                                                   type="text"
-                                                                   id="reg-name"
-                                                                   name="name"
-                                                                   value="Kero">
-                                                            <div class="error-message" id="name-error"></div>
-                                                        </div>
-
-
-                                                        <div class="u-s-m-b-30">
-                                                            <label class="gl-label" for="reg-email">EMAIL</label>
-                                                            <input class="input-text input-text--primary-style"
-                                                                   type="email"
-                                                                   id="reg-email"
-                                                                   name="email"
-                                                                   value="sad@ds.c">
-                                                            <div class="error-message" id="email-error"></div>
-                                                        </div>
+                                                    <div class="u-s-m-b-30">
+                                                        <label class="gl-label" for="reg-email">EMAIL</label>
+                                                        <input class="input-text input-text--primary-style"
+                                                               type="email"
+                                                               id="reg-email"
+                                                               name="email"
+                                                               value="${currentUser.email}">
+                                                        <div class="error-message" id="email-error"></div>
+                                                    </div>
 
 
-
-                                                        <div class="u-s-m-b-30">
-                                                            <label class="gl-label" for="reg-phone">PHONE</label>
-                                                            <input class="input-text input-text--primary-style"
-                                                                   type="text"
-                                                                   id="reg-phone"
-                                                                   name="phone"
-                                                                   value="123456789"
-                                                                   maxlength="11">
-                                                            <div class="error-message" id="phone-error"></div>
-                                                        </div>
-
+                                                    <div class="u-s-m-b-30">
+                                                        <label class="gl-label" for="reg-phone">PHONE</label>
+                                                        <input class="input-text input-text--primary-style"
+                                                               type="text"
+                                                               id="reg-phone"
+                                                               name="phone"
+                                                               value="${currentUser.phone}"
+                                                               maxlength="11">
+                                                        <div class="error-message" id="phone-error"></div>
+                                                    </div>
 
 
-
-
-
-
-                                                        <div class="u-s-m-b-30">
-                                                            <label class="gl-label" for="reg-phone">ADDRESS</label>
-                                                            <input class="input-text input-text--primary-style"
-                                                                   type="text"
-                                                                   id="reg-address"
-                                                                   name="address"
-                                                                   value="iti, smart village">
-                                                        </div>
-
-                                                        <div class="u-s-m-b-30">
-                                                            <label class="gl-label" for="reg-credit">CREDIT</label>
-                                                            <input class="input-text input-text--primary-style"
-                                                                   type="text"
-                                                                   id="reg-credit"
-                                                                   name="credit"
-                                                                   value="920">
-                                                        </div>
-
+                                                    <div class="u-s-m-b-30">
+                                                        <label class="gl-label" for="reg-phone">ADDRESS</label>
+                                                        <input class="input-text input-text--primary-style"
+                                                               type="text"
+                                                               id="reg-address"
+                                                               name="address"
+                                                               value="${currentUser.address}">
+                                                        <span class="error-message" id="address-error"></span>
+                                                    </div>
 
 
                                                     <button class="btn btn--e-brand-b-2" type="submit">SAVE</button>
@@ -136,20 +112,12 @@
                             </div>
 
 
-
                         </div>
                     </div>
                 </div>
             </div>
             <!--====== End - Section Content ======-->
         </div>
-
-
-
-
-
-
-
 
 
     </div>
