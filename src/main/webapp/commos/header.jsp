@@ -18,7 +18,7 @@
       <div class="primary-nav">
 
         <!--====== Main Logo ======-->
-        <a class="main-logo" href="index.jsp">
+        <a class="main-logo" href="home">
           <img src="images/logo/logo-2.png" alt="">
         </a>
         <!--====== End - Main Logo ======-->
@@ -153,7 +153,10 @@
             <!--====== List ======-->
             <ul class="ah-list ah-list--design1 ah-list--link-color-white">
               <li>
-                <a href="index.jsp"><i class="fas fa-home"></i></a>
+                <a href="home"><i class="fas fa-home"></i></a>
+              </li>
+              <li>
+                <a href="product-list.jsp"><i class="fas fa-shopping-bag"></i></a>
               </li>
               <li class="has-dropdown">
                 <a class="mini-cart-shop-link"><i class="far fa-heart"></i>

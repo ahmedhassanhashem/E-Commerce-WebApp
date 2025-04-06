@@ -32,7 +32,7 @@
                                 <div id="js-product-detail-modal">
                                     <div>
 
-                                        <img class="u-img-fluid" src="images/product/product-d-1.jpg" alt=""></div>
+                                        <img class="u-img-fluid" src="images/product/${product.image}.jpg" alt=""></div>
 
                                 </div>
                             </div>
@@ -46,22 +46,28 @@
                         <div class="pd-detail">
                             <div>
 
-                                <span class="pd-detail__name">Nikon Camera 4k Lens Zoom Pro</span>
+                                <span class="pd-detail__name">${product.name}</span>
                             </div>
 
 
                             <div class="u-s-m-b-15">
                                 <div class="pd-detail__inline">
 
-                                    <span class="pd-detail__stock">in stock</span>
+                                    <c:choose>
+                                        <c:when test="${product.stock > 0}">
+                                            <span class="pd-detail__stock">In Stock</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="pd-detail__left">Out of Stock</span>
+                                        </c:otherwise>
+                                    </c:choose>
 
-                                    <span class="pd-detail__left">out of stock</span>
                                 </div>
                             </div>
 
                             <div class="u-s-m-b-15">
 
-                                <span class="pd-detail__preview-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></div>
+                                <span class="pd-detail__preview-desc">${product.description}.</span></div>
 
                             <div class="u-s-m-b-15">
                                 <div class="pd-detail__inline">
@@ -95,7 +101,7 @@
 
                                                 <span class="input-counter__minus fas fa-minus"></span>
 
-                                                <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1000">
+                                                <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="${product.stock}">
 
                                                 <span class="input-counter__plus fas fa-plus"></span></div>
                                             <!--====== End - Input Counter ======-->
