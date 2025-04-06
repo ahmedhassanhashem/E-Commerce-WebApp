@@ -1,17 +1,37 @@
 package com.ecommerce.webapp.model;
 
-public class User {
-    private int userId;
-    private String email;
-    private String password;
-    private String name;
-    private String address;
-    private double creditLimit;
-    private String phone;
-    private String cart; //Json String
-    private String wishlist;//Json String
+import jakarta.persistence.*;
 
-    // Constructors
+@Entity
+@Table(name = "user") 
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private int userId;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    private String name;
+
+    private String address;
+
+    @Column(name = "credit_limit")
+    private double creditLimit;
+
+    private String phone;
+
+    @Lob // this is a large object (JSON), store as TEXT
+    private String cart;
+
+    @Lob
+    private String wishlist;
+
     public User() {}
 
     public User(String email, String password, String name, String address, double creditLimit, String phone) {
@@ -50,5 +70,5 @@ public class User {
     public void setCart(String cart) { this.cart = cart; }  
 
     public String getWishlist() { return wishlist; }
-    public void setWishlist(String wishlist) { this.wishlist = wishlist;}
+    public void setWishlist(String wishlist) { this.wishlist = wishlist; }
 }
