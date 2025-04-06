@@ -103,33 +103,57 @@
                                             <ul class="product-o__action-list">
                                                 <li>
 
-                                                    <a class="quick-look-trigger"
-                                                       data-modal="modal"
+                                                    <a data-modal="modal"
                                                        data-modal-id="#quick-look"
                                                        data-tooltip="tooltip"
                                                        data-placement="top"
                                                        title="Quick View"
+                                                       class="quick-look-trigger"
                                                        data-image="${product.image}"
                                                        data-name="${product.name}"
                                                        data-description="${product.description}"
-                                                       data-stock="${product.stock}">
+                                                       data-stock="${product.stock}"
+                                                       data-price="${product.price}">
                                                         <i class="fas fa-search-plus"></i>
                                                     </a>
                                                 </li>
                                                 <li>
 
-                                                    <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
+                                                    <a data-modal="modal"
+                                                       data-modal-id="#add-to-cart"
+                                                       data-tooltip="tooltip"
+                                                       data-placement="top"
+                                                       title="Add to Cart"
+                                                       class="add-to-cart-trigger"
+                                                       data-image="${product.image}"
+                                                       data-name="${product.name}"
+                                                       data-stock="${product.stock}"
+                                                       data-price="${product.price}">
+                                                        <i class="fas fa-shopping-cart"></i>
+                                                    </a>
                                                 </li>
 
                                                 <li>
 
-                                                    <a data-modal="modal" data-modal-id="#add-to-wishlist" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a>
+                                                    <a data-modal="modal"
+                                                       data-modal-id="#add-to-wishlist"
+                                                       data-tooltip="tooltip"
+                                                       data-placement="top"
+                                                       title="Add to Wishlist"
+                                                       class="add-to-wishlist-trigger"
+                                                       data-image="${product.image}"
+                                                       data-name="${product.name}"
+                                                       data-price="${product.price}"><i class="fas fa-heart"></i></a>
                                                 </li>
 
 
                                                 <li>
 
-                                                    <a data-modal="modal" data-modal-id="checkout" data-tooltip="tooltip" data-placement="top" title="Checkout"><i class="fas fa-plus"></i></a></li>
+                                                    <a data-modal="modal"
+                                                       data-modal-id="checkout"
+                                                       data-tooltip="tooltip"
+                                                       data-placement="top"
+                                                       title="Checkout"><i class="fas fa-plus"></i></a></li>
 
                                             </ul>
                                         </div>
@@ -246,15 +270,27 @@
                                            <ul class="product-o__action-list">
                                                <li>
 
-                                                   <a data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a></li>
+                                                   <a  class="quick-look-trigger"
+                                                       data-image="${product.image}"
+                                                       data-name="${product.name}"
+                                                       data-description="${product.description}"
+                                                       data-stock="${product.stock}"
+                                                       data-price="${product.price}" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a></li>
                                                <li>
 
-                                                   <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
+                                                   <a class="add-to-cart-trigger"
+                                                      data-image="${product.image}"
+                                                      data-name="${product.name}"
+                                                      data-stock="${product.stock}"
+                                                      data-price="${product.price}" data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
                                                </li>
 
                                                <li>
 
-                                                   <a data-modal="modal" data-modal-id="#add-to-wishlist" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a>
+                                                   <a class="add-to-wishlist-trigger"
+                                                      data-image="${product.image}"
+                                                      data-name="${product.name}"
+                                                      data-price="${product.price}" data-modal="modal" data-modal-id="#add-to-wishlist" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a>
                                                </li>
 
 
@@ -378,15 +414,27 @@
                                             <ul class="product-o__action-list">
                                                 <li>
 
-                                                    <a data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a></li>
+                                                    <a class="quick-look-trigger"
+                                                       data-image="${product.image}"
+                                                       data-name="${product.name}"
+                                                       data-description="${product.description}"
+                                                       data-stock="${product.stock}"
+                                                       data-price="${product.price}" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a></li>
                                                 <li>
 
-                                                    <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
+                                                    <a class="add-to-cart-trigger"
+                                                       data-image="${product.image}"
+                                                       data-name="${product.name}"
+                                                       data-stock="${product.stock}"
+                                                       data-price="${product.price}" data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
                                                 </li>
 
                                                 <li>
 
-                                                    <a data-modal="modal" data-modal-id="#add-to-wishlist" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a>
+                                                    <a class="add-to-wishlist-trigger"
+                                                       data-image="${product.image}"
+                                                       data-name="${product.name}"
+                                                       data-price="${product.price}" data-modal="modal" data-modal-id="#add-to-wishlist" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a>
                                                 </li>
 
 

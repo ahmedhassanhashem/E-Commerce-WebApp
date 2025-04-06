@@ -74,7 +74,7 @@
 
                                     <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i></span>
 
-                                    <a data-modal="modal" data-modal-id="#add-to-wishlist2" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist">Add to Wishlist</a>
+                                    <a data-modal="modal" class="add-to-wishlist2-trigger" data-modal-id="#add-to-wishlist2" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist">Add to Wishlist</a>
 
                                 </div>
 
@@ -85,7 +85,7 @@
 
                                     <span class="pd-detail__click-wrap"><i class="fas fa-shopping-cart u-s-m-r-6"></i></span>
 
-                                    <a data-modal="modal" data-modal-id="#add-to-cart2" data-tooltip="tooltip" data-placement="top" title="Add to Cart">Add to Cart</a>
+                                    <a data-modal="modal" class="add-to-cart2-trigger" data-modal-id="#add-to-cart2" data-tooltip="tooltip" data-placement="top" title="Add to Cart">Add to Cart</a>
                                 </div>
 
                             </div>
@@ -144,13 +144,13 @@
 
                                 <span>Item is added successfully to cart!</span></div>
 
-                            <span class="success__name">Beats Bomb Wireless Headphone</span>
+                            <span id="cart2-modal-product-name" class="success__name"></span>
 
-                            <span class="success__quantity">Quantity: 1</span>
+                            <span id="cart2-modal-product-quantity" class="success__quantity" ></span>
 
-                            <span class="success__price">$170.00</span></div>
+                            <span id="cart2-modal-product-price"  class="success__price"></span></div>
 
-                        <a class="s-option__link btn--e-white-brand-shadow" data-dismiss="modal">CONTINUE SHOPPING</a>
+                        <a class="s-option__link btn--e-brand-shadow" data-dismiss="modal">CONTINUE SHOPPING</a>
 
                     </div>
                 </div>
@@ -182,20 +182,20 @@
                                 <span>Item is added successfully!</span></div>
                             <div class="success__img-wrap">
 
-                                <img class="u-img-fluid" src="images/product/electronic/product1.jpg" alt=""></div>
+                                <img id="cart-modal-product-image" class="u-img-fluid" src="" alt=""></div>
                             <div class="success__info-wrap">
 
-                                <span class="success__name">Beats Bomb Wireless Headphone</span>
+                                <span id="cart-modal-product-name" class="success__name"></span>
 
-                                <span class="success__quantity">Quantity: 1</span>
+<%--                                <span id="cart-modal-product-quantity" class="success__quantity"></span>--%>
 
-                                <span class="success__price">$170.00</span></div>
+                                <span id="cart-modal-product-price" class="success__price"></span></div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="s-option">
 
-                            <span class="s-option__text">1 item (s) in your cart</span>
+                            <span class="s-option__text">item added to your cart</span>
                             <div class="s-option__link-box">
 
                                 <a class="s-option__link btn--e-white-brand-shadow" data-dismiss="modal">CONTINUE SHOPPING</a>
@@ -217,7 +217,7 @@
 
 <!--====== Add to wishlist Success Modal ======-->
 
-<!--====== Add to Cart Modal 2 ======-->
+<!--====== Add to wishlist Modal 2 ======-->
 <div class="modal fade" id="add-to-wishlist2">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content modal-radius modal-shadow">
@@ -230,9 +230,9 @@
 
                                 <span>Item is added successfully to wishlist!</span></div>
 
-                            <span class="success__name">Beats Bomb Wireless Headphone</span>
+                            <span id="wishlist2-modal-product-name" class="success__name"></span>
 
-                            <span class="success__price">$170.00</span></div>
+                            <span id="wishlist2-modal-product-price" class="success__price"></span></div>
 
                         <a class="s-option__link btn--e-brand-shadow" data-dismiss="modal">CONTINUE SHOPPING</a>
 
@@ -266,18 +266,18 @@
                                 <span>Item is added successfully!</span></div>
                             <div class="success__img-wrap">
 
-                                <img class="u-img-fluid" src="images/product/electronic/product1.jpg" alt=""></div>
+                                <img id="wishlist-modal-product-image" class="u-img-fluid" src="" alt=""></div>
                             <div class="success__info-wrap">
 
-                                <span class="success__name">Beats Bomb Wireless Headphone</span>
+                                <span id="wishlist-modal-product-name" class="success__name"></span>
 
-                                <span class="success__price">$170.00</span></div>
+                                <span id="wishlist-modal-product-price" class="success__price"></span></div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="s-option">
 
-                            <span class="s-option__text">1 item (s) in your wishlist</span>
+                            <span class="s-option__text">item added to your wishlist</span>
                             <div class="s-option__link-box">
 
                                 <a class="s-option__link btn--e-white-brand-shadow" data-dismiss="modal">CONTINUE SHOPPING</a>
@@ -295,47 +295,4 @@
 <!--====== End - Add to Wishlist Modal ======-->
 
 
-<!--====== Newsletter Subscribe Modal ======-->
-<div class="modal fade new-l" id="newsletter-modal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content modal--shadow">
 
-            <button class="btn new-l__dismiss fas fa-times" type="button" data-dismiss="modal"></button>
-            <div class="modal-body">
-                <div class="row u-s-m-x-0">
-                    <div class="col-lg-6 new-l__col-1 u-s-p-x-0">
-
-                        <a class="new-l__img-wrap u-d-block" href="product-list.jsp">
-
-                            <img class="u-img-fluid u-d-block" src="images/newsletter/newsletter.jpg" alt=""></a></div>
-                    <div class="col-lg-6 new-l__col-2">
-                        <div class="new-l__section u-s-m-t-30">
-                            <div class="u-s-m-b-8 new-l--center">
-                                <h3 class="new-l__h3">Newsletter</h3>
-                            </div>
-                            <div class="u-s-m-b-30 new-l--center">
-                                <p class="new-l__p1">Sign up for emails to get the scoop on new arrivals, special sales and more.</p>
-                            </div>
-                            <form class="new-l__form">
-                                <div class="u-s-m-b-15">
-
-                                    <input class="news-l__input" type="text" placeholder="E-mail Address"></div>
-                                <div class="u-s-m-b-15">
-
-                                    <button class="btn btn--e-brand-b-2" type="submit">Sign up!</button></div>
-                            </form>
-                            <div class="u-s-m-b-15 new-l--center">
-                                <p class="new-l__p2">By Signing up, you agree to receive Reshop offers,<br />promotions and other commercial messages. You may unsubscribe at any time.</p>
-                            </div>
-                            <div class="u-s-m-b-15 new-l--center">
-
-                                <a class="new-l__link" data-dismiss="modal">No Thanks</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--====== End - Newsletter Subscribe Modal ======-->
-<!--====== End - Modal Section ======-->

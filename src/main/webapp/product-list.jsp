@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 
 <!DOCTYPE html>
@@ -51,24 +52,25 @@
 
                                                         <a href="#">Coffee Beans</a>
 
-                                                        <span class="category-list__text u-s-m-l-6">(0)</span>
+                                                        <span class="category-list__text u-s-m-l-6">(${requestScope.beansCategory})</span>
                                                     </li>
                                                     <li>
 
                                                         <a href="#">Coffee Mugs</a>
 
-                                                        <span class="category-list__text u-s-m-l-6">(0)</span>
+                                                        <span class="category-list__text u-s-m-l-6">(${requestScope.mugsCategory})</span>
                                                     </li>
                                                     <li>
 
                                                         <a href="#">Coffee Machines</a>
 
-                                                        <span class="category-list__text u-s-m-l-6">(0)</span>
+                                                        <span class="category-list__text u-s-m-l-6">(${requestScope.machinesCategory})</span>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
+
 
 
                                     <div class="u-s-m-b-30">
@@ -114,31 +116,31 @@
                                                     <li>
                                                         <div class="list__content">
 
-                                                            <input type="checkbox" checked>
+                                                            <input type="checkbox" class="color-filter" value="LIGHT">
 
                                                             <span>Light</span>
                                                         </div>
 
-                                                        <span class="shop-w__total-text">(23)</span>
+                                                        <span class="shop-w__total-text">(${requestScope.light})</span>
                                                     </li>
                                                     <li>
                                                         <div class="list__content">
 
-                                                            <input type="checkbox">
+                                                            <input type="checkbox" class="color-filter" value="MEDIUM">
 
-                                                            <span>Medium (Colorful)</span>
+                                                            <span>Medium</span>
                                                         </div>
 
-                                                        <span class="shop-w__total-text">(2)</span>
+                                                        <span class="shop-w__total-text">(${requestScope.mediumColor})</span>
                                                     </li>
                                                     <li>
                                                         <div class="list__content">
 
-                                                            <input type="checkbox">
+                                                            <input type="checkbox" class="color-filter" value="DARK">
 
                                                             <span>Dark</span></div>
 
-                                                        <span class="shop-w__total-text">(2)</span>
+                                                        <span class="shop-w__total-text">(${requestScope.dark})</span>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -170,7 +172,7 @@
                                                         </div>
                                                         <!--====== End - Check Box ======-->
 
-                                                        <span class="shop-w__total-text">(2)</span>
+                                                        <span class="shop-w__total-text">(${requestScope.small})</span>
                                                     </li>
                                                     <li>
 
@@ -184,7 +186,7 @@
                                                         </div>
                                                         <!--====== End - Check Box ======-->
 
-                                                        <span class="shop-w__total-text">(4)</span>
+                                                        <span class="shop-w__total-text">(${requestScope.mediumSize})</span>
                                                     </li>
                                                     <li>
 
@@ -198,7 +200,7 @@
                                                         </div>
                                                         <!--====== End - Check Box ======-->
 
-                                                        <span class="shop-w__total-text">(6)</span>
+                                                        <span class="shop-w__total-text">(${requestScope.large})</span>
                                                     </li>
 
                                                 </ul>
@@ -239,18 +241,15 @@
                                             <span class="js-shop-list-target">List</span></div>
                                         <form>
                                             <div class="tool-style__form-wrap">
-                                                <div class="u-s-m-b-8"><select class="select-box select-box--transparent-b-2">
-                                                    <option>Show: 8</option>
-                                                    <option selected>Show: 12</option>
+                                                <div class="u-s-m-b-8"><select  id="showSelect" class="select-box select-box--transparent-b-2">
+                                                    <option selected>Show: 8</option>
                                                     <option>Show: 16</option>
-                                                    <option>Show: 28</option>
+                                                    <option>Show: 32</option>
                                                 </select>
                                                 </div>
 
-                                                <div class="u-s-m-b-8"><select class="select-box select-box--transparent-b-2">
-                                                    <option selected>Sort By: Newest Items</option>
-                                                    <option>Sort By: Latest Items</option>
-                                                    <option>Sort By: Lowest Price</option>
+                                                <div class="u-s-m-b-8"><select id="sortSelect" class="select-box select-box--transparent-b-2">
+                                                    <option selected>Sort By: Lowest Price</option>
                                                     <option>Sort By: Highest Price</option>
                                                 </select></div>
                                             </div>
@@ -263,39 +262,55 @@
 
 
 
-
+                                        <c:forEach var="product" items="${requestScope.products}">
                                         <div class="col-lg-4 col-md-6 col-sm-6">
+
+
+
                                             <div class="product-m">
                                                 <div class="product-m__thumb">
 
                                                     <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-details.jsp">
 
-                                                        <img class="aspect__img" src="images/product/electronic/product7.jpg" alt=""></a>
+                                                        <img class="aspect__img" src="images/product/electronic/${product.image}.jpg" alt=""></a>
                                                     <div class="product-m__quick-look">
 
-                                                        <a class="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look"></a></div>
+                                                        <a
+                                                           data-image="${product.image}"
+                                                           data-name="${product.name}"
+                                                           data-description="${product.description}"
+                                                           data-stock="${product.stock}"
+                                                           data-price="${product.price}"
+                                                           class="fas fa-search quick-look-trigger" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look"></a></div>
                                                     <div class="product-m__add-cart">
 
-                                                        <a class="btn--e-brand" data-modal="modal" data-modal-id="#add-to-cart">Add to Cart</a></div>
+                                                        <a data-image="${product.image}"
+                                                           data-name="${product.name}"
+                                                           data-stock="${product.stock}"
+                                                           data-price="${product.price}"
+                                                           class="btn--e-brand add-to-cart-trigger" data-modal="modal" data-modal-id="#add-to-cart">Add to Cart</a></div>
                                                 </div>
                                                 <div class="product-m__content">
                                                     <div class="product-m__category">
 
-                                                        <a href="product-list.jsp">Electronics</a></div>
+                                                        <a href="product-list.jsp">${product.category.name()}</a></div>
                                                     <div class="product-m__name">
 
-                                                        <a href="product-details.jsp">Nikon DSLR Camera 4k</a></div>
+                                                        <a href="product-details.jsp">${product.name}</a></div>
 
 
-                                                    <div class="product-m__price">$125.00
+                                                    <div class="product-m__price">$${product.price}
 
                                                         <div class="product-m__hover">
                                                             <div class="product-m__preview-description">
 
-                                                                <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></div>
+                                                                <span>${product.description}</span></div>
                                                             <div class="product-m__wishlist">
 
-                                                                <a class="far fa-heart" data-tooltip="tooltip" data-placement="top" data-modal="modal" data-modal-id="#add-to-wishlist" title="Add to Wishlist"></a>
+                                                                <a data-image="${product.image}"
+                                                                   data-name="${product.name}"
+                                                                   data-price="${product.price}"
+                                                                   class="far fa-heart add-to-wishlist-trigger" data-tooltip="tooltip" data-placement="top" data-modal="modal" data-modal-id="#add-to-wishlist" title="Add to Wishlist"></a>
                                                                 <a class="fa fa-plus-circle" data-tooltip="tooltip" data-placement="top"  href="checkout.jsp" title="Checkout"></a>
 
                                                         </div>
@@ -310,7 +325,10 @@
 
 
 
+
                                         </div>
+                                        </c:forEach>
+
                                     </div>
 
 
