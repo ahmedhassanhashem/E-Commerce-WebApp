@@ -1,5 +1,7 @@
 package com.ecommerce.webapp.model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +15,13 @@ public class Order {
 
     @Column(name = "user_id", nullable = false)
     private int user_id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false) // Foreign key to User table
+    private User user; // Many Orders can belong to one User
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<OrderItem> orderItems; // One Order can have many OrderItems
 
     @Column(name = "total_price")
     private double total_price;

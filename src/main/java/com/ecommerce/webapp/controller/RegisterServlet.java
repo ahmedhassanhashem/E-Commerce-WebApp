@@ -1,6 +1,6 @@
 package com.ecommerce.webapp.controller;
 
-import com.ecommerce.webapp.daos.UserDAO;
+import com.ecommerce.webapp.dao.UserDAO;
 import com.ecommerce.webapp.model.User;
 
 import jakarta.servlet.ServletException;

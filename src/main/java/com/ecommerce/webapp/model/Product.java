@@ -19,21 +19,21 @@ public class Product {
     @Column(name = "product_price")
     private double product_price;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "category")
-    private ProductCategory category;
-
     private String image;
 
     @Column(name = "stock_quantity")
     private int stock_quantity;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "color")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category")
+    private ProductCategory category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "color")
     private ProductColor color;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "size")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "size")
     private ProductSize size;
 
     public Product() {}

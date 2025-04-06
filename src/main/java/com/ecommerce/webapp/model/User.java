@@ -1,5 +1,7 @@
 package com.ecommerce.webapp.model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -10,6 +12,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private int userId;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Order> orders; // One User can have many Orders
 
     @Column(nullable = false, unique = true)
     private String email;

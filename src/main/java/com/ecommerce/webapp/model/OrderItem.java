@@ -23,6 +23,14 @@ public class OrderItem {
     @Column(name = "item_price")
     private double item_price;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id", nullable = false) // Foreign key to Order table
+    private Order order; // Many OrderItems can belong to one Order
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", nullable = false) // Foreign key to Product table
+    private Product product; // Many OrderItems can reference one Product
+
     public OrderItem() {}
 
     public OrderItem(int order_id, int product_id, int order_item_quantity, double item_price) {

@@ -1,17 +1,3 @@
-<%-- start of dummy data--%>
-<%@ page import="com.ecommerce.webapp.model.User" %>
-<%
-    User user = new User();
-    user.setName("kerellos samy");
-    user.setEmail("kerolos@example.com");
-    user.setPhone("01234567890");
-    user.setAddress("Smart village, 123 Coffee St.");
-    user.setCreditLimit(300.59);
-    user.setPassword("123");
-    session.setAttribute("currentUser", user);
-%>
-<%-- end of dummy data--%>
-
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 
