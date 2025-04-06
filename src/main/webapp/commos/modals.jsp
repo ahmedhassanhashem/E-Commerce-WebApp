@@ -32,7 +32,7 @@
                                 <div id="js-product-detail-modal">
                                     <div>
 
-                                        <img class="u-img-fluid" src="images/product/${product.image}.jpg" alt=""></div>
+                                        <img id="modal-product-image" class="u-img-fluid" src="" alt=""></div>
 
                                 </div>
                             </div>
@@ -46,28 +46,28 @@
                         <div class="pd-detail">
                             <div>
 
-                                <span class="pd-detail__name">${product.name}</span>
+                                <span id="modal-product-name" class="pd-detail__name"></span>
                             </div>
 
 
                             <div class="u-s-m-b-15">
                                 <div class="pd-detail__inline">
 
-                                    <c:choose>
-                                        <c:when test="${product.stock > 0}">
-                                            <span class="pd-detail__stock">In Stock</span>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <span class="pd-detail__left">Out of Stock</span>
-                                        </c:otherwise>
-                                    </c:choose>
+                                    <span id="modal-product-stock" class="pd-detail__stock"></span>
+
+<%--                                            <span class="pd-detail__stock">In Stock</span>--%>
+<%--                                       --%>
+<%--                                            <span class="pd-detail__left">Out of Stock</span>--%>
+
+
+
 
                                 </div>
                             </div>
 
                             <div class="u-s-m-b-15">
 
-                                <span class="pd-detail__preview-desc">${product.description}.</span></div>
+                                <span id="modal-product-description" class="pd-detail__preview-desc"></span></div>
 
                             <div class="u-s-m-b-15">
                                 <div class="pd-detail__inline">
@@ -101,7 +101,7 @@
 
                                                 <span class="input-counter__minus fas fa-minus"></span>
 
-                                                <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="${product.stock}">
+                                                <input id="modal-product-stock-input" class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1">
 
                                                 <span class="input-counter__plus fas fa-plus"></span></div>
                                             <!--====== End - Input Counter ======-->

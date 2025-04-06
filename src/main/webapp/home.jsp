@@ -103,7 +103,8 @@
                                             <ul class="product-o__action-list">
                                                 <li>
 
-                                                    <a data-modal="modal"
+                                                    <a class="quick-look-trigger"
+                                                       data-modal="modal"
                                                        data-modal-id="#quick-look"
                                                        data-tooltip="tooltip"
                                                        data-placement="top"
@@ -111,7 +112,10 @@
                                                        data-image="${product.image}"
                                                        data-name="${product.name}"
                                                        data-description="${product.description}"
-                                                       data-stock="${product.stock}"><i class="fas fa-search-plus"></i></a></li>
+                                                       data-stock="${product.stock}">
+                                                        <i class="fas fa-search-plus"></i>
+                                                    </a>
+                                                </li>
                                                 <li>
 
                                                     <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
