@@ -39,7 +39,7 @@
 
                                     <span class="empty__text-1">No items found on your cart.</span>
 
-                                    <a class="empty__redirect-link btn--e-brand" href="product-list.jsp">CONTINUE SHOPPING</a></div>
+                                    <a class="empty__redirect-link btn--e-brand" href="product-list">CONTINUE SHOPPING</a></div>
                             </div>
                         </div>
                     </div>

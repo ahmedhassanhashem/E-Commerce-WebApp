@@ -19,7 +19,10 @@ $(document).ready(function () {
         };
     }
 
-    
+    function getInitialCategory() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('category') || '';
+    }
 
     // Function to load products via AJAX, including filter parameters
     function loadProducts(page, itemsPerPage, sort, preserveScroll = false) {
@@ -28,6 +31,8 @@ $(document).ready(function () {
         }
         // Get current filters
         let filters = getFilterParams();
+
+
 
         $.ajax({
             url: 'product-list-ajax',

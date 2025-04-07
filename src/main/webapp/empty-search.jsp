@@ -42,11 +42,11 @@
 
                                     <span class="empty__text-2">Related searches:
 
-                                            <a href="product-list.jsp">Coffee Beans</a>
+                                            <a href="product-list?category=beans">Coffee Beans</a>
 
-                                            <a href="product-list.jsp">Coffee Mugs</a>
+                                            <a href="product-list?category=mugs">Coffee Mugs</a>
 
-                                            <a href="product-list.jsp">Coffee Machines</a></span>
+                                            <a href="product-list?category=machines">Coffee Machines</a></span>
                                     <form class="empty__search-form">
 
                                         <label for="search-label"></label>

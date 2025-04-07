@@ -265,7 +265,7 @@
 
                                 <span class="product-o__category">
 
-                                                            <a href="product-list.jsp">Electronics</a></span>
+                                                            <a href="product-list?category=${product.category.name().toLowerCase()}">Electronics</a></span>
 
                                 <span class="product-o__name">
 

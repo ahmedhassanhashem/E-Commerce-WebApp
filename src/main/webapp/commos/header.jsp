@@ -116,15 +116,15 @@
             <ul class="ah-list ah-list--design1 ah-list--link-color-white">
               <li>
 
-                <a href="product-list.jsp">Coffee Beans</a>
+                <a href="product-list?category=beans">Coffee Beans</a>
               </li>
               <li>
 
-                <a href="product-list.jsp">Coffee Mugs</a>
+                <a href="product-list?category=mugs">Coffee Mugs</a>
               </li>
               <li>
 
-                <a href="product-list.jsp">Coffee Machines</a></li>
+                <a href="product-list?category=machines">Coffee Machines</a></li>
             </ul>
             <!--====== End - List ======-->
           </div>
@@ -181,7 +181,7 @@
 
                                                             <span class="mini-product__category">
 
-                                                                <a href="product-list.jsp">Men Clothing</a></span>
+                                                                <a href="product-list?category=${product.category.name().toLowerCase()}">Men Clothing</a></span>
 
                           <span class="mini-product__name">
 
@@ -233,7 +233,7 @@
 
                                                             <span class="mini-product__category">
 
-                                                                <a href="product-list.jsp">Men Clothing</a></span>
+                                                                <a href="product-list?category=${product.category.name().toLowerCase()}">Men Clothing</a></span>
 
                           <span class="mini-product__name">
 

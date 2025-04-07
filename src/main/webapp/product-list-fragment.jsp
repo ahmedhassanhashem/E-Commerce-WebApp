@@ -35,7 +35,7 @@
                     </div>
                     <div class="product-m__content">
                         <div class="product-m__category">
-                            <a href="product-list.jsp">${product.category.name()}</a>
+                            <a href="product-list?category=${product.category.name().toLowerCase()}">${product.category.name()}</a>
                         </div>
                         <div class="product-m__name">
                             <a href="product-details.jsp">${product.name}</a>

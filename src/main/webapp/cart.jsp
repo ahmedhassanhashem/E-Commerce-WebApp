@@ -49,7 +49,7 @@
 
                                                 <span class="table-p__category">
 
-                                                                <a href="product-list.jsp">Men Clothing</a></span>
+                                                                <a href="product-list?category=${product.category.name().toLowerCase()}">Men Clothing</a></span>
                                                 <ul class="table-p__variant-list">
                                                     <li>
 
@@ -128,7 +128,7 @@
                         <div class="route-box">
                             <div class="route-box__g1">
 
-                                <a class="route-box__link" href="product-list.jsp"><i class="fas fa-long-arrow-alt-left"></i>
+                                <a class="route-box__link" href="product-list"><i class="fas fa-long-arrow-alt-left"></i>
 
                                     <span>CONTINUE SHOPPING</span></a></div>
                             <div class="route-box__g2">

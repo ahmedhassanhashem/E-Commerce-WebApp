@@ -163,7 +163,7 @@
 
                                     <span class="product-o__category">
 
-                                                            <a href="product-list.jsp">${product.category.name()}</a></span>
+                                                            <a href="product-list?category=${product.category.name().toLowerCase()}">${product.category.name()}</a></span>
 
                                     <span class="product-o__name">
 
@@ -306,7 +306,7 @@
 
                                    <span class="product-o__category">
 
-                                                            <a href="product-list.jsp">${product.category.name()}</a></span>
+                                                            <a href="product-list?category=${product.category.name().toLowerCase()}">${product.category.name()}</a></span>
 
                                    <span class="product-o__name">
 
@@ -409,7 +409,7 @@
                                 <div class="product-o product-o--hover-on">
                                     <div class="product-o__wrap">
 
-                                        <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-list.jsp">
+                                        <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-details.jsp">
 
                                             <img class="aspect__img" src="images/product/electronic/${product.image}.jpg" alt=""></a>
                                         <div class="product-o__action-wrap">
@@ -450,7 +450,7 @@
 
                                     <span class="product-o__category">
 
-                                                            <a href="product-list.jsp">${product.category.name()}</a></span>
+                                                            <a href="product-list?category=${product.category.name().toLowerCase()}">${product.category.name()}</a></span>
 
                                     <span class="product-o__name">
 
