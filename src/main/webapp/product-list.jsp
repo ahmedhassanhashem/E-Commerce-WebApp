@@ -80,7 +80,7 @@
                                             <div class="shop-w__intro-wrap">
                                                 <h1 class="shop-w__h">PRICE</h1>
 
-                                                <span class="fas fa-minus shop-w__toggle" data-target="#s-price" data-toggle="collapse"></span>
+                                                <span class="fas fa-minus collapsed shop-w__toggle" data-target="#s-price" data-toggle="collapse"></span>
                                             </div>
                                             <div class="shop-w__wrap collapse" id="s-price">
                                                 <form class="shop-w__form-p">
