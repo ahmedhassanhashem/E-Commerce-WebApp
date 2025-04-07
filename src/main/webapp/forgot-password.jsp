@@ -28,9 +28,9 @@
                         <div class="col-lg-6 col-md-8 u-s-m-b-30">
                             <div class="l-f-o">
                                 <div class="l-f-o__pad-box">
-                                    <h1 class="gl-h1">SET NEW PASSWORD</h1>
+                                    <h1 class="gl-h1">PASSWORD RESET</h1>
 
-                                    <span class="gl-text u-s-m-b-30">Enter your new password below.</span>
+                                    <span class="gl-text u-s-m-b-30">Enter your email and credit card number you registered with to reset your password.</span>
                                     
                                     <% if(request.getAttribute("errorMessage") != null) { %>
                                     <div class="alert alert-danger" style="color: red; margin-bottom: 20px;">
@@ -38,24 +38,19 @@
                                     </div>
                                     <% } %>
                                     
-                                    <form class="l-f-o__form" action="forgotPassword" method="post" onsubmit="return validatePasswords()">
-                                        <input type="hidden" name="action" value="reset">
-                                        <input type="hidden" name="email" value="<%= request.getParameter("email") %>">
-                                        <input type="hidden" name="token" value="<%= request.getParameter("token") %>">
-                                        
+                                    <form class="l-f-o__form" action="forgotPassword" method="post">
                                         <div class="u-s-m-b-30">
-                                            <label class="gl-label" for="new-password">NEW PASSWORD *</label>
-                                            <input class="input-text input-text--primary-style" type="password" id="new-password" name="new-password" placeholder="Enter New Password">
+                                            <label class="gl-label" for="reset-email">E-MAIL *</label>
+                                            <input class="input-text input-text--primary-style" type="text" id="reset-email" name="reset-email" placeholder="Enter E-mail">
                                         </div>
                                         
                                         <div class="u-s-m-b-30">
-                                            <label class="gl-label" for="confirm-password">CONFIRM PASSWORD *</label>
-                                            <input class="input-text input-text--primary-style" type="password" id="confirm-password" name="confirm-password" placeholder="Confirm New Password">
-                                            <div id="password-error" style="color: red; display: none;">Passwords do not match</div>
+                                            <label class="gl-label" for="reset-cc">CREDIT CARD NUMBER *</label>
+                                            <input class="input-text input-text--primary-style" type="text" id="reset-cc" name="reset-cc" placeholder="Enter Credit Card Number">
                                         </div>
                                         
                                         <div class="u-s-m-b-30">
-                                            <button class="btn btn--e-transparent-brand-b-2" type="submit">RESET PASSWORD</button>
+                                            <button class="btn btn--e-transparent-brand-b-2" type="submit">SUBMIT</button>
                                         </div>
                                         
                                         <div class="u-s-m-b-30">
@@ -83,35 +78,6 @@
 <jsp:include page="commos/modals.jsp"/>
 
 <%@include file="commos/script.html" %>
-
-<script>
-function validatePasswords() {
-    const newPassword = document.getElementById('new-password').value;
-    const confirmPassword = document.getElementById('confirm-password').value;
-    const errorDiv = document.getElementById('password-error');
-    
-    if (newPassword !== confirmPassword) {
-        errorDiv.style.display = 'block';
-        return false;
-    } else {
-        errorDiv.style.display = 'none';
-        return true;
-    }
-}
-
-// Real-time validation
-document.getElementById('confirm-password').addEventListener('input', function() {
-    const newPassword = document.getElementById('new-password').value;
-    const confirmPassword = this.value;
-    const errorDiv = document.getElementById('password-error');
-    
-    if (newPassword !== confirmPassword) {
-        errorDiv.style.display = 'block';
-    } else {
-        errorDiv.style.display = 'none';
-    }
-});
-</script>
 
 </body>
 </html>

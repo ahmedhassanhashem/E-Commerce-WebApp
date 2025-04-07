@@ -60,10 +60,7 @@ public class EmailCheckServlet extends HttpServlet {
     
     // List of dummy valid emails for testing
     private static final List<String> VALID_EMAILS = Arrays.asList(
-        "user@example.com",
-        "john@gmail.com",
-        "alice@yahoo.com",
-        "bob@hotmail.com",
+        "user@gmail.com",
         "admin@gmail.com"
     );
     

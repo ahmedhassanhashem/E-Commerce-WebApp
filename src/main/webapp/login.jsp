@@ -48,7 +48,7 @@
                                             <button class="btn btn--e-transparent-brand-b-2" type="submit">LOGIN</button>
                                         </div>
                                         <div class="u-s-m-b-30">
-                                            <a class="gl-link" href="reset-password.jsp">Lost Your Password?</a>
+                                            <a class="gl-link" href="forgot-password.jsp">Lost Your Password?</a>
                                         </div>
                                     </div>
                                     

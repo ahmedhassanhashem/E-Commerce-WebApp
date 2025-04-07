@@ -32,28 +32,11 @@
                 <div class="dash">
                     <div class="container">
                         <div class="row">
-
-
-
-
-
                             <div class="col-lg-3 col-md-12">
-
-
                                 <%@include file="commos/dashboard-sidebar-links.html"%>
                                 <jsp:include page="commos/dashboard-sidebar-orders-statistics.jsp"/>
-
-
                             </div>
-
-
-
-
-
                             <div class="col-lg-9 col-md-12">
-
-
-
                                 <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white">
                                     <div class="dash__pad-2">
                                         <h1 class="dash__h1 u-s-m-b-14">Change Password</h1><br>
@@ -119,14 +102,6 @@
             <!--====== End - Section Content ======-->
         </div>
 
-
-
-
-
-
-
-
-
     </div>
     <!--====== End -App Content ======-->
 
@@ -134,7 +109,7 @@
     <%@include file="commos/footer.jsp" %>
 
 </div>
-<!--====== End - Main App  ======-->
+<!--====== End - Main App  ======--
 
 
 <jsp:include page="commos/modals.jsp"/>

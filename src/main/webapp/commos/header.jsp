@@ -77,7 +77,7 @@
                 </li>
                 <li>
 
-                  <a href=""><i class="fas fa-sign-out-alt u-s-m-r-4"></i>
+                  <a href="logout"><i class="fas fa-sign-out-alt u-s-m-r-4"></i>
 
                     <span>Logout</span></a>
                 </li>
