@@ -1,11 +1,18 @@
-// Declare this at the top of your file
-let currentPrice = 0;
+// Use event delegation for modal triggers
 
-// Use event delegation for modal triggers and manually handle modal opening
+function initializeModals() {
+    // Re-initialize any modal plugins or libraries you're using
+    // For example, if you're using Bootstrap modals:
+    $('.modal').modal('dispose').modal(); // This resets Bootstrap modals
+
+    // Or if you're using a custom modal system, reinitialize it here
+}
+
+
 $(document).on('click', '.quick-look-trigger', function(e) {
     e.preventDefault();
 
-    // Get modal ID
+    // Get modal ID from data attribute
     const modalId = $(this).data('modal-id');
 
     // Retrieve data from the clicked element
@@ -35,15 +42,17 @@ $(document).on('click', '.quick-look-trigger', function(e) {
     }
     $('#modal-product-stock-input').attr('data-max', stock).val(1);
 
-    // Manually open the modal (jQuery method)
+    // Open the modal
     $(modalId).modal('show');
 });
 
-// Do the same for other modal triggers with the appropriate modal ID
+
 $(document).on('click', '.add-to-cart-trigger', function(e) {
     e.preventDefault();
 
+    // Get modal ID from data attribute
     const modalId = $(this).data('modal-id');
+
     const image = $(this).data('image');
     const name = $(this).data('name');
     const price = $(this).data('price');
@@ -52,15 +61,16 @@ $(document).on('click', '.add-to-cart-trigger', function(e) {
     $('#cart-modal-product-name').text(name);
     $('#cart-modal-product-price').text('$' + price);
 
-    // Manually open the modal
+    // Open the modal
     $(modalId).modal('show');
 });
 
-// Similarly for the other modal triggers
 $(document).on('click', '.add-to-wishlist-trigger', function(e) {
     e.preventDefault();
 
+    // Get modal ID from data attribute
     const modalId = $(this).data('modal-id');
+
     const image = $(this).data('image');
     const name = $(this).data('name');
     const price = $(this).data('price');
@@ -69,14 +79,16 @@ $(document).on('click', '.add-to-wishlist-trigger', function(e) {
     $('#wishlist-modal-product-name').text(name);
     $('#wishlist-modal-product-price').text('$' + price);
 
-    // Manually open the modal
+    // Open the modal
     $(modalId).modal('show');
 });
 
 $(document).on('click', '.add-to-cart2-trigger', function(e) {
     e.preventDefault();
 
+    // Get modal ID from data attribute
     const modalId = $(this).data('modal-id');
+
     const quantity = $('#modal-product-stock-input').val();
     const name = $('#modal-product-name').text();
 
@@ -84,19 +96,21 @@ $(document).on('click', '.add-to-cart2-trigger', function(e) {
     $('#cart2-modal-product-price').text('$' + currentPrice);
     $('#cart2-modal-product-quantity').text('Quantity: ' + quantity);
 
-    // Manually open the modal
+    // Open the modal
     $(modalId).modal('show');
 });
 
 $(document).on('click', '.add-to-wishlist2-trigger', function(e) {
     e.preventDefault();
 
+    // Get modal ID from data attribute
     const modalId = $(this).data('modal-id');
+
     const name = $('#modal-product-name').text();
 
     $('#wishlist2-modal-product-name').text(name);
     $('#wishlist2-modal-product-price').text('$' + currentPrice);
 
-    // Manually open the modal
+    // Open the modal
     $(modalId).modal('show');
 });

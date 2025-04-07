@@ -12,6 +12,8 @@
 
 <body class="config" id="js-scrollspy-trigger">
 
+
+
 <%@include file="commos/preloader.html"%>
 
 <!--====== Main App ======-->
@@ -238,130 +240,55 @@
 
                                             <span class="js-shop-grid-target is-active">Grid</span>
 
-                                            <span class="js-shop-list-target">List</span></div>
+                                            <span class="js-shop-list-target">List</span>
+                                        </div>
                                         <form>
                                             <div class="tool-style__form-wrap">
                                                 <div class="u-s-m-b-8"><select  id="showSelect" class="select-box select-box--transparent-b-2">
-                                                    <option selected>Show: 8</option>
-                                                    <option>Show: 16</option>
-                                                    <option>Show: 32</option>
+                                                    <option value="9" selected>Show: 9</option>
+                                                    <option value="18" >Show: 18</option>
+                                                    <option value="33">Show: 33</option>
                                                 </select>
                                                 </div>
 
                                                 <div class="u-s-m-b-8"><select id="sortSelect" class="select-box select-box--transparent-b-2">
-                                                    <option selected>Sort By: Lowest Price</option>
-                                                    <option>Sort By: Highest Price</option>
+                                                    <option value="" >Sort By:  </option>
+                                                    <option value="lowest" >Sort By: Lowest Price</option>
+                                                    <option value="highest">Sort By: Highest Price</option>
                                                 </select></div>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
 
-                                <div class="shop-p__collection">
-                                    <div class="row is-grid-active">
-
-
-
-                                        <c:forEach var="product" items="${requestScope.products}">
-                                        <div class="col-lg-4 col-md-6 col-sm-6">
-
-
-
-                                            <div class="product-m">
-                                                <div class="product-m__thumb">
-
-                                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-details.jsp">
-
-                                                        <img class="aspect__img" src="images/product/electronic/${product.image}.jpg" alt=""></a>
-                                                    <div class="product-m__quick-look">
-
-                                                        <a
-                                                           data-image="${product.image}"
-                                                           data-name="${product.name}"
-                                                           data-description="${product.description}"
-                                                           data-stock="${product.stock}"
-                                                           data-price="${product.price}"
-                                                           class="fas fa-search quick-look-trigger" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look"></a></div>
-                                                    <div class="product-m__add-cart">
-
-                                                        <a data-image="${product.image}"
-                                                           data-name="${product.name}"
-                                                           data-stock="${product.stock}"
-                                                           data-price="${product.price}"
-                                                           class="btn--e-brand add-to-cart-trigger" data-modal="modal" data-modal-id="#add-to-cart">Add to Cart</a></div>
-                                                </div>
-                                                <div class="product-m__content">
-                                                    <div class="product-m__category">
-
-                                                        <a href="product-list.jsp">${product.category.name()}</a></div>
-                                                    <div class="product-m__name">
-
-                                                        <a href="product-details.jsp">${product.name}</a></div>
-
-
-                                                    <div class="product-m__price">$${product.price}
-
-                                                        <div class="product-m__hover">
-                                                            <div class="product-m__preview-description">
-
-                                                                <span>${product.description}</span></div>
-                                                            <div class="product-m__wishlist">
-
-                                                                <a data-image="${product.image}"
-                                                                   data-name="${product.name}"
-                                                                   data-price="${product.price}"
-                                                                   class="far fa-heart add-to-wishlist-trigger" data-tooltip="tooltip" data-placement="top" data-modal="modal" data-modal-id="#add-to-wishlist" title="Add to Wishlist"></a>
-                                                                <a class="fa fa-plus-circle" data-tooltip="tooltip" data-placement="top"  href="checkout.jsp" title="Checkout"></a>
-
-                                                        </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
 
 
 
 
 
 
-
-                                        </div>
-                                        </c:forEach>
-
-                                    </div>
-
-
-
-
-
-
-
-
-
-
-                                    <div class="u-s-p-y-60">
-
-                                        <!--====== Pagination ======-->
-                                        <ul class="shop-p__pagination">
-                                            <li class="is-active">
-
-                                                <a href="product-list.jsp">1</a>
-                                            </li>
-                                            <li class="is-active">
-
-                                                <a href="product-list.jsp">2</a>
-                                            </li>
-                                            <li>
-                                                <a class="fas fa-angle-right" href="product-list.jsp"></a>
-                                            </li>
-                                        </ul>
-                                        <!--====== End - Pagination ======-->
-                                    </div>
+                                <!-- Container for product list (AJAX will update this section) -->
+                                <div id="productListContainer">
+                                    <jsp:include page="product-list-fragment.jsp"/>
                                 </div>
+
+
+
+
+
+
+
+
+
                             </div>
 
                         </div>
+
+
+
+
+
+
                     </div>
                 </div>
                 <!--====== End - Section 1 ======-->
@@ -387,6 +314,11 @@
     <jsp:include page="commos/modals.jsp"/>
 
     <%@include file="commos/script.html"%>
+
+<script src="js/custom-js/modal-product-list.js"></script>
+<script src="js/custom-js/products.js"></script>
+
+
 
 </body>
 </html>

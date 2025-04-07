@@ -23,17 +23,17 @@ public class ProductListServlet extends HttpServlet {
 
         List<Product> products = ProductFactory.getProducts();
 
-        int beansCategory = products.stream().filter(item -> item.getCategory() == ProductCategory.BEANS).toArray().length;
-        int mugsCategory = products.stream().filter(item -> item.getCategory() == ProductCategory.MUGS).toArray().length;
-        int machinesCategory = products.stream().filter(item -> item.getCategory() == ProductCategory.MACHINES).toArray().length;
+        int beansCategory = (int) products.stream().filter(item -> item.getCategory() == ProductCategory.BEANS).count();
+        int mugsCategory = (int) products.stream().filter(item -> item.getCategory() == ProductCategory.MUGS).count();
+        int machinesCategory = (int) products.stream().filter(item -> item.getCategory() == ProductCategory.MACHINES).count();
 
-        int light = products.stream().filter(item -> item.getColor() == ProductColor.LIGHT).toArray().length;
-        int mediumColor = products.stream().filter(item -> item.getColor() == ProductColor.MEDIUM).toArray().length;
-        int dark = products.stream().filter(item -> item.getColor() == ProductColor.DARK).toArray().length;
+        int light = (int) products.stream().filter(item -> item.getColor() == ProductColor.LIGHT).count();
+        int mediumColor = (int) products.stream().filter(item -> item.getColor() == ProductColor.MEDIUM).count();
+        int dark = (int) products.stream().filter(item -> item.getColor() == ProductColor.DARK).count();
 
-        int small = products.stream().filter(item -> item.getSize() == ProductSize.SMALL).toArray().length;
-        int mediumSize = products.stream().filter(item -> item.getSize() == ProductSize.MEDIUM).toArray().length;
-        int large = products.stream().filter(item -> item.getSize() == ProductSize.LARGE).toArray().length;
+        int small = (int)products.stream().filter(item -> item.getSize() == ProductSize.SMALL).count();
+        int mediumSize = (int) products.stream().filter(item -> item.getSize() == ProductSize.MEDIUM).count();
+        int large = (int) products.stream().filter(item -> item.getSize() == ProductSize.LARGE).count();
 
 
 

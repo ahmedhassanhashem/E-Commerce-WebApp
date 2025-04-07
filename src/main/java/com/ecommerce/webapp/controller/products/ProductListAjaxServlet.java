@@ -1,0 +1,98 @@
+package com.ecommerce.webapp.controller.products;
+
+import com.ecommerce.webapp.model.Product;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Comparator;
+import java.util.List;
+
+@WebServlet("/product-list-ajax")
+public class ProductListAjaxServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // Retrieve parameters with default values
+        String pageParam = request.getParameter("page");
+        String showParam = request.getParameter("show");
+        String sortParam = request.getParameter("sort");
+
+        int page = 1;
+        int itemsPerPage = 9; // Default to 9
+        String sort = ""; // Default to no sorting (empty string)
+
+        // Safely parse parameters
+        if (pageParam != null && !pageParam.isEmpty()) {
+            try {
+                page = Integer.parseInt(pageParam);
+            } catch (NumberFormatException e) {
+                // Keep default value
+            }
+        }
+
+        if (showParam != null && !showParam.isEmpty()) {
+            try {
+                itemsPerPage = Integer.parseInt(showParam);
+            } catch (NumberFormatException e) {
+                // Keep default value
+            }
+        }
+
+        if (sortParam != null && !sortParam.isEmpty()) {
+            sort = sortParam;
+        }
+
+        // Fetch product list from your factory (or service)
+        List<Product> products = ProductFactory.getProducts();
+
+        // Sort products by price only if sort is specified
+        if ("lowest".equals(sort)) {
+            products.sort(Comparator.comparing(Product::getPrice));
+        } else if ("highest".equals(sort)) {
+            products.sort(Comparator.comparing(Product::getPrice).reversed());
+        }
+        // If sort is empty string (default), no sorting is applied
+
+        // Pagination logic: determine the subset of products to display
+        int totalProducts = products.size();
+        int totalPages = (int) Math.ceil((double) totalProducts / itemsPerPage);
+
+        // Ensure we have at least 1 page
+        if (totalPages == 0) {
+            totalPages = 1;
+        }
+
+        // Ensure page is within valid range
+        if (page > totalPages) {
+            page = totalPages;
+        }
+
+        int startIndex = (page - 1) * itemsPerPage;
+        int endIndex = Math.min(startIndex + itemsPerPage, totalProducts);
+
+        // Check to prevent index out of bounds
+        if (startIndex >= totalProducts) {
+            startIndex = 0;
+            endIndex = Math.min(itemsPerPage, totalProducts);
+            page = 1;
+        }
+
+        List<Product> pagedProducts = products.subList(startIndex, endIndex);
+
+        // Set attributes for the fragment
+        request.setAttribute("products", pagedProducts);
+        request.setAttribute("currentPage", page);
+        request.setAttribute("totalPages", totalPages);
+        request.setAttribute("itemsPerPage", itemsPerPage);
+        request.setAttribute("sort", sort);
+
+        // Forward to the JSP fragment
+        RequestDispatcher dispatcher = request.getRequestDispatcher("product-list-fragment.jsp");
+        dispatcher.forward(request, response);
+    }
+}

@@ -26,6 +26,8 @@
   <!--====== App Content ======-->
   <div class="app-content">
 
+      <%@include file="home/slider.html"%>
+
     <!--====== Anti Flash White Background ======-->
     <div class="white-container">
 
@@ -34,7 +36,7 @@
         <div class="container">
 
           <!--====== Primary Slider ======-->
-          <%@include file="home/slider.html"%>
+
 
 
 
@@ -515,6 +517,8 @@
 
 
 <%@include file="commos/script.html"%>
+      <script src="js/custom-js/modals.js"></script>
+
 
 </body>
 </html>
