@@ -26,7 +26,6 @@
   <!--====== App Content ======-->
   <div class="app-content">
 
-      <%@include file="home/slider.html"%>
 
     <!--====== Anti Flash White Background ======-->
     <div class="white-container">
@@ -36,6 +35,7 @@
         <div class="container">
 
           <!--====== Primary Slider ======-->
+            <%@include file="home/slider.html"%>
 
 
 

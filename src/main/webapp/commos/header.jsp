@@ -156,7 +156,7 @@
                 <a href="home"><i class="fas fa-home"></i></a>
               </li>
               <li>
-                <a href="product-list.jsp"><i class="fas fa-shopping-bag"></i></a>
+                <a href="product-list"><i class="fas fa-shopping-bag"></i></a>
               </li>
               <li class="has-dropdown">
                 <a class="mini-cart-shop-link"><i class="far fa-heart"></i>
