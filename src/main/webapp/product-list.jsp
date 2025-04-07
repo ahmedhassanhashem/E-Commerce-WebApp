@@ -82,7 +82,7 @@
 
                                                 <span class="fas fa-minus shop-w__toggle" data-target="#s-price" data-toggle="collapse"></span>
                                             </div>
-                                            <div class="shop-w__wrap collapse show" id="s-price">
+                                            <div class="shop-w__wrap collapse" id="s-price">
                                                 <form class="shop-w__form-p">
                                                     <div class="shop-w__form-p-wrap">
                                                         <div>
