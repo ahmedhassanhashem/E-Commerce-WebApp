@@ -1,42 +1,33 @@
-$(document).ready(function() {
-    // Set default values and initialize view state
+$(document).ready(function () {
+    // Current state variables
     let currentViewMode = 'grid'; // Default to grid view
-    let currentItemsPerPage = "9"; // Default to 9 items
-    let currentSort = ""; // Default to no sorting
-    let scrollPosition = 0; // Variable to store scroll position
+    let currentItemsPerPage = $("#showSelect").val(); // e.g., "9"
+    let currentSort = $("#sortSelect").val() || ""; // Default to no sorting if empty
+    let currentPage = 1; // Start at first page
+    let scrollPosition = 0; // For scroll preservation
 
-    // Set initial active states for show and sort dropdowns
-    $("#showSelect").val(currentItemsPerPage);
-    $("#sortSelect").val(currentSort);
+    // Helper function to gather filter parameters from the DOM
+    function getFilterParams() {
+        let category = $("input[name='category']:checked").val() || "";
+        let priceMin = $("#price-min").val() || "";
+        let priceMax = $("#price-max").val() || "";
+        // If you add other filters like color and size, include them similarly.
+        return {
+            category: category,
+            priceMin: priceMin,
+            priceMax: priceMax
+        };
+    }
 
-    // Load initial products on page load
-    loadProducts(1, currentItemsPerPage, currentSort);
+    
 
-    // Toggle Grid/List View
-    $('.js-shop-grid-target').on('click', function() {
-        // Set grid view active
-        $(this).addClass('is-active');
-        $('.js-shop-list-target').removeClass('is-active');
-        // Add grid class to row
-        $('.shop-p__collection .row').addClass('is-grid-active').removeClass('is-list-active');
-        currentViewMode = 'grid';
-    });
-
-    $('.js-shop-list-target').on('click', function() {
-        // Set list view active
-        $(this).addClass('is-active');
-        $('.js-shop-grid-target').removeClass('is-active');
-        // Add list class to row
-        $('.shop-p__collection .row').removeClass('is-grid-active').addClass('is-list-active');
-        currentViewMode = 'list';
-    });
-
-    // Function to load products via AJAX
+    // Function to load products via AJAX, including filter parameters
     function loadProducts(page, itemsPerPage, sort, preserveScroll = false) {
-        // Save scroll position before making the AJAX call if preserveScroll is true
         if (preserveScroll) {
             scrollPosition = $(window).scrollTop();
         }
+        // Get current filters
+        let filters = getFilterParams();
 
         $.ajax({
             url: 'product-list-ajax',
@@ -44,12 +35,13 @@ $(document).ready(function() {
             data: {
                 page: page,
                 show: itemsPerPage,
-                sort: sort
+                sort: sort,
+                category: filters.category,
+                priceMin: filters.priceMin,
+                priceMax: filters.priceMax
             },
-            success: function(data) {
+            success: function (data) {
                 $("#productListContainer").html(data);
-
-                // DO NOT call initializeModals() here - this is what's opening all modals
 
                 // Re-apply current view mode after content is loaded
                 if (currentViewMode === 'grid') {
@@ -62,42 +54,79 @@ $(document).ready(function() {
                     $('.shop-p__collection .row').removeClass('is-grid-active').addClass('is-list-active');
                 }
 
-                // Restore scroll position if preserveScroll is true
                 if (preserveScroll) {
                     $('html, body').scrollTop(scrollPosition);
                 } else {
-                    // Scroll to top of product list for better UX when changing items per page or sort
                     $('html, body').animate({
-                        scrollTop: $('#productListContainer').offset().top - 120 // Offset for header
+                        scrollTop: $('#productListContainer').offset().top - 120
                     }, 500);
                 }
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error("Error loading products: ", error);
             }
         });
     }
 
-    // Handle show per page changes
-    $("#showSelect").change(function(){
+    // Event handler for grid/list toggling
+    $('.js-shop-grid-target').on('click', function () {
+        $(this).addClass('is-active');
+        $('.js-shop-list-target').removeClass('is-active');
+        $('.shop-p__collection .row').addClass('is-grid-active').removeClass('is-list-active');
+        currentViewMode = 'grid';
+    });
+
+    $('.js-shop-list-target').on('click', function () {
+        $(this).addClass('is-active');
+        $('.js-shop-grid-target').removeClass('is-active');
+        $('.shop-p__collection .row').removeClass('is-grid-active').addClass('is-list-active');
+        currentViewMode = 'list';
+    });
+
+    // Event handler for "Show" dropdown change
+    $("#showSelect").change(function () {
         currentItemsPerPage = $(this).val();
-        loadProducts(1, currentItemsPerPage, currentSort, false); // Reset to page 1, don't preserve scroll
+        currentPage = 1;
+        loadProducts(currentPage, currentItemsPerPage, currentSort, false);
     });
 
-    // Handle sort changes
-    $("#sortSelect").change(function(){
+    // Event handler for "Sort By" dropdown change
+    $("#sortSelect").change(function () {
         currentSort = $(this).val();
-        loadProducts(1, currentItemsPerPage, currentSort, false); // Reset to page 1, don't preserve scroll
+        currentPage = 1;
+        loadProducts(currentPage, currentItemsPerPage, currentSort, false);
     });
 
-    // Handle pagination clicks using event delegation
-    $(document).on("click", ".pagination-link", function(e){
+    // Event handler for filter changes (category, price)
+    $("input[name='category'], #price-min, #price-max").change(function () {
+        currentPage = 1;
+        loadProducts(currentPage, currentItemsPerPage, currentSort, false);
+    });
+
+    // Event handler for "Clear Filters" button
+    $("#clearFilters").on("click", function () {
+        // Reset filter inputs to default values (empty or default radio selection)
+        $("input[name='category']").prop("checked", false);
+        // Optionally, set one radio to default:
+        // $("input[name='category'][value='']").prop("checked", true);  // if you have a "All Categories" option
+
+        $("#price-min").val("");
+        $("#price-max").val("");
+        // For checkboxes (if you had color/size) use:
+        // $(".color-filter, .size-filter").prop("checked", false);
+
+        // Reload products without any filters
+        currentPage = 1;
+        loadProducts(currentPage, currentItemsPerPage, currentSort, false);
+    });
+
+    // Event handler for pagination clicks
+    $("#productListContainer").on("click", ".pagination-link", function (e) {
         e.preventDefault();
-        const page = $(this).data("page");
-        loadProducts(page, currentItemsPerPage, currentSort, true); // Preserve scroll position for pagination
+        currentPage = $(this).data("page");
+        loadProducts(currentPage, currentItemsPerPage, currentSort, true);
     });
 
-
+    // Initial load of products on page load
+    loadProducts(currentPage, currentItemsPerPage, currentSort, false);
 });
-
-

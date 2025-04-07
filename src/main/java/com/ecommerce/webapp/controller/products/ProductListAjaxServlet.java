@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet("/product-list-ajax")
 public class ProductListAjaxServlet extends HttpServlet {
@@ -21,6 +22,10 @@ public class ProductListAjaxServlet extends HttpServlet {
         String pageParam = request.getParameter("page");
         String showParam = request.getParameter("show");
         String sortParam = request.getParameter("sort");
+        String categoryParam = request.getParameter("category");
+        String priceMinParam = request.getParameter("priceMin");
+        String priceMaxParam = request.getParameter("priceMax");
+
 
         int page = 1;
         int itemsPerPage = 9; // Default to 9
@@ -49,6 +54,29 @@ public class ProductListAjaxServlet extends HttpServlet {
 
         // Fetch product list from your factory (or service)
         List<Product> products = ProductFactory.getProducts();
+
+        if (categoryParam != null && !categoryParam.isEmpty()) {
+            products = products.stream()
+                    .filter(p -> p.getCategory().toString().equalsIgnoreCase(categoryParam))
+                    .collect(Collectors.toList());
+        }
+        if (priceMinParam != null && !priceMinParam.isEmpty()) {
+            try {
+                double priceMin = Double.parseDouble(priceMinParam);
+                products = products.stream()
+                        .filter(p -> p.getPrice() >= priceMin)
+                        .collect(Collectors.toList());
+            } catch (NumberFormatException e) { }
+        }
+        if (priceMaxParam != null && !priceMaxParam.isEmpty()) {
+            try {
+                double priceMax = Double.parseDouble(priceMaxParam);
+                products = products.stream()
+                        .filter(p -> p.getPrice() <= priceMax)
+                        .collect(Collectors.toList());
+            } catch (NumberFormatException e) { }
+        }
+
 
         // Sort products by price only if sort is specified
         if ("lowest".equals(sort)) {

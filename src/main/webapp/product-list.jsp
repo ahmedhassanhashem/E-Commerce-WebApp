@@ -50,22 +50,23 @@
                                             </div>
                                             <div class="shop-w__wrap collapse" id="s-category">
                                                 <ul class="shop-w__list gl-scroll">
+<%--                                                    <li>--%>
+<%--                                                        <input type="radio" name="category" value="" id="catClear" checked>--%>
+<%--                                                        <label for="catClear">All Categories</label>--%>
+<%--                                                    </li>--%>
                                                     <li>
-
-                                                        <a href="#">Coffee Beans</a>
-
+                                                        <input type="radio" name="category" value="BEANS" id="catBeans">
+                                                        <label for="catBeans">Coffee Beans</label>
                                                         <span class="category-list__text u-s-m-l-6">(${requestScope.beansCategory})</span>
                                                     </li>
                                                     <li>
-
-                                                        <a href="#">Coffee Mugs</a>
-
+                                                        <input type="radio" name="category" value="MUGS" id="catMugs">
+                                                        <label for="catMugs">Coffee Mugs</label>
                                                         <span class="category-list__text u-s-m-l-6">(${requestScope.mugsCategory})</span>
                                                     </li>
                                                     <li>
-
-                                                        <a href="#">Coffee Machines</a>
-
+                                                        <input type="radio" name="category" value="MACHINES" id="catMachines">
+                                                        <label for="catMachines">Coffee Machines</label>
                                                         <span class="category-list__text u-s-m-l-6">(${requestScope.machinesCategory})</span>
                                                     </li>
                                                 </ul>
@@ -83,69 +84,37 @@
                                                 <span class="fas fa-minus collapsed shop-w__toggle" data-target="#s-price" data-toggle="collapse"></span>
                                             </div>
                                             <div class="shop-w__wrap collapse" id="s-price">
-                                                <form class="shop-w__form-p">
-                                                    <div class="shop-w__form-p-wrap">
+
+                                                    <div class="shop-w__form-p-wrap" style="justify-content: center;">
                                                         <div>
 
                                                             <label for="price-min"></label>
 
-                                                            <input class="input-text input-text--primary-style" type="text" id="price-min" placeholder="Min"></div>
+                                                            <input class="input-text input-text--primary-style" type="text" id="price-min" placeholder="Min">
+                                                        </div>
                                                         <div>
 
                                                             <label for="price-max"></label>
 
-                                                            <input class="input-text input-text--primary-style" type="text" id="price-max" placeholder="Max"></div>
-                                                        <div>
+                                                            <input class="input-text input-text--primary-style" type="text" id="price-max" placeholder="Max">
+                                                        </div>
 
-                                                            <button class="btn btn--icon fas fa-angle-right btn--e-transparent-platinum-b-2" type="submit"></button></div>
                                                     </div>
-                                                </form>
+
                                             </div>
                                         </div>
                                     </div>
-
 
 
                                     <div class="u-s-m-b-30">
                                         <div class="shop-w">
                                             <div class="shop-w__intro-wrap">
-                                                <h1 class="shop-w__h">COLOR</h1>
 
-                                                <span class="fas fa-minus collapsed shop-w__toggle" data-target="#s-color" data-toggle="collapse"></span>
+                                                <a type="button" id="clearFilters" class="s-option__link btn--e-white-brand-shadow">Clear Filters</a>
+
+
                                             </div>
-                                            <div class="shop-w__wrap collapse" id="s-color">
-                                                <ul class="shop-w__list-2">
-                                                    <li>
-                                                        <div class="list__content">
 
-                                                            <input type="checkbox" class="color-filter" value="LIGHT">
-
-                                                            <span>Light</span>
-                                                        </div>
-
-                                                        <span class="shop-w__total-text">(${requestScope.light})</span>
-                                                    </li>
-                                                    <li>
-                                                        <div class="list__content">
-
-                                                            <input type="checkbox" class="color-filter" value="MEDIUM">
-
-                                                            <span>Medium</span>
-                                                        </div>
-
-                                                        <span class="shop-w__total-text">(${requestScope.mediumColor})</span>
-                                                    </li>
-                                                    <li>
-                                                        <div class="list__content">
-
-                                                            <input type="checkbox" class="color-filter" value="DARK">
-
-                                                            <span>Dark</span></div>
-
-                                                        <span class="shop-w__total-text">(${requestScope.dark})</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
                                         </div>
                                     </div>
 
@@ -153,62 +122,6 @@
 
 
 
-                                    <div class="u-s-m-b-30">
-                                        <div class="shop-w">
-                                            <div class="shop-w__intro-wrap">
-                                                <h1 class="shop-w__h">SIZE</h1>
-
-                                                <span class="fas fa-minus collapsed shop-w__toggle" data-target="#s-size" data-toggle="collapse"></span>
-                                            </div>
-                                            <div class="shop-w__wrap collapse" id="s-size">
-                                                <ul class="shop-w__list gl-scroll">
-                                                    <li>
-
-                                                        <!--====== Check Box ======-->
-                                                        <div class="check-box">
-
-                                                            <input type="checkbox" id="small">
-                                                            <div class="check-box__state check-box__state--primary">
-
-                                                                <label class="check-box__label" for="small">Small</label></div>
-                                                        </div>
-                                                        <!--====== End - Check Box ======-->
-
-                                                        <span class="shop-w__total-text">(${requestScope.small})</span>
-                                                    </li>
-                                                    <li>
-
-                                                        <!--====== Check Box ======-->
-                                                        <div class="check-box">
-
-                                                            <input type="checkbox" id="medium">
-                                                            <div class="check-box__state check-box__state--primary">
-
-                                                                <label class="check-box__label" for="medium">Medium</label></div>
-                                                        </div>
-                                                        <!--====== End - Check Box ======-->
-
-                                                        <span class="shop-w__total-text">(${requestScope.mediumSize})</span>
-                                                    </li>
-                                                    <li>
-
-                                                        <!--====== Check Box ======-->
-                                                        <div class="check-box">
-
-                                                            <input type="checkbox" id="large">
-                                                            <div class="check-box__state check-box__state--primary">
-
-                                                                <label class="check-box__label" for="large">Large</label></div>
-                                                        </div>
-                                                        <!--====== End - Check Box ======-->
-
-                                                        <span class="shop-w__total-text">(${requestScope.large})</span>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

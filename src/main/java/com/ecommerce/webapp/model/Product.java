@@ -8,21 +8,17 @@ public class Product {
     private ProductCategory category;
     private String image;
     private int stock;
-    private ProductColor color;
-    private ProductSize size;
 
 
     public Product() {}
 
-    public Product( String name, String description, double price, ProductCategory category, String image, int stock , ProductColor color, ProductSize size) {
+    public Product( String name, String description, double price, ProductCategory category, String image, int stock) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.category = category;
         this.image = image;
         this.stock = stock;
-        this.color = color;
-        this.size = size;
     }
 
     public int getProductId() { return product_id; }
@@ -45,9 +41,4 @@ public class Product {
     public int getStock() { return stock; }
     public void setStock(int stock) { this.stock = stock; }
 
-    public ProductColor getColor() { return this.color; }
-    public void setColor(ProductColor color) { this.color = color; }
-
-    public ProductSize getSize() { return this.size; }
-    public void setSize(ProductSize size) { this.size = size; }
 }
