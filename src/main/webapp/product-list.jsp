@@ -227,7 +227,7 @@
 
     <%@include file="commos/script.html"%>
 
-<script src="js/custom-js/modal-product-list.js"></script>
+<script src="js/custom-js/modals.js"></script>
 <script src="js/custom-js/products.js"></script>
 
 

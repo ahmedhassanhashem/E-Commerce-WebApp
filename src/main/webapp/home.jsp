@@ -98,7 +98,7 @@
                                 <div class="product-o product-o--hover-on">
                                     <div class="product-o__wrap">
 
-                                        <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-details.jsp">
+                                        <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-details?name=${product.name}">
 
                                             <img class="aspect__img" src="images/product/electronic/${product.image}.jpg" alt=""></a>
                                         <div class="product-o__action-wrap">
@@ -167,7 +167,7 @@
 
                                     <span class="product-o__name">
 
-                                                            <a href="product-details.jsp">${product.name}</a></span>
+                                                            <a href="product-details?name=${product.name}">${product.name}</a></span>
 
 
                                     <span class="product-o__price">$${product.price}</span>
@@ -265,7 +265,7 @@
                                <div class="product-o product-o--hover-on">
                                    <div class="product-o__wrap">
 
-                                       <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-details.jsp">
+                                       <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-details?name=${product.name}">
 
                                            <img class="aspect__img" src="images/product/electronic/${product.image}.jpg" alt=""></a>
                                        <div class="product-o__action-wrap">
@@ -310,7 +310,7 @@
 
                                    <span class="product-o__name">
 
-                                                            <a href="product-details.jsp">${product.name}</a></span>
+                                                            <a href="product-details?name=${product.name}">${product.name}</a></span>
 
 
                                    <span class="product-o__price">$${product.price}</span>
@@ -409,7 +409,7 @@
                                 <div class="product-o product-o--hover-on">
                                     <div class="product-o__wrap">
 
-                                        <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-details.jsp">
+                                        <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-details?name=${product.name}">
 
                                             <img class="aspect__img" src="images/product/electronic/${product.image}.jpg" alt=""></a>
                                         <div class="product-o__action-wrap">
@@ -454,7 +454,7 @@
 
                                     <span class="product-o__name">
 
-                                                            <a href="product-details.jsp">${product.name}</a></span>
+                                                            <a href="product-details?name=${product.name}">${product.name}</a></span>
 
 
                                     <span class="product-o__price">$${product.price}</span>

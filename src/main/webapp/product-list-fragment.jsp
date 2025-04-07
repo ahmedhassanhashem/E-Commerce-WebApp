@@ -7,7 +7,7 @@
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product-m">
                     <div class="product-m__thumb">
-                        <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-details.jsp">
+                        <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-details?name=${product.name}">
                             <img class="aspect__img" src="images/product/electronic/${product.image}.jpg" alt="">
                         </a>
                         <div class="product-m__quick-look">
@@ -38,7 +38,7 @@
                             <a href="product-list?category=${product.category.name().toLowerCase()}">${product.category.name()}</a>
                         </div>
                         <div class="product-m__name">
-                            <a href="product-details.jsp">${product.name}</a>
+                            <a href="product-details?name=${product.name}">${product.name}</a>
                         </div>
                         <div class="product-m__price">
                             $${product.price}
