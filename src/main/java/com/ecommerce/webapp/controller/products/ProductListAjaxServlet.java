@@ -1,6 +1,7 @@
 package com.ecommerce.webapp.controller.products;
 
 import com.ecommerce.webapp.model.Product;
+import com.ecommerce.webapp.model.ProductCategory;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -121,6 +122,17 @@ public class ProductListAjaxServlet extends HttpServlet {
 
         List<Product> pagedProducts = products.subList(startIndex, endIndex);
 
+        int beansCategory = (int) products.stream()
+                .filter(p -> p.getCategory() == ProductCategory.BEANS).count();
+        int mugsCategory = (int) products.stream()
+                .filter(p -> p.getCategory() == ProductCategory.MUGS).count();
+        int machinesCategory = (int) products.stream()
+                .filter(p -> p.getCategory() == ProductCategory.MACHINES).count();
+
+        request.setAttribute("beansCategory", beansCategory);
+        request.setAttribute("mugsCategory", mugsCategory);
+        request.setAttribute("machinesCategory", machinesCategory);
+        request.setAttribute("selectedCategory", categoryParam);
         // Set attributes for the fragment
         request.setAttribute("products", pagedProducts);
         request.setAttribute("currentPage", page);

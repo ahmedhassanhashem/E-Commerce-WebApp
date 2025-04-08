@@ -52,19 +52,22 @@
                                                 <ul class="shop-w__list gl-scroll">
                                                     <li>
                                                         <input type="radio" name="category" value="BEANS" id="catBeans"
-                                                        ${requestScope.selectedCategory.toLowerCase() eq 'beans' ? 'checked' : ''}>
+                                                        ${requestScope.selectedCategory.toLowerCase() eq 'beans' ? 'checked' : ''
+                                                                || (not empty requestScope.searchKeyword and param.category == 'BEANS') ? 'checked' : ''}>
                                                         <label for="catBeans">Coffee Beans</label>
                                                         <span class="category-list__text u-s-m-l-6">(${requestScope.beansCategory})</span>
                                                     </li>
                                                     <li>
                                                         <input type="radio" name="category" value="MUGS" id="catMugs"
-                                                        ${requestScope.selectedCategory.toLowerCase() eq 'mugs' ? 'checked' : ''}>
+                                                        ${requestScope.selectedCategory.toLowerCase() eq 'mugs' ? 'checked' : ''
+                                                                || (not empty requestScope.searchKeyword and param.category == 'MUGS') ? 'checked' : ''}>
                                                         <label for="catMugs">Coffee Mugs</label>
                                                         <span class="category-list__text u-s-m-l-6">(${requestScope.mugsCategory})</span>
                                                     </li>
                                                     <li>
                                                         <input type="radio" name="category" value="MACHINES" id="catMachines"
-                                                        ${requestScope.selectedCategory.toLowerCase() eq 'machines' ? 'checked' : ''}>
+                                                        ${requestScope.selectedCategory.toLowerCase() eq 'machines' ? 'checked' : ''
+                                                        || || (not empty requestScope.searchKeyword and param.category == 'MACHINES') ? 'checked' : ''}>
                                                         <label for="catMachines">Coffee Machines</label>
                                                         <span class="category-list__text u-s-m-l-6">(${requestScope.machinesCategory})</span>
                                                     </li>
