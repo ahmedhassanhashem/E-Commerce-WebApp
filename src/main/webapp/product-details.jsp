@@ -13,20 +13,17 @@
 
     <!--====== App Content ======-->
     <div class="app-content">
-
-        <!-- page content -->
-        <!--====== Section 1: Product Details ======-->
+        <!-- Section 1: Product Details -->
         <div class="u-s-p-t-90">
             <div class="container">
                 <div class="row">
-
                     <!-- Product Detail Image -->
                     <div class="col-lg-5">
                         <div class="pd u-s-m-b-30">
                             <div class="pd-wrap">
                                 <div class="pd-o-img-wrap">
+                                    <img class="u-img-fluid" src="images/product/electronic/${requestScope.product.image}.jpg" alt="Product Image">
                                 </div>
-                                <img class="u-img-fluid" src="images/product/electronic/${requestScope.product.image}.jpg" alt="Product Image">
                             </div>
                         </div>
                     </div>
@@ -43,7 +40,7 @@
                                 </div>
                                 <div class="u-s-m-b-15">
                                     <div class="pd-detail__inline">
-                                        <!-- You may add stock information here if needed -->
+                                        <!-- Optionally display stock info if needed -->
                                     </div>
                                 </div>
                                 <div class="u-s-m-b-15">
@@ -52,27 +49,29 @@
                                 <div class="u-s-m-b-15">
                                     <div class="pd-detail__inline">
                                         <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i></span>
-                                        <a data-modal="modal" data-modal-id="#add-to-wishlist" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist">Add to Wishlist</a>
+                                        <a data-modal="modal" data-modal-id="#add-to-wishlist" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist">
+                                            Add to Wishlist
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="u-s-m-b-15">
                                     <div class="pd-detail__inline">
                                         <span class="pd-detail__click-wrap"><i class="fas fa-shopping-cart u-s-m-r-6"></i></span>
-                                        <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart">Add to Cart</a>
+                                        <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart">
+                                            Add to Cart
+                                        </a>
                                     </div>
                                 </div>
-
                                 <div class="u-s-m-b-15">
                                     <form class="pd-detail__form">
                                         <div class="pd-detail-inline-2">
                                             <div class="u-s-m-b-15">
-                                                <!--====== Input Counter ======-->
+                                                <!-- Input Counter -->
                                                 <div class="input-counter">
                                                     <span class="input-counter__minus fas fa-minus"></span>
                                                     <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1000">
                                                     <span class="input-counter__plus fas fa-plus"></span>
                                                 </div>
-                                                <!--====== End - Input Counter ======-->
                                             </div>
                                             <div class="u-s-m-b-15">
                                                 <button class="btn btn--e-brand-b-2" type="submit">Checkout</button>
@@ -88,7 +87,7 @@
                     </div>
                 </div>
 
-                <!--====== Product Detail Tab ======-->
+                <!-- Product Detail Tab -->
                 <div class="u-s-p-y-90">
                     <div class="container">
                         <div class="row">
@@ -108,11 +107,9 @@
                                         <!-- Description Tab -->
                                         <div class="tab-pane fade show active" id="pd-desc">
                                             <div class="pd-tab__desc">
-                                                <p>$${requestScope.product.details}</p>
+                                                <p>${requestScope.product.description}</p>
                                             </div>
                                         </div>
-                                        <!-- End - Description Tab -->
-
                                         <!-- Information Tab -->
                                         <div class="tab-pane fade" id="pd-info">
                                             <div class="pd-tab__desc">
@@ -121,27 +118,30 @@
                                                         <tbody>
                                                         <tr>
                                                             <td>Category</td>
-                                                            <td>Coffee ${requestScope.category.name()}</td>
+                                                            <td>Coffee ${requestScope.product.category.name()}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Name</td>
                                                             <td>${requestScope.product.name}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Price</td>
+                                                            <td>$${requestScope.product.price}</td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- End - Information Tab -->
-                                    </div>
+                                    </div> <!-- End Tab Content -->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- End - Product Detail Tab -->
+                <!-- End Product Detail Tab -->
 
-                <!--====== Similar Products Section ======-->
+                <!-- Similar Products Section -->
                 <div class="u-s-p-b-90">
                     <!-- Section Intro -->
                     <div class="section__intro u-s-m-b-46">
@@ -155,57 +155,57 @@
                             </div>
                         </div>
                     </div>
-                    <!-- End - Section Intro -->
+                    <!-- End Section Intro -->
 
-                    <!-- Similar Products Section -->
+                    <!-- Section Content -->
                     <div class="section__content">
                         <div class="container">
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="item">
                                     <div class="slider-fouc">
                                         <div class="owl-carousel tab-slider" data-item="4">
-                                            <c:forEach var="product" items="${requestScope.similarProducts}">
+                                            <c:forEach var="similarProduct" items="${requestScope.similarProducts}">
                                                 <div class="u-s-m-b-30">
                                                     <div class="product-o product-o--hover-on">
                                                         <div class="product-o__wrap">
-                                                            <!-- Note the extra data attributes on the link -->
+                                                            <!-- Use the loop variable "similarProduct" here -->
                                                             <a class="aspect aspect--bg-grey aspect--square u-d-block product-detail-link"
-                                                               href="product-details?name=${requestScope.product.name}"
-                                                               data-name="${requestScope.product.name}"
-                                                               data-image="${requestScope.product.image}"
-                                                               data-price="${requestScope.product.price}"
-                                                               data-description="${requestScope.product.description}"
-                                                               data-stock="${requestScope.product.stock}">
-                                                                <img class="aspect__img" src="images/product/electronic/${requestScope.product.image}.jpg" alt="">
+                                                               href="product-details?name=${similarProduct.name}"
+                                                               data-name="${similarProduct.name}"
+                                                               data-image="${similarProduct.image}"
+                                                               data-price="${similarProduct.price}"
+                                                               data-description="${similarProduct.description}"
+                                                               data-stock="${similarProduct.stock}">
+                                                                <img class="aspect__img" src="images/product/electronic/${similarProduct.image}.jpg" alt="">
                                                             </a>
                                                             <div class="product-o__action-wrap">
                                                                 <ul class="product-o__action-list">
                                                                     <li>
                                                                         <a class="quick-look-trigger"
-                                                                           data-image="${requestScope.product.image}"
-                                                                           data-name="${requestScope.product.name}"
-                                                                           data-description="${requestScope.product.description}"
-                                                                           data-stock="${requestScope.product.stock}"
-                                                                           data-price="${requestScope.product.price}"
+                                                                           data-image="${similarProduct.image}"
+                                                                           data-name="${similarProduct.name}"
+                                                                           data-description="${similarProduct.description}"
+                                                                           data-stock="${similarProduct.stock}"
+                                                                           data-price="${similarProduct.price}"
                                                                            data-modal="modal" data-modal-id="#quick-look"
                                                                            data-tooltip="tooltip" data-placement="top"
                                                                            title="Quick View"><i class="fas fa-search-plus"></i></a>
                                                                     </li>
                                                                     <li>
                                                                         <a class="add-to-cart-trigger"
-                                                                           data-image="${requestScope.product.image}"
-                                                                           data-name="${requestScope.product.name}"
-                                                                           data-stock="${requestScope.product.stock}"
-                                                                           data-price="${requestScope.product.price}"
+                                                                           data-image="${similarProduct.image}"
+                                                                           data-name="${similarProduct.name}"
+                                                                           data-stock="${similarProduct.stock}"
+                                                                           data-price="${similarProduct.price}"
                                                                            data-modal="modal" data-modal-id="#add-to-cart"
                                                                            data-tooltip="tooltip" data-placement="top"
                                                                            title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
                                                                     </li>
                                                                     <li>
                                                                         <a class="add-to-wishlist-trigger"
-                                                                           data-image="${requestScope.product.image}"
-                                                                           data-name="${requestScope.product.name}"
-                                                                           data-price="${requestScope.product.price}"
+                                                                           data-image="${similarProduct.image}"
+                                                                           data-name="${similarProduct.name}"
+                                                                           data-price="${similarProduct.price}"
                                                                            data-modal="modal" data-modal-id="#add-to-wishlist"
                                                                            data-tooltip="tooltip" data-placement="top"
                                                                            title="Add to Wishlist"><i class="fas fa-heart"></i></a>
@@ -219,46 +219,46 @@
                                                             </div>
                                                         </div>
                                                         <span class="product-o__category">
-                    <a href="product-list?category=${requestScope.product.category.name().toLowerCase()}">${requestScope.product.category.name()}</a>
-                  </span>
+                                                              <a href="product-list?category=${similarProduct.category.name().toLowerCase()}">
+                                                                      ${similarProduct.category.name()}
+                                                              </a>
+                                                          </span>
                                                         <span class="product-o__name">
-                    <!-- Also include a link with the same data attributes -->
-                    <a class="product-detail-link"
-                       href="product-details?name=${requestScope.product.name}"
-                       data-name="${requestScope.product.name}"
-                       data-image="${requestScope.product.image}"
-                       data-price="${requestScope.product.price}"
-                       data-description="${requestScope.product.description}"
-                       data-stock="${requestScope.product.stock}">
-                            ${requestScope.product.name}
-                    </a>
-                  </span>
-                                                        <span class="product-o__price">$${requestScope.product.price}</span>
+                                                              <a class="product-detail-link"
+                                                                 href="product-details?name=${similarProduct.name}"
+                                                                 data-name="${similarProduct.name}"
+                                                                 data-image="${similarProduct.image}"
+                                                                 data-price="${similarProduct.price}"
+                                                                 data-description="${similarProduct.description}"
+                                                                 data-stock="${similarProduct.stock}">
+                                                                      ${similarProduct.name}
+                                                              </a>
+                                                          </span>
+                                                        <span class="product-o__price">$${similarProduct.price}</span>
                                                     </div>
                                                 </div>
                                             </c:forEach>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- End - Tab Content -->
+                            </div> <!-- End Tab Content -->
                         </div>
                     </div>
-
-                    <!-- End - Similar Products Section -->
+                    <!-- End Section Content -->
+                </div>
+                <!-- End Similar Products Section -->
             </div>
         </div>
-        <!-- End - Section 1 -->
+        <!-- End Section 1 -->
     </div>
-    <!-- End - App Content -->
+    <!-- End App Content -->
 
     <%@ include file="commos/footer.html" %>
 </div>
-<!-- End - Main App -->
+<!-- End Main App -->
 
 <jsp:include page="commos/modals.jsp"/>
 <%@ include file="commos/script.html" %>
 <script src="js/custom-js/modals.js"></script>
-
 </body>
 </html>
