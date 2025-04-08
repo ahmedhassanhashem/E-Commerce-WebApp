@@ -2,6 +2,10 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <div class="shop-p__collection">
+    <h2>
+        <c:if test="${not empty requestScope.searchKeyword}">
+        Search results for: "${requestScope.searchKeyword}"
+        </c:if>
     <div class="row is-grid-active">
         <c:forEach var="product" items="${requestScope.products}">
             <div class="col-lg-4 col-md-6 col-sm-6">

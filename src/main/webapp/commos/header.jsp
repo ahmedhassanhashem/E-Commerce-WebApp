@@ -133,11 +133,12 @@
         <!--====== End - Dropdown Main plugin ======-->
 
         <!--====== Search Form ======-->
-        <form class="main-form">
+        <form class="main-form" action="${pageContext.request.contextPath}/search" method="get">
           <label for="main-search"></label>
-          <input class="input-text input-text--border-radius input-text--style-2" type="text" id="main-search" placeholder="Search">
+          <input class="input-text input-text--border-radius input-text--style-2" type="text" id="main-search" name="main-search" placeholder="Search">
           <button class="btn btn--icon fas fa-search main-search-button" type="submit"></button>
         </form>
+
         <!--====== End - Search Form ======-->
 
         <!--====== Dropdown Main plugin ======-->

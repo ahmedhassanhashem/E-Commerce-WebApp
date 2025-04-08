@@ -47,13 +47,15 @@
                                             <a href="product-list?category=mugs">Coffee Mugs</a>
 
                                             <a href="product-list?category=machines">Coffee Machines</a></span>
-                                    <form class="empty__search-form">
 
+
+                                    <form class="empty__search-form" action="${pageContext.request.contextPath}/search" method="get">
                                         <label for="search-label"></label>
+                                        <input class="input-text input-text--primary-style" type="text" id="search-label" name="search-label" placeholder="Search">
+                                        <button class="btn btn--icon fas fa-search" type="submit"></button>
+                                    </form>
 
-                                        <input class="input-text input-text--primary-style" type="text" id="search-label" placeholder="Search Keywords">
 
-                                        <button class="btn btn--icon fas fa-search" type="submit"></button></form>
                                 </div>
                             </div>
                         </div>
