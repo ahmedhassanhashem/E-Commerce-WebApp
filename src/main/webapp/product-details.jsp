@@ -58,7 +58,11 @@
                                 <div class="u-s-m-b-15">
                                     <div class="pd-detail__inline">
                                         <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i></span>
-                                        <a data-modal="modal" data-modal-id="#add-to-wishlist" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist">
+                                        <a data-image="${requestScope.product.image}"
+                                           data-name="${requestScope.product.name}"
+                                           data-price="${requestScope.product.price}"
+                                           class="add-to-wishlist-trigger"
+                                           data-modal="modal" data-modal-id="#add-to-wishlist" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist">
                                             Add to Wishlist
                                         </a>
                                     </div>
@@ -66,7 +70,12 @@
                                 <div class="u-s-m-b-15">
                                     <div class="pd-detail__inline">
                                         <span class="pd-detail__click-wrap"><i class="fas fa-shopping-cart u-s-m-r-6"></i></span>
-                                        <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart">
+                                        <a class="add-to-cart-trigger"
+                                           data-image="${requestScope.product.image}"
+                                           data-name="${requestScope.product.name}"
+                                           data-stock="${requestScope.product.stock}"
+                                           data-price="${requestScope.product.price}"
+                                           data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart">
                                             Add to Cart
                                         </a>
                                     </div>
@@ -262,7 +271,7 @@
     </div>
     <!-- End App Content -->
 
-    <%@ include file="commos/footer.html" %>
+    <%@ include file="commos/footer.jsp" %>
 </div>
 <!-- End Main App -->
 
