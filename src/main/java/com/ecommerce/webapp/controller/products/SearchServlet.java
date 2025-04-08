@@ -1,7 +1,6 @@
 package com.ecommerce.webapp.controller.products;
 
 import com.ecommerce.webapp.model.Product;
-import com.ecommerce.webapp.model.ProductCategory;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,7 +16,7 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String keyword = request.getParameter("main-search");
+        String keyword = request.getParameter("search");
         if (keyword == null || keyword.trim().isEmpty()) {
             response.sendRedirect("empty-search.jsp");
             return;
@@ -28,19 +27,11 @@ public class SearchServlet extends HttpServlet {
                 .filter(p -> p.getName().toLowerCase().contains(keyword.toLowerCase()))
                 .collect(Collectors.toList());
 
-        // Calculate category counts FROM SEARCH RESULTS (not all products)
-        int beansCategory = (int) searchResults.stream()
-                .filter(p -> p.getCategory() == ProductCategory.BEANS).count();
-        int mugsCategory = (int) searchResults.stream()
-                .filter(p -> p.getCategory() == ProductCategory.MUGS).count();
-        int machinesCategory = (int) searchResults.stream()
-                .filter(p -> p.getCategory() == ProductCategory.MACHINES).count();
+
 
         request.setAttribute("searchKeyword", keyword);
         request.setAttribute("products", searchResults);
-        request.setAttribute("beansCategory", beansCategory);
-        request.setAttribute("mugsCategory", mugsCategory);
-        request.setAttribute("machinesCategory", machinesCategory);
+
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("product-list.jsp");
         dispatcher.forward(request, response);
