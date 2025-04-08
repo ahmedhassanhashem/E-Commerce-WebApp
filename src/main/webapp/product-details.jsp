@@ -22,7 +22,7 @@
                         <div class="pd u-s-m-b-30">
                             <div class="pd-wrap">
                                 <div class="pd-o-img-wrap">
-                                    <img class="u-img-fluid" src="" alt="Product Image">
+                                    <img class="u-img-fluid" src="images/product/electronic/${requestScope.product.image}.jpg" alt="Product Image">
                                 </div>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                     <div class="col-lg-7">
                         <div class="pd-detail">
                             <div>
-                                <span class="pd-detail__name"></span>
+                                <span class="pd-detail__name">${requestScope.product.name}</span>
                             </div>
                             <div>
                                 <div class="pd-detail__inline">
@@ -42,10 +42,14 @@
                                     <div class="pd-detail__inline">
                                         <!-- Optionally display stock info if needed -->
                                         <c:choose>
-                                            <c:when test="${requestScope.product.stock} > 0"><span class="pd-detail__stock">In Stock</span></c:when>
-
-                                            <c:otherwise><span class="pd-detail__left">Out of Stock</span></c:otherwise>
+                                            <c:when test="${requestScope.product.stock > 0}">
+                                                <span class="pd-detail__stock">In Stock</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="pd-detail__left">Out of Stock</span>
+                                            </c:otherwise>
                                         </c:choose>
+
                                     </div>
                                 </div>
                                 <div class="u-s-m-b-15">
@@ -82,7 +86,7 @@
                                                 <button class="btn btn--e-brand-b-2" type="submit">Checkout</button>
                                             </div>
                                             <div class="u-s-m-b-15">
-                                                <a class="s-option__link btn--e-white-brand-shadow" href="product-list">CONTINUE SHOPPING</a>
+                                                <button class="btn btn--e-white-brand-shadow"  type="button" onclick="window.location.href='/webapp/product-list'">CONTINUE SHOPPING</button>
                                             </div>
                                         </div>
                                     </form>
