@@ -25,11 +25,14 @@ public class ProductListAjaxServlet extends HttpServlet {
         String categoryParam = request.getParameter("category");
         String priceMinParam = request.getParameter("priceMin");
         String priceMaxParam = request.getParameter("priceMax");
+        String search = request.getParameter("search");
+
 
 
         int page = 1;
         int itemsPerPage = 9; // Default to 9
         String sort = ""; // Default to no sorting (empty string)
+
 
         // Safely parse parameters
         if (pageParam != null && !pageParam.isEmpty()) {
@@ -54,6 +57,12 @@ public class ProductListAjaxServlet extends HttpServlet {
 
         // Fetch product list from your factory (or service)
         List<Product> products = ProductFactory.getProducts();
+
+        if (search != null && !search.isEmpty()) {
+            products = products.stream()
+                    .filter(p -> p.getName().toLowerCase().contains(search.toLowerCase()))
+                    .collect(Collectors.toList());
+        }
 
         if (categoryParam != null && !categoryParam.isEmpty()) {
             products = products.stream()
@@ -118,6 +127,8 @@ public class ProductListAjaxServlet extends HttpServlet {
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("itemsPerPage", itemsPerPage);
         request.setAttribute("sort", sort);
+        request.setAttribute("searchKeyword", search);
+
 
         // Forward to the JSP fragment
         RequestDispatcher dispatcher = request.getRequestDispatcher("product-list-fragment.jsp");

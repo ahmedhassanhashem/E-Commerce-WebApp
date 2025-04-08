@@ -44,11 +44,4 @@ public class SearchServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    // Optionally implement doPost if your form uses POST
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // For simplicity, delegate to doGet
-        doGet(request, response);
-    }
 }

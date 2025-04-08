@@ -11,11 +11,13 @@ $(document).ready(function () {
         let category = $("input[name='category']:checked").val() || "";
         let priceMin = $("#price-min").val() || "";
         let priceMax = $("#price-max").val() || "";
-        // If you add other filters like color and size, include them similarly.
+        let searchKeyword = $("#searchKeyword").val() || "";
+
         return {
             category: category,
             priceMin: priceMin,
-            priceMax: priceMax
+            priceMax: priceMax,
+            search: searchKeyword
         };
     }
 
@@ -43,7 +45,8 @@ $(document).ready(function () {
                 sort: sort,
                 category: filters.category,
                 priceMin: filters.priceMin,
-                priceMax: filters.priceMax
+                priceMax: filters.priceMax,
+                search: filters.search
             },
             success: function (data) {
                 $("#productListContainer").html(data);
