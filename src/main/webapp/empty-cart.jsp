@@ -55,7 +55,7 @@
     <!--====== End -App Content ======-->
 
 
-    <%@include file="commos/footer.html"%>
+    <%@include file="commos/footer.jsp"%>
 
 </div>
 <!--====== End - Main App  ======-->

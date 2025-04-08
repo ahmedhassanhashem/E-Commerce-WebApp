@@ -34,15 +34,15 @@
                 <configuration>
                     <username>admin</username>
                     <password>admin</password>
-                    <url>http://localhost:8080/manager/text</url>
+                    <url>http://localhost:9090/manager/text</url>
                     <path>/webapp</path>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
-  <dependencies>
-
+ <dependencies>
+    <!-- Jakarta EE API (Servlets, JSP, etc.) -->
       <dependency>
           <groupId>jakarta.platform</groupId>
           <artifactId>jakarta.jakartaee-api</artifactId>
@@ -137,8 +137,7 @@
             <version>3.3.2</version>
             <scope>provided</scope>
         </dependency>
+</dependencies>
 
-
-  </dependencies>
 
 </project>

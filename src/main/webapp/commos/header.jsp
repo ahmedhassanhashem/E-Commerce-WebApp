@@ -55,32 +55,32 @@
               </li>
 
               <% if(session.getAttribute("user") == null) { %>
-              <!-- Show only when NOT logged in -->
-              <li>
+                <!-- Show only when NOT logged in -->
+                <li>
 
-                <a href="register.jsp"><i class="fas fa-user-plus u-s-m-r-4"></i>
+                  <a href="register.jsp"><i class="fas fa-user-plus u-s-m-r-4"></i>
 
-                  <span>Register</span></a>
-              </li>
-              <li>
+                    <span>Register</span></a>
+                </li>
+                <li>
 
-                <a href="login.jsp"><i class="fas fa-sign-in-alt u-s-m-r-4"></i>
+                  <a href="login.jsp"><i class="fas fa-sign-in-alt u-s-m-r-4"></i>
 
-                  <span>Login</span></a>
-              </li>
+                    <span>Login</span></a>
+                </li>
               <% } else { %>
-              <!-- Show only when logged in -->
-              <li>
-                <a href="my-account.jsp"><i class="fas fa-user-cog u-s-m-r-4"></i>
+                <!-- Show only when logged in -->
+                <li>
+                  <a href="my-account.jsp"><i class="fas fa-user-cog u-s-m-r-4"></i>
 
-                  <span>Account</span></a>
-              </li>
-              <li>
+                    <span>Account</span></a>
+                </li>
+                <li>
 
-                <a href=""><i class="fas fa-sign-out-alt u-s-m-r-4"></i>
+                  <a href="logout"><i class="fas fa-sign-out-alt u-s-m-r-4"></i>
 
-                  <span>Logout</span></a>
-              </li>
+                    <span>Logout</span></a>
+                </li>
               <% } %>
             </ul>
             <!--====== End - List ======-->

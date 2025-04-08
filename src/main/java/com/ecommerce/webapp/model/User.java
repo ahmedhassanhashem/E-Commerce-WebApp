@@ -1,25 +1,59 @@
 package com.ecommerce.webapp.model;
 
-public class User {
-    private int userId;
-    private String email;
-    private String password;
-    private String name;
-    private String address;
-    private double creditLimit;
-    private String phone;
-    private String cart; //Json String
-    private String wishlist;//Json String
+import java.util.List;
 
-    // Constructors
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "user") 
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private int userId;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Order> orders; // One User can have many Orders
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private String address;
+
+    @Column(name = "credit_limit",nullable = false)
+    private double creditLimit;
+
+    @Column(name = "credit_number",nullable = false, unique = true)
+    private String credit_number;
+
+    @Column(name = "phone",nullable = false, unique = true)
+    private String phone;
+
+    @Lob // this is a large object (JSON), store as TEXT
+    @Column(name = "cart", columnDefinition = "TEXT")
+    private String cart;
+
+    @Lob
+    @Column(name = "wishlist", columnDefinition = "TEXT")
+    private String wishlist;
+
     public User() {}
 
-    public User(String email, String password, String name, String address, double creditLimit, String phone) {
+    public User(String email, String password, String name, String address, double creditLimit, String phone, String credit_number) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.address = address;
         this.creditLimit = creditLimit;
+        this.credit_number = credit_number;
         this.phone = phone;
         this.cart = "";
         this.wishlist = "";
@@ -50,5 +84,8 @@ public class User {
     public void setCart(String cart) { this.cart = cart; }  
 
     public String getWishlist() { return wishlist; }
-    public void setWishlist(String wishlist) { this.wishlist = wishlist;}
+    public void setWishlist(String wishlist) { this.wishlist = wishlist; }
+
+    public String getCredit_number() { return credit_number; }
+    public void setCredit_number(String credit_number) { this.credit_number = credit_number;}
 }
