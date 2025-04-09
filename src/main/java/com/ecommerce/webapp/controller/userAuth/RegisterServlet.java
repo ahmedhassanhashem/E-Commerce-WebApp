@@ -1,7 +1,4 @@
-package com.ecommerce.webapp.controller;
-
-import com.ecommerce.webapp.dao.UserDAO;
-import com.ecommerce.webapp.model.User;
+package com.ecommerce.webapp.controller.userAuth;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

@@ -1,4 +1,4 @@
-package com.ecommerce.webapp.controller;
+package com.ecommerce.webapp.controller.userAuth;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

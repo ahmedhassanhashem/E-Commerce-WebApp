@@ -1,8 +1,10 @@
 package com.ecommerce.webapp.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 
 @Entity
 @Table(name = "user") 
@@ -28,7 +30,8 @@ public class User {
     @Column(nullable = false)
     private String address;
 
-    @Column(name = "credit_limit",nullable = false)
+    @Column(name = "credit_limit", nullable = false, precision = 19, scale = 2)
+    @Min(0) // to ensure credit limit isn't negative
     private double creditLimit;
 
     @Column(name = "credit_number",nullable = false, unique = true)
@@ -59,7 +62,6 @@ public class User {
         this.wishlist = "";
     }
 
-    // Getters and Setters
     public int getUserId() { return userId; }
 
     public String getEmail() { return email; }

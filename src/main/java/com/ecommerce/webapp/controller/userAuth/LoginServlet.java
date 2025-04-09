@@ -1,4 +1,4 @@
-package com.ecommerce.webapp.controller;
+package com.ecommerce.webapp.controller.userAuth;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,7 +12,6 @@ import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -71,7 +70,7 @@ public class LoginServlet extends HttpServlet {
             
             // Redirect based on user role
             if (isAdmin) {
-                response.sendRedirect("admin/dashboard.jsp");
+                response.sendRedirect("admin/admin-dashboard.jsp");
             } else {
                 response.sendRedirect("home");
             }
