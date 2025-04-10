@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
+
 public class UserDAO {
     
     public User findByEmail(String email) {
@@ -73,7 +74,72 @@ public class UserDAO {
     }
 
     public boolean updateUser(User user) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateUser'");
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+
+            User existingUser = entityManager.find(User.class, user.getUserId());
+            if (existingUser == null) {
+                return false;
+            }
+
+            // Update user fields
+            existingUser.setEmail(user.getEmail());
+            existingUser.setName(user.getName());
+            existingUser.setAddress(user.getAddress());
+            existingUser.setPhone(user.getPhone());
+            existingUser.setCreditLimit(user.getCreditLimit());
+            existingUser.setCredit_number(user.getCredit_number());
+            // Don't update password unless it has changed
+            if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+                existingUser.setPassword(user.getPassword());
+            }
+
+            entityManager.merge(existingUser);
+
+            entityManager.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    public boolean RegisterUser(User user) {
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+
+            // Check if a user with this email already exists
+            TypedQuery<Long> query = entityManager.createQuery(
+                    "SELECT COUNT(u) FROM User u WHERE u.email = :email", Long.class);
+            query.setParameter("email", user.getEmail());
+
+            Long count = query.getSingleResult();
+            if (count > 0) {
+                // User with this email already exists
+                return false;
+            }
+
+            entityManager.persist(user);
+
+            entityManager.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            entityManager.close();
+        }
     }
 }

@@ -35,14 +35,16 @@ public class Order {
     }
 
     public User getUser() {
+
         return user;
     }
 
     public void setUser(User user) {
+
         this.user = user;
     }
 
-    // Add methods to manage the relationship
+    //  to manage the relationship
     public void addOrderItem(OrderItem item) {
         orderItems.add(item);
         item.setOrder(this);

@@ -50,6 +50,7 @@ public class User {
     private String wishlist;
 
     public User() {
+
         this.orders = new ArrayList<>();
     }
 
@@ -150,5 +151,8 @@ public class User {
     public void setCredit_number(String credit_number) {
         this.credit_number = credit_number;
     }
-    
+
+    public void setOrders(List<Order> arrayList) {
+        this.orders = arrayList;
+    }
 }
