@@ -5,7 +5,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 public class HibernateUtil {
-    private static final String PERSISTENCE_UNIT_NAME = "jpa-mysql";
+    private static final String PERSISTENCE_UNIT_NAME = "webapp";
     private static EntityManagerFactory entityManagerFactory;
     
     public static EntityManagerFactory getEntityManagerFactory() {
