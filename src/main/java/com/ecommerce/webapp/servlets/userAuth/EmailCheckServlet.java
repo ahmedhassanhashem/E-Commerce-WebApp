@@ -43,7 +43,7 @@
 //         }
 //     }
 // }
-package com.ecommerce.webapp.controller.userAuth;
+package com.ecommerce.webapp.servlets.userAuth;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

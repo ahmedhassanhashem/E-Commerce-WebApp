@@ -1,7 +1,6 @@
-package com.ecommerce.webapp.controller.products;
+package com.ecommerce.webapp.servlets.products;
 
-import com.ecommerce.webapp.model.Product;
-import com.ecommerce.webapp.model.ProductCategory;
+import com.ecommerce.webapp.entities.Product;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

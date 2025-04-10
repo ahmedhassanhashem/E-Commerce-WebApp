@@ -1,6 +1,9 @@
-package com.ecommerce.webapp.model;
+package com.ecommerce.webapp.entities;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -8,7 +11,6 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")  
     private int product_id;
 
     @Column(nullable = false)
@@ -21,14 +23,17 @@ public class Product {
 
     private String image;
 
-    @Column(name = "stock")
     private int stock;
 
     @Enumerated(EnumType.STRING)
     private ProductCategory category;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<OrderItem> orderItems;
 
-    public Product() {}
+    public Product() {
+        this.orderItems = new ArrayList<>();
+    }
 
     public Product(String name, String description, double product_price, ProductCategory category, String image, int stock) {
         this.name = name;
@@ -37,6 +42,9 @@ public class Product {
         this.category = category;
         this.image = image;
         this.stock = stock;
+    }
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
     public int getProductId() {
@@ -84,6 +92,4 @@ public class Product {
     public void setStock(int stock) {
         this.stock = stock;
     }
-
-
 }

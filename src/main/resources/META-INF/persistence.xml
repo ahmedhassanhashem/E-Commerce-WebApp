@@ -11,10 +11,10 @@
 
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-    <class>com.ecommerce.webapp.model.User</class>
-    <class>com.ecommerce.webapp.model.Product</class>
-    <class>com.ecommerce.webapp.model.Order</class>
-    <class>com.ecommerce.webapp.model.OrderItem</class>
+    <class>com.ecommerce.webapp.entities.User</class>
+    <class>com.ecommerce.webapp.entities.Product</class>
+    <class>com.ecommerce.webapp.entities.Order</class>
+    <class>com.ecommerce.webapp.entities.OrderItem</class>
 
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
 

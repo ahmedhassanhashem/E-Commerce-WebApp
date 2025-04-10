@@ -1,4 +1,4 @@
-package com.ecommerce.webapp.model;
+package com.ecommerce.webapp.entities;
 
 public enum ProductCategory {
     BEANS,MUGS,MACHINES;

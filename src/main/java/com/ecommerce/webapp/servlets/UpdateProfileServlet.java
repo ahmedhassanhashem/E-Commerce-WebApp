@@ -1,4 +1,4 @@
-package com.ecommerce.webapp.controller;
+package com.ecommerce.webapp.servlets;
 
 import com.google.gson.JsonObject;
 import jakarta.servlet.ServletException;
@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.ecommerce.webapp.model.User;
+import com.ecommerce.webapp.entities.User;
 
 @WebServlet("/update-profile")
 @MultipartConfig

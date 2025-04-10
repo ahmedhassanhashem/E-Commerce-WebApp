@@ -28,7 +28,7 @@
             <a href="orders-history.jsp"><i class="fas fa-shopping-cart"></i>View Orders</a>
         </li>
         <li class="nav-item">
-            <a href=""><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <a href="login.jsp"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </li>
     </ul>
 </div>

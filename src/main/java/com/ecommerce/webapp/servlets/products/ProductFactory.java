@@ -1,9 +1,9 @@
-package com.ecommerce.webapp.controller.products;
+package com.ecommerce.webapp.servlets.products;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.ecommerce.webapp.model.Product;
-import com.ecommerce.webapp.model.ProductCategory;
+import com.ecommerce.webapp.entities.Product;
+import com.ecommerce.webapp.entities.ProductCategory;
 
 public class ProductFactory {
 

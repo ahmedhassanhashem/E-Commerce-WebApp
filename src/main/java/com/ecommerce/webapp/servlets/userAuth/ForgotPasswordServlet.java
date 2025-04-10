@@ -1,4 +1,4 @@
-package com.ecommerce.webapp.controller.userAuth;
+package com.ecommerce.webapp.servlets.userAuth;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

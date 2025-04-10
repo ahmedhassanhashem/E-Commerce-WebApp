@@ -1,4 +1,4 @@
-package com.ecommerce.webapp.controller;
+package com.ecommerce.webapp.servlets;
 
 import com.google.gson.JsonObject;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-import com.ecommerce.webapp.model.User;
+import com.ecommerce.webapp.entities.User;
 
 @WebServlet("/add-balance")
 public class AddBalanceServlet extends HttpServlet {

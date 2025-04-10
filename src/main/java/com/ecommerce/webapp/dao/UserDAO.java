@@ -1,6 +1,6 @@
 package com.ecommerce.webapp.dao;
 
-import com.ecommerce.webapp.model.User;
+import com.ecommerce.webapp.entities.User;
 import com.ecommerce.webapp.util.HibernateUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
