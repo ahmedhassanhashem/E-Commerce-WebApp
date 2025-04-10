@@ -37,22 +37,6 @@
                                         <% } else { %>
                                             <li><a href="product-list.jsp">Store</a></li>
                                         <% } %>
-                                        <li>
-
-                                            <a href="cart.jsp">Cart</a>
-                                        </li>
-                                        <li>
-
-                                            <a href="wishlist.jsp">Wishlist</a>
-                                        </li>
-                                        <li>
-
-                                            <a href="product-list">Store</a>
-                                        </li>
-                                        <li>
-
-                                            <a href="my-account.jsp">Account</a>
-                                        </li>
                                     </ul>
                                 </div>
                             </div>
