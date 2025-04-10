@@ -48,10 +48,6 @@
                         <option value="cancelled">Cancelled</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="filter-date">Filter by Date</label>
-                    <input type="date" id="filter-date" class="form-control">
-                </div>
             </div>
 
             <div class="panel-body">
@@ -60,7 +56,6 @@
                     <tr>
                         <th>Order ID</th>
                         <th>Customer</th>
-                        <th>Date</th>
                         <th>Items</th>
                         <th>Total</th>
                         <th>Status</th>

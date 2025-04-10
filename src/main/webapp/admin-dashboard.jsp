@@ -34,8 +34,8 @@
                         <h2 id="product-count">0</h2>
                     </div>
                     <div style="flex: 1; background: #2ecc71; color: white; padding: 20px; border-radius: 5px; text-align: center;">
-                        <h3>Categories</h3>
-                        <h2 id="category-count">0</h2>
+                        <h3>Users</h3>
+                        <h2 id="users-count">0</h2>
                     </div>
                     <div style="flex: 1; background: #e74c3c; color: white; padding: 20px; border-radius: 5px; text-align: center;">
                         <h3>Orders</h3>

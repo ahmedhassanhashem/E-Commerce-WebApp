@@ -1,17 +1,17 @@
 
     // Global variables
-    let categories = [];
+    let users = [];
     let products = [];
 
     // Initialize the dashboard
     $(document).ready(function() {
-    loadCategories();
+    loadUsers();
     loadProducts();
     updateDashboardCounts();
 });
 
     // Load categories
-    function loadCategories() {
+    function loadUsers() {
     $.ajax({
         url: 'CategoryServlet',
         type: 'GET',
@@ -23,11 +23,11 @@
         error: function() {
             showNotification('Error loading categories', 'error');
             // Demo data
-            categories = [
-                { id: 1, name: 'Coffee Beans', description: 'Various coffee beans', productCount: 5 },
-                { id: 2, name: 'Coffee Mugs', description: 'Stylish mugs', productCount: 3 },
-                { id: 2, name: 'Coffee Machines', description: 'All the machines and it accessories', productCount: 3 }
-            ];
+            // users = [
+            //     { id: 1, name: 'Coffee Beans', description: 'Various coffee beans', productCount: 5 },
+            //     { id: 2, name: 'Coffee Mugs', description: 'Stylish mugs', productCount: 3 },
+            //     { id: 2, name: 'Coffee Machines', description: 'All the machines and it accessories', productCount: 3 }
+            // ];
             updateDashboardCounts();
         }
     });
@@ -85,7 +85,7 @@
     // Update dashboard counts
     function updateDashboardCounts() {
     $('#product-count').text(products.length);
-    $('#category-count').text(categories.length);
+    $('#users-count').text(users.length);
 }
 
     // Show notification

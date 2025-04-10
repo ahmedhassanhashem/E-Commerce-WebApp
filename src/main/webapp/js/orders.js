@@ -12,7 +12,7 @@ $(document).ready(function() {
         loadOrders();
     });
 
-    $('#filter-status, #filter-date').on('change', function() {
+    $('#filter-status').on('change', function() {
         currentPage = 1;
         loadOrders();
     });
@@ -22,7 +22,6 @@ $(document).ready(function() {
 function loadOrders() {
     const searchTerm = $('#search-order').val();
     const statusFilter = $('#filter-status').val();
-    const dateFilter = $('#filter-date').val();
 
     $.ajax({
         url: 'OrderServlet',
@@ -31,7 +30,6 @@ function loadOrders() {
             action: 'list',
             search: searchTerm,
             status: statusFilter,
-            date: dateFilter,
             page: currentPage,
             perPage: ordersPerPage
         },
@@ -42,13 +40,13 @@ function loadOrders() {
         },
         error: function() {
             showNotification('Error loading orders', 'error');
-            // For demo purposes, load sample data
-            const sampleData = {
-                orders: getSampleOrders(),
-                totalOrders: 25
-            };
-            renderOrders(sampleData.orders);
-            renderPagination(sampleData.totalOrders);
+            // // For demo purposes, load sample data
+            // const sampleData = {
+            //     orders: getSampleOrders(),
+            //     totalOrders: 25
+            // };
+            // renderOrders(sampleData.orders);
+            // renderPagination(sampleData.totalOrders);
         }
     });
 }
@@ -65,7 +63,6 @@ function renderOrders(orders) {
 
     orders.forEach(order => {
         const statusClass = `status-${order.status.toLowerCase()}`;
-        const formattedDate = moment(order.orderDate).format('MMM D, YYYY h:mm A');
 
         let actionButtons = `
             <button class="btn btn-info btn-sm" onclick="viewOrderDetails(${order.id})">
@@ -102,7 +99,6 @@ function renderOrders(orders) {
             <tr>
                 <td>#${order.id}</td>
                 <td>${order.customerName}</td>
-                <td>${formattedDate}</td>
                 <td>${order.itemCount} item(s)</td>
                 <td>$${order.totalAmount.toFixed(2)}</td>
                 <td><span class="${statusClass}">${order.status}</span></td>
@@ -166,9 +162,9 @@ function viewOrderDetails(orderId) {
         },
         error: function() {
             showNotification('Error loading order details', 'error');
-            // For demo purposes, show sample data
-            const sampleOrder = getSampleOrders().find(o => o.id == orderId);
-            if (sampleOrder) showOrderDetailsModal(sampleOrder);
+            // // For demo purposes, show sample data
+            // const sampleOrder = getSampleOrders().find(o => o.id == orderId);
+            // if (sampleOrder) showOrderDetailsModal(sampleOrder);
         }
     });
 }
@@ -176,7 +172,6 @@ function viewOrderDetails(orderId) {
 // Show order details modal
 function showOrderDetailsModal(order) {
     const modal = $('#orderDetailsModal');
-    const formattedDate = moment(order.orderDate).format('MMMM D, YYYY h:mm A');
     const statusClass = `status-${order.status.toLowerCase()}`;
 
     $('#modal-order-id').text(order.id);
@@ -234,7 +229,6 @@ function showOrderDetailsModal(order) {
 
         <div style="margin-bottom: 20px;">
             <h3>Order Summary</h3>
-            <p><strong>Order Date:</strong> ${formattedDate}</p>
             <p><strong>Status:</strong> <span class="${statusClass}">${order.status}</span></p>
             <p><strong>Payment Method:</strong> ${order.paymentMethod || 'N/A'}</p>
             <p><strong>Notes:</strong> ${order.notes || 'N/A'}</p>
@@ -254,18 +248,6 @@ function showOrderDetailsModal(order) {
                 ${itemsHtml}
             </tbody>
             <tfoot>
-                <tr>
-                    <td colspan="3" style="text-align: right;"><strong>Subtotal:</strong></td>
-                    <td>$${order.subtotal.toFixed(2)}</td>
-                </tr>
-                <tr>
-                    <td colspan="3" style="text-align: right;"><strong>Shipping:</strong></td>
-                    <td>$${order.shippingFee.toFixed(2)}</td>
-                </tr>
-                <tr>
-                    <td colspan="3" style="text-align: right;"><strong>Tax:</strong></td>
-                    <td>$${order.taxAmount.toFixed(2)}</td>
-                </tr>
                 <tr>
                     <td colspan="3" style="text-align: right;"><strong>Total:</strong></td>
                     <td><strong>$${order.totalAmount.toFixed(2)}</strong></td>
@@ -318,7 +300,6 @@ function refreshOrders() {
     currentPage = 1;
     $('#search-order').val('');
     $('#filter-status').val('all');
-    $('#filter-date').val('');
     loadOrders();
 }
 
