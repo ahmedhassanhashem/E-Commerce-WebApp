@@ -1,29 +1,4 @@
-
-//     // Preview image when selected
-//     function previewImage(input) {
-//     const preview = document.getElementById('preview-img');
-//     const previewText = document.querySelector('.image-preview-text');
-//     const fileNameDisplay = document.getElementById('file-name-display');
-//
-//     if (input.files && input.files[0]) {
-//     const fileName = input.files[0].name;
-//     fileNameDisplay.textContent = fileName;
-//
-//     const reader = new FileReader();
-//     reader.onload = function(e) {
-//     preview.src = e.target.result;
-//     preview.style.display = 'block';
-//     previewText.style.display = 'none';
-// }
-//     reader.readAsDataURL(input.files[0]);
-// } else {
-//     preview.style.display = 'none';
-//     previewText.style.display = 'block';
-//     fileNameDisplay.textContent = 'No file chosen';
-// }
-// }
-
-    // Form submission handler
+ // Form submission handler
     $(document).ready(function() {
     $('#add-product-form').on('submit', function(e) {
         e.preventDefault();
@@ -33,7 +8,7 @@
 
         // AJAX submission
         $.ajax({
-            url: 'ProductServlet',
+            url: 'AddProductServlet',
             type: 'POST',
             data: formData,
             contentType: false,

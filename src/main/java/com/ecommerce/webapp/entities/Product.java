@@ -28,6 +28,14 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductCategory category;
 
+    public ProductStatus getStatus() {
+        return product_Status;
+    }
+
+    public void setStatus(ProductStatus product_Status) {
+        this.product_Status = product_Status;
+    }
+
     @Enumerated(EnumType.STRING)
     private ProductStatus product_Status;
 
@@ -38,13 +46,18 @@ public class Product {
         this.orderItems = new ArrayList<>();
     }
 
-    public Product(String name, String description, double product_price, ProductCategory category, String image, int stock) {
+    public Product(String name, String description, double product_price, ProductCategory category, String image, int stock, ProductStatus status) {
         this.name = name;
         this.description = description;
         this.price = product_price;
         this.category = category;
         this.image = image;
         this.stock = stock;
+        this.product_Status = status;
+    }
+
+    public Product(String name, String description, double product_price, ProductCategory category, String image, int stock) {
+        this(name, description, product_price, category, image, stock, ProductStatus.ACTIVE);
     }
     public List<OrderItem> getOrderItems() {
         return orderItems;
