@@ -27,7 +27,7 @@
       </div>
 
       <div class="panel-body">
-        <form id="add-product-form" method="post" action="ProductServlet" enctype="multipart/form-data">
+        <form id="add-product-form" method="post" action="AddProduct" enctype="multipart/form-data">
           <input type="hidden" name="action" value="add">
 
           <div class="form-section">
@@ -67,12 +67,6 @@
               <label for="product-description">Description</label>
               <textarea id="product-description" name="description" class="form-control" rows="5"
                         placeholder="Enter a detailed description of the product..."></textarea>
-            </div>
-
-            <div class="form-group">
-              <label for="product-sku">SKU (Stock Keeping Unit)</label>
-              <input type="text" id="product-sku" name="sku" class="form-control"
-                     placeholder="e.g., COFFEE-DARK-12OZ">
             </div>
 
             <div class="form-group form-section-full">
