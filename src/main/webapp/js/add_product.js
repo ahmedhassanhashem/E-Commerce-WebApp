@@ -1,6 +1,6 @@
- // Form submission handler
-    $(document).ready(function() {
-    $('#add-product-form').on('submit', function(e) {
+// Form submission handler
+$(document).ready(function() {
+    $('#add-product-form').on('submit', function (e) {
         e.preventDefault();
 
         // Get form data
@@ -8,25 +8,52 @@
 
         // AJAX submission
         $.ajax({
-            url: 'AddProductServlet',
+            url: 'AddProduct',
             type: 'POST',
             data: formData,
             contentType: false,
             processData: false,
-            success: function(response) {
-                showNotification('Product added successfully!', 'success');
+            dataType: 'json',
+            success: function (response) {
+                showNotification(response.message, response.status === 'success' ? 'success' : 'error');
 
-                // Reset form after 1 second and redirect
-                setTimeout(function() {
-                    window.location.href = 'edit-products.jsp';
-                }, 1500);
+                if (response.status === 'success') {
+                    setTimeout(function () {
+                        window.location.href = 'admin-dashboard.jsp';
+                    }, 1500);
+                }
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 showNotification('Error adding product: ' + error, 'error');
             }
         });
     });
 });
+
+
+//                 try {
+//                     const result = typeof response === 'string' ? JSON.parse(response) : response;
+//
+//                     if (result.status === 'success') {
+//                         showNotification(result.message, 'success');
+//
+//                         // Reset form after 1.5 seconds and redirect
+//                         setTimeout(function() {
+//                             window.location.href = 'dashboard.jsp';
+//                         }, 1500);
+//                     } else {
+//                         showNotification(result.message, 'error');
+//                     }
+//                 } catch (e) {
+//                     showNotification('Unexpected response format', 'error');
+//                 }
+//             },
+//             error: function(xhr, status, error) {
+//                 showNotification('Error adding product: ' + error, 'error');
+//             }
+//         });
+//     });
+// });
     function previewImage(input) {
         const fileDisplay = document.getElementById('file-name-display');
         const previewImg = document.getElementById('preview-img');
@@ -36,6 +63,7 @@
             fileDisplay.textContent = input.files[0].name;
 
             const reader = new FileReader();
+
             reader.onload = function(e) {
                 previewImg.src = e.target.result;
                 previewImg.style.display = 'block';
@@ -50,14 +78,14 @@
     }
     // Show notification
     function showNotification(message, type) {
-    const notification = $('#notification');
-    notification.removeClass('notification-success notification-error');
-    notification.addClass(`notification-${type}`);
-    notification.text(message);
-    notification.css('display', 'block');
+        const notification = $('#notification');
+        notification.removeClass('notification-success notification-error');
+        notification.addClass(`notification-${type}`);
+        notification.text(message);
+        notification.css('display', 'block');
 
-    // Hide notification after 3 seconds
-    setTimeout(() => {
-    notification.css('display', 'none');
-}, 3000);
+        // Hide notification after 3 seconds
+        setTimeout(() => {
+        notification.css('display', 'none');
+    }, 3000);
 }

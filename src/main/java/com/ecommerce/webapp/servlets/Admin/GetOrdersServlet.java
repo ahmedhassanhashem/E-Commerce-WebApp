@@ -19,6 +19,8 @@ public class GetOrdersServlet extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
+        
+
     }
 
 }

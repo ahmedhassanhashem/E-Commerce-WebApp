@@ -1,23 +1,98 @@
 package com.ecommerce.webapp.servlets.Admin;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.UUID;
 
 import com.ecommerce.webapp.entities.Product;
 import com.ecommerce.webapp.entities.ProductCategory;
 import com.ecommerce.webapp.entities.ProductStatus;
 import com.ecommerce.webapp.dao.ProductDAO;
 
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import jakarta.servlet.http.Part;
 
 @WebServlet(value= "/AddProduct")
+@MultipartConfig(
+        fileSizeThreshold = 1024 * 1024,  // 1 MB
+        maxFileSize = 5 * 1024 * 1024,     // 5 MB
+        maxRequestSize = 10 * 1024 * 1024  // 10 MB
+)
 public class AddProductServlet extends HttpServlet {
 
-   
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("application/json;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+
+        try {
+            // Get form parameters
+            String name = request.getParameter("product-name");
+            String description = request.getParameter("product-description");
+            double price = Double.parseDouble(request.getParameter("product-price"));
+            int stock = Integer.parseInt(request.getParameter("product-stock"));
+            ProductCategory category = ProductCategory.valueOf(request.getParameter("product-category").toUpperCase());
+            ProductStatus status = ProductStatus.valueOf(request.getParameter("product-status").toUpperCase());
+
+            // Handle file upload
+            String imageName = "";
+            Part filePart = request.getPart("product-image");
+
+            if (filePart != null && filePart.getSize() > 0) {
+                // Generate unique name for the file to avoid duplicates
+                String originalFilename = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+                String fileExtension = originalFilename.substring(originalFilename.lastIndexOf("."));
+
+                // Generate name without extension
+                imageName = UUID.randomUUID().toString();
+
+                // Get the path to your product images folder
+                // This path points to src/main/webapp/images/product in your deployed application
+                String uploadPath = getServletContext().getRealPath("/images/product/");
+                File uploadDir = new File(uploadPath);
+                if (!uploadDir.exists()) {
+                    uploadDir.mkdirs();
+                }
+
+                // Save the file with extension (needed for the actual file)
+                filePart.write(uploadPath + File.separator + imageName + fileExtension);
+
+                // Store only the name without extension in the database
+                // imageName already doesn't have the extension
+            }
+
+            // Create product object with name only (no extension)
+            Product product = new Product(name, description, price, category, imageName, stock, status);
+
+            // Save to database
+            ProductDAO productDAO = new ProductDAO();
+            boolean success = productDAO.addProduct(product);
+
+            // Fix your response.getWriter().print() statements:
+            if (success) {
+                out.print("{\"status\":\"success\",\"message\":\"Product added successfully\"}");
+            } else {
+                out.print("{\"status\":\"error\",\"message\":\"Failed to add product\"}");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            out.print("{\"status\":\"error\", \"message\":\"" + e.getMessage() + "\"}");
+        }
+
+    }
+
 }
