@@ -1,18 +1,18 @@
-<%--------Mock data to test on it -----------------------%>
-<%@ page import="com.ecommerce.webapp.entities.User" %>
-<%
-    User user = new User();
-    user.setName("kerellos");
-    user.setEmail("kerellos@example.com");
-    user.setAddress("smart village");
-    user.setCreditLimit(200.7);
-    user.setPhone("01234567890");
-    user.setPassword("123456");
+<%--&lt;%&ndash;------Mock data to test on it ---------------------&ndash;%&gt;--%>
+<%--<%@ page import="com.ecommerce.webapp.entities.User" %>--%>
+<%--<%--%>
+<%--    User user = new User();--%>
+<%--    user.setName("kerellos");--%>
+<%--    user.setEmail("kerellos@example.com");--%>
+<%--    user.setAddress("smart village");--%>
+<%--    user.setCreditBalance(200.7);--%>
+<%--    user.setPhone("01234567890");--%>
+<%--    user.setPassword("123456");--%>
 
-    session = request.getSession();
-    session.setAttribute("currentUser", user);
-%>
-<%---------------------------------------------------%>
+<%--    session = request.getSession();--%>
+<%--    session.setAttribute("currentUser", user);--%>
+<%--%>--%>
+<%--&lt;%&ndash;-----------------------------------------------&ndash;%&gt;--%>
 
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>

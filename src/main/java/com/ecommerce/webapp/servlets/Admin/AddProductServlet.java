@@ -73,7 +73,7 @@ public class AddProductServlet extends HttpServlet {
             }
 
             // Create product object with name only (no extension)
-            Product product = new Product(name, description, price, category, imageName, stock, status);
+            Product product = new Product(name, description, price, category, imageName, stock);
 
             // Save to database
             ProductDAO productDAO = new ProductDAO();

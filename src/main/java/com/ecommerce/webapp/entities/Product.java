@@ -1,110 +1,57 @@
 package com.ecommerce.webapp.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "products")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int product_id;
+    @Column(name = "product_id")
+    private int productId;
 
+    @NonNull
     @Column(nullable = false)
     private String name;
 
+    @NonNull
     private String description;
 
-    @Column(name = "product_price")
+    @NonNull
+    @Min(0)
+    @Column(name = "price", nullable = false)
     private double price;
 
-    private String image;
-
-    private int stock;
-
+    @NonNull
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private ProductCategory category;
 
+    @NonNull
+    @Column(nullable = false)
+    private String image;
+
+    @NonNull
+    @Min(0)
+    @Column(name = "stock", nullable = false)
+    private int stock;
+
+//    @OneToMany(mappedBy = "product")
+//    private List<OrderItem> orderItems = new ArrayList<>();
+    @Transient
     public String getStatus() {
-
-        if(this.getStock() == 0)
-            return "OUT_OF_STOCK";
-        return "ACTIVE";
-    }
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<OrderItem> orderItems;
-
-    public Product() {
-        this.orderItems = new ArrayList<>();
-    }
-
-    public Product(String name, String description, double product_price, ProductCategory category, String image, int stock, String status) {
-        this.name = name;
-        this.description = description;
-        this.price = product_price;
-        this.category = category;
-        this.image = image;
-        this.stock = stock;
-    }
-
-    public Product(String name, String description, double product_price, ProductCategory category, String image, int stock) {
-        this(name, description, product_price, category, image, stock, "ACTIVE");
-    }
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public int getProductId() {
-        return product_id;
-    }
-
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public ProductCategory getCategory() {
-        return category;
-    }
-    public void setCategory(ProductCategory category) {
-        this.category = category;
-    }
-
-    public String getImage() {
-        return image;
-    }
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
-    public Product getProduct() {
-        return this;
+        if(this.stock == 0)
+            return "Out of Stock";
+        return "In Stock";
     }
 }

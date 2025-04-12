@@ -1,4 +1,4 @@
-package com.ecommerce.webapp.util;
+package com.ecommerce.webapp.listeners;
 
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
