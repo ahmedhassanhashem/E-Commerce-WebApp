@@ -50,6 +50,22 @@ public class Order {
         item.setOrder(this);
     }
 
+    /*======= for testing purposes ======*/
+    public void setOrderId(int order_id){
+        this.order_id = order_id;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    /*=====================================*/
+
+
     public int getOrderId() {
         return order_id;
     }
