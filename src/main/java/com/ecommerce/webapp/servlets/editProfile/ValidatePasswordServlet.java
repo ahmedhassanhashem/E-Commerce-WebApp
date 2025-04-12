@@ -1,4 +1,4 @@
-package com.ecommerce.webapp.servlets;
+package com.ecommerce.webapp.servlets.editProfile;
 
 import com.ecommerce.webapp.entities.User;
 import jakarta.servlet.ServletException;
