@@ -10,12 +10,23 @@ import java.util.List;
 
 public class ProductDAO {
 
+<<<<<<< HEAD
     
     // Find product by ID
     public Product findById(int productId) {
       //  EntityManager entityManager = PersistenceManager.getEntityManager();
 EntityManager entityManager = null;
        Product product = null;
+=======
+    PersistenceManager emf = PersistenceManager.getInstance();
+
+    // Find product by ID
+    public Product findById(int productId) {
+
+        EntityManager entityManager = emf.getEntityManager();
+
+        Product product = null;
+>>>>>>> 416492525a3bfc0eb5df197375ab3e4d34a0180f
 
         try {
             entityManager.getTransaction().begin();
@@ -37,8 +48,13 @@ EntityManager entityManager = null;
 
     // Get all products
     public List<Product> getAllProducts() {
+<<<<<<< HEAD
       //  EntityManager entityManager = PersistenceManager.getEntityManager();
 EntityManager entityManager = null;
+=======
+         EntityManager entityManager = emf.getEntityManager();
+
+>>>>>>> 416492525a3bfc0eb5df197375ab3e4d34a0180f
         List<Product> products = new ArrayList<>();
 
         try {
@@ -63,9 +79,14 @@ EntityManager entityManager = null;
 
     // Find products by category
     public List<Product> findByCategory(ProductCategory category) {
+<<<<<<< HEAD
       //  EntityManager entityManager = PersistenceManager.getEntityManager();
 EntityManager entityManager = null;
         List<Product> products = new ArrayList<>();
+=======
+        EntityManager entityManager = emf.getEntityManager();
+                 List<Product> products = new ArrayList<>();
+>>>>>>> 416492525a3bfc0eb5df197375ab3e4d34a0180f
 
         try {
             entityManager.getTransaction().begin();
@@ -90,8 +111,13 @@ EntityManager entityManager = null;
 
     // Find products with stock less than a certain threshold
     public List<Product> findLowStockProducts(int threshold) {
+<<<<<<< HEAD
       //  EntityManager entityManager = PersistenceManager.getEntityManager();
 EntityManager entityManager = null;
+=======
+        EntityManager entityManager = emf.getEntityManager();
+ 
+>>>>>>> 416492525a3bfc0eb5df197375ab3e4d34a0180f
         List<Product> products = new ArrayList<>();
 
         try {
@@ -117,8 +143,12 @@ EntityManager entityManager = null;
 
     // Add new product
     public boolean addProduct(Product product) {
+<<<<<<< HEAD
       //  EntityManager entityManager = PersistenceManager.getEntityManager();
 EntityManager entityManager = null;
+=======
+        EntityManager entityManager = emf.getEntityManager();
+>>>>>>> 416492525a3bfc0eb5df197375ab3e4d34a0180f
 
         try {
             entityManager.getTransaction().begin();
@@ -140,8 +170,12 @@ EntityManager entityManager = null;
 
     // Update existing product
     public boolean updateProduct(Product product) {
+<<<<<<< HEAD
       //  EntityManager entityManager = PersistenceManager.getEntityManager();
 EntityManager entityManager = null;
+=======
+        EntityManager entityManager = emf.getEntityManager();
+>>>>>>> 416492525a3bfc0eb5df197375ab3e4d34a0180f
 
         try {
             entityManager.getTransaction().begin();
@@ -176,8 +210,12 @@ EntityManager entityManager = null;
 
     // Delete product
     public boolean deleteProduct(int productId) {
+<<<<<<< HEAD
       //  EntityManager entityManager = PersistenceManager.getEntityManager();
 EntityManager entityManager = null;
+=======
+        EntityManager entityManager = emf.getEntityManager();
+>>>>>>> 416492525a3bfc0eb5df197375ab3e4d34a0180f
 
         try {
             entityManager.getTransaction().begin();
@@ -204,8 +242,12 @@ EntityManager entityManager = null;
 
     // Search products by name
     public List<Product> searchByName(String searchTerm) {
+<<<<<<< HEAD
       //  EntityManager entityManager = PersistenceManager.getEntityManager();
 EntityManager entityManager = null;
+=======
+        EntityManager entityManager = emf.getEntityManager();
+>>>>>>> 416492525a3bfc0eb5df197375ab3e4d34a0180f
         List<Product> products = new ArrayList<>();
 
         try {
@@ -231,8 +273,12 @@ EntityManager entityManager = null;
 
     // Get product count
     public long getProductCount() {
+<<<<<<< HEAD
       //  EntityManager entityManager = PersistenceManager.getEntityManager();
 EntityManager entityManager = null;
+=======
+        EntityManager entityManager = emf.getEntityManager();
+>>>>>>> 416492525a3bfc0eb5df197375ab3e4d34a0180f
         long count = 0;
 
         try {
@@ -257,8 +303,12 @@ EntityManager entityManager = null;
 
     // Get products sorted by price (ascending or descending)
     public List<Product> getProductsSortedByPrice(boolean ascending) {
+<<<<<<< HEAD
       //  EntityManager entityManager = PersistenceManager.getEntityManager();
 EntityManager entityManager = null;
+=======
+        EntityManager entityManager = emf.getEntityManager();
+>>>>>>> 416492525a3bfc0eb5df197375ab3e4d34a0180f
         List<Product> products = new ArrayList<>();
 
         try {
@@ -284,8 +334,12 @@ EntityManager entityManager = null;
 
     // Update product stock
     public boolean updateProductStock(int productId, int newStock) {
+<<<<<<< HEAD
       //  EntityManager entityManager = PersistenceManager.getEntityManager();
 EntityManager entityManager = null;
+=======
+        EntityManager entityManager = emf.getEntityManager();
+>>>>>>> 416492525a3bfc0eb5df197375ab3e4d34a0180f
 
         try {
             entityManager.getTransaction().begin();

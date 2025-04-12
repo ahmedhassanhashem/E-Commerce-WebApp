@@ -19,6 +19,8 @@ public class EditProductServlet extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
+        
+
     }
 
 }

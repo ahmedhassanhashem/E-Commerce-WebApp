@@ -19,14 +19,14 @@
 
     <build>
         <plugins>
-        <plugin> 
-            <groupId>org.apache.maven.plugins</groupId> 
-                <artifactId>maven-war-plugin</artifactId> 
-                <version>3.3.0</version> 
-                <configuration> 
-                <failOnMissingWebXml>false</failOnMissingWebXml> 
-                </configuration> 
-            </plugin> 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -42,17 +42,29 @@
     </build>
 
  <dependencies>
+     <dependency>
+     <groupId>org.hibernate.orm</groupId>
+     <artifactId>hibernate-core</artifactId>
+     <version>6.2.7.Final</version>
+ </dependency>
+
+    <dependency>
+        <groupId>jakarta.persistence</groupId>
+        <artifactId>jakarta.persistence-api</artifactId>
+        <version>3.1.0</version>
+    </dependency>
+
+    <dependency>
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+        <version>8.0.33</version>
+    </dependency>
     <!-- Jakarta EE API (Servlets, JSP, etc.) -->
       <dependency>
           <groupId>jakarta.platform</groupId>
           <artifactId>jakarta.jakartaee-api</artifactId>
           <version>9.0.0</version>
           <scope>provided</scope>
-      </dependency>
-      <dependency>
-          <groupId>com.mysql</groupId>
-          <artifactId>mysql-connector-j</artifactId>
-          <version>8.0.32</version>
       </dependency>
       <dependency>
           <groupId>jakarta.servlet</groupId>
@@ -86,11 +98,11 @@
           <artifactId>gson</artifactId>
           <version>2.8.9</version>
       </dependency>
-      <dependency>
-          <groupId>org.hibernate.orm</groupId>
-          <artifactId>hibernate-core</artifactId>
-          <version>6.5.2.Final</version>
-      </dependency>
+<!--      <dependency>-->
+<!--          <groupId>org.hibernate.orm</groupId>-->
+<!--          <artifactId>hibernate-core</artifactId>-->
+<!--          <version>6.5.2.Final</version>-->
+<!--      </dependency>-->
   <dependency>
       <groupId>org.hibernate.validator</groupId>
       <artifactId>hibernate-validator</artifactId>
@@ -130,13 +142,13 @@
           <version>5.16.0</version>
           <scope>test</scope>
       </dependency>
-      <!--maven war plugin-->
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-war-plugin</artifactId>
-            <version>3.3.2</version>
-            <scope>provided</scope>
-        </dependency>
+<!--      &lt;!&ndash;maven war plugin&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.maven.plugins</groupId>-->
+<!--            <artifactId>maven-war-plugin</artifactId>-->
+<!--            <version>3.3.2</version>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
 </dependencies>
 
 
