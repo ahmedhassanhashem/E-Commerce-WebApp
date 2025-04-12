@@ -29,31 +29,6 @@ $(document).ready(function() {
         });
     });
 });
-
-
-//                 try {
-//                     const result = typeof response === 'string' ? JSON.parse(response) : response;
-//
-//                     if (result.status === 'success') {
-//                         showNotification(result.message, 'success');
-//
-//                         // Reset form after 1.5 seconds and redirect
-//                         setTimeout(function() {
-//                             window.location.href = 'dashboard.jsp';
-//                         }, 1500);
-//                     } else {
-//                         showNotification(result.message, 'error');
-//                     }
-//                 } catch (e) {
-//                     showNotification('Unexpected response format', 'error');
-//                 }
-//             },
-//             error: function(xhr, status, error) {
-//                 showNotification('Error adding product: ' + error, 'error');
-//             }
-//         });
-//     });
-// });
     function previewImage(input) {
         const fileDisplay = document.getElementById('file-name-display');
         const previewImg = document.getElementById('preview-img');

@@ -84,7 +84,6 @@
               <label for="product-status">Status</label>
               <select id="product-status" name="product-status" class="form-control">
                 <option value="ACTIVE">Active</option>
-                <option value="INACTIVE">Inactive</option>
                 <option value="OUT_OF_STOCK">Out of Stock</option>
               </select>
             </div>

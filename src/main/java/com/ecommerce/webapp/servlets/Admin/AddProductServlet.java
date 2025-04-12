@@ -3,13 +3,11 @@ package com.ecommerce.webapp.servlets.Admin;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.UUID;
 
 import com.ecommerce.webapp.entities.Product;
 import com.ecommerce.webapp.entities.ProductCategory;
-import com.ecommerce.webapp.entities.ProductStatus;
 import com.ecommerce.webapp.dao.ProductDAO;
 
 import jakarta.servlet.ServletException;
@@ -45,7 +43,7 @@ public class AddProductServlet extends HttpServlet {
             double price = Double.parseDouble(request.getParameter("product-price"));
             int stock = Integer.parseInt(request.getParameter("product-stock"));
             ProductCategory category = ProductCategory.valueOf(request.getParameter("product-category").toUpperCase());
-            ProductStatus status = ProductStatus.valueOf(request.getParameter("product-status").toUpperCase());
+            String status = request.getParameter("product-status").toUpperCase();
 
             // Handle file upload
             String imageName = "";
