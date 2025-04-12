@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -35,35 +35,31 @@ public class User {
     @Min(0) // to ensure credit limit isn't negative
     private double creditLimit;
 
-    @Column(name = "credit_number", nullable = false, unique = true)
-    private String credit_number;
-
     @Column(name = "phone", nullable = false, unique = true)
     private String phone;
 
-    @Lob // this is a large object (JSON), store as TEXT
-    @Column(name = "cart", columnDefinition = "TEXT")
-    private String cart;
 
-    @Lob
-    @Column(name = "wishlist", columnDefinition = "TEXT")
-    private String wishlist;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Cart cart;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Wishlist wishlist;
 
     public User() {
-
         this.orders = new ArrayList<>();
+        this.cart = new Cart(this);
+        this.wishlist = new Wishlist(this);
     }
 
-    public User(String email, String password, String name, String address, double creditLimit, String phone, String credit_number) {
+    public User(String email, String password, String name, String address, double creditLimit, String phone, Cart cart , Wishlist wishlist) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.address = address;
         this.creditLimit = creditLimit;
-        this.credit_number = credit_number;
         this.phone = phone;
-        this.cart = "";
-        this.wishlist = "";
+        this.cart = new Cart(this);
+        this.wishlist = new Wishlist(this);
     }
     // Getter for orders relationship
     public List<Order> getOrders() {
@@ -74,6 +70,24 @@ public class User {
     public void addOrder(Order order) {
         orders.add(order);
         order.setUser(this);
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+        cart.setUser(this);
+    }
+
+    public Wishlist getWishlist() {
+        return wishlist;
+    }
+
+    public void setWishlist(Wishlist wishlist) {
+        this.wishlist = wishlist;
+        wishlist.setUser(this);
     }
 
     public int getUserId() {
@@ -126,30 +140,6 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getCart() {
-        return cart;
-    }
-
-    public void setCart(String cart) {
-        this.cart = cart;
-    }
-
-    public String getWishlist() {
-        return wishlist;
-    }
-
-    public void setWishlist(String wishlist) {
-        this.wishlist = wishlist;
-    }
-
-    public String getCredit_number() {
-        return credit_number;
-    }
-
-    public void setCredit_number(String credit_number) {
-        this.credit_number = credit_number;
     }
 
     public void setOrders(List<Order> arrayList) {
