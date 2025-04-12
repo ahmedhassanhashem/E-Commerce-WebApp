@@ -1,3 +1,20 @@
+<%--------Mock data to test on it -----------------------%>
+<%@ page import="com.ecommerce.webapp.entities.User" %>
+<%
+    User user = new User();
+    user.setName("kerellos");
+    user.setEmail("kerellos@example.com");
+    user.setAddress("smart village");
+    user.setCreditLimit(200.7);
+    user.setPhone("01234567890");
+    user.setPassword("123456");
+
+    session = request.getSession();
+    session.setAttribute("currentUser", user);
+%>
+<%---------------------------------------------------%>
+
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
