@@ -1,7 +1,7 @@
 package com.ecommerce.webapp.dao;
 
 import com.ecommerce.webapp.entities.User;
-import com.ecommerce.webapp.util.HibernateUtil;
+import com.ecommerce.webapp.util.PersistenceManager;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
@@ -10,7 +10,8 @@ import jakarta.persistence.TypedQuery;
 public class UserDAO {
     
     public User findByEmail(String email) {
-        EntityManager entityManager = HibernateUtil.getEntityManager();
+      //  EntityManager entityManager = PersistenceManager.getEntityManager();
+EntityManager entityManager = null;
         User user = null;
         
         try {
@@ -40,7 +41,8 @@ public class UserDAO {
     }
     
     public boolean validate(String email, String password) {
-        EntityManager entityManager = HibernateUtil.getEntityManager();
+      //  EntityManager entityManager = PersistenceManager.getEntityManager();
+EntityManager entityManager = null;
         User user = null;
         
         try {
@@ -74,7 +76,8 @@ public class UserDAO {
     }
 
     public boolean updateUser(User user) {
-        EntityManager entityManager = HibernateUtil.getEntityManager();
+      //  EntityManager entityManager = PersistenceManager.getEntityManager();
+EntityManager entityManager = null;
 
         try {
             entityManager.getTransaction().begin();
@@ -112,7 +115,8 @@ public class UserDAO {
     }
 
     public boolean RegisterUser(User user) {
-        EntityManager entityManager = HibernateUtil.getEntityManager();
+      //  EntityManager entityManager = PersistenceManager.getEntityManager();
+EntityManager entityManager = null;
 
         try {
             entityManager.getTransaction().begin();

@@ -2,7 +2,7 @@ package com.ecommerce.webapp.dao;
 
 import com.ecommerce.webapp.entities.Product;
 import com.ecommerce.webapp.entities.ProductCategory;
-import com.ecommerce.webapp.util.HibernateUtil;
+import com.ecommerce.webapp.util.PersistenceManager;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import java.util.ArrayList;
@@ -10,10 +10,12 @@ import java.util.List;
 
 public class ProductDAO {
 
+    
     // Find product by ID
     public Product findById(int productId) {
-        EntityManager entityManager = HibernateUtil.getEntityManager();
-        Product product = null;
+      //  EntityManager entityManager = PersistenceManager.getEntityManager();
+EntityManager entityManager = null;
+       Product product = null;
 
         try {
             entityManager.getTransaction().begin();
@@ -35,7 +37,8 @@ public class ProductDAO {
 
     // Get all products
     public List<Product> getAllProducts() {
-        EntityManager entityManager = HibernateUtil.getEntityManager();
+      //  EntityManager entityManager = PersistenceManager.getEntityManager();
+EntityManager entityManager = null;
         List<Product> products = new ArrayList<>();
 
         try {
@@ -60,7 +63,8 @@ public class ProductDAO {
 
     // Find products by category
     public List<Product> findByCategory(ProductCategory category) {
-        EntityManager entityManager = HibernateUtil.getEntityManager();
+      //  EntityManager entityManager = PersistenceManager.getEntityManager();
+EntityManager entityManager = null;
         List<Product> products = new ArrayList<>();
 
         try {
@@ -86,7 +90,8 @@ public class ProductDAO {
 
     // Find products with stock less than a certain threshold
     public List<Product> findLowStockProducts(int threshold) {
-        EntityManager entityManager = HibernateUtil.getEntityManager();
+      //  EntityManager entityManager = PersistenceManager.getEntityManager();
+EntityManager entityManager = null;
         List<Product> products = new ArrayList<>();
 
         try {
@@ -112,7 +117,8 @@ public class ProductDAO {
 
     // Add new product
     public boolean addProduct(Product product) {
-        EntityManager entityManager = HibernateUtil.getEntityManager();
+      //  EntityManager entityManager = PersistenceManager.getEntityManager();
+EntityManager entityManager = null;
 
         try {
             entityManager.getTransaction().begin();
@@ -134,7 +140,8 @@ public class ProductDAO {
 
     // Update existing product
     public boolean updateProduct(Product product) {
-        EntityManager entityManager = HibernateUtil.getEntityManager();
+      //  EntityManager entityManager = PersistenceManager.getEntityManager();
+EntityManager entityManager = null;
 
         try {
             entityManager.getTransaction().begin();
@@ -169,7 +176,8 @@ public class ProductDAO {
 
     // Delete product
     public boolean deleteProduct(int productId) {
-        EntityManager entityManager = HibernateUtil.getEntityManager();
+      //  EntityManager entityManager = PersistenceManager.getEntityManager();
+EntityManager entityManager = null;
 
         try {
             entityManager.getTransaction().begin();
@@ -196,7 +204,8 @@ public class ProductDAO {
 
     // Search products by name
     public List<Product> searchByName(String searchTerm) {
-        EntityManager entityManager = HibernateUtil.getEntityManager();
+      //  EntityManager entityManager = PersistenceManager.getEntityManager();
+EntityManager entityManager = null;
         List<Product> products = new ArrayList<>();
 
         try {
@@ -222,7 +231,8 @@ public class ProductDAO {
 
     // Get product count
     public long getProductCount() {
-        EntityManager entityManager = HibernateUtil.getEntityManager();
+      //  EntityManager entityManager = PersistenceManager.getEntityManager();
+EntityManager entityManager = null;
         long count = 0;
 
         try {
@@ -247,7 +257,8 @@ public class ProductDAO {
 
     // Get products sorted by price (ascending or descending)
     public List<Product> getProductsSortedByPrice(boolean ascending) {
-        EntityManager entityManager = HibernateUtil.getEntityManager();
+      //  EntityManager entityManager = PersistenceManager.getEntityManager();
+EntityManager entityManager = null;
         List<Product> products = new ArrayList<>();
 
         try {
@@ -273,7 +284,8 @@ public class ProductDAO {
 
     // Update product stock
     public boolean updateProductStock(int productId, int newStock) {
-        EntityManager entityManager = HibernateUtil.getEntityManager();
+      //  EntityManager entityManager = PersistenceManager.getEntityManager();
+EntityManager entityManager = null;
 
         try {
             entityManager.getTransaction().begin();

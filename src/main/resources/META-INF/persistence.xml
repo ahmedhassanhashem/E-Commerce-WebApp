@@ -16,20 +16,22 @@
     <class>com.ecommerce.webapp.entities.Order</class>
     <class>com.ecommerce.webapp.entities.OrderItem</class>
 
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
-
     <properties>
-      <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
-      <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/webapp?createDatabaseIfNotExist=true" />
-      <property name="jakarta.persistence.jdbc.user" value="root" />
-      <property name="jakarta.persistence.jdbc.password" value="root" />
+      <property name="hibernate.connection.provider_class" value="com.zaxxer.hikari.hibernate.HikariConnectionProvider"/>
+      <property name="hibernate.hikari.dataSourceClassName" value="com.mysql.cj.jdbc.MysqlDataSource"/>
+      <property name="hibernate.hikari.dataSource.url" value="jdbc:mysql://localhost:3306/webapp?createDatabaseIfNotExist=true"/>
+      <property name="hibernate.hikari.dataSource.user" value="root"/>
+      <property name="hibernate.hikari.dataSource.password" value="root"/>
+      <property name="hibernate.hikari.maximumPoolSize" value="50"/>
+      <property name="hibernate.hikari.minimumIdle" value="5"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-      <property name="show_sql" value="true" />
-      <property name="hibernate.format_sql" value="true" />
-      <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false" />
-       <property name="hibernate.hbm2ddl.auto" value="update"/>
-<!--      <property name="jakarta.persistence.schema-generation.database.action" value="" />-->
+      <property name="hibernate.show_sql" value="true" />
+      <property name="hibernate.format_sql" value="false" />
+      <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+      <property name="hibernate.temp.use_jdbc_metadata_defaults" value="true" />
       <property name="hibernate.generate_statistics" value="true"/>
+      <property name="hibernate.globally_quoted_identifiers" value="true"/>
+
     </properties>
 
   </persistence-unit>
