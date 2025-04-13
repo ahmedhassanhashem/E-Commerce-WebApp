@@ -17,7 +17,7 @@ public class CartItem {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false, foreignKey = @ForeignKey(name = "fk_cartitem_product"))
+    @JoinColumn(name = "product_id", nullable = false, foreignKey = @ForeignKey(name = "fk_cart_item_product"))
     private Product product;
 
     @Min(1)

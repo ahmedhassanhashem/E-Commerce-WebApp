@@ -19,7 +19,7 @@ public class WishlistItem {
     public int id;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false, foreignKey = @ForeignKey(name = "fk_wishlistitem_product"))
+    @JoinColumn(name = "product_id", nullable = false, foreignKey = @ForeignKey(name = "fk_wishlist_item_product"))
     private Product product;
 
     @ManyToOne
