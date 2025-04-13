@@ -1,5 +1,6 @@
 package com.ecommerce.webapp.servlets.products;
 
+import com.ecommerce.webapp.dao.ProductDAO;
 import com.ecommerce.webapp.entities.Product;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -11,8 +12,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @WebServlet("/product-details")
 public class ProductDetailsServlet extends HttpServlet {
+
+    private static ProductDAO productDAO = new ProductDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
