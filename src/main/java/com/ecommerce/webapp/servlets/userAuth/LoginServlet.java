@@ -47,17 +47,14 @@ public class LoginServlet extends HttpServlet {
             // Check if user is admin
             boolean isAdmin = "admin@gmail.com".equals(email);
             
-            // Create session
             HttpSession session = request.getSession();
             session.setAttribute("user", userData);
             session.setAttribute("isAdmin", isAdmin);
             
-            // Handle "Remember Me" functionality
             if (rememberMe != null) {
-                // Generate a secure token
+
                 String token = generateSecureToken();
                 
-                // In a real application, store in database with user ID and expiration
                 REMEMBER_ME_TOKENS.put(token, email);
                 
                 // Create persistent cookie
@@ -68,20 +65,17 @@ public class LoginServlet extends HttpServlet {
                 response.addCookie(rememberMeCookie);
             }
             
-            // Redirect based on user role
             if (isAdmin) {
-                response.sendRedirect("admin/admin-dashboard.jsp");
+                response.sendRedirect("admin-dashboard.jsp");
             } else {
                 response.sendRedirect("home");
             }
         } else {
-            // Set error message and forward back to login page
             request.setAttribute("errorMessage", "Invalid email or password");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
     
-    // Helper method to generate a secure random token
     private String generateSecureToken() {
         SecureRandom secureRandom = new SecureRandom();
         byte[] tokenBytes = new byte[32];

@@ -38,7 +38,7 @@
                                     </div>
                                     <% } %>
                                     
-                                    <form class="l-f-o__form" action="forgotPassword" method="post" onsubmit="return validatePasswords()">
+                                    <form class="l-f-o__form" action="forgotPassword" method="post" onsubmit="return validateResetForm()">
                                         <input type="hidden" name="action" value="reset">
                                         <input type="hidden" name="email" value="<%= request.getParameter("email") %>">
                                         <input type="hidden" name="token" value="<%= request.getParameter("token") %>">
@@ -46,6 +46,10 @@
                                         <div class="u-s-m-b-30">
                                             <label class="gl-label" for="new-password">NEW PASSWORD *</label>
                                             <input class="input-text input-text--primary-style" type="password" id="new-password" name="new-password" placeholder="Enter New Password">
+                                            <div id="password-strength" style="height: 5px; margin-top: 5px; width: 0%;"></div>
+                                            <div id="password-requirements" style="font-size: 12px; margin-top: 5px; color: #666;">
+                                                Password must contain at least 8 characters with uppercase, lowercase, and numbers
+                                            </div>
                                         </div>
                                         
                                         <div class="u-s-m-b-30">
@@ -83,35 +87,8 @@
 <jsp:include page="commos/modals.jsp"/>
 
 <%@include file="commos/script.html" %>
+<script src="js/forgotpassword.js"></script>
 
-<script>
-function validatePasswords() {
-    const newPassword = document.getElementById('new-password').value;
-    const confirmPassword = document.getElementById('confirm-password').value;
-    const errorDiv = document.getElementById('password-error');
-    
-    if (newPassword !== confirmPassword) {
-        errorDiv.style.display = 'block';
-        return false;
-    } else {
-        errorDiv.style.display = 'none';
-        return true;
-    }
-}
-
-// Real-time validation
-document.getElementById('confirm-password').addEventListener('input', function() {
-    const newPassword = document.getElementById('new-password').value;
-    const confirmPassword = this.value;
-    const errorDiv = document.getElementById('password-error');
-    
-    if (newPassword !== confirmPassword) {
-        errorDiv.style.display = 'block';
-    } else {
-        errorDiv.style.display = 'none';
-    }
-});
-</script>
 
 </body>
 </html>

@@ -79,7 +79,6 @@ public class AddProductServlet extends HttpServlet {
             ProductDAO productDAO = new ProductDAO();
             boolean success = productDAO.addProduct(product);
 
-            // Fix your response.getWriter().print() statements:
             if (success) {
                 out.print("{\"status\":\"success\",\"message\":\"Product added successfully\"}");
             } else {
