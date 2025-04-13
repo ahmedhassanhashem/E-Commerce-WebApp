@@ -19,16 +19,15 @@ public class ProductListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String categoryParam = request.getParameter("category"); // Get category from URL
+        String categoryParam = request.getParameter("category");
 
         List<Product> allProducts = ProductFactory.getProducts();
         List<Product> filteredProducts;
 
         if (categoryParam != null && !categoryParam.isEmpty()) {
             try {
-                filteredProducts = allProducts.stream()
-                        .filter(product -> product.getCategory().name().equalsIgnoreCase(categoryParam))
-                        .toList();
+                ProductCategory category = ProductCategory.valueOf(categoryParam.toUpperCase());
+                filteredProducts = ProductFactory.getProductsByCategory(category);
             } catch (IllegalArgumentException e) {
                 filteredProducts = allProducts; // If invalid category, show all products
             }
@@ -37,9 +36,9 @@ public class ProductListServlet extends HttpServlet {
         }
 
         // Category counts
-        int beansCategory = (int) allProducts.stream().filter(p -> p.getCategory() == ProductCategory.BEANS).count();
-        int mugsCategory = (int) allProducts.stream().filter(p -> p.getCategory() == ProductCategory.MUGS).count();
-        int machinesCategory = (int) allProducts.stream().filter(p -> p.getCategory() == ProductCategory.MACHINES).count();
+        int beansCategory = ProductFactory.getProductsByCategory(ProductCategory.BEANS).size();
+        int mugsCategory = ProductFactory.getProductsByCategory(ProductCategory.MUGS).size();
+        int machinesCategory = ProductFactory.getProductsByCategory(ProductCategory.MACHINES).size();
 
         // Set attributes
         request.setAttribute("products", filteredProducts);

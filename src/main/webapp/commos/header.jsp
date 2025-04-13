@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 
 <!--====== Main Header ======-->
 <header class="header--style-2">
@@ -212,6 +214,8 @@
 <%--                <!--====== End - Dropdown ======-->--%>
 <%--              </li>--%>
 
+
+            <c:if test="${sessionScope.user != null}">
               <li class="has-dropdown">
                 <a class="mini-cart-shop-link"><i class="fas fa-shopping-cart"></i>
                   <span class="total-item-round">2</span></a>
@@ -267,6 +271,10 @@
                 </div>
                 <!--====== End - Dropdown ======-->
               </li>
+            </c:if>
+
+
+
             </ul>
             <!--====== End - List ======-->
           </div>

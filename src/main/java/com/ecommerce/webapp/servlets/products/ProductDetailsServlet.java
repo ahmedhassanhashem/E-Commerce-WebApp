@@ -24,12 +24,11 @@ public class ProductDetailsServlet extends HttpServlet {
         // Retrieve productName from the request parameter
         String productIdParam = request.getParameter("id");
         if (productIdParam == null || productIdParam.isEmpty()) {
-            response.sendRedirect("404.jsp"); // Redirect or show an error if no product is specified
+            response.sendRedirect("404.jsp");
             return;
         }
 
 
-        // Retrieve all products (or ideally, use a service/DAO to fetch from DB)
 
 
         // Get the selected product based on id
@@ -40,14 +39,14 @@ public class ProductDetailsServlet extends HttpServlet {
             return;
         }
 
-        // Retrieve similar products: same category but exclude the selected product
+        // Retrieve similar products
         List<Product> similarProducts = ProductFactory.getProductsByCategory(selectedProduct.getCategory());
 
         // Set attributes for the JSP
         request.setAttribute("product", selectedProduct);
         request.setAttribute("similarProducts", similarProducts);
 
-        // Forward to product-details.jsp
+        // Forward
         RequestDispatcher dispatcher = request.getRequestDispatcher("product-details.jsp");
         dispatcher.forward(request, response);
     }

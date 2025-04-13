@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 
 
@@ -69,31 +70,33 @@
 
                                 <span id="modal-product-description" class="pd-detail__preview-desc"></span></div>
 
-                            <div class="u-s-m-b-15">
-                                <div class="pd-detail__inline">
+<%--                            <div class="u-s-m-b-15">--%>
+<%--                                <div class="pd-detail__inline">--%>
 
-                                    <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i></span>
+<%--                                    <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i></span>--%>
 
-                                    <a data-modal="modal" class="add-to-wishlist2-trigger" data-modal-id="#add-to-wishlist2" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist">Add to Wishlist</a>
+<%--                                    <a data-modal="modal" class="add-to-wishlist2-trigger" data-modal-id="#add-to-wishlist2" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist">Add to Wishlist</a>--%>
 
-                                </div>
+<%--                                </div>--%>
 
-                            </div>
+<%--                            </div>--%>
 
-                            <div class="u-s-m-b-15">
-                                <div class="pd-detail__inline">
+<%--                            <div class="u-s-m-b-15">--%>
+<%--                                <div class="pd-detail__inline">--%>
 
-                                    <span class="pd-detail__click-wrap"><i class="fas fa-shopping-cart u-s-m-r-6"></i></span>
+<%--                                    <span class="pd-detail__click-wrap"><i class="fas fa-shopping-cart u-s-m-r-6"></i></span>--%>
 
-                                    <a data-modal="modal" class="add-to-cart2-trigger" data-modal-id="#add-to-cart2" data-tooltip="tooltip" data-placement="top" title="Add to Cart">Add to Cart</a>
-                                </div>
+<%--                                    <a data-modal="modal" class="add-to-cart2-trigger" data-modal-id="#add-to-cart2" data-tooltip="tooltip" data-placement="top" title="Add to Cart">Add to Cart</a>--%>
+<%--                                </div>--%>
 
-                            </div>
+<%--                            </div>--%>
 
 
                             <div class="u-s-m-b-15">
                                 <form class="pd-detail__form">
                                     <div class="pd-detail-inline-2">
+
+                                        <c:if test="${sessionScope.user != null}">
                                         <div class="u-s-m-b-15">
 
                                             <!--====== Input Counter ======-->
@@ -103,16 +106,21 @@
 
                                                 <input id="modal-product-stock-input" class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1">
 
-                                                <span class="input-counter__plus fas fa-plus"></span></div>
+                                                <span class="input-counter__plus fas fa-plus"></span>
+                                            </div>
                                             <!--====== End - Input Counter ======-->
                                         </div>
+
                                         <div class="u-s-m-b-15">
-                                            <button class="btn btn--e-brand-b-2" type="submit">Checkout</button>
+                                            <button class="btn btn--e-brand-b-2" type="submit">Add To Cart</button>
                                         </div>
+                                        </c:if>
+
                                         <div class="u-s-m-b-15">
                                             <button class="btn btn--e-white-brand-shadow" data-dismiss="modal" type="button" >CONTINUE SHOPPING</button>
 
                                         </div>
+
                                     </div>
                                 </form>
                             </div>
