@@ -48,8 +48,8 @@ public class AddBalanceServlet extends HttpServlet {
                 jsonResponse.addProperty("success", false);
                 jsonResponse.addProperty("message", "Amount must be greater than zero.");
             } else {
-                double newBalance = currentUser.getCreditLimit() + amount;
-                currentUser.setCreditLimit(newBalance);
+                double newBalance = currentUser.getCreditBalance() + amount;
+                currentUser.setCreditBalance(newBalance);
                 session.setAttribute("currentUser", currentUser);
 
                 jsonResponse.addProperty("success", true);

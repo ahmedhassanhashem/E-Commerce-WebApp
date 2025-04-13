@@ -2,304 +2,134 @@ package com.ecommerce.webapp.dao;
 
 import com.ecommerce.webapp.entities.Product;
 import com.ecommerce.webapp.entities.ProductCategory;
-import com.ecommerce.webapp.util.PersistenceManager;
+import com.ecommerce.webapp.utils.PersistenceManager;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDAO {
 
-    PersistenceManager emf = PersistenceManager.getInstance();
-
-    // Find product by ID
     public Product findById(int productId) {
-
-        EntityManager entityManager = emf.getEntityManager();
-
-        Product product = null;
-
+        EntityManager em = PersistenceManager.getEntityManager();
+        TypedQuery<Product> query = em.createQuery(
+                "SELECT p FROM Product p WHERE p.productId = :id",
+                Product.class
+        );
+        query.setParameter("id", productId);
         try {
-            entityManager.getTransaction().begin();
-
-            product = entityManager.find(Product.class, productId);
-
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            entityManager.close();
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
         }
-
-        return product;
     }
 
-    // Get all products
     public List<Product> getAllProducts() {
-         EntityManager entityManager = emf.getEntityManager();
-
-        List<Product> products = new ArrayList<>();
-
-        try {
-            entityManager.getTransaction().begin();
-
-            TypedQuery<Product> query = entityManager.createQuery(
-                    "SELECT p FROM Product p ORDER BY p.product_id", Product.class);
-            products = query.getResultList();
-
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            entityManager.close();
-        }
-
-        return products;
+        EntityManager em = PersistenceManager.getEntityManager();
+        TypedQuery<Product> query = em.createQuery(
+                "SELECT p FROM Product p",
+                Product.class
+        );
+        return query.getResultList();
     }
 
-    // Find products by category
     public List<Product> findByCategory(ProductCategory category) {
-        EntityManager entityManager = emf.getEntityManager();
-                 List<Product> products = new ArrayList<>();
-
-        try {
-            entityManager.getTransaction().begin();
-
-            TypedQuery<Product> query = entityManager.createQuery(
-                    "SELECT p FROM Product p WHERE p.category = :category", Product.class);
-            query.setParameter("category", category);
-            products = query.getResultList();
-
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            entityManager.close();
-        }
-
-        return products;
+        EntityManager em = PersistenceManager.getEntityManager();
+        TypedQuery<Product> query = em.createQuery(
+                "SELECT p FROM Product p WHERE p.category = :category",
+                Product.class
+        );
+        query.setParameter("category", category);
+        return query.getResultList();
     }
 
-    // Find products with stock less than a certain threshold
     public List<Product> findLowStockProducts(int threshold) {
-        EntityManager entityManager = emf.getEntityManager();
- 
-        List<Product> products = new ArrayList<>();
-
-        try {
-            entityManager.getTransaction().begin();
-
-            TypedQuery<Product> query = entityManager.createQuery(
-                    "SELECT p FROM Product p WHERE p.stock < :threshold ORDER BY p.stock", Product.class);
-            query.setParameter("threshold", threshold);
-            products = query.getResultList();
-
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            entityManager.close();
-        }
-
-        return products;
+        EntityManager em = PersistenceManager.getEntityManager();
+        TypedQuery<Product> query = em.createQuery(
+                "SELECT p FROM Product p WHERE p.stock < :threshold",
+                Product.class
+        );
+        query.setParameter("threshold", threshold);
+        return query.getResultList();
     }
 
-    // Add new product
     public boolean addProduct(Product product) {
-        EntityManager entityManager = emf.getEntityManager();
-
         try {
-            entityManager.getTransaction().begin();
-
-            entityManager.persist(product);
-
-            entityManager.getTransaction().commit();
+            EntityManager em = PersistenceManager.getEntityManager();
+            em.persist(product);
             return true;
         } catch (Exception e) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            e.printStackTrace();
             return false;
-        } finally {
-            entityManager.close();
         }
     }
 
-    // Update existing product
     public boolean updateProduct(Product product) {
-        EntityManager entityManager = emf.getEntityManager();
-
         try {
-            entityManager.getTransaction().begin();
-
-            Product existingProduct = entityManager.find(Product.class, product.getProductId());
-            if (existingProduct == null) {
-                return false;
-            }
-
-            // Update fields
-            existingProduct.setName(product.getName());
-            existingProduct.setDescription(product.getDescription());
-            existingProduct.setPrice(product.getPrice());
-            existingProduct.setCategory(product.getCategory());
-            existingProduct.setImage(product.getImage());
-            existingProduct.setStock(product.getStock());
-
-            entityManager.merge(existingProduct);
-
-            entityManager.getTransaction().commit();
+            EntityManager em = PersistenceManager.getEntityManager();
+            em.merge(product);
             return true;
         } catch (Exception e) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            e.printStackTrace();
             return false;
-        } finally {
-            entityManager.close();
         }
     }
 
-    // Delete product
     public boolean deleteProduct(int productId) {
-        EntityManager entityManager = emf.getEntityManager();
-
-        try {
-            entityManager.getTransaction().begin();
-
-            Product product = entityManager.find(Product.class, productId);
-            if (product == null) {
+        EntityManager em = PersistenceManager.getEntityManager();
+        Product product = em.find(Product.class, productId);
+        if(product != null) {
+            try {
+                em.remove(product);
+                return true;
+            } catch (Exception e) {
                 return false;
             }
+        }
+        return false;
+    }
 
-            entityManager.remove(product);
+    public List<Product> searchByName(String searchTerm) {
+        EntityManager em = PersistenceManager.getEntityManager();
+        TypedQuery<Product> query = em.createQuery(
+                "SELECT p FROM Product p WHERE LOWER(p.name) LIKE LOWER(:term)",
+                Product.class
+        );
+        query.setParameter("term", "%" + searchTerm + "%");
+        return query.getResultList();
+    }
 
-            entityManager.getTransaction().commit();
+    public long getProductCount() {
+        EntityManager em = PersistenceManager.getEntityManager();
+        TypedQuery<Long> query = em.createQuery(
+                "SELECT COUNT(p) FROM Product p",
+                Long.class
+        );
+        return query.getSingleResult();
+    }
+
+    public List<Product> getProductsSortedByPrice(boolean ascending) {
+        EntityManager em = PersistenceManager.getEntityManager();
+        String direction = ascending ? "ASC" : "DESC";
+        TypedQuery<Product> query = em.createQuery(
+                "SELECT p FROM Product p ORDER BY p.price " + direction,
+                Product.class
+        );
+        return query.getResultList();
+    }
+
+    public boolean updateProductStock(int productId, int newStock) {
+        EntityManager em = PersistenceManager.getEntityManager();
+        TypedQuery<Product> query = em.createQuery(
+                "SELECT p FROM Product p WHERE p.productId = :id",
+                Product.class
+        );
+        query.setParameter("id", productId);
+        try {
+            Product product = query.getSingleResult();
+            product.setStock(newStock);
+            em.merge(product);
             return true;
         } catch (Exception e) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            e.printStackTrace();
             return false;
-        } finally {
-            entityManager.close();
-        }
-    }
-
-    // Search products by name
-    public List<Product> searchByName(String searchTerm) {
-        EntityManager entityManager = emf.getEntityManager();
-        List<Product> products = new ArrayList<>();
-
-        try {
-            entityManager.getTransaction().begin();
-
-            TypedQuery<Product> query = entityManager.createQuery(
-                    "SELECT p FROM Product p WHERE LOWER(p.name) LIKE LOWER(:searchTerm)", Product.class);
-            query.setParameter("searchTerm", "%" + searchTerm + "%");
-            products = query.getResultList();
-
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            entityManager.close();
-        }
-
-        return products;
-    }
-
-    // Get product count
-    public long getProductCount() {
-        EntityManager entityManager = emf.getEntityManager();
-        long count = 0;
-
-        try {
-            entityManager.getTransaction().begin();
-
-            TypedQuery<Long> query = entityManager.createQuery(
-                    "SELECT COUNT(p) FROM Product p", Long.class);
-            count = query.getSingleResult();
-
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            entityManager.close();
-        }
-
-        return count;
-    }
-
-    // Get products sorted by price (ascending or descending)
-    public List<Product> getProductsSortedByPrice(boolean ascending) {
-        EntityManager entityManager = emf.getEntityManager();
-        List<Product> products = new ArrayList<>();
-
-        try {
-            entityManager.getTransaction().begin();
-
-            String direction = ascending ? "ASC" : "DESC";
-            TypedQuery<Product> query = entityManager.createQuery(
-                    "SELECT p FROM Product p ORDER BY p.price " + direction, Product.class);
-            products = query.getResultList();
-
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            entityManager.close();
-        }
-
-        return products;
-    }
-
-    // Update product stock
-    public boolean updateProductStock(int productId, int newStock) {
-        EntityManager entityManager = emf.getEntityManager();
-
-        try {
-            entityManager.getTransaction().begin();
-
-            int updated = entityManager.createQuery(
-                            "UPDATE Product p SET p.stock = :newStock WHERE p.product_id = :productId")
-                    .setParameter("newStock", newStock)
-                    .setParameter("productId", productId)
-                    .executeUpdate();
-
-            entityManager.getTransaction().commit();
-            return updated > 0;
-        } catch (Exception e) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            e.printStackTrace();
-            return false;
-        } finally {
-            entityManager.close();
         }
     }
 }

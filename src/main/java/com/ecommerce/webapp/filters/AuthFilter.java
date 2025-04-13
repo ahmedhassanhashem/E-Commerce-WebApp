@@ -1,4 +1,4 @@
-package com.ecommerce.webapp.filter;
+package com.ecommerce.webapp.filters;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
