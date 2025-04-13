@@ -59,7 +59,7 @@ public class AddProductServlet extends HttpServlet {
 
                 // Get the path to your product images folder
                 // This path points to src/main/webapp/images/product in your deployed application
-                String uploadPath = getServletContext().getRealPath("/images/product/");
+                String uploadPath = getServletContext().getRealPath("/images/product/electronic/");
                 File uploadDir = new File(uploadPath);
                 if (!uploadDir.exists()) {
                     uploadDir.mkdirs();

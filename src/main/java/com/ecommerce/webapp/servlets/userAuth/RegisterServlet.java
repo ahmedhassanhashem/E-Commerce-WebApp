@@ -52,11 +52,11 @@ public class RegisterServlet extends HttpServlet {
         user.setPhone(phone);
         user.setAddress(address);
         user.setPassword(password);
-        user.setCreditLimit(creditLimit);
+        user.setCreditBalance(creditLimit);
         
         // Register user
         UserDAO userDAO = new UserDAO();
-        boolean isRegistered = userDAO.RegisterUser(user);
+        boolean isRegistered = userDAO.registerUser(user);
         
         if (isRegistered) {
             HttpSession session = request.getSession();
