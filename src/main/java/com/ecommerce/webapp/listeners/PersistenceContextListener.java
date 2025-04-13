@@ -24,16 +24,5 @@ public class PersistenceContextListener implements ServletContextListener {
             emf.close();
         }
 
-        // Add these lines to cleanup MySQL threads
-        try {
-            java.sql.DriverManager.deregisterDriver(
-                    java.sql.DriverManager.getDriver("jdbc:mysql://localhost:3306/webapp")
-            );
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        // Shutdown MySQL AbandonedConnectionCleanupThread
-        com.mysql.cj.jdbc.AbandonedConnectionCleanupThread.checkedShutdown();
     }
 }
