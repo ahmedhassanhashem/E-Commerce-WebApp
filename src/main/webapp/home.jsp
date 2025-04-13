@@ -190,7 +190,9 @@
                                                        data-name="${product.name}"
                                                        data-description="${product.description}"
                                                        data-stock="${product.stock}"
-                                                       data-price="${product.price}">
+                                                       data-price="${product.price}"
+                                                       data-id="${product.productId}">
+
                                                         <i class="fas fa-search-plus"></i>
                                                     </a>
                                                 </li>
