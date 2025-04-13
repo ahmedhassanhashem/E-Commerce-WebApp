@@ -5,11 +5,13 @@ import java.util.List;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Data
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -19,7 +21,7 @@ public class Order {
     private Long orderId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_order_user"))
     private User user;
 
     @Min(0)

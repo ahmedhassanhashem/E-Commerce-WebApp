@@ -2,6 +2,7 @@ package com.ecommerce.webapp.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@Data
 @Entity
 @Table(name = "order_items")
 public class OrderItem {
@@ -18,7 +20,7 @@ public class OrderItem {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(name = "order_id", nullable = false, foreignKey = @ForeignKey(name = "fk_orderitem_order"))
     private Order order;
 
     @ManyToOne

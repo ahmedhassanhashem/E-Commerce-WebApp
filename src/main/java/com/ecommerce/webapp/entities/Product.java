@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
+@Data
 @Entity
 @Table(name = "products")
 public class Product {

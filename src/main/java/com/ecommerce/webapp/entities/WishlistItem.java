@@ -1,6 +1,7 @@
 package com.ecommerce.webapp.entities;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,6 +9,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
+@Data
 @Entity
 @Table(name = "wishlist_items")
 public class WishlistItem {
@@ -17,7 +19,7 @@ public class WishlistItem {
     public int id;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(name = "product_id", nullable = false, foreignKey = @ForeignKey(name = "fk_wishlistitem_product"))
     private Product product;
 
     @ManyToOne

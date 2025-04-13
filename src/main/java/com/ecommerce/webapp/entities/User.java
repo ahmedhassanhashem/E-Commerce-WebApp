@@ -17,6 +17,7 @@ import org.hibernate.validator.constraints.Length;
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
+@Data
 @Entity
 @Table(name = "users", indexes = {
         @Index(columnList = "email"),

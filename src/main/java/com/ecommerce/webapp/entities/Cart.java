@@ -3,14 +3,12 @@ package com.ecommerce.webapp.entities;
 import java.util.*;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@Data
 @Entity
 @Table(name = "cart")
 public class Cart {

@@ -7,6 +7,7 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@Data
 @Entity
 @Table(name = "cart_items")
 public class CartItem {
@@ -16,7 +17,7 @@ public class CartItem {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(name = "product_id", nullable = false, foreignKey = @ForeignKey(name = "fk_cartitem_product"))
     private Product product;
 
     @Min(1)
