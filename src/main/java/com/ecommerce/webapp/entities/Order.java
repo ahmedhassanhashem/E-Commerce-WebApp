@@ -34,4 +34,12 @@ public class Order {
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> items = new ArrayList<>();
+
+
+    @Transient
+    public double getOrderTotalPrice() {
+        return items.stream()
+                .map(item -> item.getItemPrice() * item.getQuantity())
+                .reduce(0.0, Double::sum);
+    }
 }
