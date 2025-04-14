@@ -43,7 +43,6 @@ public class AddProductServlet extends HttpServlet {
             double price = Double.parseDouble(request.getParameter("product-price"));
             int stock = Integer.parseInt(request.getParameter("product-stock"));
             ProductCategory category = ProductCategory.valueOf(request.getParameter("product-category").toUpperCase());
-            String status = request.getParameter("product-status").toUpperCase();
 
             // Handle file upload
             String imageName = "";
