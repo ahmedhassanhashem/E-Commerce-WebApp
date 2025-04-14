@@ -72,18 +72,6 @@ function displayOrders(orders) {
     
     $("#orders-table tbody").html(tableContent);
 }
-//need to implement the function to view order details
-function viewOrderDetails(orderId) {
-
-    $("#modal-order-id").text(orderId);
-    $("#order-details-content").text("Loading order details...");
-    $("#orderDetailsModal").show();
-    
-    setTimeout(() => {
-        $("#order-details-content").text("Order details would be displayed here");
-    }, 500);
-}
-
 function updateOrderStatus(orderId, newStatus) {
     $.ajax({
         url: "updateOrderStatus",
@@ -111,9 +99,6 @@ function refreshOrders() {
     showNotification("Orders refreshed", "success");
 }
 
-function closeModal() {
-    $(".modal").hide();
-}
 
 function showNotification(message, type) {
     const notification = $("#notification");
