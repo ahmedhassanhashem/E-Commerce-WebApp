@@ -32,112 +32,81 @@ public class ForgotPasswordServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        
         String action = request.getParameter("action");
         
         if ("reset".equals(action)) {
             handlePasswordReset(request, response);
-        } 
-        else {
+        } else {
             handleForgotPassword(request, response);
         }
     }
     
     private void handleForgotPassword(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        
         String email = request.getParameter("reset-email");
         String phone = request.getParameter("reset-cc");
         
         if (email == null || email.trim().isEmpty() || phone == null || phone.trim().isEmpty()) {
-            request.setAttribute("errorMessage", "Email and phone number are required");
-            request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
+            setErrorAndRedirect(request, response, "Email and phone number are required", "forgot-password.jsp");
             return;
         }
         
+        // Verify user exists
         User user = userDAO.findByEmail(email);
-        
-        // Verify user exists and phone matches
         if (user == null) {
-            request.setAttribute("errorMessage", "Email not found in our records");
-            request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
+            setErrorAndRedirect(request, response, "Email not found in our records", "forgot-password.jsp");
             return;
         }
         
-        // Check if phone matches the user's record
-        if (user.getPhone() == null || !user.getPhone().equals(phone)) {
-            request.setAttribute("errorMessage", "Phone number does not match our records for this email");
-            request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
+        // Verify phone matches
+        if (!phone.equals(user.getPhone())) {
+            setErrorAndRedirect(request, response, "Phone number does not match our records", "forgot-password.jsp");
             return;
         }
         
+        // Generate reset token and store in session
         String resetToken = generateSecureToken();
-      
         HttpSession session = request.getSession();
         session.setAttribute("resetEmail", email);
         session.setAttribute("resetToken", resetToken);
-        
-        session.setMaxInactiveInterval(30 * 60);
+        session.setMaxInactiveInterval(30 * 60); // 30 minutes
         
         response.sendRedirect("reset-password.jsp");
     }
     
     private void handlePasswordReset(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        
         HttpSession session = request.getSession();
         String email = (String) session.getAttribute("resetEmail");
-        String token = (String) session.getAttribute("resetToken");
-        
         String newPassword = request.getParameter("new-password");
         String confirmPassword = request.getParameter("confirm-password");
         
-        // Validate inputs and session data
-        if (email == null || token == null) {
-            request.setAttribute("errorMessage", "Password reset session expired or invalid. Please try again.");
-            request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
+        if (email == null) {
+            setErrorAndRedirect(request, response, "Password reset session expired or invalid", "forgot-password.jsp");
             return;
         }
         
-        if (newPassword == null || confirmPassword == null) {
-            request.setAttribute("errorMessage", "Missing required parameters");
-            request.getRequestDispatcher("reset-password.jsp").forward(request, response);
+        if (newPassword == null || confirmPassword == null || !newPassword.equals(confirmPassword)) {
+            setErrorAndRedirect(request, response, "Passwords do not match", "reset-password.jsp");
             return;
         }
-        
-        // Verify passwords match
-        if (!newPassword.equals(confirmPassword)) {
-            request.setAttribute("errorMessage", "Passwords do not match");
-            request.getRequestDispatcher("reset-password.jsp").forward(request, response);
-            return;
-        }
-        
-        // Validate password strength
-        boolean isStrongPassword = newPassword.length() >= 8 &&
-                                 newPassword.matches(".*[A-Z].*") && 
-                                 newPassword.matches(".*[a-z].*") && 
-                                 newPassword.matches(".*[0-9].*");
-        
-        if (!isStrongPassword) {
-            request.setAttribute("errorMessage", 
-                "Password must be at least 8 characters long and include uppercase, lowercase, and numbers");
-            request.getRequestDispatcher("reset-password.jsp").forward(request, response);
-            return;
-        }
-        
-        boolean updateSuccess = userDAO.updatePassword(email, newPassword);
-        
-        if (updateSuccess) {
+    
+        if (userDAO.updatePassword(email, newPassword)) {
 
             session.removeAttribute("resetEmail");
             session.removeAttribute("resetToken");
             
-            session.setAttribute("successMessage", "Password has been reset successfully. Please log in with your new password.");
+            session.setAttribute("successMessage", "Password reset successful. Please log in.");
             response.sendRedirect("login.jsp");
         } else {
-            request.setAttribute("errorMessage", "Failed to update password. Please try again.");
-            request.getRequestDispatcher("reset-password.jsp").forward(request, response);
+            setErrorAndRedirect(request, response, "Failed to update password", "reset-password.jsp");
         }
+    }
+    
+    private void setErrorAndRedirect(HttpServletRequest request, HttpServletResponse response, 
+                                    String message, String page) throws ServletException, IOException {
+        request.setAttribute("errorMessage", message);
+        request.getRequestDispatcher(page).forward(request, response);
     }
     
     private String generateSecureToken() {

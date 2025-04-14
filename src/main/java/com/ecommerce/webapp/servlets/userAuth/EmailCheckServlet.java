@@ -39,11 +39,10 @@ public class EmailCheckServlet extends HttpServlet {
             return;
         }
         
-        // Check if email exists in database
         User user = userDAO.findByEmail(email);
         
         if (user != null) {
-            out.print("Valid user! Please enter your password");
+            out.print("Valid user!");
         } else {
             out.print("Email not found. Please <a href='register.jsp'>register</a> first");
         }
