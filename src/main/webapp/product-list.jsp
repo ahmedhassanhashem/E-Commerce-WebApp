@@ -72,13 +72,13 @@
                                                         <span class="category-list__text u-s-m-l-6">(${requestScope.beansCategory})</span>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" name="category" value="BEANS" id="catMugs"
+                                                        <input type="radio" name="category" value="MUGS" id="catMugs"
                                                         ${param.category eq 'MUGS' ? 'checked' : ''}>
                                                         <label for="catMugs">Coffee Mugs</label>
                                                         <span class="category-list__text u-s-m-l-6">(${requestScope.mugsCategory})</span>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" name="category" value="BEANS" id="catMachines"
+                                                        <input type="radio" name="category" value="MACHINES" id="catMachines"
                                                         ${param.category eq 'MACHINES' ? 'checked' : ''}>
                                                         <label for="catMachines">Coffee Machines</label>
                                                         <span class="category-list__text u-s-m-l-6">(${requestScope.machinesCategory})</span>
