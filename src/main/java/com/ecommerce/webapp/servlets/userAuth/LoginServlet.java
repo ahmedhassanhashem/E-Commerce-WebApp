@@ -133,16 +133,16 @@ public class LoginServlet extends HttpServlet {
             
             User user = userDAO.findByEmail(email);
             
-            // Create user data for session
-            Map<String, Object> userData = new HashMap<>();
-            userData.put("email", user.getEmail());
-            userData.put("name", user.getName() != null ? user.getName() : user.getEmail().split("@")[0]);
+//            // Create user data for session
+//            Map<String, Object> userData = new HashMap<>();
+//            userData.put("email", user.getEmail());
+//            userData.put("name", user.getName() != null ? user.getName() : user.getEmail().split("@")[0]);
             
             // Check if user is admin based on static email list
             boolean isAdmin = ADMIN_EMAILS.contains(email);
             
             HttpSession session = request.getSession();
-            session.setAttribute("user", userData);
+            session.setAttribute("user", user);
             session.setAttribute("isAdmin", isAdmin);
             
             if (rememberMe != null) {
