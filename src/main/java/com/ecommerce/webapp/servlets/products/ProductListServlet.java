@@ -77,7 +77,7 @@ public class ProductListServlet extends HttpServlet {
         );
 
         req.setAttribute("products", result.getProducts());
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/search-results.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/product-list.jsp");
         dispatcher.forward(req, resp);
     }
 
