@@ -2,7 +2,6 @@ package com.ecommerce.webapp.dao;
 
 import java.util.List;
 
-import com.ecommerce.webapp.entities.Order;
 import com.ecommerce.webapp.entities.User;
 import com.ecommerce.webapp.utils.PersistenceManager;
 import jakarta.persistence.EntityManager;
@@ -75,5 +74,13 @@ public class UserDAO {
         } catch (NoResultException e) {
             return null;
         }
+    }
+    public long getUsersCount() {
+        EntityManager em = PersistenceManager.getEntityManager();
+        TypedQuery<Long> query = em.createQuery(
+                "SELECT COUNT(u) FROM User u",
+                Long.class
+        );
+        return query.getSingleResult();
     }
 }

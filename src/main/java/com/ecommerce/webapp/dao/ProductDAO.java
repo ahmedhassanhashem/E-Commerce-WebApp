@@ -132,4 +132,22 @@ public class ProductDAO {
             return false;
         }
     }
+
+    public long getProductOutOfStockCount() {
+        EntityManager em = PersistenceManager.getEntityManager();
+        TypedQuery<Long> query = em.createQuery(
+                "SELECT COUNT(p) FROM Product p WHERE p.stock = 0",
+                Long.class
+        );
+        return query.getSingleResult();
+    }
+
+    public long getProductInStockCount() {
+        EntityManager em = PersistenceManager.getEntityManager();
+        TypedQuery<Long> query = em.createQuery(
+                "SELECT COUNT(p) FROM Product p WHERE p.stock > 0",
+                Long.class
+        );
+        return query.getSingleResult();
+    }
 }
