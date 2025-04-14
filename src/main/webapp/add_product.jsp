@@ -71,7 +71,7 @@
                 <div class="file-input-button">
                   <i class="fas fa-upload"></i> Choose Image
                 </div>
-                <input type="file" id="product-image" name="product-image" accept="image/*" onchange="previewImage(this)">
+                <input type="file" id="product-image" name="product-image" accept="image/jpg" onchange="previewImage(this)">
                 <span class="file-name" id="file-name-display">No file chosen</span>
               </div>
               <div class="image-preview" id="image-preview">
