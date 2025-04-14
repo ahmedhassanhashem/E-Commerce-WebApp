@@ -40,7 +40,7 @@
                             <a href="product-list?category=${product.category.name().toLowerCase()}">${product.category.name()}</a>
                         </div>
                         <div class="product-m__name">
-                            <a href="product-details?name=${product.name}">${product.name}</a>
+                            <a href="product-details?id=${product.productId}&name=${product.name}">${product.name}</a>
                         </div>
                         <div class="product-m__price">
                             $${product.price}
@@ -79,7 +79,15 @@
         <ul class="shop-p__pagination">
             <c:forEach var="i" begin="1" end="${requestScope.totalPages}">
                 <li class="${i == requestScope.currentPage ? 'is-active' : ''}">
-                    <a href="#" class="pagination-link" data-page="${i}">${i}</a>
+                    <a href="#"
+                       class="pagination-link"
+                       data-page="${i}"
+                       data-category="${param.category}"
+                       data-price-min="${param.priceMin}"
+                       data-price-max="${param.priceMax}"
+                       data-search="${param.search}">
+                            ${i}
+                    </a>
                 </li>
             </c:forEach>
         </ul>

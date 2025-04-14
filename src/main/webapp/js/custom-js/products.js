@@ -1,140 +1,157 @@
 $(document).ready(function () {
-    // Current state variables
-    let currentViewMode = 'grid'; // Default to grid view
-    let currentItemsPerPage = $("#showSelect").val(); // e.g., "9"
-    let currentSort = $("#sortSelect").val() || ""; // Default to no sorting if empty
-    let currentPage = 1; // Start at first page
-    let scrollPosition = 0; // For scroll preservation
+    // State management object
+    const productState = {
+        currentPage: 1,
+        itemsPerPage: 9,
+        sortBy: '',
+        viewMode: 'grid',
+        filters: {
+            category: '',
+            priceMin: '',
+            priceMax: '',
+            search: ''
+        }
+    };
 
-    // Helper function to gather filter parameters from the DOM
-    function getFilterParams() {
-        let category = $("input[name='category']:checked").val() || "";
-        let priceMin = $("#price-min").val() || "";
-        let priceMax = $("#price-max").val() || "";
-        let searchKeyword = $("#searchKeyword").val() || "";
+    // DOM Elements cache
+    const domElements = {
+        productContainer: $('#productListContainer'),
+        showSelect: $('#showSelect'),
+        sortSelect: $('#sortSelect'),
+        priceMin: $('#price-min'),
+        priceMax: $('#price-max'),
+        categoryRadios: $("input[name='category']"),
+        clearFilters: $('#clearFilters')
+    };
 
-        return {
-            category: category,
-            priceMin: priceMin,
-            priceMax: priceMax,
-            search: searchKeyword
+    // Initialize filters from URL
+    function initFiltersFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        productState.filters = {
+            category: urlParams.get('category') || '',
+            priceMin: urlParams.get('priceMin') || '',
+            priceMax: urlParams.get('priceMax') || '',
+            search: urlParams.get('search') || ''
         };
     }
 
-    function getInitialCategory() {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get('category') || '';
-    }
+    // Unified AJAX call handler
+    function loadProducts(preserveScroll = false) {
+        const params = new URLSearchParams({
+            action: 'ajax-list',
+            page: productState.currentPage,
+            show: productState.itemsPerPage,
+            sort: productState.sortBy,
+            ...productState.filters
+        });
 
-    // Function to load products via AJAX, including filter parameters
-    function loadProducts(page, itemsPerPage, sort, preserveScroll = false) {
         if (preserveScroll) {
-            scrollPosition = $(window).scrollTop();
+            productState.scrollPosition = $(window).scrollTop();
         }
-        // Get current filters
-        let filters = getFilterParams();
-
-
 
         $.ajax({
-            url: 'product-list-ajax',
+            url: '/product-list',
             type: 'GET',
-            data: {
-                page: page,
-                show: itemsPerPage,
-                sort: sort,
-                category: filters.category,
-                priceMin: filters.priceMin,
-                priceMax: filters.priceMax,
-                search: filters.search
+            data: params.toString(),
+            success: function(data) {
+                domElements.productContainer.html(data);
+                updateViewMode();
+                restoreScrollPosition(preserveScroll);
+                updateActivePagination();
             },
-            success: function (data) {
-                $("#productListContainer").html(data);
-
-                // Re-apply current view mode after content is loaded
-                if (currentViewMode === 'grid') {
-                    $('.js-shop-grid-target').addClass('is-active');
-                    $('.js-shop-list-target').removeClass('is-active');
-                    $('.shop-p__collection .row').addClass('is-grid-active').removeClass('is-list-active');
-                } else {
-                    $('.js-shop-list-target').addClass('is-active');
-                    $('.js-shop-grid-target').removeClass('is-active');
-                    $('.shop-p__collection .row').removeClass('is-grid-active').addClass('is-list-active');
-                }
-
-                if (preserveScroll) {
-                    $('html, body').scrollTop(scrollPosition);
-                } else {
-                    $('html, body').animate({
-                        scrollTop: $('#productListContainer').offset().top - 120
-                    }, 500);
-                }
-            },
-            error: function (xhr, status, error) {
-                console.error("Error loading products: ", error);
-            }
+            error: handleAjaxError
         });
     }
 
-    // Event handler for grid/list toggling
-    $('.js-shop-grid-target').on('click', function () {
-        $(this).addClass('is-active');
-        $('.js-shop-list-target').removeClass('is-active');
-        $('.shop-p__collection .row').addClass('is-grid-active').removeClass('is-list-active');
-        currentViewMode = 'grid';
-    });
+    // View mode management
+    function updateViewMode() {
+        const rowElement = $('.shop-p__collection .row');
+        const isGrid = productState.viewMode === 'grid';
 
-    $('.js-shop-list-target').on('click', function () {
-        $(this).addClass('is-active');
-        $('.js-shop-grid-target').removeClass('is-active');
-        $('.shop-p__collection .row').removeClass('is-grid-active').addClass('is-list-active');
-        currentViewMode = 'list';
-    });
+        rowElement.toggleClass('is-grid-active', isGrid)
+            .toggleClass('is-list-active', !isGrid);
 
-    // Event handler for "Show" dropdown change
-    $("#showSelect").change(function () {
-        currentItemsPerPage = $(this).val();
-        currentPage = 1;
-        loadProducts(currentPage, currentItemsPerPage, currentSort, false);
-    });
+        $('.js-shop-grid-target, .js-shop-list-target')
+            .removeClass('is-active')
+            .filter(`.js-shop-${productState.viewMode}-target`)
+            .addClass('is-active');
+    }
 
-    // Event handler for "Sort By" dropdown change
-    $("#sortSelect").change(function () {
-        currentSort = $(this).val();
-        currentPage = 1;
-        loadProducts(currentPage, currentItemsPerPage, currentSort, false);
-    });
+    // Event handlers
+    function bindEvents() {
+        // View mode toggles
+        $('.js-shop-grid-target, .js-shop-list-target').on('click', function() {
+            productState.viewMode = $(this).hasClass('js-shop-grid-target') ? 'grid' : 'list';
+            updateViewMode();
+        });
 
-    // Event handler for filter changes (category, price)
-    $("input[name='category'], #price-min, #price-max").change(function () {
-        currentPage = 1;
-        loadProducts(currentPage, currentItemsPerPage, currentSort, false);
-    });
+        // Filter controls
+        domElements.showSelect.on('change', function() {
+            productState.itemsPerPage = $(this).val();
+            productState.currentPage = 1;
+            loadProducts();
+        });
 
-    // Event handler for "Clear Filters" button
-    $("#clearFilters").on("click", function () {
-        // Reset filter inputs to default values (empty or default radio selection)
-        $("input[name='category']").prop("checked", false);
-        // Optionally, set one radio to default:
-        // $("input[name='category'][value='']").prop("checked", true);  // if you have a "All Categories" option
+        domElements.sortSelect.on('change', function() {
+            productState.sortBy = $(this).val();
+            productState.currentPage = 1;
+            loadProducts();
+        });
 
-        $("#price-min").val("");
-        $("#price-max").val("");
-        // For checkboxes (if you had color/size) use:
-        // $(".color-filter, .size-filter").prop("checked", false);
+        // Filter changes
+        domElements.categoryRadios.add(domElements.priceMin).add(domElements.priceMax).on('change', function() {
+            productState.currentPage = 1;
+            productState.filters = {
+                category: $("input[name='category']:checked").val() || '',
+                priceMin: domElements.priceMin.val(),
+                priceMax: domElements.priceMax.val(),
+                search: productState.filters.search
+            };
+            loadProducts();
+        });
 
-        // Reload products without any filters
-        currentPage = 1;
-        loadProducts(currentPage, currentItemsPerPage, currentSort, false);
-    });
+        // Clear filters
+        domElements.clearFilters.on('click', function() {
+            productState.filters = { category: '', priceMin: '', priceMax: '', search: '' };
+            productState.currentPage = 1;
+            domElements.categoryRadios.prop('checked', false);
+            domElements.priceMin.val('');
+            domElements.priceMax.val('');
+            loadProducts();
+        });
 
-    // Event handler for pagination clicks
-    $("#productListContainer").on("click", ".pagination-link", function (e) {
-        e.preventDefault();
-        currentPage = $(this).data("page");
-        loadProducts(currentPage, currentItemsPerPage, currentSort, true);
-    });
+        // Pagination
+        domElements.productContainer.on('click', '.pagination-link', function(e) {
+            e.preventDefault();
+            productState.currentPage = $(this).data('page');
+            loadProducts(true);
+        });
+    }
 
-    // Initial load of products on page load
-    loadProducts(currentPage, currentItemsPerPage, currentSort, false);
+    // Helper functions
+    function restoreScrollPosition(preserve) {
+        if (preserve) {
+            $('html, body').scrollTop(productState.scrollPosition);
+        } else {
+            $('html, body').animate({
+                scrollTop: domElements.productContainer.offset().top - 120
+            }, 500);
+        }
+    }
+
+    function updateActivePagination() {
+        $(`.pagination-link[data-page="${productState.currentPage}"]`)
+            .addClass('is-active')
+            .siblings().removeClass('is-active');
+    }
+
+    function handleAjaxError(xhr, status, error) {
+        console.error("Product loading error:", error);
+        domElements.productContainer.html('<div class="alert alert-danger">Error loading products. Please try again.</div>');
+    }
+
+    // Initialization
+    initFiltersFromURL();
+    bindEvents();
+    loadProducts();
 });
