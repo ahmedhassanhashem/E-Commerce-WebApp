@@ -12,7 +12,6 @@ $(document).ready(function() {
     });
 });
 
-// Load orders with current filter settings
 function loadOrders() {
     const searchTerm = $("#search-order").val();
     const statusFilter = $("#filter-status").val();
@@ -76,7 +75,7 @@ function displayOrders(orders) {
     
     $("#orders-table tbody").html(tableContent);
 }
-
+//need to implement the function to view order details
 function viewOrderDetails(orderId) {
 
     $("#modal-order-id").text(orderId);
@@ -89,8 +88,25 @@ function viewOrderDetails(orderId) {
 }
 
 function updateOrderStatus(orderId, newStatus) {
-
-    showNotification(`Order #${orderId} status would be updated to ${newStatus}`, "info");
+    $.ajax({
+        url: "updateOrderStatus",
+        type: "POST",
+        data: {
+            orderId: orderId,
+            status: newStatus
+        },
+        success: function(response) {
+            if (response.success) {
+                showNotification(`Order #${orderId} status updated to ${newStatus}`, "success");
+                loadOrders(); 
+            } else {
+                showNotification(`Error: ${response.message}`, "error");
+            }
+        },
+        error: function(xhr, status, error) {
+            showNotification(`Failed to update order: ${error}`, "error");
+        }
+    });
 }
 
 function refreshOrders() {

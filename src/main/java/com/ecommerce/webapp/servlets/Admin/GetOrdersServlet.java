@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 public class GetOrdersServlet extends HttpServlet {
     
     private OrderDAO orderDAO = new OrderDAO();
-    // private UserDAO userDAO = new UserDAO();
     private Gson gson = new Gson();
     
     @Override
