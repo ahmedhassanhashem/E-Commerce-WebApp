@@ -10,6 +10,13 @@ import java.util.List;
 
 public class OrderDAO {
 
+    public List<Order> findAll() {
+        EntityManager em = PersistenceManager.getEntityManager();
+        TypedQuery<Order> query = em.createQuery(
+                "SELECT o FROM Order o ORDER BY o.orderId DESC", Order.class);
+        return query.getResultList();
+    }
+
     public Order findById(int orderId) {
         EntityManager em = PersistenceManager.getEntityManager();
         TypedQuery<Order> query = em.createQuery(
@@ -51,10 +58,4 @@ public class OrderDAO {
         }
     }
 
-    public List<Order> findAll() {
-        EntityManager em = PersistenceManager.getEntityManager();
-        TypedQuery<Order> query = em.createQuery(
-                "SELECT o FROM Order o ORDER BY o.orderId DESC", Order.class);
-        return query.getResultList();
-    }
 }

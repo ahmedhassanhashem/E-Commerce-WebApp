@@ -1,5 +1,8 @@
 package com.ecommerce.webapp.dao;
 
+import java.util.List;
+
+import com.ecommerce.webapp.entities.Order;
 import com.ecommerce.webapp.entities.User;
 import com.ecommerce.webapp.utils.PersistenceManager;
 import jakarta.persistence.EntityManager;
@@ -61,6 +64,16 @@ public class UserDAO {
             return true;
         } catch (Exception e) {
             return false;
+        }
+    }
+    public List<User> findAll() {
+        EntityManager em = PersistenceManager.getEntityManager();
+        TypedQuery<User> query = em.createQuery(
+                "SELECT u FROM User o ORDER BY u.orderId DESC", User.class);
+        try {
+            return query.getResultList();
+        } catch (NoResultException e) {
+            return null;
         }
     }
 }

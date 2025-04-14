@@ -96,7 +96,7 @@
 <%@include file="commos/script.html" %>
 
 <!-- Add login.js file -->
-<script src="${pageContext.request.contextPath}/js/login.js"></script>
+<script src="js/login.js"></script>
 
 </body>
 </html>

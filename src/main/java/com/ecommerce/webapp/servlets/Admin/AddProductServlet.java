@@ -57,29 +57,21 @@ public class AddProductServlet extends HttpServlet {
                 // Generate name without extension
                 imageName = UUID.randomUUID().toString();
 
-                // Get the path to your product images folder
-                // This path points to src/main/webapp/images/product in your deployed application
-                String uploadPath = getServletContext().getRealPath("/images/product/");
+                String uploadPath = getServletContext().getRealPath("/images/product/electronic/");
                 File uploadDir = new File(uploadPath);
                 if (!uploadDir.exists()) {
                     uploadDir.mkdirs();
                 }
 
-                // Save the file with extension (needed for the actual file)
                 filePart.write(uploadPath + File.separator + imageName + fileExtension);
 
-                // Store only the name without extension in the database
-                // imageName already doesn't have the extension
             }
 
-            // Create product object with name only (no extension)
             Product product = new Product(name, description, price, category, imageName, stock);
 
-            // Save to database
             ProductDAO productDAO = new ProductDAO();
             boolean success = productDAO.addProduct(product);
 
-            // Fix your response.getWriter().print() statements:
             if (success) {
                 out.print("{\"status\":\"success\",\"message\":\"Product added successfully\"}");
             } else {

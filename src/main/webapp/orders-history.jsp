@@ -44,7 +44,7 @@
                     <select id="filter-status" class="form-control">
                         <option value="all">All Statuses</option>
                         <option value="pending">Pending</option>
-                        <option value="completed">Delivered</option>
+                        <option value="Accepted">Accepted</option>
                         <option value="cancelled">Cancelled</option>
                     </select>
                 </div>
