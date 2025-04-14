@@ -141,7 +141,7 @@ public class ProductDAO {
 
 
     // In ProductDAO.java
-    public List<Product> findProductsWithFilters(ProductCategory category, Double minPrice, Double maxPrice,
+    public List<Product> findProductsWithFilters(ProductCategory category, Double priceMin, Double priceMax,
                                                  String searchTerm, String sortBy, boolean ascending,
                                                  int page, int pageSize) {
         EntityManager em = PersistenceManager.getEntityManager();
@@ -155,11 +155,11 @@ public class ProductDAO {
         if (category != null) {
             predicates.add(cb.equal(root.get("category"), category));
         }
-        if (minPrice != null) {
-            predicates.add(cb.ge(root.get("price"), minPrice));
+        if (priceMin != null) {
+            predicates.add(cb.ge(root.get("price"), priceMin));
         }
-        if (maxPrice != null) {
-            predicates.add(cb.le(root.get("price"), maxPrice));
+        if (priceMax != null) {
+            predicates.add(cb.le(root.get("price"), priceMax));
         }
         if (searchTerm != null && !searchTerm.isEmpty()) {
             predicates.add(cb.like(cb.lower(root.get("name")), "%" + searchTerm.toLowerCase() + "%"));
@@ -181,7 +181,7 @@ public class ProductDAO {
         return query.getResultList();
     }
 
-    public long countFilteredProducts(ProductCategory category, Double minPrice, Double maxPrice, String searchTerm) {
+    public long countFilteredProducts(ProductCategory category, Double priceMin, Double priceMax, String searchTerm) {
         EntityManager em = PersistenceManager.getEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
@@ -194,11 +194,11 @@ public class ProductDAO {
         if (category != null) {
             predicates.add(cb.equal(root.get("category"), category));
         }
-        if (minPrice != null) {
-            predicates.add(cb.ge(root.get("price"), minPrice));
+        if (priceMin != null) {
+            predicates.add(cb.ge(root.get("price"), priceMin));
         }
-        if (maxPrice != null) {
-            predicates.add(cb.le(root.get("price"), maxPrice));
+        if (priceMax != null) {
+            predicates.add(cb.le(root.get("price"), priceMax));
         }
         if (searchTerm != null && !searchTerm.isEmpty()) {
             predicates.add(cb.like(cb.lower(root.get("name")), "%" + searchTerm.toLowerCase() + "%"));

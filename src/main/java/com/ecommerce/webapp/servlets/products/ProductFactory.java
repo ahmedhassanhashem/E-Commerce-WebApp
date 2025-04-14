@@ -24,8 +24,8 @@ public class ProductFactory {
 
     public static ProductSearchResult getFilteredProducts(
             ProductCategory category,
-            Double minPrice,
-            Double maxPrice,
+            Double priceMin,
+            Double priceMax,
             String searchTerm,
             String sortBy,
             boolean ascending,
@@ -33,9 +33,9 @@ public class ProductFactory {
             int pageSize
     ) {
         List<Product> products = productDAO.findProductsWithFilters(
-                category, minPrice, maxPrice, searchTerm, sortBy, ascending, page, pageSize
+                category, priceMin, priceMax, searchTerm, sortBy, ascending, page, pageSize
         );
-        long total = productDAO.countFilteredProducts(category, minPrice, maxPrice, searchTerm);
+        long total = productDAO.countFilteredProducts(category, priceMin, priceMax, searchTerm);
 
         return new ProductSearchResult(products, total);
     }

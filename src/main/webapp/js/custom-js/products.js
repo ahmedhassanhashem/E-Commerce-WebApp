@@ -38,7 +38,7 @@ $(document).ready(function () {
     // Unified AJAX call handler
     function loadProducts(preserveScroll = false) {
         const params = new URLSearchParams({
-            action: 'ajax-list',
+            action: 'filter',
             page: productState.currentPage,
             show: productState.itemsPerPage,
             sort: productState.sortBy,
@@ -50,7 +50,7 @@ $(document).ready(function () {
         }
 
         $.ajax({
-            url: '/product-list',
+            url: 'product-list',
             type: 'GET',
             data: params.toString(),
             success: function(data) {

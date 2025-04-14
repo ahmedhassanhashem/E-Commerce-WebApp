@@ -25,7 +25,7 @@ public class ProductListServlet extends HttpServlet {
 
         if ("search".equals(action)) {
             handleSearch(req, resp);
-        } else if ("ajax-list".equals(action)) {
+        } else if ("filter".equals(action)) {
             handleAjaxList(req, resp);
         } else {
             handleProductList(req, resp);
