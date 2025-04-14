@@ -79,7 +79,7 @@
                   <td>
                     <c:choose>
                       <c:when test="${not empty product.image}">
-                        <img src="${product.image}" class="product-image" alt="${product.name}">
+                        <img src="images/product/electronic/${product.image}" class="product-image" alt="${product.name}">
                       </c:when>
                       <c:otherwise>
                         <img src="images/preloader.png" class="product-image" alt="No Image">

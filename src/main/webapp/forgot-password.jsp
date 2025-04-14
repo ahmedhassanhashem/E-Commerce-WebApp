@@ -48,8 +48,9 @@
                                     <form class="l-f-o__form" action="forgotPassword" method="post" onsubmit="return validateForgotPassEmail()">
                                         <div class="u-s-m-b-30">
                                             <label class="gl-label" for="reset-email">E-MAIL *</label>
-                                            <input class="input-text input-text--primary-style" type="email" id="reset-email" name="reset-email" placeholder="Enter E-mail" required>
+                                            <input class="input-text input-text--primary-style" type="email" id="reset-email" name="reset-email" placeholder="Enter E-mail" onblur="checkEmailExists()" required>
                                             <div id="email-error" style="color: red; display: none;">Please enter a valid email address</div>
+                                            <div id="email-validation-message"></div>
                                         </div>
                                         
                                         <div class="u-s-m-b-30">

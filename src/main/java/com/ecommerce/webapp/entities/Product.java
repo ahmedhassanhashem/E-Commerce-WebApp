@@ -47,6 +47,10 @@ public class Product {
     @Column(name = "stock", nullable = false)
     private int stock;
 
+    // @NonNull
+    @Transient
+     private String status;
+
 //    @OneToMany(mappedBy = "product")
 //    private List<OrderItem> orderItems = new ArrayList<>();
     @Transient
@@ -55,4 +59,11 @@ public class Product {
             return "Out of Stock";
         return "In Stock";
     }
+
+    @Transient
+    public void setStatus() {
+        this.stock = 0;
+    }
+
+    
 }

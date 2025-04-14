@@ -26,7 +26,7 @@
     <div class="panel">
       <div class="panel-header">
         <h2><i class="fas fa-edit"></i> Edit Product</h2>
-        <button class="btn btn-secondary" onclick="window.location.href='get-Allproducts'">
+        <button class="btn btn-secondary" onclick="window.location.href='/webapp/get-Allproducts.jsp'">
           <i class="fas fa-arrow-left"></i> Back to Products
         </button>
       </div>
@@ -66,7 +66,14 @@
             <label for="product-description">Description</label>
             <textarea id="product-description" name="description" class="form-control" rows="4"></textarea>
           </div>
-          
+          <!-- <div class="form-group">
+            <label for="product-status">Status</label>
+            <select id="product-status" name="product-status" class="form-control">
+              <option value="ACTIVE">Active</option>
+              <option value="OUT_OF_STOCK">Out of Stock</option>
+            </select>
+          </div> -->
+        </div>
           <div class="form-group">
             <label>Product Image</label>
             <div class="file-upload">

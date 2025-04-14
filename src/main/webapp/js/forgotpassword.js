@@ -1,135 +1,167 @@
-function validatePassword(password) {
-    // Password must be at least 8 characters with at least one uppercase, one lowercase and one number
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-    return passwordRegex.test(password);
-}
+document.addEventListener('DOMContentLoaded', function() {
+    setupForgotPasswordValidation();
+    setupPasswordStrengthMeter();
+});
 
-function validateResetForm() {
-    const newPassword = document.getElementById('new-password').value;
-    const confirmPassword = document.getElementById('confirm-password').value;
-    const errorDiv = document.getElementById('password-error');
-    const requirementsDiv = document.getElementById('password-requirements');
+function setupForgotPasswordValidation() {
     
-    // Check password strength
-    if (!validatePassword(newPassword)) {
-        requirementsDiv.style.color = 'red';
-        return false;
+    // For the email input in forgot password form
+    const emailInput = document.getElementById('reset-email');
+    if (emailInput) {
+        emailInput.addEventListener('blur', function() {
+            validateEmail(this.value);
+        });
     }
     
-    // Check if passwords match
-    if (newPassword !== confirmPassword) {
-        errorDiv.style.display = 'block';
+    // For the phone input in forgot password form
+    const phoneInput = document.getElementById('reset-cc');
+    if (phoneInput) {
+        phoneInput.addEventListener('blur', function() {
+            validatePhone(this.value);
+        });
+    }
+}
+
+function setupPasswordStrengthMeter() {
+    // For the new password field in reset password form
+    const passwordInput = document.getElementById('new-password');
+    const confirmInput = document.getElementById('confirm-password');
+    
+    if (passwordInput) {
+        passwordInput.addEventListener('input', function() {
+            updatePasswordStrength(this.value);
+        });
+    }
+    
+    if (confirmInput) {
+        confirmInput.addEventListener('input', function() {
+            checkPasswordMatch(passwordInput.value, this.value);
+        });
+    }
+}
+
+function validateEmail(email) {
+    const errorElement = document.getElementById('email-error');
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        errorElement.style.display = 'block';
         return false;
     } else {
-        errorDiv.style.display = 'none';
+        errorElement.style.display = 'none';
+        
+        checkEmailExists(email);
         return true;
     }
 }
 
-// Password strength meter
-document.getElementById('new-password').addEventListener('input', function() {
-    const password = this.value;
-    const strengthIndicator = document.getElementById('password-strength');
-    const requirementsDiv = document.getElementById('password-requirements');
+function validatePhone(phone) {
+    const errorElement = document.getElementById('phone-error');
     
-    // Check password strength components
+    const phoneRegex = /^\d{10,15}$/;
+    if (!phoneRegex.test(phone)) {
+        errorElement.style.display = 'block';
+        return false;
+    } else {
+        errorElement.style.display = 'none';
+        return true;
+    }
+}
+
+function checkEmailExists() {
+    var email = document.getElementById("reset-email").value;
+    var validationMessageElement = document.getElementById("email-validation-message");
+    
+    validationMessageElement.innerHTML = "";
+    
+    if (!email.trim()) {
+        return;
+    }
+    
+    validationMessageElement.innerHTML = "Checking...";
+    validationMessageElement.style.color = "blue";
+    
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                var response = xhr.responseText;
+                
+                validationMessageElement.innerHTML = response;
+                
+                if (response.includes("Valid user")) {
+                    validationMessageElement.style.color = "green";
+                    document.getElementById("reset-cc").focus();
+                } else {
+                    validationMessageElement.style.color = "red";
+                }
+            } else {
+                validationMessageElement.innerHTML = "Error checking email. Please try again.";
+                validationMessageElement.style.color = "red";
+            }
+        }
+    };
+    
+    xhr.open("GET", "checkEmail?email=" + encodeURIComponent(email), true);
+    xhr.send();
+}
+
+function updatePasswordStrength(password) {
+    const strengthBar = document.getElementById('password-strength');
+    if (!strengthBar) return;
+    
+    let strength = 0;
+    
+    if (password.length >= 8) strength += 25;
+    
+    if (/[A-Z]/.test(password)) strength += 25; // Uppercase
+    if (/[a-z]/.test(password)) strength += 25; // Lowercase
+    if (/[0-9]/.test(password)) strength += 25; // Numbers
+    
+    strengthBar.style.width = strength + '%';
+    
+    if (strength < 50) {
+        strengthBar.style.backgroundColor = '#ff4d4d'; // Red
+    } else if (strength < 75) {
+        strengthBar.style.backgroundColor = '#ffd633'; // Yellow
+    } else {
+        strengthBar.style.backgroundColor = '#66cc66'; // Green
+    }
+}
+
+function checkPasswordMatch(password, confirmPassword) {
+    const errorElement = document.getElementById('password-error');
+    
+    if (password !== confirmPassword) {
+        errorElement.style.display = 'block';
+        return false;
+    } else {
+        errorElement.style.display = 'none';
+        return true;
+    }
+}
+
+function validateForgotPassEmail() {
+    const email = document.getElementById('reset-email').value;
+    const phone = document.getElementById('reset-cc').value;
+    
+    return validateEmail(email) && validatePhone(phone);
+}
+
+function validateResetForm() {
+    const password = document.getElementById('new-password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    
     const hasUppercase = /[A-Z]/.test(password);
     const hasLowercase = /[a-z]/.test(password);
-    const hasNumbers = /\d/.test(password);
-    const hasMinLength = password.length >= 8;
+    const hasNumbers = /[0-9]/.test(password);
+    const isLongEnough = password.length >= 8;
     
-    // Calculate strength
-    let strength = 0;
-    if (hasUppercase) strength++;
-    if (hasLowercase) strength++;
-    if (hasNumbers) strength++;
-    if (hasMinLength) strength++;
-    
-    // Update strength indicator
-    const colors = ['#ff4d4d', '#ffcc00', '#9bcd9b', '#46cc46'];
-    strengthIndicator.style.backgroundColor = colors[strength - 1] || '#ddd';
-    strengthIndicator.style.width = (strength * 25) + '%';
-    
-    // Update requirements text color
-    if (validatePassword(password)) {
-        requirementsDiv.style.color = '#46cc46';
-    } else {
-        requirementsDiv.style.color = '#666';
+    if (!isLongEnough || !hasUppercase || !hasLowercase || !hasNumbers) {
+        const requirementsElement = document.getElementById('password-requirements');
+        requirementsElement.style.color = '#ff4d4d';
+        return false;
     }
-});
-
-// Real-time validation for confirm password
-document.getElementById('confirm-password').addEventListener('input', function() {
-    const newPassword = document.getElementById('new-password').value;
-    const confirmPassword = this.value;
-    const errorDiv = document.getElementById('password-error');
     
-    if (newPassword !== confirmPassword) {
-        errorDiv.style.display = 'block';
-    } else {
-        errorDiv.style.display = 'none';
-    }
-});
-///////////////////////////////////////////
-function validateForgotPassEmail(email) {
-    // Simple email validation regex
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    return checkPasswordMatch(password, confirmPassword);
 }
-
-function validatePhone(phone) {
-    // Phone validation regex (accepts formats like +1234567890, 123-456-7890, (123) 456-7890, etc.)
-    const phoneRegex = /^(\+\d{1,3}[- ]?)?\d{10,14}$/;
-    return phoneRegex.test(phone.replace(/[\s()\-]/g, ''));
-}
-
-function validateForm() {
-    const email = document.getElementById('reset-email').value.trim();
-    const phone = document.getElementById('reset-cc').value.trim();
-    const emailError = document.getElementById('email-error');
-    const phoneError = document.getElementById('phone-error');
-    
-    let isValid = true;
-    
-    // Validate email
-    if (!validateEmail(email)) {
-        emailError.style.display = 'block';
-        isValid = false;
-    } else {
-        emailError.style.display = 'none';
-    }
-    
-    // Validate phone
-    if (!validatePhone(phone)) {
-        phoneError.style.display = 'block';
-        isValid = false;
-    } else {
-        phoneError.style.display = 'none';
-    }
-    
-    return isValid;
-}
-
-// Real-time validation for email
-document.getElementById('reset-email').addEventListener('blur', function() {
-    const email = this.value.trim();
-    const emailError = document.getElementById('email-error');
-    
-    if (!validateEmail(email) && email !== '') {
-        emailError.style.display = 'block';
-    } else {
-        emailError.style.display = 'none';
-    }
-});
-
-// Real-time validation for phone
-document.getElementById('reset-cc').addEventListener('blur', function() {
-    const phone = this.value.trim();
-    const phoneError = document.getElementById('phone-error');
-    
-    if (!validatePhone(phone) && phone !== '') {
-        phoneError.style.display = 'block';
-    } else {
-        phoneError.style.display = 'none';
-    }
-});

@@ -1,8 +1,6 @@
 $(document).ready(function() {
-    // Load products when page loads
     loadProducts();
     
-    // Set up event listeners
     $("#search-input").on("input", debounce(function() {
         loadProducts();
     }, 500));
@@ -12,7 +10,6 @@ $(document).ready(function() {
     });
 });
 
-// Load products with current filter settings
 function loadProducts() {
     const searchTerm = $("#search-input").val();
     const categoryFilter = $("#category-filter").val();
@@ -50,7 +47,7 @@ function displayProducts(products) {
     let tableContent = '';
     
     products.forEach(function(product) {
-        let imageUrl = product.image ? product.image : '/images/preloader.png';
+        let imageUrl = product.image ? '/images/product/electronic/' + product.image : '/images/preloader.png';
         
         tableContent += `
             <tr data-id="${product.productId}" data-category="${product.category}">
@@ -93,7 +90,7 @@ function deleteProduct(productId) {
             success: function(response) {
                 if (response.success) {
                     showNotification("Product deleted successfully", "success");
-                    loadProducts(); // Refresh the product list
+                    loadProducts(); 
                 } else {
                     showNotification("Error: " + response.message, "error");
                 }
@@ -120,7 +117,10 @@ function showNotification(message, type) {
     }, 3000);
 }
 
-// Debounce function to prevent excessive API calls
+function editProduct(productId) {
+    window.location.href = 'edit_product.jsp?id=' + productId;
+}
+
 function debounce(func, wait) {
     let timeout;
     return function() {

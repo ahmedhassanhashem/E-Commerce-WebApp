@@ -1,6 +1,7 @@
 package com.ecommerce.webapp.servlets.Admin;
 
 import com.ecommerce.webapp.dao.ProductDAO;
+import com.ecommerce.webapp.entities.Product;
 import com.google.gson.JsonObject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -23,11 +24,14 @@ public class DeleteProductServlet extends HttpServlet {
         JsonObject jsonResponse = new JsonObject();
         
         try {
-            // Get product ID
             int productId = Integer.parseInt(request.getParameter("productId"));
             
-            // Delete product
-            boolean deleted = productDAO.deleteProduct(productId);
+            Product product = productDAO.findById(productId);
+
+            product.setStock(0);
+            product.setStatus();
+            
+            boolean deleted = productDAO.updateProduct(product);
             
             if (deleted) {
                 jsonResponse.addProperty("success", true);
@@ -40,9 +44,11 @@ public class DeleteProductServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             jsonResponse.addProperty("success", false);
             jsonResponse.addProperty("message", "Invalid product ID");
+            e.printStackTrace();
         } catch (Exception e) {
             jsonResponse.addProperty("success", false);
             jsonResponse.addProperty("message", "Error deleting product: " + e.getMessage());
+            e.printStackTrace();
         }
         
         out.print(jsonResponse.toString());

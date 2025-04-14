@@ -75,7 +75,6 @@
     $("#current-image").val(product.image);
     $("#file-name").text("Current image: " + (product.image || "None"));
     
-    // Update image preview
     if (product.image) {
       $("#image-preview").attr("src", "images/product/electronic/" + product.image);
     } else {
@@ -84,7 +83,6 @@
   }
   
   function updateProduct() {
-    // Use FormData to handle file uploads
     const formData = new FormData(document.getElementById("edit-product-form"));
     
     $.ajax({

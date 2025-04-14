@@ -1,10 +1,8 @@
 package com.ecommerce.webapp.servlets.Admin;
 
 import com.ecommerce.webapp.dao.OrderDAO;
-import com.ecommerce.webapp.dao.UserDAO;
 import com.ecommerce.webapp.entities.Order;
 import com.ecommerce.webapp.entities.OrderStatus;
-import com.ecommerce.webapp.entities.User;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import jakarta.servlet.ServletException;
