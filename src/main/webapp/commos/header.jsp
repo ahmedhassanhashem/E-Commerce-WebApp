@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 
 <!--====== Main Header ======-->
 <header class="header--style-2">
@@ -133,9 +135,15 @@
         <!--====== End - Dropdown Main plugin ======-->
 
         <!--====== Search Form ======-->
-        <form class="main-form" action="${pageContext.request.contextPath}/search" method="get">
+        <form class="main-form" action="${pageContext.request.contextPath}/product-list" method="get">
+          <input type="hidden" name="action" value="search">
           <label for="main-search"></label>
-          <input class="input-text input-text--border-radius input-text--style-2" type="text" id="main-search" name="search" placeholder="Search">
+          <input class="input-text input-text--border-radius input-text--style-2"
+                 type="text"
+                 id="main-search"
+                 name="search"
+                 value="${param.search}"
+                 placeholder="Search">
           <button class="btn btn--icon fas fa-search main-search-button" type="submit"></button>
         </form>
 
@@ -159,58 +167,61 @@
               <li>
                 <a href="product-list"><i class="fas fa-shopping-bag"></i></a>
               </li>
-              <li class="has-dropdown">
-                <a class="mini-cart-shop-link"><i class="far fa-heart"></i>
-                  <span class="total-item-round">2</span></a>
+<%--              <li class="has-dropdown">--%>
+<%--                <a class="mini-cart-shop-link"><i class="far fa-heart"></i>--%>
+<%--                  <span class="total-item-round">2</span></a>--%>
 
-                <!--====== Dropdown ======-->
-                <span class="js-menu-toggle"></span>
-                <div class="mini-cart">
+<%--                <!--====== Dropdown ======-->--%>
+<%--                <span class="js-menu-toggle"></span>--%>
+<%--                <div class="mini-cart">--%>
 
-                  <!--====== Mini Product Container ======-->
-                  <div class="mini-product-container gl-scroll u-s-m-b-15">
+<%--                  <!--====== Mini Product Container ======-->--%>
+<%--                  <div class="mini-product-container gl-scroll u-s-m-b-15">--%>
 
-                    <!--====== Card for mini wishlist ======-->
-                    <div class="card-mini-product">
-                      <div class="mini-product">
-                        <div class="mini-product__image-wrapper">
+<%--                    <!--====== Card for mini wishlist ======-->--%>
+<%--                    <div class="card-mini-product">--%>
+<%--                      <div class="mini-product">--%>
+<%--                        <div class="mini-product__image-wrapper">--%>
 
-                          <a class="mini-product__link" href="product-details.jsp">
+<%--                          <a class="mini-product__link" href="product-details.jsp">--%>
 
-                            <img class="u-img-fluid" src="images/product/men/product8.jpg" alt=""></a></div>
-                        <div class="mini-product__info-wrapper">
+<%--                            <img class="u-img-fluid" src="images/product/men/product8.jpg" alt=""></a></div>--%>
+<%--                        <div class="mini-product__info-wrapper">--%>
 
-                                                            <span class="mini-product__category">
+<%--                                                            <span class="mini-product__category">--%>
 
-                                                                <a href="product-list?category=${product.category.name().toLowerCase()}">Men Clothing</a></span>
+<%--                                                                <a href="product-list?category=${product.category.name().toLowerCase()}">Men Clothing</a></span>--%>
 
-                          <span class="mini-product__name">
+<%--                          <span class="mini-product__name">--%>
 
-                                                                <a href="product-details.jsp">New Fashion D Nice Elegant</a></span>
+<%--                                                                <a href="product-details.jsp">New Fashion D Nice Elegant</a></span>--%>
 
-                          <span class="mini-product__quantity">1 x</span>
-                          <span class="mini-product__price">$8</span>
-                        </div>
-                      </div>
-                      <a class="mini-product__delete-link far fa-trash-alt"></a>
-                    </div>
-                    <!--====== End - Card for mini wishlist ======-->
-                  </div>
-                  <!--====== End - Mini Product Container ======-->
+<%--                          <span class="mini-product__quantity">1 x</span>--%>
+<%--                          <span class="mini-product__price">$8</span>--%>
+<%--                        </div>--%>
+<%--                      </div>--%>
+<%--                      <a class="mini-product__delete-link far fa-trash-alt"></a>--%>
+<%--                    </div>--%>
+<%--                    <!--====== End - Card for mini wishlist ======-->--%>
+<%--                  </div>--%>
+<%--                  <!--====== End - Mini Product Container ======-->--%>
 
-                  <!--====== Mini Product Statistics ======-->
-                  <div class="mini-product-stat">
-                    <div class="mini-action">
+<%--                  <!--====== Mini Product Statistics ======-->--%>
+<%--                  <div class="mini-product-stat">--%>
+<%--                    <div class="mini-action">--%>
 
-                      <a class="mini-link btn--e-brand-b-2" href="cart.jsp">PROCEED TO CART</a>
+<%--                      <a class="mini-link btn--e-brand-b-2" href="cart.jsp">PROCEED TO CART</a>--%>
 
-                      <a class="mini-link btn--e-transparent-secondary-b-2" href="wishlist.jsp">VIEW WISHLIST</a></div>
-                  </div>
-                  <!--====== End - Mini Product Statistics ======-->
+<%--                      <a class="mini-link btn--e-transparent-secondary-b-2" href="wishlist.jsp">VIEW WISHLIST</a></div>--%>
+<%--                  </div>--%>
+<%--                  <!--====== End - Mini Product Statistics ======-->--%>
 
-                </div>
-                <!--====== End - Dropdown ======-->
-              </li>
+<%--                </div>--%>
+<%--                <!--====== End - Dropdown ======-->--%>
+<%--              </li>--%>
+
+
+            <c:if test="${sessionScope.user != null}">
               <li class="has-dropdown">
                 <a class="mini-cart-shop-link"><i class="fas fa-shopping-cart"></i>
                   <span class="total-item-round">2</span></a>
@@ -266,6 +277,10 @@
                 </div>
                 <!--====== End - Dropdown ======-->
               </li>
+            </c:if>
+
+
+
             </ul>
             <!--====== End - List ======-->
           </div>

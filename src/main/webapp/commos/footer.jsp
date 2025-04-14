@@ -32,7 +32,7 @@
                                     <ul>
                                         <% if (session.getAttribute("user") != null) { %>
                                             <li><a href="cart.jsp">Cart</a></li>
-                                            <li><a href="wishlist.jsp">Wishlist</a></li>
+<%--                                            <li><a href="wishlist.jsp">Wishlist</a></li>--%>
                                             <li><a href="my-account.jsp">Account</a></li>
                                         <% } else { %>
                                             <li><a href="product-list.jsp">Store</a></li>

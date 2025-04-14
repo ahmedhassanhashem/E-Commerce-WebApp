@@ -1,3 +1,20 @@
+<%--&lt;%&ndash;------Mock data to test on it ---------------------&ndash;%&gt;--%>
+<%--<%@ page import="com.ecommerce.webapp.entities.User" %>--%>
+
+
+
+<%--<%--%>
+<%--    User user = null;--%>
+
+<%--    session = request.getSession();--%>
+<%--    session.setAttribute("user", user);--%>
+<%--%>--%>
+<%--&lt;%&ndash;-----------------------------------------------&ndash;%&gt;--%>
+
+
+
+
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
@@ -55,51 +72,63 @@
                                 <div class="u-s-m-b-15">
                                     <span class="pd-detail__preview-desc">${requestScope.product.description}</span>
                                 </div>
-                                <div class="u-s-m-b-15">
-                                    <div class="pd-detail__inline">
-                                        <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i></span>
-                                        <a data-image="${requestScope.product.image}"
-                                           data-name="${requestScope.product.name}"
-                                           data-price="${requestScope.product.price}"
-                                           class="add-to-wishlist-trigger"
-                                           data-modal="modal" data-modal-id="#add-to-wishlist" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist">
-                                            Add to Wishlist
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="u-s-m-b-15">
-                                    <div class="pd-detail__inline">
-                                        <span class="pd-detail__click-wrap"><i class="fas fa-shopping-cart u-s-m-r-6"></i></span>
-                                        <a class="add-to-cart-trigger"
-                                           data-image="${requestScope.product.image}"
-                                           data-name="${requestScope.product.name}"
-                                           data-stock="${requestScope.product.stock}"
-                                           data-price="${requestScope.product.price}"
-                                           data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart">
-                                            Add to Cart
-                                        </a>
-                                    </div>
-                                </div>
+<%--                                <div class="u-s-m-b-15">--%>
+<%--                                    <div class="pd-detail__inline">--%>
+<%--                                        <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i></span>--%>
+<%--                                        <a data-image="${requestScope.product.image}"--%>
+<%--                                           data-name="${requestScope.product.name}"--%>
+<%--                                           data-price="${requestScope.product.price}"--%>
+<%--                                           class="add-to-wishlist-trigger"--%>
+<%--                                           data-modal="modal" data-modal-id="#add-to-wishlist" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist">--%>
+<%--                                            Add to Wishlist--%>
+<%--                                        </a>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+
+
+<%--                                <div class="u-s-m-b-15">--%>
+<%--                                    <div class="pd-detail__inline">--%>
+<%--                                        <span class="pd-detail__click-wrap"><i class="fas fa-shopping-cart u-s-m-r-6"></i></span>--%>
+<%--                                        <a class="add-to-cart-trigger"--%>
+<%--                                           data-image="${requestScope.product.image}"--%>
+<%--                                           data-name="${requestScope.product.name}"--%>
+<%--                                           data-stock="${requestScope.product.stock}"--%>
+<%--                                           data-price="${requestScope.product.price}"--%>
+<%--                                           data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart">--%>
+<%--                                            Add to Cart--%>
+<%--                                        </a>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+
+
                                 <div class="u-s-m-b-15">
                                     <form class="pd-detail__form">
                                         <div class="pd-detail-inline-2">
+
+
+                                            <c:if test="${sessionScope.user} != null">
                                             <div class="u-s-m-b-15">
                                                 <!-- Input Counter -->
                                                 <div class="input-counter">
                                                     <span class="input-counter__minus fas fa-minus"></span>
-                                                    <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1000">
+                                                    <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="${requestScope.product.stock}">
                                                     <span class="input-counter__plus fas fa-plus"></span>
                                                 </div>
                                             </div>
                                             <div class="u-s-m-b-15">
-                                                <button class="btn btn--e-brand-b-2" type="submit">Checkout</button>
+                                                <button class="btn btn--e-brand-b-2" type="submit">Add To Cart</button>
                                             </div>
+
+                                            </c:if>
+
                                             <div class="u-s-m-b-15">
                                                 <button class="btn btn--e-white-brand-shadow"  type="button" onclick="window.location.href='/webapp/product-list'">CONTINUE SHOPPING</button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -209,6 +238,7 @@
                                                                            data-tooltip="tooltip" data-placement="top"
                                                                            title="Quick View"><i class="fas fa-search-plus"></i></a>
                                                                     </li>
+                                                                    <c:if test="${sessionScope.user} != null">
                                                                     <li>
                                                                         <a class="add-to-cart-trigger"
                                                                            data-image="${similarProduct.image}"
@@ -219,20 +249,21 @@
                                                                            data-tooltip="tooltip" data-placement="top"
                                                                            title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
                                                                     </li>
-                                                                    <li>
-                                                                        <a class="add-to-wishlist-trigger"
-                                                                           data-image="${similarProduct.image}"
-                                                                           data-name="${similarProduct.name}"
-                                                                           data-price="${similarProduct.price}"
-                                                                           data-modal="modal" data-modal-id="#add-to-wishlist"
-                                                                           data-tooltip="tooltip" data-placement="top"
-                                                                           title="Add to Wishlist"><i class="fas fa-heart"></i></a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a data-modal="modal" data-modal-id="checkout"
-                                                                           data-tooltip="tooltip" data-placement="top"
-                                                                           title="Checkout"><i class="fas fa-plus"></i></a>
-                                                                    </li>
+                                                                    </c:if>
+<%--                                                                    <li>--%>
+<%--                                                                        <a class="add-to-wishlist-trigger"--%>
+<%--                                                                           data-image="${similarProduct.image}"--%>
+<%--                                                                           data-name="${similarProduct.name}"--%>
+<%--                                                                           data-price="${similarProduct.price}"--%>
+<%--                                                                           data-modal="modal" data-modal-id="#add-to-wishlist"--%>
+<%--                                                                           data-tooltip="tooltip" data-placement="top"--%>
+<%--                                                                           title="Add to Wishlist"><i class="fas fa-heart"></i></a>--%>
+<%--                                                                    </li>--%>
+<%--                                                                    <li>--%>
+<%--                                                                        <a data-modal="modal" data-modal-id="checkout"--%>
+<%--                                                                           data-tooltip="tooltip" data-placement="top"--%>
+<%--                                                                           title="Checkout"><i class="fas fa-plus"></i></a>--%>
+<%--                                                                    </li>--%>
                                                                 </ul>
                                                             </div>
                                                         </div>

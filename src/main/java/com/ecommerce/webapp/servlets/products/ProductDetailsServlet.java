@@ -22,37 +22,31 @@ public class ProductDetailsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Retrieve productName from the request parameter
-        String productNameParam = request.getParameter("name");
-        if (productNameParam == null || productNameParam.isEmpty()) {
-            response.sendRedirect("404.jsp"); // Redirect or show an error if no product is specified
+        String productIdParam = request.getParameter("id");
+        if (productIdParam == null || productIdParam.isEmpty()) {
+            response.sendRedirect("404.jsp");
             return;
         }
 
 
-        // Retrieve all products (or ideally, use a service/DAO to fetch from DB)
-        List<Product> allProducts = ProductFactory.getProducts();
+
 
         // Get the selected product based on id
-        Product selectedProduct = allProducts.stream()
-                .filter(p -> p.getName().equalsIgnoreCase(productNameParam))
-                .findFirst()
-                .orElse(null);
+        Product selectedProduct = ProductFactory.getProductsById(Integer.parseInt(productIdParam));
 
         if (selectedProduct == null) {
             response.sendRedirect("404.jsp"); // Product not found
             return;
         }
 
-        // Retrieve similar products: same category but exclude the selected product
-        List<Product> similarProducts = allProducts.stream()
-                .filter(p -> p.getCategory() == selectedProduct.getCategory() && !p.getName().equals(selectedProduct.getName()))
-                .collect(Collectors.toList());
+        // Retrieve similar products
+        List<Product> similarProducts = ProductFactory.getProductsByCategory(selectedProduct.getCategory());
 
         // Set attributes for the JSP
         request.setAttribute("product", selectedProduct);
         request.setAttribute("similarProducts", similarProducts);
 
-        // Forward to product-details.jsp
+        // Forward
         RequestDispatcher dispatcher = request.getRequestDispatcher("product-details.jsp");
         dispatcher.forward(request, response);
     }
