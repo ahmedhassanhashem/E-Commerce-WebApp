@@ -58,9 +58,6 @@ function displayOrders(orders) {
                 <td>$${order.totalPrice.toFixed(2)}</td>
                 <td><span class="status-label status-${order.status.toLowerCase()}">${order.status}</span></td>
                 <td>
-                    <button class="btn btn-sm" onclick="viewOrderDetails(${order.orderId})">
-                        <i class="fas fa-eye"></i> View
-                    </button>
                     ${order.status === 'PENDING' ? 
                       `<button class="btn btn-sm btn-success" onclick="updateOrderStatus(${order.orderId}, 'ACCEPTED')">
                           <i class="fas fa-check"></i> Accept
