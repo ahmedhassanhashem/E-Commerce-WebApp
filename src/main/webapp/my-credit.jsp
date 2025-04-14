@@ -66,7 +66,7 @@
 
                                                             <span class="dash__text" id="current-credit">
 
-                                                                <fmt:formatNumber value="${currentUser.creditLimit}"
+                                                                <fmt:formatNumber value="${sessionScope.user.creditBalance}"
                                                                                   type="number"
                                                                                   minFractionDigits="2"
                                                                                   maxFractionDigits="2"/>

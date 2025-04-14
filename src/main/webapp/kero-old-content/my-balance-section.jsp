@@ -29,7 +29,7 @@
             <div class="col-lg-4 u-s-m-b-30">
                 <h2 class="dash__h2 u-s-m-b-8">Current Balance</h2>
                 <span class="dash__text">
-                    <fmt:formatNumber value="${currentUser.balance}"
+                    <fmt:formatNumber value="${user.balance}"
                                     type="number"
                                     minFractionDigits="2"
                                     maxFractionDigits="2"/>

@@ -29,8 +29,8 @@ public class ValidatePasswordServlet extends HttpServlet {
             return;
         }
 
-        User currentUser = (User) session.getAttribute("currentUser");
-        if (currentUser == null) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
             out.print("{\"valid\": false, \"error\": \"No user logged in\"}");
             out.flush();
             return;
@@ -46,7 +46,7 @@ public class ValidatePasswordServlet extends HttpServlet {
         }
 
         // Validate if the submitted password matches the user's password with exact string comparison
-        if (currentUser.getPassword().equals(currentPassword)) {
+        if (user.getPassword().equals(currentPassword)) {
             isValid = true;
         }
 
