@@ -65,7 +65,8 @@
                                                             <div class="manage-o__header u-s-m-b-30">
                                                                 <div class="dash-l-r">
                                                                     <div>
-                                                                        <div class="manage-o__text-2 u-c-secondary">Order
+                                                                        <div class="manage-o__text-2 u-c-secondary">
+                                                                            Order
                                                                             #${order.orderId}
                                                                         </div>
                                                                         <div class="manage-o__text u-c-silver">
@@ -74,7 +75,8 @@
                                                                     </div>
                                                                     <div>
                                                                         <div class="dash__link dash__link--brand">
-                                                                            <a href="order-details.jsp?orderId=${order.orderId}">VIEW ORDER</a>
+                                                                            <a href="order-details.jsp?orderId=${order.orderId}">VIEW
+                                                                                ORDER</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -101,7 +103,9 @@
                                                                 <c:otherwise>
                                                                     <div class="manage-o__description">
                                                                         <div class="description__container">
-                                                                            <div class="description-title">No items found</div>
+                                                                            <div class="description-title">No items
+                                                                                found
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </c:otherwise>
@@ -130,7 +134,11 @@
                                                                     </div>
                                                                     <div>
                                                                         <span class="manage-o__text-2 u-c-silver">Total:
-                                                                            <span class="manage-o__text-2 u-c-secondary">$<fmt:formatNumber value="${order.totalPrice}" type="currency" currencySymbol="" minFractionDigits="2" maxFractionDigits="2"/></span>
+                                                                            <span class="manage-o__text-2 u-c-secondary">$<fmt:formatNumber
+                                                                                    value="${order.totalPrice}"
+                                                                                    type="currency" currencySymbol=""
+                                                                                    minFractionDigits="2"
+                                                                                    maxFractionDigits="2"/></span>
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -143,9 +151,13 @@
                                                         <div class="manage-o__header u-s-m-b-30">
                                                             <div class="dash-l-r">
                                                                 <div>
-                                                                    <div class="manage-o__text-2 u-c-secondary">No orders found</div>
+                                                                    <div class="manage-o__text-2 u-c-secondary">No
+                                                                        orders found
+                                                                    </div>
                                                                     <c:if test="${empty sessionScope.user}">
-                                                                        <div class="manage-o__text u-c-silver">(User not logged in)</div>
+                                                                        <div class="manage-o__text u-c-silver">(User not
+                                                                            logged in)
+                                                                        </div>
                                                                     </c:if>
                                                                 </div>
                                                             </div>
