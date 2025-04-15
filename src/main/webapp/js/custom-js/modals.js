@@ -14,6 +14,7 @@ $(document).on('click', '.quick-look-trigger', function(e) {
     const description = $(this).data('description');
     const stock = $(this).data('stock');
     const price = $(this).data('price');
+    const id = $(this).data('productId');
 
     // Store the price in the global variable for later use
     currentPrice = price;
@@ -47,6 +48,7 @@ $(document).on('click', '.add-to-cart-trigger', function(e) {
     const image = $(this).data('image');
     const name = $(this).data('name');
     const price = $(this).data('price');
+    const id = $(this).data('productId');
 
     $('#cart-modal-product-image').attr('src', 'images/product/electronic/' + image + '.jpg');
     $('#cart-modal-product-name').text(name);
@@ -56,22 +58,23 @@ $(document).on('click', '.add-to-cart-trigger', function(e) {
     $(modalId).modal('show');
 });
 
-// Similarly for the other modal triggers
-$(document).on('click', '.add-to-wishlist-trigger', function(e) {
-    e.preventDefault();
-
-    const modalId = $(this).data('modal-id');
-    const image = $(this).data('image');
-    const name = $(this).data('name');
-    const price = $(this).data('price');
-
-    $('#wishlist-modal-product-image').attr('src', 'images/product/electronic/' + image + '.jpg');
-    $('#wishlist-modal-product-name').text(name);
-    $('#wishlist-modal-product-price').text('$' + price);
-
-    // Manually open the modal
-    $(modalId).modal('show');
-});
+// // Similarly for the other modal triggers
+// $(document).on('click', '.add-to-wishlist-trigger', function(e) {
+//     e.preventDefault();
+//
+//     const modalId = $(this).data('modal-id');
+//     const image = $(this).data('image');
+//     const name = $(this).data('name');
+//     const price = $(this).data('price');
+//     const id = $(this).data('productId');
+//
+//     $('#wishlist-modal-product-image').attr('src', 'images/product/electronic/' + image + '.jpg');
+//     $('#wishlist-modal-product-name').text(name);
+//     $('#wishlist-modal-product-price').text('$' + price);
+//
+//     // Manually open the modal
+//     $(modalId).modal('show');
+// });
 
 $(document).on('click', '.add-to-cart2-trigger', function(e) {
     e.preventDefault();
@@ -79,6 +82,7 @@ $(document).on('click', '.add-to-cart2-trigger', function(e) {
     const modalId = $(this).data('modal-id');
     const quantity = $('#modal-product-stock-input').val();
     const name = $('#modal-product-name').text();
+    const id = $(this).data('productId');
 
     $('#cart2-modal-product-name').text(name);
     $('#cart2-modal-product-price').text('$' + currentPrice);
@@ -88,15 +92,16 @@ $(document).on('click', '.add-to-cart2-trigger', function(e) {
     $(modalId).modal('show');
 });
 
-$(document).on('click', '.add-to-wishlist2-trigger', function(e) {
-    e.preventDefault();
-
-    const modalId = $(this).data('modal-id');
-    const name = $('#modal-product-name').text();
-
-    $('#wishlist2-modal-product-name').text(name);
-    $('#wishlist2-modal-product-price').text('$' + currentPrice);
-
-    // Manually open the modal
-    $(modalId).modal('show');
-});
+// $(document).on('click', '.add-to-wishlist2-trigger', function(e) {
+//     e.preventDefault();
+//
+//     const modalId = $(this).data('modal-id');
+//     const name = $('#modal-product-name').text();
+//     const id = $(this).data('productId');
+//
+//     $('#wishlist2-modal-product-name').text(name);
+//     $('#wishlist2-modal-product-price').text('$' + currentPrice);
+//
+//     // Manually open the modal
+//     $(modalId).modal('show');
+// });

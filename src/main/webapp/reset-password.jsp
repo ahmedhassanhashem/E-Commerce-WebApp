@@ -1,4 +1,9 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
+<c:if test="${empty sessionScope.user}">
+    <c:redirect url="/home" />
+</c:if>
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -38,30 +43,44 @@
                                     </div>
                                     <% } %>
                                     
-                                    <form class="l-f-o__form" action="forgotPassword" method="post" onsubmit="return validatePasswords()">
-                                        <input type="hidden" name="action" value="reset">
-                                        <input type="hidden" name="email" value="<%= request.getParameter("email") %>">
-                                        <input type="hidden" name="token" value="<%= request.getParameter("token") %>">
-                                        
-                                        <div class="u-s-m-b-30">
-                                            <label class="gl-label" for="new-password">NEW PASSWORD *</label>
-                                            <input class="input-text input-text--primary-style" type="password" id="new-password" name="new-password" placeholder="Enter New Password">
+                                    <% 
+                                    // Check if session has the required reset attributes
+                                    if(session.getAttribute("resetEmail") == null || session.getAttribute("resetToken") == null) {
+                                    %>
+                                        <div class="alert alert-danger" style="color: red; margin-bottom: 20px;">
+                                            Invalid or expired password reset session. Please try again.
                                         </div>
-                                        
                                         <div class="u-s-m-b-30">
-                                            <label class="gl-label" for="confirm-password">CONFIRM PASSWORD *</label>
-                                            <input class="input-text input-text--primary-style" type="password" id="confirm-password" name="confirm-password" placeholder="Confirm New Password">
-                                            <div id="password-error" style="color: red; display: none;">Passwords do not match</div>
+                                            <a class="btn btn--e-transparent-brand-b-2" href="forgotPassword">Return to Password Reset</a>
                                         </div>
-                                        
-                                        <div class="u-s-m-b-30">
-                                            <button class="btn btn--e-transparent-brand-b-2" type="submit">RESET PASSWORD</button>
-                                        </div>
-                                        
-                                        <div class="u-s-m-b-30">
-                                            <a class="gl-link" href="login.jsp">Back to Login</a>
-                                        </div>
-                                    </form>
+                                    <% } else { %>
+                                        <form class="l-f-o__form" action="forgotPassword" method="post" onsubmit="return validateResetForm()">
+                                            <input type="hidden" name="action" value="reset">
+                                            
+                                            <div class="u-s-m-b-30">
+                                                <label class="gl-label" for="new-password">NEW PASSWORD *</label>
+                                                <input class="input-text input-text--primary-style" type="password" id="new-password" name="new-password" placeholder="Enter New Password">
+                                                <div id="password-strength" style="height: 5px; margin-top: 5px; width: 0%;"></div>
+                                                <div id="password-requirements" style="font-size: 12px; margin-top: 5px; color: #666;">
+                                                    Password must contain at least 8 characters with uppercase, lowercase, and numbers
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="u-s-m-b-30">
+                                                <label class="gl-label" for="confirm-password">CONFIRM PASSWORD *</label>
+                                                <input class="input-text input-text--primary-style" type="password" id="confirm-password" name="confirm-password" placeholder="Confirm New Password">
+                                                <div id="password-error" style="color: red; display: none;">Passwords do not match</div>
+                                            </div>
+                                            
+                                            <div class="u-s-m-b-30">
+                                                <button class="btn btn--e-transparent-brand-b-2" type="submit">RESET PASSWORD</button>
+                                            </div>
+                                            
+                                            <div class="u-s-m-b-30">
+                                                <a class="gl-link" href="login.jsp">Back to Login</a>
+                                            </div>
+                                        </form>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>
@@ -83,35 +102,7 @@
 <jsp:include page="commos/modals.jsp"/>
 
 <%@include file="commos/script.html" %>
-
-<script>
-function validatePasswords() {
-    const newPassword = document.getElementById('new-password').value;
-    const confirmPassword = document.getElementById('confirm-password').value;
-    const errorDiv = document.getElementById('password-error');
-    
-    if (newPassword !== confirmPassword) {
-        errorDiv.style.display = 'block';
-        return false;
-    } else {
-        errorDiv.style.display = 'none';
-        return true;
-    }
-}
-
-// Real-time validation
-document.getElementById('confirm-password').addEventListener('input', function() {
-    const newPassword = document.getElementById('new-password').value;
-    const confirmPassword = this.value;
-    const errorDiv = document.getElementById('password-error');
-    
-    if (newPassword !== confirmPassword) {
-        errorDiv.style.display = 'block';
-    } else {
-        errorDiv.style.display = 'none';
-    }
-});
-</script>
+<script src="js/forgotpassword.js"></script>
 
 </body>
 </html>

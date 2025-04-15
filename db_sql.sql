@@ -1,41 +1,98 @@
-CREATE TABLE `User`(
-    `user_id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR(255) NOT NULL,
-    `password` VARCHAR(255) NULL,
-    `email` VARCHAR(255) NOT NULL,
-    `credit_limit` DECIMAL(8, 2) NOT NULL,
-    `address` VARCHAR(255) NOT NULL,
-    `phone` VARCHAR(255) NOT NULL,
-    `cart_Items` JSON NOT NULL COMMENT 'product_id, name, description, product_price, category, image ,quantity'
-);
-ALTER TABLE
-    `User` ADD UNIQUE `user_email_unique`(`email`);
-CREATE TABLE `Product`(
-    `product_id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR(255) NOT NULL,
-    `description` TEXT NOT NULL,
-    `product_price` DECIMAL(8, 2) NOT NULL,
-    `category` VARCHAR(255) NOT NULL,
-    `stock_quantity` INT NOT NULL,
-    `gallery` VARCHAR(255) NOT NULL
-);
-CREATE TABLE `Order`(
-    `order_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `user_id` INT NOT NULL,
-    `total_price` DECIMAL(8, 2) NOT NULL,
-    `status` ENUM('pending', 'cancelled', 'delivered') NOT NULL DEFAULT 'pending',
-    `created_at` DATE NOT NULL
-);
-CREATE TABLE `Order_Item`(
-    `order_item_id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `order_id` INT NOT NULL,
-    `product_id` INT NOT NULL,
-    `order_item_quantity` INT NOT NULL,
-    `Item_price` DECIMAL(8, 2) NOT NULL
-);
-ALTER TABLE
-    `Order_Item` ADD CONSTRAINT `order_item_order_id_foreign` FOREIGN KEY(`order_id`) REFERENCES `Order`(`order_id`);
-ALTER TABLE
-    `Order` ADD CONSTRAINT `order_user_id_foreign` FOREIGN KEY(`user_id`) REFERENCES `User`(`user_id`);
-ALTER TABLE
-    `Order_Item` ADD CONSTRAINT `order_item_product_id_foreign` FOREIGN KEY(`product_id`) REFERENCES `Product`(`product_id`);
+CREATE DATABASE webapp CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+use webapp;
+
+-- Users Table
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    address TEXT NOT NULL,
+    credit_balance DOUBLE NOT NULL,
+    phone VARCHAR(15) NOT NULL UNIQUE,
+    INDEX (email),
+    INDEX (phone)
+) ENGINE=InnoDB;
+
+-- Products Table
+CREATE TABLE products (
+    product_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DOUBLE NOT NULL,
+    category ENUM('BEANS','MUGS','MACHINES','OTHER') NOT NULL,
+    image VARCHAR(255) NOT NULL,
+    stock INT NOT NULL
+) ENGINE=InnoDB;
+
+-- Cart Table (1:1 with User)
+CREATE TABLE cart (
+    cart_id INT PRIMARY KEY,
+    CONSTRAINT fk_cart_user
+        FOREIGN KEY (cart_id) 
+        REFERENCES users(user_id)
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Cart Items Table
+CREATE TABLE cart_items (
+    cart_item_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    cart_id INT NOT NULL,
+    CONSTRAINT fk_cart_item_product
+        FOREIGN KEY (product_id)
+        REFERENCES products(product_id),
+    CONSTRAINT fk_cart_item_cart
+        FOREIGN KEY (cart_id)
+        REFERENCES cart(cart_id)
+) ENGINE=InnoDB;
+
+-- Wishlist Table (1:1 with User)
+CREATE TABLE wishlist (
+    wishlist_id INT PRIMARY KEY,
+    CONSTRAINT fk_wishlist_user
+        FOREIGN KEY (wishlist_id) 
+        REFERENCES users(user_id)
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Wishlist Items Table
+CREATE TABLE wishlist_items (
+    wishlist_item_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT NOT NULL,
+    wishlist_id INT NOT NULL,
+    CONSTRAINT fk_wishlist_item_product
+        FOREIGN KEY (product_id)
+        REFERENCES products(product_id),
+    CONSTRAINT fk_wishlistitem_wishlist
+        FOREIGN KEY (wishlist_id)
+        REFERENCES wishlist(wishlist_id)
+) ENGINE=InnoDB;
+
+-- Orders Table
+CREATE TABLE orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    total_price DOUBLE NOT NULL,
+    status ENUM('PENDING','CANCELLED','ACCEPTED') NOT NULL,
+    CONSTRAINT fk_order_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(user_id)
+) ENGINE=InnoDB;
+
+-- Order Items Table
+CREATE TABLE order_items (
+    order_item_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    item_price DOUBLE NOT NULL,
+    CONSTRAINT fk_order_item_order
+        FOREIGN KEY (order_id)
+        REFERENCES orders(order_id),
+    CONSTRAINT fk_order_item_product
+        FOREIGN KEY (product_id)
+        REFERENCES products(product_id)
+) ENGINE=InnoDB;

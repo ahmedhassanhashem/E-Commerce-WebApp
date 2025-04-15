@@ -1,4 +1,7 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  %>
+<c:if test="${empty sessionScope.user}">
+    <c:redirect url="/home" />
+</c:if>
 
 
 <!DOCTYPE html>

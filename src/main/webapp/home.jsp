@@ -115,47 +115,53 @@
                                                        data-name="${product.name}"
                                                        data-description="${product.description}"
                                                        data-stock="${product.stock}"
-                                                       data-price="${product.price}">
+                                                       data-price="${product.price}"
+                                                       data-id="${product.productId}">
+
                                                         <i class="fas fa-search-plus"></i>
                                                     </a>
                                                 </li>
-                                                <li>
+                                                <c:if test="${sessionScope.user != null}">
+                                                    <li>
 
-                                                    <a data-modal="modal"
-                                                       data-modal-id="#add-to-cart"
-                                                       data-tooltip="tooltip"
-                                                       data-placement="top"
-                                                       title="Add to Cart"
-                                                       class="add-to-cart-trigger"
-                                                       data-image="${product.image}"
-                                                       data-name="${product.name}"
-                                                       data-stock="${product.stock}"
-                                                       data-price="${product.price}">
-                                                        <i class="fas fa-shopping-cart"></i>
-                                                    </a>
-                                                </li>
-
-                                                <li>
-
-                                                    <a data-modal="modal"
-                                                       data-modal-id="#add-to-wishlist"
-                                                       data-tooltip="tooltip"
-                                                       data-placement="top"
-                                                       title="Add to Wishlist"
-                                                       class="add-to-wishlist-trigger"
-                                                       data-image="${product.image}"
-                                                       data-name="${product.name}"
-                                                       data-price="${product.price}"><i class="fas fa-heart"></i></a>
-                                                </li>
+                                                        <a data-modal="modal"
+                                                           data-modal-id="#add-to-cart"
+                                                           data-tooltip="tooltip"
+                                                           data-placement="top"
+                                                           title="Add to Cart"
+                                                           class="add-to-cart-trigger"
+                                                           data-image="${product.image}"
+                                                           data-name="${product.name}"
+                                                           data-stock="${product.stock}"
+                                                           data-price="${product.price}"
+                                                           data-id="${product.productId}">
+                                                            <i class="fas fa-shopping-cart"></i>
+                                                        </a>
+                                                    </li>
+                                                </c:if>
 
 
-                                                <li>
+<%--                                                <li>--%>
 
-                                                    <a data-modal="modal"
-                                                       data-modal-id="checkout"
-                                                       data-tooltip="tooltip"
-                                                       data-placement="top"
-                                                       title="Checkout"><i class="fas fa-plus"></i></a></li>
+<%--                                                    <a data-modal="modal"--%>
+<%--                                                       data-modal-id="#add-to-wishlist"--%>
+<%--                                                       data-tooltip="tooltip"--%>
+<%--                                                       data-placement="top"--%>
+<%--                                                       title="Add to Wishlist"--%>
+<%--                                                       class="add-to-wishlist-trigger"--%>
+<%--                                                       data-image="${product.image}"--%>
+<%--                                                       data-name="${product.name}"--%>
+<%--                                                       data-price="${product.price}"><i class="fas fa-heart"></i></a>--%>
+<%--                                                </li>--%>
+
+
+<%--                                                <li>--%>
+
+<%--                                                    <a data-modal="modal"--%>
+<%--                                                       data-modal-id="checkout"--%>
+<%--                                                       data-tooltip="tooltip"--%>
+<%--                                                       data-placement="top"--%>
+<%--                                                       title="Checkout"><i class="fas fa-plus"></i></a></li>--%>
 
                                             </ul>
                                         </div>
@@ -167,7 +173,7 @@
 
                                     <span class="product-o__name">
 
-                                                            <a href="product-details?name=${product.name}">${product.name}</a></span>
+                                                            <a href="product-details?id=${product.productId}&name=${product.name}">${product.name}</a></span>
 
 
                                     <span class="product-o__price">$${product.price}</span>
@@ -277,28 +283,34 @@
                                                        data-name="${product.name}"
                                                        data-description="${product.description}"
                                                        data-stock="${product.stock}"
-                                                       data-price="${product.price}" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a></li>
+                                                       data-price="${product.price}"
+                                                       data-id="${product.productId}"
+                                                       data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a></li>
+
+                                               <c:if test="${sessionScope.user != null}">
                                                <li>
 
                                                    <a class="add-to-cart-trigger"
                                                       data-image="${product.image}"
                                                       data-name="${product.name}"
                                                       data-stock="${product.stock}"
+                                                      data-id="${product.productId}"
                                                       data-price="${product.price}" data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
                                                </li>
+                                               </c:if>
 
-                                               <li>
+<%--                                               <li>--%>
 
-                                                   <a class="add-to-wishlist-trigger"
-                                                      data-image="${product.image}"
-                                                      data-name="${product.name}"
-                                                      data-price="${product.price}" data-modal="modal" data-modal-id="#add-to-wishlist" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a>
-                                               </li>
+<%--                                                   <a class="add-to-wishlist-trigger"--%>
+<%--                                                      data-image="${product.image}"--%>
+<%--                                                      data-name="${product.name}"--%>
+<%--                                                      data-price="${product.price}" data-modal="modal" data-modal-id="#add-to-wishlist" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a>--%>
+<%--                                               </li>--%>
 
 
-                                               <li>
+<%--                                               <li>--%>
 
-                                                   <a data-modal="modal" data-modal-id="checkout" data-tooltip="tooltip" data-placement="top" title="Checkout"><i class="fas fa-plus"></i></a></li>
+<%--                                                   <a data-modal="modal" data-modal-id="checkout" data-tooltip="tooltip" data-placement="top" title="Checkout"><i class="fas fa-plus"></i></a></li>--%>
 
                                            </ul>
                                        </div>
@@ -310,7 +322,7 @@
 
                                    <span class="product-o__name">
 
-                                                            <a href="product-details?name=${product.name}">${product.name}</a></span>
+                                                            <a href="product-details?id=${product.productId}&name=${product.name}">${product.name}</a></span>
 
 
                                    <span class="product-o__price">$${product.price}</span>
@@ -421,28 +433,33 @@
                                                        data-name="${product.name}"
                                                        data-description="${product.description}"
                                                        data-stock="${product.stock}"
+                                                       data-id="${product.productId}"
                                                        data-price="${product.price}" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a></li>
+
+                                                <c:if test="${sessionScope.user != null}">
                                                 <li>
 
                                                     <a class="add-to-cart-trigger"
                                                        data-image="${product.image}"
                                                        data-name="${product.name}"
+                                                       data-id="${product.productId}"
                                                        data-stock="${product.stock}"
                                                        data-price="${product.price}" data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
                                                 </li>
+                                                </c:if>
 
-                                                <li>
+<%--                                                <li>--%>
 
-                                                    <a class="add-to-wishlist-trigger"
-                                                       data-image="${product.image}"
-                                                       data-name="${product.name}"
-                                                       data-price="${product.price}" data-modal="modal" data-modal-id="#add-to-wishlist" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a>
-                                                </li>
+<%--                                                    <a class="add-to-wishlist-trigger"--%>
+<%--                                                       data-image="${product.image}"--%>
+<%--                                                       data-name="${product.name}"--%>
+<%--                                                       data-price="${product.price}" data-modal="modal" data-modal-id="#add-to-wishlist" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a>--%>
+<%--                                                </li>--%>
 
 
-                                                <li>
+<%--                                                <li>--%>
 
-                                                    <a data-modal="modal" data-modal-id="checkout" data-tooltip="tooltip" data-placement="top" title="Checkout"><i class="fas fa-plus"></i></a></li>
+<%--                                                    <a data-modal="modal" data-modal-id="checkout" data-tooltip="tooltip" data-placement="top" title="Checkout"><i class="fas fa-plus"></i></a></li>--%>
 
                                             </ul>
                                         </div>
@@ -454,7 +471,7 @@
 
                                     <span class="product-o__name">
 
-                                                            <a href="product-details?name=${product.name}">${product.name}</a></span>
+                                                            <a href="product-details?id=${product.productId}&name=${product.name}">${product.name}</a></span>
 
 
                                     <span class="product-o__price">$${product.price}</span>

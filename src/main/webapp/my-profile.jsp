@@ -1,4 +1,9 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
+<c:if test="${empty sessionScope.user}">
+    <c:redirect url="/home" />
+</c:if>
 
 
 <!DOCTYPE html>
@@ -62,7 +67,7 @@
                                                                type="text"
                                                                id="reg-name"
                                                                name="name"
-                                                               value="${currentUser.name}">
+                                                               value="${user.name}">
                                                         <div class="error-message" id="name-error"></div>
                                                     </div>
 
@@ -73,7 +78,7 @@
                                                                type="email"
                                                                id="reg-email"
                                                                name="email"
-                                                               value="${currentUser.email}">
+                                                               value="${user.email}">
                                                         <div class="error-message" id="email-error"></div>
                                                     </div>
 
@@ -84,7 +89,7 @@
                                                                type="text"
                                                                id="reg-phone"
                                                                name="phone"
-                                                               value="${currentUser.phone}"
+                                                               value="${user.phone}"
                                                                maxlength="11">
                                                         <div class="error-message" id="phone-error"></div>
                                                     </div>
@@ -96,7 +101,7 @@
                                                                type="text"
                                                                id="reg-address"
                                                                name="address"
-                                                               value="${currentUser.address}">
+                                                               value="${user.address}">
                                                         <span class="error-message" id="address-error"></span>
                                                     </div>
 

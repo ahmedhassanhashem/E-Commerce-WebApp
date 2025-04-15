@@ -3,6 +3,9 @@
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
+<c:if test="${empty sessionScope.user}">
+    <c:redirect url="${pageContext.request.contextPath}/home" />
+</c:if>
 
 
 <%@include file="commos/head.html" %>
@@ -53,7 +56,7 @@
                                                                    id="current-password"
                                                                    name="currentPassword"
                                                                    required>
-                                                            <span id="current-password-status" class="validation-status"></span>
+                                                            <span id="current-password-status" class="error-message"></span>
                                                         </div>
                                                     </div>
 
@@ -66,6 +69,7 @@
                                                                    id="new-password"
                                                                    name="newPassword"
                                                                    required>
+                                                            <span id="new-password-status" class="error-message"></span>
                                                         </div>
                                                     </div>
 
@@ -78,11 +82,12 @@
                                                                    id="confirm-new-password"
                                                                    name="confirmPassword"
                                                                    required>
-                                                            <span id="password-match-status" class="validation-status"></span>
+                                                            <span id="confirm-password-status" class="error-message"></span>
                                                         </div>
                                                     </div>
 
                                                     <button class="btn btn--e-brand-b-2" type="submit">SUBMIT</button>
+                                                    <div id="form-status"></div>
                                                 </form>
                                             </div>
                                         </div>
