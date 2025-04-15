@@ -56,6 +56,7 @@ public class RegisterServlet extends HttpServlet {
         user.setPassword(password);
         user.setCreditBalance(creditLimit);
         user.setCart(cart);
+        cart.setUser(user);
         // Register user
         UserDAO userDAO = new UserDAO();
         boolean isRegistered = userDAO.registerUser(user);

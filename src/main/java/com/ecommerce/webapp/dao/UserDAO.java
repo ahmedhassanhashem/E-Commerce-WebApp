@@ -46,6 +46,8 @@ public class UserDAO {
             em.persist(user);
             return true;
         } catch (Exception e) {
+            System.out.println("\n\n\n\n"+ e.getMessage() +"\n\n\n\n");
+            e.printStackTrace();
             return false;
         }
     }

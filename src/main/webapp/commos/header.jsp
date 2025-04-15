@@ -5,7 +5,6 @@
   Time: 05:38
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page session="false" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 
