@@ -2,7 +2,6 @@ package com.ecommerce.webapp.dao;
 
 import java.util.List;
 
-import com.ecommerce.webapp.entities.Order;
 import com.ecommerce.webapp.entities.User;
 import com.ecommerce.webapp.utils.PersistenceManager;
 import jakarta.persistence.EntityManager;
@@ -11,10 +10,24 @@ import jakarta.persistence.TypedQuery;
 
 public class UserDAO {
 
+//    public User findByEmail(String email) {
+//        EntityManager em = PersistenceManager.getEntityManager();
+//        TypedQuery<User> query = em.createQuery(
+//                "SELECT u FROM User u WHERE u.email = :email",
+//                User.class
+//        );
+//        query.setParameter("email", email);
+//        try {
+//            return query.getSingleResult();
+//        } catch (NoResultException e) {
+//            return null;
+//        }
+//    }
+
     public User findByEmail(String email) {
         EntityManager em = PersistenceManager.getEntityManager();
         TypedQuery<User> query = em.createQuery(
-                "SELECT u FROM User u WHERE u.email = :email",
+                "SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.orders WHERE u.email = :email",
                 User.class
         );
         query.setParameter("email", email);
@@ -46,6 +59,8 @@ public class UserDAO {
             em.persist(user);
             return true;
         } catch (Exception e) {
+            System.out.println("\n\n\n\n"+ e.getMessage() +"\n\n\n\n");
+            e.printStackTrace();
             return false;
         }
     }
@@ -66,14 +81,24 @@ public class UserDAO {
             return false;
         }
     }
+
+
     public List<User> findAll() {
         EntityManager em = PersistenceManager.getEntityManager();
         TypedQuery<User> query = em.createQuery(
-                "SELECT u FROM User o ORDER BY u.orderId DESC", User.class);
+                "SELECT u FROM User u ORDER BY u.userId DESC", User.class); // Fixed alias and order by
         try {
             return query.getResultList();
         } catch (NoResultException e) {
             return null;
         }
+    }
+    public long getUsersCount() {
+        EntityManager em = PersistenceManager.getEntityManager();
+        TypedQuery<Long> query = em.createQuery(
+                "SELECT COUNT(u) FROM User u",
+                Long.class
+        );
+        return query.getSingleResult();
     }
 }

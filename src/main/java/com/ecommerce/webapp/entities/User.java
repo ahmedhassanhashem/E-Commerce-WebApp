@@ -17,7 +17,9 @@ import org.hibernate.validator.constraints.Length;
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Data
+//@Data
+@ToString(exclude = {"orders", "cart", "wishlist"})
+@EqualsAndHashCode(exclude = {"orders", "cart", "wishlist"})
 @Entity
 @Table(name = "users", indexes = {
         @Index(columnList = "email"),
@@ -56,10 +58,10 @@ public class User {
     @Column(nullable = false, unique = true)
     private String phone;
 
-    @OneToOne(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToOne(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     private Cart cart;
 
-    @OneToOne(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToOne(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     private Wishlist wishlist;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)

@@ -1,10 +1,7 @@
 package com.ecommerce.webapp.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,7 +11,9 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@Data
+// Remove @Data
+@ToString(exclude = {"user", "items"})
+@EqualsAndHashCode(exclude = {"user", "items"})
 @Entity
 @Table(name = "wishlist")
 public class Wishlist {

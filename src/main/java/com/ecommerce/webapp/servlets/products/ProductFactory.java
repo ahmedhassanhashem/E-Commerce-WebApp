@@ -21,5 +21,23 @@ public class ProductFactory {
     public static Product getProductsById(int id) {
         return productDAO.findById(id);
     }
+
+    public static ProductSearchResult getFilteredProducts(
+            ProductCategory category,
+            Double priceMin,
+            Double priceMax,
+            String searchTerm,
+            String sortBy,
+            boolean ascending,
+            int page,
+            int pageSize
+    ) {
+        List<Product> products = productDAO.findProductsWithFilters(
+                category, priceMin, priceMax, searchTerm, sortBy, ascending, page, pageSize
+        );
+        long total = productDAO.countFilteredProducts(category, priceMin, priceMax, searchTerm);
+
+        return new ProductSearchResult(products, total);
+    }
 }
 

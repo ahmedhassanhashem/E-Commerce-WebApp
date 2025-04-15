@@ -1,4 +1,8 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+
+
+
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 
@@ -52,19 +56,19 @@
                                                 <ul class="shop-w__list gl-scroll">
                                                     <li>
                                                         <input type="radio" name="category" value="BEANS" id="catBeans"
-                                                        ${requestScope.selectedCategory.toLowerCase() eq 'beans' ? 'checked' : ''}>
+                                                        ${param.category eq 'BEANS' ? 'checked' : ''}>
                                                         <label for="catBeans">Coffee Beans</label>
                                                         <span class="category-list__text u-s-m-l-6">(${requestScope.beansCategory})</span>
                                                     </li>
                                                     <li>
                                                         <input type="radio" name="category" value="MUGS" id="catMugs"
-                                                        ${requestScope.selectedCategory.toLowerCase() eq 'mugs' ? 'checked' : ''}>
+                                                        ${param.category eq 'MUGS' ? 'checked' : ''}>
                                                         <label for="catMugs">Coffee Mugs</label>
                                                         <span class="category-list__text u-s-m-l-6">(${requestScope.mugsCategory})</span>
                                                     </li>
                                                     <li>
                                                         <input type="radio" name="category" value="MACHINES" id="catMachines"
-                                                        ${requestScope.selectedCategory.toLowerCase() eq 'machines' ? 'checked' : ''}>
+                                                        ${param.category eq 'MACHINES' ? 'checked' : ''}>
                                                         <label for="catMachines">Coffee Machines</label>
                                                         <span class="category-list__text u-s-m-l-6">(${requestScope.machinesCategory})</span>
                                                     </li>
@@ -89,13 +93,21 @@
 
                                                             <label for="price-min"></label>
 
-                                                            <input class="input-text input-text--primary-style" type="text" id="price-min" placeholder="Min">
+                                                            <input class="input-text input-text--primary-style"
+                                                                   type="text"
+                                                                   id="price-min"
+                                                                   placeholder="Min"
+                                                                   value="${param.priceMin}">
                                                         </div>
                                                         <div>
 
                                                             <label for="price-max"></label>
 
-                                                            <input class="input-text input-text--primary-style" type="text" id="price-max" placeholder="Max">
+                                                            <input class="input-text input-text--primary-style"
+                                                                   type="text"
+                                                                   id="price-max"
+                                                                   placeholder="Max"
+                                                                   value="${param.priceMax}">
                                                         </div>
 
                                                     </div>

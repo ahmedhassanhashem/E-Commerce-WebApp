@@ -47,7 +47,7 @@
 
           <div class="filter-group">
             <label for="search-input">Search:  </label>
-            <input type="text" id="search-input" placeholder="Search products by name..." onkeyup="filterProducts()">
+            <input type="text" id="search-input" placeholder="Search products by ID..." onkeyup="filterProducts()">
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@
         <table>
           <thead>
           <tr>
-            <th>#</th>
+            <th>Product ID</th>
             <th>Image</th>
             <th>Name</th>
             <th>Category</th>
@@ -79,10 +79,10 @@
                   <td>
                     <c:choose>
                       <c:when test="${not empty product.image}">
-                        <img src="${product.image}" class="product-image" alt="${product.name}">
+                        <img src="images/product/electronic/${product.image}" class="product-image" alt="${product.name}">
                       </c:when>
                       <c:otherwise>
-                        <img src="assets/images/no-image.png" class="product-image" alt="No Image">
+                        <img src="images/preloader.png" class="product-image" alt="No Image">
                       </c:otherwise>
                     </c:choose>
                   </td>
@@ -91,10 +91,10 @@
                   <td>$${product.price}</td>
                   <td>${product.stock}</td>
                   <td class="action-buttons">
-                    <button class="btn btn-primary" onclick="editProduct(${product.productId})">
+                    <button class="btn btn-primary" onclick="editProduct('${product.productId}')">
                       <i class="fas fa-edit"></i> Edit
                     </button>
-                    <button class="btn btn-danger" onclick="deleteProduct(${product.productId})">
+                    <button class="btn btn-danger" onclick="deleteProduct('${product.productId}')">
                       <i class="fas fa-trash"></i>
                     </button>
                   </td>
@@ -116,6 +116,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
-<script src="js/products.js"></script>
+<script src="js/getAllProducts.js"></script>
 </body>
 </html>

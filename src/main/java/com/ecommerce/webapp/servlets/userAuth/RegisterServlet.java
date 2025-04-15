@@ -2,6 +2,7 @@ package com.ecommerce.webapp.servlets.userAuth;
 
 
 import com.ecommerce.webapp.dao.UserDAO;
+import com.ecommerce.webapp.entities.Cart;
 import com.ecommerce.webapp.entities.User;
 
 import jakarta.servlet.ServletException;
@@ -47,13 +48,15 @@ public class RegisterServlet extends HttpServlet {
         
         // Create user object
         User user = new User();
+        Cart cart = new Cart();
         user.setName(name);
         user.setEmail(email);
         user.setPhone(phone);
         user.setAddress(address);
         user.setPassword(password);
         user.setCreditBalance(creditLimit);
-        
+        user.setCart(cart);
+        cart.setUser(user);
         // Register user
         UserDAO userDAO = new UserDAO();
         boolean isRegistered = userDAO.registerUser(user);
@@ -63,7 +66,7 @@ public class RegisterServlet extends HttpServlet {
             session.setAttribute("user", user);
             session.setAttribute("successMessage", "Registration successful!");
             
-            response.sendRedirect(request.getContextPath() + "/home.jsp");
+            response.sendRedirect(request.getContextPath() + "/home");
         } else {
             // Registration failed
             request.setAttribute("errorMessage", "Registration failed. Email or phone may already be in use.");

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,17 +75,6 @@
                     <!-- Pagination will be loaded via AJAX -->
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<!-- Order Details Modal -->
-<div class="modal" id="orderDetailsModal">
-    <div class="modal-content" style="width: 700px;">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2>Order Details - #<span id="modal-order-id"></span></h2>
-        <div id="order-details-content">
-            <!-- Order details will be loaded here -->
         </div>
     </div>
 </div>

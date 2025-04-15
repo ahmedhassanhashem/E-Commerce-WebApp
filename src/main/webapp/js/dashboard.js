@@ -1,102 +1,55 @@
-
-    // Global variables
-    let users = [];
-    let products = [];
-
-    // Initialize the dashboard
-    $(document).ready(function() {
-    loadUsers();
-    loadProducts();
-    updateDashboardCounts();
-});
-
-    // Load categories
-    function loadUsers() {
-    $.ajax({
-        url: 'CategoryServlet',
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            categories = data;
-            updateDashboardCounts();
-        },
-        error: function() {
-            showNotification('Error loading categories', 'error');
-            // Demo data
-            // users = [
-            //     { id: 1, name: 'Coffee Beans', description: 'Various coffee beans', productCount: 5 },
-            //     { id: 2, name: 'Coffee Mugs', description: 'Stylish mugs', productCount: 3 },
-            //     { id: 2, name: 'Coffee Machines', description: 'All the machines and it accessories', productCount: 3 }
-            // ];
-            updateDashboardCounts();
-        }
-    });
-}
-
-    // Load products
-    function loadProducts() {
-    $.ajax({
-        url: 'ProductServlet',
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            products = data;
-            renderRecentProducts();
-            updateDashboardCounts();
-        },
-        error: function() {
-            showNotification('Error loading products', 'error');
-            // // Demo data
-            // products = [
-            //     { id: 1, name: 'Ethiopian Yirgacheffe', categoryName: 'Coffee Beans', price: 14.99, stock: 50 },
-            //     { id: 2, name: 'Colombian Supremo', categoryName: 'Coffee Beans', price: 12.99, stock: 45 }
-            // ];
-            renderRecentProducts();
-            updateDashboardCounts();
-        }
-    });
-}
-
-    // Render recent products on dashboard
-    function renderRecentProducts() {
-    const tbody = $('#recent-products');
-    tbody.empty();
-
-    if (products.length === 0) {
-    tbody.append('<tr><td colspan="4">No products found</td></tr>');
-    return;
-}
-
-    // Get the 5 most recent products
-    const recentProducts = products.slice(0, 5);
-
-    recentProducts.forEach(product => {
-    tbody.append(`
-                <tr>
-                    <td>${product.name}</td>
-                    <td>${product.categoryName}</td>
-                    <td>$${parseFloat(product.price).toFixed(2)}</td>
-                    <td>${product.stock}</td>
-                </tr>
-            `);
-});
-}
-
-    // Update dashboard counts
-    function updateDashboardCounts() {
-    $('#product-count').text(products.length);
-    $('#users-count').text(users.length);
-}
-
-    // Show notification
+$(document).ready(function() {
+    // Load dashboard statistics on page load
+    loadDashboardData();
+    
+    // Function to fetch dashboard data from the servlet
+    function loadDashboardData() {
+        // Log to ensure function is being called
+        console.log("Loading dashboard data...");
+        
+        $.ajax({
+            url: 'dashboard-data',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                // Log received data for debugging
+                console.log("Received dashboard data:", data);
+                
+                // Update dashboard counters
+                $('#product-in-stock').text(data.productsInStock);
+                $('#product-out-stock').text(data.productsOutOfStock);
+                $('#users-count').text(data.userCount);
+                $('#orders-processing-count').text(data.processingOrders);
+                $('#orders-completed-count').text(data.completedOrders);
+                $('#orders-cancelled-count').text(data.cancelledOrders);
+                
+                // Show success notification
+                showNotification('Dashboard data loaded successfully', 'success');
+            },
+            error: function(xhr, status, error) {
+                // Log error for debugging
+                console.error("Error loading dashboard data:", error);
+                console.error("Response:", xhr.responseText);
+                
+                // Show error notification
+                showNotification('Error loading dashboard data: ' + error, 'error');
+            }
+        });
+    }
+    
+    // Function to display notifications
     function showNotification(message, type) {
-    const notification = $('#notification');
-    notification.removeClass('hide notification-success notification-error');
-    notification.addClass(`notification-${type}`);
-    notification.text(message);
-
-    // Hide notification after 3 seconds
-    setTimeout(() => {
-    notification.addClass('hide');
-}, 3000);
-}
+        const notification = $('#notification');
+        notification.text(message);
+        notification.removeClass('hide success error warning');
+        notification.addClass(type);
+        
+        // Show notification
+        notification.slideDown();
+        
+        // Auto-hide after 5 seconds
+        setTimeout(function() {
+            notification.slideUp();
+        }, 5000);
+    }
+});
