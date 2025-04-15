@@ -65,7 +65,7 @@
             <th>Actions</th>
           </tr>
           </thead>
-          <tbody id="products-table">
+          <tbody id="products-table"> <!--  id="products-table"-->
           <c:choose>
             <c:when test="${empty products}">
               <tr>
@@ -79,7 +79,7 @@
                   <td>
                     <c:choose>
                       <c:when test="${not empty product.image}">
-                        <img src="images/product/electronic/${product.image}" class="product-image" alt="${product.name}">
+                        <img src="images/product/electronic/${product.image}.jpg" class="product-image" alt="${product.name}">
                       </c:when>
                       <c:otherwise>
                         <img src="images/preloader.png" class="product-image" alt="No Image">
