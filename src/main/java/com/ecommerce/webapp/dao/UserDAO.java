@@ -10,10 +10,24 @@ import jakarta.persistence.TypedQuery;
 
 public class UserDAO {
 
+//    public User findByEmail(String email) {
+//        EntityManager em = PersistenceManager.getEntityManager();
+//        TypedQuery<User> query = em.createQuery(
+//                "SELECT u FROM User u WHERE u.email = :email",
+//                User.class
+//        );
+//        query.setParameter("email", email);
+//        try {
+//            return query.getSingleResult();
+//        } catch (NoResultException e) {
+//            return null;
+//        }
+//    }
+
     public User findByEmail(String email) {
         EntityManager em = PersistenceManager.getEntityManager();
         TypedQuery<User> query = em.createQuery(
-                "SELECT u FROM User u WHERE u.email = :email",
+                "SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.orders WHERE u.email = :email",
                 User.class
         );
         query.setParameter("email", email);
@@ -68,11 +82,14 @@ public class UserDAO {
         }
     }
 
+
+
     
     public List<User> findAll() {
         EntityManager em = PersistenceManager.getEntityManager();
         TypedQuery<User> query = em.createQuery("FROM User", User.class);
         return query.getResultList(); // returns empty list if no results
+
     }
 
 

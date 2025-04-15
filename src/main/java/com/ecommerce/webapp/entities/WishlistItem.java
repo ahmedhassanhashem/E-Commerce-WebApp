@@ -1,15 +1,14 @@
 package com.ecommerce.webapp.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
 @NoArgsConstructor
-@Data
+// Remove @Data
+@ToString(exclude = {"wishlist"})
+@EqualsAndHashCode(exclude = {"wishlist"})
 @Entity
 @Table(name = "wishlist_items")
 public class WishlistItem {

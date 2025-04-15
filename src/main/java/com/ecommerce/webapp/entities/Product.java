@@ -11,7 +11,9 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Data
+// Remove @Data
+@ToString(exclude = {"orderItems"})
+@EqualsAndHashCode(exclude = {"orderItems"})
 @Entity
 @Table(name = "products")
 public class Product {

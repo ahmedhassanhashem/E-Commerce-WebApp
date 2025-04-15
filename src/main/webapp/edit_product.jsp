@@ -73,7 +73,7 @@
               <option value="OUT_OF_STOCK">Out of Stock</option>
             </select>
           </div> -->
-        </div>
+<%--        </div>--%>
           <div class="form-group">
             <label>Product Image</label>
             <div class="file-upload">
