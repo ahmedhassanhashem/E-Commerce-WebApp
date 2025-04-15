@@ -65,10 +65,11 @@ public class ForgotPasswordServlet extends HttpServlet {
         }
         
         // Generate reset token and store in session
-        String resetToken = generateSecureToken();
+        String resetToken = generateSecureToken(); 
         HttpSession session = request.getSession();
-        session.setAttribute("resetEmail", email);
-        session.setAttribute("resetToken", resetToken);
+        session.setAttribute("user", user);
+        // session.setAttribute("resetEmail", email);
+         session.setAttribute("resetToken", resetToken);
         session.setMaxInactiveInterval(30 * 60); // 30 minutes
         
         response.sendRedirect("reset-password.jsp");
@@ -93,7 +94,7 @@ public class ForgotPasswordServlet extends HttpServlet {
     
         if (userDAO.updatePassword(email, newPassword)) {
 
-            session.removeAttribute("resetEmail");
+            //session.removeAttribute("resetEmail");
             session.removeAttribute("resetToken");
             
             session.setAttribute("successMessage", "Password reset successful. Please log in.");

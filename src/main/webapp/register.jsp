@@ -45,6 +45,8 @@
                                     <div class="u-s-m-b-30">
                                         <label class="gl-label" for="reg-email">E-MAIL *</label>
                                         <input class="input-text input-text--primary-style" type="email" id="reg-email" name="email" placeholder="E-mail" required>
+                                        <div id="email-validation-message" class="u-s-m-t-10" style="min-height: 20px;"></div>
+
                                     </div>
                                 
                                     <div class="u-s-m-b-30">
