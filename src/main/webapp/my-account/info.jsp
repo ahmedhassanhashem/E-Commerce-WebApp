@@ -19,7 +19,7 @@
                 <div class="dash__box dash__box--bg-grey dash__box--shadow-2 u-h-100">
                     <div class="dash__pad-3">
                         <h2 class="dash__h2 u-s-m-b-8">NAME</h2>
-                        <span class="dash__text">${currentUser.name}</span>
+                        <span class="dash__text">${sessionScope.user.name}</span>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <div class="dash__box dash__box--bg-grey dash__box--shadow-2 u-h-100">
                     <div class="dash__pad-3">
                         <h2 class="dash__h2 u-s-m-b-8">EMAIL</h2>
-                        <span class="dash__text">${currentUser.email}</span>
+                        <span class="dash__text">${sessionScope.user.email}</span>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                 <div class="dash__box dash__box--bg-grey dash__box--shadow-2 u-h-100">
                     <div class="dash__pad-3">
                         <h2 class="dash__h2 u-s-m-b-8">PHONE NUMBER</h2>
-                        <span class="dash__text">${currentUser.phone}</span>
+                        <span class="dash__text">${sessionScope.user.phone}</span>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                 <div class="dash__box dash__box--bg-grey dash__box--shadow-2 u-h-100">
                     <div class="dash__pad-3">
                         <h2 class="dash__h2 u-s-m-b-8">ADDRESS</h2>
-                        <span class="dash__text">${currentUser.address}</span>
+                        <span class="dash__text">${sessionScope.user.address}</span>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
 
                         <span class="dash__text">
                             <fmt:formatNumber
-                                    value="${currentUser.creditLimit}"
+                                    value="${sessionScope.user.creditBalance}"
                                     type="number"
                                     minFractionDigits="2"
                                     maxFractionDigits="2"/>

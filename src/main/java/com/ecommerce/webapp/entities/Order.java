@@ -5,13 +5,13 @@ import java.util.List;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
-@Data
+//@Data
+@ToString(exclude = {"user", "items"}) // Exclude both user and items
+@EqualsAndHashCode(exclude = {"user", "items"}) // Exclude from equals/hashCode
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -34,4 +34,12 @@ public class Order {
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> items = new ArrayList<>();
+
+
+    @Transient
+    public double getOrderTotalPrice() {
+        return items.stream()
+                .map(item -> item.getItemPrice() * item.getQuantity())
+                .reduce(0.0, Double::sum);
+    }
 }

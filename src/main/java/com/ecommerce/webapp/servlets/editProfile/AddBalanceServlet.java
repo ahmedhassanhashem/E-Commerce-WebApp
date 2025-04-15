@@ -21,7 +21,7 @@ public class AddBalanceServlet extends HttpServlet {
         JsonObject jsonResponse = new JsonObject();
         HttpSession session = request.getSession(false);
 
-        if (session == null || session.getAttribute("currentUser") == null) {
+        if (session == null || session.getAttribute("user") == null) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             jsonResponse.addProperty("success", false);
             jsonResponse.addProperty("message", "User not logged in.");
@@ -29,7 +29,7 @@ public class AddBalanceServlet extends HttpServlet {
             return;
         }
 
-        User currentUser = (User) session.getAttribute("currentUser");
+        User user = (User) session.getAttribute("user");
         String amountStr = request.getParameter("credit");
 
         if (amountStr == null || amountStr.trim().isEmpty()) {
@@ -48,9 +48,9 @@ public class AddBalanceServlet extends HttpServlet {
                 jsonResponse.addProperty("success", false);
                 jsonResponse.addProperty("message", "Amount must be greater than zero.");
             } else {
-                double newBalance = currentUser.getCreditBalance() + amount;
-                currentUser.setCreditBalance(newBalance);
-                session.setAttribute("currentUser", currentUser);
+                double newBalance = user.getCreditBalance() + amount;
+                user.setCreditBalance(newBalance);
+                session.setAttribute("user", user);
 
                 jsonResponse.addProperty("success", true);
                 jsonResponse.addProperty("message", "Balance updated successfully.");

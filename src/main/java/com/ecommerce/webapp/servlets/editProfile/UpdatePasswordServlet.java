@@ -26,8 +26,8 @@ public class UpdatePasswordServlet extends HttpServlet {
             return;
         }
 
-        User currentUser = (User) session.getAttribute("currentUser");
-        if (currentUser == null) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
             response.setStatus(401);
             out.print("{\"success\": false, \"message\": \"Session expired\"}");
             return;
@@ -38,7 +38,7 @@ public class UpdatePasswordServlet extends HttpServlet {
         String confirmPassword = request.getParameter("confirmPassword");
 
         // Validate current password
-        if (!currentUser.getPassword().equals(currentPassword)) {
+        if (!user.getPassword().equals(currentPassword)) {
             response.setStatus(400);
             out.print("{\"success\": false, \"message\": \"Current password is incorrect\"}");
             return;
@@ -59,8 +59,8 @@ public class UpdatePasswordServlet extends HttpServlet {
         }
 
         // Update session
-        currentUser.setPassword(newPassword);
-        session.setAttribute("currentUser", currentUser);
+        user.setPassword(newPassword);
+        session.setAttribute("user", user);
 
         response.setStatus(200);
         out.print("{\"success\": true, \"message\": \"Password updated successfully\"}");

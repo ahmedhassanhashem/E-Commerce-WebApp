@@ -108,7 +108,7 @@
                                                         <h2 class="dash__h2 u-s-m-b-8">Balance</h2>
 
                                                         <span class="dash__text">
-                                                            <fmt:formatNumber value="${currentUser.balance}" type="number" minFractionDigits="2" maxFractionDigits="2" />
+                                                            <fmt:formatNumber value="${user.balance}" type="number" minFractionDigits="2" maxFractionDigits="2" />
                                                         </span>
                                                     </div>
 

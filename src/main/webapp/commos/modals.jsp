@@ -1,11 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: AHMED
-  Date: 2025-03-28
-  Time: 14:17
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page session="false" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 

@@ -20,9 +20,9 @@ public class UpdateProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        User currentUser = (User) session.getAttribute("currentUser");
+        User user = (User) session.getAttribute("user");
 
-        if (currentUser == null) {
+        if (user == null) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             JsonObject errorResponse = new JsonObject();
             errorResponse.addProperty("success", false);
@@ -53,11 +53,11 @@ public class UpdateProfileServlet extends HttpServlet {
             jsonResponse.addProperty("success", false);
             jsonResponse.addProperty("message", "All fields are required!");
         } else {
-            currentUser.setName(name);
-            currentUser.setEmail(email);
-            currentUser.setPhone(phone);
-            currentUser.setAddress(address);
-            session.setAttribute("currentUser", currentUser);
+            user.setName(name);
+            user.setEmail(email);
+            user.setPhone(phone);
+            user.setAddress(address);
+            session.setAttribute("user", user);
 
 
             jsonResponse.addProperty("success", true);

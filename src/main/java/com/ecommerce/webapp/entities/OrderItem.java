@@ -2,15 +2,14 @@ package com.ecommerce.webapp.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@Data
+//@Data
+@ToString(exclude = {"order"})
+@EqualsAndHashCode(exclude = {"order"})
 @Entity
 @Table(name = "order_items")
 public class OrderItem {

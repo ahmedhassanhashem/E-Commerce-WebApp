@@ -7,7 +7,9 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@Data
+// Remove @Data
+@ToString(exclude = {"cart"})  // Exclude the parent reference
+@EqualsAndHashCode(exclude = {"cart"})
 @Entity
 @Table(name = "cart_items")
 public class CartItem {

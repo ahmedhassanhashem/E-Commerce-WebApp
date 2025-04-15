@@ -92,7 +92,7 @@
                                         <div class="pd-detail-inline-2">
 
 
-                                            <c:if test="${sessionScope.user} != null">
+                                            <c:if test="${sessionScope.user != null}">
                                             <div class="u-s-m-b-15">
                                                 <!-- Input Counter -->
                                                 <div class="input-counter">
@@ -224,7 +224,7 @@
                                                                            data-tooltip="tooltip" data-placement="top"
                                                                            title="Quick View"><i class="fas fa-search-plus"></i></a>
                                                                     </li>
-                                                                    <c:if test="${sessionScope.user} != null">
+                                                                    <c:if test="${sessionScope.user != null}">
                                                                     <li>
                                                                         <a class="add-to-cart-trigger"
                                                                            data-image="${similarProduct.image}"

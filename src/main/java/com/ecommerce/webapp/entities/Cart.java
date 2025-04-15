@@ -8,7 +8,10 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@Data
+@ToString(exclude = {"user", "items"})
+@EqualsAndHashCode(exclude = {"user", "items"})
+// @Data makes bug with lazy init 
+//@Data
 @Entity
 @Table(name = "cart")
 public class Cart {
@@ -30,5 +33,4 @@ public class Cart {
                 .map(item -> item.getProduct().getPrice() * item.getQuantity())
                 .reduce(0.0, Double::sum);
     }
-
 }

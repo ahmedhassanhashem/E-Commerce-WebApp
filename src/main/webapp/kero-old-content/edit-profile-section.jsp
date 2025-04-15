@@ -16,7 +16,7 @@
                                    type="text"
                                    id="reg-fname"
                                    name="firstName"
-                                   value="${currentUser.firstName}">
+                                   value="${user.firstName}">
                             <div class="error-message" id="fname-error"></div>
                         </div>
 
@@ -26,7 +26,7 @@
                                    type="text"
                                    id="reg-lname"
                                    name="lastName"
-                                   value="${currentUser.lastName}">
+                                   value="${user.lastName}">
                             <div class="error-message" id="lname-error"></div>
                         </div>
                     </div>
@@ -77,8 +77,8 @@
 
                             <label class="gl-label" for="gender">GENDER</label>
                             <select class="select-box select-box--primary-style u-w-100" id="gender" name="gender">
-                                <option value="male" ${currentUser.gender == 'male' ? 'selected' : ''}>Male</option>
-                                <option value="female" ${currentUser.gender == 'female' ? 'selected' : ''}>Female</option>
+                                <option value="male" ${user.gender == 'male' ? 'selected' : ''}>Male</option>
+                                <option value="female" ${user.gender == 'female' ? 'selected' : ''}>Female</option>
                             </select>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                                    type="email"
                                    id="reg-email"
                                    name="email"
-                                   value="${currentUser.email}">
+                                   value="${user.email}">
                         <div class="error-message" id="email-error"></div>
                     </div>
 
@@ -101,7 +101,7 @@
                                type="text"
                                id="reg-phone"
                                name="phone"
-                               value="${currentUser.phone}"
+                               value="${user.phone}"
                                maxlength="11">
                         <div class="error-message" id="phone-error"></div>
                     </div>
@@ -111,7 +111,7 @@
                         <div class="u-s-m-b-30">
                             <h2 class="dash__h2 u-s-m-b-8">Address</h2>
 
-                            <input class="input-text input-text--primary-style" type="text" id="reg-address" name="address" value="${currentUser.address}">
+                            <input class="input-text input-text--primary-style" type="text" id="reg-address" name="address" value="${user.address}">
                         </div>
                     </div>
 
@@ -127,9 +127,9 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize birthdate
-    var birthDay = ${currentUser.birthDate != null ? currentUser.birthDate.getDate() : 0};
-    var birthMonth = ${currentUser.birthDate != null ? currentUser.birthDate.getMonth() + 1 : 0};
-    var birthYear = ${currentUser.birthDate != null ? currentUser.birthDate.getYear() + 1900 : 0};
+    var birthDay = ${user.birthDate != null ? user.birthDate.getDate() : 0};
+    var birthMonth = ${user.birthDate != null ? user.birthDate.getMonth() + 1 : 0};
+    var birthYear = ${user.birthDate != null ? user.birthDate.getYear() + 1900 : 0};
 
     if (birthDay > 0) document.getElementById('birth-day').value = birthDay;
     if (birthMonth > 0) document.getElementById('birth-month').value = birthMonth;
