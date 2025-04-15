@@ -32,8 +32,6 @@
       <property name="hibernate.generate_statistics" value="true"/>
       <property name="hibernate.globally_quoted_identifiers" value="true"/>
       <property name="hibernate.hbm2ddl.schema-generation.foreign-keys.enabled" value="true"/>
-      <property name="hibernate.connection.provider_disables_autocommit" value="true"/>
-      <property name="hibernate.transaction.flush_before_completion" value="true"/>
 
     </properties>
 
