@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
+
 <!--====== Main Footer ======-->
 <footer>
     <div class="outer-footer">
@@ -30,13 +33,15 @@
                                 <span class="outer-footer__content-title">Website</span>
                                 <div class="outer-footer__list-wrap">
                                     <ul>
-                                        <% if (session.getAttribute("user") != null) { %>
+
+                                        <c:if test="${not empty sessionScope.user}">
                                             <li><a href="cart.jsp">Cart</a></li>
-<%--                                            <li><a href="wishlist.jsp">Wishlist</a></li>--%>
+                                            <%--                                            <li><a href="wishlist.jsp">Wishlist</a></li>--%>
                                             <li><a href="my-account.jsp">Account</a></li>
-                                        <% } else { %>
+                                        </c:if>
+
                                             <li><a href="product-list.jsp">Store</a></li>
-                                        <% } %>
+
                                     </ul>
                                 </div>
                             </div>

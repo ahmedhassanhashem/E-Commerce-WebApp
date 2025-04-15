@@ -1,19 +1,8 @@
-<%--------Mock data to test on it -----------------------%>
-<%@ page import="com.ecommerce.webapp.entities.User" %>
 
 
 
-<%
-    User user = null;
 
-    session = request.getSession();
-    session.setAttribute("user", user);
-%>
-<%---------------------------------------------------%>
-
-
-
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 

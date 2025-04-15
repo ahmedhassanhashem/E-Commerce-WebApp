@@ -26,6 +26,7 @@ public class AuthFilter implements Filter {
         
         // Check if user is already logged in
         boolean isLoggedIn = (session != null && session.getAttribute("user") != null);
+        System.out.println("user is logged in " + isLoggedIn);
         
         // If not logged in, try auto-login with remember-me cookie
         if (!isLoggedIn) {
