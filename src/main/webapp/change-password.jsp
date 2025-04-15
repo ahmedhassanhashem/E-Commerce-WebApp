@@ -122,5 +122,8 @@
 
 <%@include file="commos/script.html" %>
 
+<!--====== change-password-validations ======-->
+<script src="js/custom-js/change-password-validations.js"></script>
+
 </body>
 </html>
