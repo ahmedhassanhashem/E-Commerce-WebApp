@@ -25,11 +25,6 @@ public class ProductDetailsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession(false);
-        if(session != null){
-            User user = (User) session.getAttribute("user");
-
-        }
 
         // Retrieve productName from the request parameter
         String productIdParam = request.getParameter("id");

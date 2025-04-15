@@ -18,6 +18,7 @@ import org.hibernate.validator.constraints.Length;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Data
+@ToString(exclude = {"orders", "cart", "wishlist"})
 @Entity
 @Table(name = "users", indexes = {
         @Index(columnList = "email"),

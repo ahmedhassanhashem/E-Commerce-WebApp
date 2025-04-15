@@ -9,6 +9,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @Data
+@ToString(exclude = "user")
 @Entity
 @Table(name = "cart")
 public class Cart {

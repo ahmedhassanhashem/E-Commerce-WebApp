@@ -6,7 +6,7 @@
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product-m">
                     <div class="product-m__thumb">
-                        <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-details?name=${product.name}">
+                        <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-details?id=${product.productId}&name=${product.name}">
                             <img class="aspect__img" src="images/product/electronic/${product.image}.jpg" alt="">
                         </a>
                         <div class="product-m__quick-look">
