@@ -46,12 +46,12 @@ public class AuthFilter implements Filter {
                             userData.put("email", email);
                             userData.put("name", email.split("@")[0]);
                             
-                            // Check if admin
-                            boolean isAdmin = "admin@gmail.com".equals(email);
+                            // // Check if admin
+                            // boolean isAdmin = "admin@gmail.com".equals(email);
                             
                             // Set session attributes
                             session.setAttribute("user", userData);
-                            session.setAttribute("isAdmin", isAdmin);
+                            // session.setAttribute("isAdmin", isAdmin);
                             
                             // User is now logged in
                             isLoggedIn = true;
@@ -62,21 +62,21 @@ public class AuthFilter implements Filter {
             }
         }
         
-        // Check if trying to access admin area
-        String requestPath = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
-        boolean isAdminPage = requestPath.startsWith("/admin/");
+        // // Check if trying to access admin area
+        // String requestPath = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
+        // boolean isAdminPage = requestPath.startsWith("/admin/");
         
-        if (isAdminPage) {
-            // Check if user is logged in and is admin
-            boolean isAdmin = (session != null && session.getAttribute("isAdmin") != null && 
-                              (Boolean) session.getAttribute("isAdmin"));
+        // if (isAdminPage) {
+        //     // Check if user is logged in and is admin
+        //     boolean isAdmin = (session != null && session.getAttribute("isAdmin") != null && 
+        //                       (Boolean) session.getAttribute("isAdmin"));
                               
-            if (!isAdmin) {
-                // Not authorized to access admin area
-                httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
-                return;
-            }
-        }
+        //     if (!isAdmin) {
+        //         // Not authorized to access admin area
+        //         httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
+        //         return;
+        //     }
+        // }
         
         // Continue with request
         chain.doFilter(request, response);
