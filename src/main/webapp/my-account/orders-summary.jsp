@@ -49,20 +49,20 @@
                             <td>
                                 <c:choose>
                                     <c:when test="${order.status.name() eq 'ACCEPTED'}">
-                                        <span class="manage-o__badge badge--delivered">${order.status}</span>
+                                        <span class="manage-o__badge badge--shipped">${order.status}</span>
                                     </c:when>
                                     <c:when test="${order.status.name() eq 'PENDING'}">
-                                        <span class="manage-o__badge badge--processing">${order.status}</span>
+                                        <span class="manage-o__badge badge--delivered">${order.status}</span>
                                     </c:when>
                                     <c:when test="${order.status.name() eq 'CANCELLED'}">
-                                        <span class="manage-o__badge badge--cancelled">${order.status}</span>
+                                        <span class="manage-o__badge badge--processing">${order.status}</span>
                                     </c:when>
                                     <c:otherwise>
                                         <span class="manage-o__badge">${order.status}</span>
                                     </c:otherwise>
                                 </c:choose>
                                 <div class="dash__link dash__link--brand">
-                                    <a href="order-details.jsp?orderId=${order.orderId}">MANAGE</a>
+                                    <a href="order-details.jsp?orderId=${order.orderId}">VIEW ORDER</a>
                                 </div>
                             </td>
                         </tr>
