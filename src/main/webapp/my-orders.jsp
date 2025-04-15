@@ -75,7 +75,7 @@
                                                                     </div>
                                                                     <div>
                                                                         <div class="dash__link dash__link--brand">
-                                                                            <a href="order-details.jsp?orderId=${order.orderId}">VIEW
+                                                                            <a href="order-details?orderId=${order.orderId}">VIEW
                                                                                 ORDER</a>
                                                                         </div>
                                                                     </div>
