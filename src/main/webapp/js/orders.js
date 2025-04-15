@@ -58,9 +58,6 @@ function displayOrders(orders) {
                 <td>$${order.totalPrice.toFixed(2)}</td>
                 <td><span class="status-label status-${order.status.toLowerCase()}">${order.status}</span></td>
                 <td>
-                    <button class="btn btn-sm" onclick="viewOrderDetails(${order.orderId})">
-                        <i class="fas fa-eye"></i> View
-                    </button>
                     ${order.status === 'PENDING' ? 
                       `<button class="btn btn-sm btn-success" onclick="updateOrderStatus(${order.orderId}, 'ACCEPTED')">
                           <i class="fas fa-check"></i> Accept
@@ -75,18 +72,6 @@ function displayOrders(orders) {
     
     $("#orders-table tbody").html(tableContent);
 }
-//need to implement the function to view order details
-function viewOrderDetails(orderId) {
-
-    $("#modal-order-id").text(orderId);
-    $("#order-details-content").text("Loading order details...");
-    $("#orderDetailsModal").show();
-    
-    setTimeout(() => {
-        $("#order-details-content").text("Order details would be displayed here");
-    }, 500);
-}
-
 function updateOrderStatus(orderId, newStatus) {
     $.ajax({
         url: "updateOrderStatus",
@@ -114,9 +99,6 @@ function refreshOrders() {
     showNotification("Orders refreshed", "success");
 }
 
-function closeModal() {
-    $(".modal").hide();
-}
 
 function showNotification(message, type) {
     const notification = $("#notification");

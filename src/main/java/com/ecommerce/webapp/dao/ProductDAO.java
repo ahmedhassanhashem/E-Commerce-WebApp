@@ -140,6 +140,7 @@ public class ProductDAO {
     }
 
 
+
     // In ProductDAO.java
     public List<Product> findProductsWithFilters(ProductCategory category, Double priceMin, Double priceMax,
                                                  String searchTerm, String sortBy, boolean ascending,
@@ -207,4 +208,25 @@ public class ProductDAO {
         cq.where(predicates.toArray(new Predicate[0]));
         return em.createQuery(cq).getSingleResult();
     }
+
+
+    public long getProductOutOfStockCount() {
+        EntityManager em = PersistenceManager.getEntityManager();
+        TypedQuery<Long> query = em.createQuery(
+                "SELECT COUNT(p) FROM Product p WHERE p.stock = 0",
+                Long.class
+        );
+        return query.getSingleResult();
+    }
+
+    public long getProductInStockCount() {
+        EntityManager em = PersistenceManager.getEntityManager();
+        TypedQuery<Long> query = em.createQuery(
+                "SELECT COUNT(p) FROM Product p WHERE p.stock > 0",
+                Long.class
+        );
+        return query.getSingleResult();
+    }
+
+
 }

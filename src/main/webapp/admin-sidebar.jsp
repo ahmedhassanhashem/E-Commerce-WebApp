@@ -19,7 +19,7 @@
             <a href="admin-dashboard.jsp"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
         </li>
         <li class="nav-item ${activePage eq 'products' ? 'active' : ''}">
-            <a href="edit-products.jsp"><i class="fas fa-box-open"></i>View Products</a>
+            <a href="get-Allproducts.jsp"><i class="fas fa-box-open"></i>View Products</a>
         </li>
         <li class="nav-item ${activePage eq 'addProduct' ? 'active' : ''}">
             <a href="add_product.jsp"><i class="fas fa-tags"></i> Add Product</a>

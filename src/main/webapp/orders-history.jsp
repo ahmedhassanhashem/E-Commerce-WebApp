@@ -79,17 +79,6 @@
     </div>
 </div>
 
-<!-- Order Details Modal -->
-<div class="modal" id="orderDetailsModal">
-    <div class="modal-content" style="width: 700px;">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2>Order Details - #<span id="modal-order-id"></span></h2>
-        <div id="order-details-content">
-            <!-- Order details will be loaded here -->
-        </div>
-    </div>
-</div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="js/orders.js"></script>
