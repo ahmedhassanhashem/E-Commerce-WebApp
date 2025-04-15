@@ -33,7 +33,6 @@
       <property name="hibernate.globally_quoted_identifiers" value="true"/>
       <property name="hibernate.hbm2ddl.schema-generation.foreign-keys.enabled" value="true"/>
 
-
     </properties>
 
   </persistence-unit>

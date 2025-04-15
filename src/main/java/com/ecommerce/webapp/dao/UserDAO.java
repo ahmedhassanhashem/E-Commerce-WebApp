@@ -83,16 +83,16 @@ public class UserDAO {
     }
 
 
+
+    
     public List<User> findAll() {
         EntityManager em = PersistenceManager.getEntityManager();
-        TypedQuery<User> query = em.createQuery(
-                "SELECT u FROM User u ORDER BY u.userId DESC", User.class); // Fixed alias and order by
-        try {
-            return query.getResultList();
-        } catch (NoResultException e) {
-            return null;
-        }
+        TypedQuery<User> query = em.createQuery("FROM User", User.class);
+        return query.getResultList(); // returns empty list if no results
+
     }
+
+
     public long getUsersCount() {
         EntityManager em = PersistenceManager.getEntityManager();
         TypedQuery<Long> query = em.createQuery(

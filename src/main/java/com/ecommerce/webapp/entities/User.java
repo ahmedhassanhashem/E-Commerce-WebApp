@@ -17,6 +17,7 @@ import org.hibernate.validator.constraints.Length;
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
+//make conflict
 //@Data
 @ToString(exclude = {"orders", "cart", "wishlist"})
 @EqualsAndHashCode(exclude = {"orders", "cart", "wishlist"})

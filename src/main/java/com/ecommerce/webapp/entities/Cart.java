@@ -8,9 +8,10 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-// Remove @Data and add specific exclusions
 @ToString(exclude = {"user", "items"})
 @EqualsAndHashCode(exclude = {"user", "items"})
+// @Data makes bug with lazy init 
+//@Data
 @Entity
 @Table(name = "cart")
 public class Cart {
