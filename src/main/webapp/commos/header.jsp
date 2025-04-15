@@ -5,7 +5,7 @@
   Time: 05:38
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page session="false" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 
@@ -56,21 +56,9 @@
                   <span>Contact Us</span></a>
               </li>
 
-              <% if(session.getAttribute("user") == null) { %>
-                <!-- Show only when NOT logged in -->
-                <li>
+              <c:choose>
+              <c:when test="${not empty sessionScope.user}">
 
-                  <a href="register.jsp"><i class="fas fa-user-plus u-s-m-r-4"></i>
-
-                    <span>Register</span></a>
-                </li>
-                <li>
-
-                  <a href="login.jsp"><i class="fas fa-sign-in-alt u-s-m-r-4"></i>
-
-                    <span>Login</span></a>
-                </li>
-              <% } else { %>
                 <!-- Show only when logged in -->
                 <li>
                   <a href="my-account.jsp"><i class="fas fa-user-cog u-s-m-r-4"></i>
@@ -83,7 +71,28 @@
 
                     <span>Logout</span></a>
                 </li>
-              <% } %>
+
+
+              </c:when>
+                <c:otherwise>
+
+                  <!-- Show only when NOT logged in -->
+                  <li>
+
+                    <a href="register.jsp"><i class="fas fa-user-plus u-s-m-r-4"></i>
+
+                      <span>Register</span></a>
+                  </li>
+                  <li>
+
+                    <a href="login.jsp"><i class="fas fa-sign-in-alt u-s-m-r-4"></i>
+
+                      <span>Login</span></a>
+                  </li>
+                </c:otherwise>
+              </c:choose>
+
+
             </ul>
             <!--====== End - List ======-->
           </div>
