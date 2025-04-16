@@ -33,30 +33,41 @@ public class LoginServlet extends HttpServlet {
         super.init();
         userDAO = new UserDAO();
     }
-    
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        // Capture the returnUrl if it exists
+        String returnUrl = request.getParameter("returnUrl");
+        if (returnUrl != null && !returnUrl.isEmpty()) {
+            request.setAttribute("returnUrl", returnUrl);
+        }
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String rememberMe = request.getParameter("remember-me");
-        
+        String returnUrl = request.getParameter("returnUrl");
+
         if (userDAO.validate(email, password)) {
-            
+
             User user = userDAO.findByEmail(email);
-            
+
             // Check if user is admin based on static email list
             boolean isAdmin = ADMIN_EMAILS.contains(email);
-            
+
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             session.setAttribute("isAdmin", isAdmin);
-            
+
             if (rememberMe != null) {
                 String token = generateSecureToken();
-                
+
                 REMEMBER_ME_TOKENS.put(token, email);
-                
+
                 // Create persistent cookie
                 Cookie rememberMeCookie = new Cookie("rememberMeToken", token);
                 rememberMeCookie.setMaxAge(60*60*24*30); // 30 days
@@ -64,18 +75,40 @@ public class LoginServlet extends HttpServlet {
                 rememberMeCookie.setHttpOnly(true); // For security
                 response.addCookie(rememberMeCookie);
             }
-            
+
+            // Determine where to redirect the user
             if (isAdmin) {
                 response.sendRedirect("admin-dashboard.jsp");
             } else {
-                response.sendRedirect("home");
+                // Check for last visited URL in the session
+                String lastVisitedUrl = (String) session.getAttribute("lastVisitedUrl");
+
+                // Use the explicit returnUrl parameter if provided
+                if (returnUrl != null && !returnUrl.isEmpty() && !returnUrl.contains("login.jsp")) {
+                    response.sendRedirect(returnUrl);
+                }
+                // Otherwise use the last visited URL from session if available
+                else if (lastVisitedUrl != null && !lastVisitedUrl.isEmpty() &&
+                        !lastVisitedUrl.contains("login.jsp") && !lastVisitedUrl.contains("logout")) {
+                    response.sendRedirect(lastVisitedUrl);
+                }
+                // Default fallback
+                else {
+                    response.sendRedirect("home");
+                }
             }
         } else {
             request.setAttribute("errorMessage", "Invalid email or password");
+
+            // Preserve returnUrl in case of login failure
+            if (returnUrl != null && !returnUrl.isEmpty()) {
+                request.setAttribute("returnUrl", returnUrl);
+            }
+
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
-    
+
     private String generateSecureToken() {
         SecureRandom secureRandom = new SecureRandom();
         byte[] tokenBytes = new byte[32];
