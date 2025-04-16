@@ -1,5 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <%-- =============== LOGOUT LOGIC =============== --%>
+ <%
+ // Handle logout logic
+ if ("true".equals(request.getParameter("logout"))) {
+     // 1. Invalidate session
+     session.invalidate();
+     
+     // 2. Clear authentication cache
+     response.setHeader("WWW-Authenticate", "Digest realm=\"Admin Authentication\"");
+     response.setStatus(401);
+     
+     // 3. Redirect to admin URL after authentication challenge
+     response.setHeader("Refresh", "0; URL=http://localhost:9999/webapp/admin");
+     return;
+ }
+ %>
+    <c:set var="activePage" value="${param.activePage}" />
 
 <!DOCTYPE html>
 <html lang="en">

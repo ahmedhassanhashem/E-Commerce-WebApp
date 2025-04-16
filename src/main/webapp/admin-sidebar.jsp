@@ -2,22 +2,31 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%-- =============== LOGOUT LOGIC =============== --%>
-<%
-// Handle logout logic
-if ("true".equals(request.getParameter("logout"))) {
-    session.invalidate();
-    response.setHeader("WWW-Authenticate", "Digest realm=\"Admin Authentication\"");
-    response.setStatus(401);
-    response.setHeader("Refresh", "0; URL=http://localhost:9999/webapp/admin");
-    return;
-}
-%>
+ <%
+ // Handle logout logic
+ if ("true".equals(request.getParameter("logout"))) {
+     // 1. Invalidate session
+     session.invalidate();
+     
+     // 2. Clear authentication cache
+     response.setHeader("WWW-Authenticate", "Digest realm=\"Admin Authentication\"");
+     response.setStatus(401);
+     
+     // 3. Redirect to admin URL after authentication challenge
+     response.setHeader("Refresh", "0; URL=http://localhost:9999/webapp/admin");
+     return;
+ }
+ %>
+ 
 
-<c:set var="activePage" value="${param.activePage}" />
+ <c:set var="activePage" value="${param.activePage}" />
+
+<%-- =============== END LOGOUT =============== --%>
 
 <!DOCTYPE html>
 <html>
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coffee Shop Admin</title>
@@ -26,7 +35,6 @@ if ("true".equals(request.getParameter("logout"))) {
     <link href="${pageContext.request.contextPath}/css/responsive-admin-gui.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Sidebar toggle button will be inserted by JS -->
     
     <div class="sidebar">
         <div class="sidebar-header">
