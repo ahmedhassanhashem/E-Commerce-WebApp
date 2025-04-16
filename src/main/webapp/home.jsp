@@ -295,7 +295,12 @@
                                                       data-name="${product.name}"
                                                       data-stock="${product.stock}"
                                                       data-id="${product.productId}"
-                                                      data-price="${product.price}" data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
+                                                      data-price="${product.price}"
+                                                      data-modal="modal"
+                                                      data-modal-id="#add-to-cart"
+                                                      data-tooltip="tooltip" data-placement="top"
+                                                      title="Add to Cart">
+                                                       <i class="fas fa-shopping-cart"></i></a>
                                                </li>
                                                </c:if>
 

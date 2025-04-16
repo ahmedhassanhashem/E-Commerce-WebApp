@@ -37,6 +37,7 @@
                         <div class="table-responsive">
                             <table class="table-p">
                                 <tbody>
+<c:if test="${not empty sessionScope.cart && not empty sessionScope.cart.items}">
 <c:forEach items="${sessionScope.cart.items}" var="item">
                                 <!--====== Row ======-->
                                 <tr>
@@ -83,6 +84,7 @@
                                 </tr>
                                 <!--====== End - Row ======-->
 </c:forEach>
+</c:if>
                                 </tbody>
                             </table>
                         </div>

@@ -15,6 +15,7 @@ import java.util.Map;
 
 @WebServlet("/clear-cart")
 public class ClearCartServlet extends HttpServlet {
+
     private final CartDAO cartDAO = new CartDAO();
     private final CartService cartService = new CartService();
 

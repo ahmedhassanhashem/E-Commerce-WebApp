@@ -225,7 +225,7 @@
             <c:if test="${sessionScope.user != null}">
               <li class="has-dropdown">
                 <a class="mini-cart-shop-link"><i class="fas fa-shopping-cart"></i>
-                  <span class="total-item-round">2</span></a>
+                  <span class="total-item-round">${sessionScope.cart.items.size()}</span></a>
 
                 <!--====== Dropdown ======-->
                 <span class="js-menu-toggle"></span>
@@ -233,7 +233,8 @@
 
                   <!--====== Mini Product Container ======-->
                   <div class="mini-product-container gl-scroll u-s-m-b-15">
-                    <c:forEach items="${sessionScope.cart.items}" var="item">
+              <c:if test="${not empty sessionScope.cart && not empty sessionScope.cart.items}">
+              <c:forEach items="${sessionScope.cart.items}" var="item">
                     <!--====== Card for mini cart ======-->
                     <div class="card-mini-product">
                       <div class="mini-product">
@@ -259,6 +260,7 @@
                       <a class="remove-item mini-product__delete-link far fa-trash-alt" data-item-id="${item.id}"></a>
                     </div>
                     </c:forEach>
+              </c:if>
                     <!--====== End - Card for mini cart ======-->
                   </div>
                   <!--====== End - Mini Product Container ======-->

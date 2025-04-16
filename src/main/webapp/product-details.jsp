@@ -101,10 +101,18 @@
                                                     <span class="input-counter__plus fas fa-plus"></span>
                                                 </div>
                                             </div>
-                                            <div class="u-s-m-b-15">
-                                                <button class="btn btn--e-brand-b-2" type="submit">Add To Cart</button>
-                                            </div>
-
+                                                <div class="u-s-m-b-15">
+                                                    <button class="btn btn--e-brand-b-2" type="button"
+                                                            onclick="addToCartFromDetails('${requestScope.product.productId}')">
+                                                        Add To Cart
+                                                    </button>
+                                                </div>
+                                                <script>
+                                                    function addToCartFromDetails(productId) {
+                                                        const quantity = document.querySelector('.input-counter__text').value;
+                                                        addToCart(productId, quantity);
+                                                    }
+                                                </script>
                                             </c:if>
 
                                             <div class="u-s-m-b-15">
