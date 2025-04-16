@@ -6,97 +6,223 @@ import com.ecommerce.webapp.entities.Product;
 import com.ecommerce.webapp.entities.User;
 import com.ecommerce.webapp.utils.PersistenceManager;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class CartDAO {
 
+
     public Cart getCartByUser(User user) {
         EntityManager em = PersistenceManager.getEntityManager();
-        TypedQuery<Cart> query = em.createQuery(
-                "SELECT c FROM Cart c WHERE c.user = :user", Cart.class);
-        query.setParameter("user", user);
-        return query.getSingleResult();
+        try {
+            TypedQuery<Cart> query = em.createQuery(
+                            "SELECT c FROM Cart c LEFT JOIN FETCH c.items WHERE c.user = :user", Cart.class)
+                    .setParameter("user", user);
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            // Create new cart if none exists
+            Cart cart = new Cart();
+            cart.setUser(user);
+            user.setCart(cart);
+            em.persist(cart);
+            return cart;
+        }
     }
 
-    public boolean addItemToCart(Cart cart, Product product, int quantity) {
+    public CartItem getCartItemById(int cartItemId) {
+        EntityManager em = PersistenceManager.getEntityManager();
+        try {
+            return em.createQuery(
+                            "SELECT ci FROM CartItem ci JOIN FETCH ci.product WHERE ci.id = :id",
+                            CartItem.class)
+                    .setParameter("id", cartItemId)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    public boolean updateItemQuantity(int cartItemId, int newQuantity) {
         try {
             EntityManager em = PersistenceManager.getEntityManager();
+            CartItem item = em.find(CartItem.class, cartItemId);
+            if(item != null) {
+                if(newQuantity <= 0) {
+                    em.remove(item);
+                } else {
+                    item.setQuantity(newQuantity);
+                    em.merge(item);
+                }
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
-            // Check if item already exists in cart
-            Optional<CartItem> existingItem = cart.getItems().stream()
-                    .filter(item -> item.getProduct().getProductId() == product.getProductId())
-                    .findFirst();
+    /**
+     * Find cart items by user for display in session.
+     * This version detaches the cart items from the persistence context to avoid circular references,
+     * but maintains the essential cart ID for integrity.
+     */
+    public List<CartItem> findCartItemsByUserForSession(User user) {
+        EntityManager em = PersistenceManager.getEntityManager();
 
-            if(existingItem.isPresent()) {
-                CartItem item = existingItem.get();
-                item.setQuantity(item.getQuantity() + quantity);
-                em.merge(item);
+        // First, get all cart item IDs for the user's cart using the user reference
+        List<Integer> cartItemIds = em.createQuery(
+                        "SELECT ci.id FROM CartItem ci WHERE ci.cart.user.userId = :userId ORDER BY ci.id DESC", Integer.class)
+                .setParameter("userId", user.getUserId())
+                .getResultList();
+
+        // Then load each cart item individually with its product information
+        List<CartItem> cartItems = new ArrayList<>();
+        for (Integer cartItemId : cartItemIds) {
+            try {
+                // Use a query that eagerly fetches the associated product
+                CartItem item = em.createQuery(
+                                "SELECT DISTINCT ci FROM CartItem ci " +
+                                        "LEFT JOIN FETCH ci.product " +
+                                        "WHERE ci.id = :cartItemId", CartItem.class)
+                        .setParameter("cartItemId", cartItemId)
+                        .getSingleResult();
+
+                // IMPORTANT: Instead of keeping the full Cart reference, create a lightweight Cart
+                // that maintains just the cart ID to break the bi-directional link.
+                Cart lightCart = new Cart();
+                lightCart.setCartId(item.getCart().getCartId());
+                item.setCart(lightCart);
+
+                // Detach the cart item from the persistence context to prevent accidental updates
+                em.detach(item);
+
+                cartItems.add(item);
+            } catch (Exception e) {
+                // Log error or skip this cart item
+                System.err.println("Error loading cart item #" + cartItemId + ": " + e.getMessage());
+            }
+        }
+
+        return cartItems;
+    }
+
+
+//    public boolean addItemToCart(Cart cart, Product product, int quantity) {
+//        try {
+//            EntityManager em = PersistenceManager.getEntityManager();
+//
+//            // Check if item already exists in cart
+//            Optional<CartItem> existingItem = cart.getItems().stream()
+//                    .filter(item -> item.getProduct().getProductId() == product.getProductId())
+//                    .findFirst();
+//
+//            if(existingItem.isPresent()) {
+//                CartItem item = existingItem.get();
+//                item.setQuantity(item.getQuantity() + quantity);
+//                em.merge(item);
+//            } else {
+//                CartItem newItem = new CartItem();
+//                newItem.setCart(cart);
+//                newItem.setProduct(product);
+//                newItem.setQuantity(quantity);
+//                em.persist(newItem);
+//            }
+//            return true;
+//        } catch (Exception e) {
+//            return false;
+//        }
+//    }
+
+
+
+    public boolean addItemToCart(Cart cart, Product product, int quantity) {
+        EntityManager em = PersistenceManager.getEntityManager();
+        try {
+            // Basic validation
+            if (quantity <= 0 || quantity > product.getStock()) {
+                return false;
+            }
+
+            // Check if the product is already in the cart
+            CartItem existingItem = null;
+            for (CartItem item : cart.getItems()) {
+                if (item.getProduct().getProductId() == product.getProductId()) {
+                    existingItem = item;
+                    break;
+                }
+            }
+
+            if (existingItem != null) {
+                // Update existing item
+                int newQty = existingItem.getQuantity() + quantity;
+                if (newQty > product.getStock()) return false;
+                existingItem.setQuantity(newQty);
+                em.merge(existingItem);
             } else {
+                // Create new item
                 CartItem newItem = new CartItem();
                 newItem.setCart(cart);
                 newItem.setProduct(product);
                 newItem.setQuantity(quantity);
                 em.persist(newItem);
+
+                // Important: Update both sides of bidirectional relationship
+                cart.getItems().add(newItem);
             }
+
+            em.flush(); // Force database write
             return true;
         } catch (Exception e) {
+            e.printStackTrace(); // Better error logging
             return false;
         }
     }
 
-    public boolean updateItemQuantity(Long cartItemId, int newQuantity) {
+
+
+//    public boolean updateItemQuantity(int cartItemId, int newQuantity) {
+//        try {
+//            EntityManager em = PersistenceManager.getEntityManager();
+//            CartItem item = em.find(CartItem.class, cartItemId);
+//            if(item != null) {
+//                item.setQuantity(newQuantity);
+//                em.merge(item);
+//                return true;
+//            }
+//            return false;
+//        } catch (Exception e) {
+//            return false;
+//        }
+//    }
+
+    public boolean removeItemFromCart(int cartItemId) {
         try {
             EntityManager em = PersistenceManager.getEntityManager();
             CartItem item = em.find(CartItem.class, cartItemId);
             if(item != null) {
-                item.setQuantity(newQuantity);
-                em.merge(item);
-                return true;
-            }
-            return false;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public boolean removeItemFromCart(Long cartItemId) {
-        EntityManager em = PersistenceManager.getEntityManager();
-        try {
-            em.getTransaction().begin();
-            CartItem item = em.find(CartItem.class, cartItemId);
-            if(item != null) {
-                // Remove from both sides of the relationship
-                item.getCart().getItems().remove(item);
                 em.remove(item);
-                em.getTransaction().commit();
                 return true;
             }
             return false;
         } catch (Exception e) {
-            if(em.getTransaction().isActive()) {
-                em.getTransaction().rollback();
-            }
             return false;
         }
     }
 
     public boolean clearCart(Cart cart) {
-        EntityManager em = PersistenceManager.getEntityManager();
         try {
-            em.getTransaction().begin();
-            em.createQuery("DELETE FROM CartItem ci WHERE ci.cart = :cart")
-                    .setParameter("cart", cart)
-                    .executeUpdate();
-            cart.getItems().clear(); // Clear in-memory list
-            em.getTransaction().commit();
+            EntityManager em = PersistenceManager.getEntityManager();
+            TypedQuery<CartItem> query = em.createQuery(
+                    "DELETE FROM CartItem ci WHERE ci.cart = :cart", CartItem.class);
+            query.setParameter("cart", cart);
+            query.executeUpdate();
             return true;
         } catch (Exception e) {
-            if(em.getTransaction().isActive()) {
-                em.getTransaction().rollback();
-            }
             return false;
         }
     }
-
 }

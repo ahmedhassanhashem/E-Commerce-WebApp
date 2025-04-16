@@ -33,7 +33,7 @@ public class RemoveCartServlet extends HttpServlet {
             Cart cart = cartService.getOrCreateCart(session);
 
             if(cart.getUser() != null) { // Logged in user
-                cartDAO.removeItemFromCart((long) itemId);
+                cartDAO.removeItemFromCart( itemId);
             } else { // Guest user
                 cart.getItems().removeIf(item -> item.getId() == itemId);
             }

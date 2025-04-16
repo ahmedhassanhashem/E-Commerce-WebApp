@@ -23,7 +23,7 @@ public class UpdateCartServlet extends HttpServlet {
         Cart cart = (Cart) session.getAttribute("cart");
 
         if(cart.getUser() != null) {
-            new CartDAO().updateItemQuantity((long) itemId, quantity);
+            new CartDAO().updateItemQuantity( itemId, quantity);
         } else {
             cart.getItems().stream()
                     .filter(item -> item.getId() == itemId)
