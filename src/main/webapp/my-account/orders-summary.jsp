@@ -62,7 +62,7 @@
                                     </c:otherwise>
                                 </c:choose>
                                 <div class="dash__link dash__link--brand">
-                                    <a href="order-details.jsp?orderId=${order.orderId}">VIEW ORDER</a>
+                                    <a href="order-details?orderId=${order.orderId}">VIEW ORDER</a>
                                 </div>
                             </td>
                         </tr>

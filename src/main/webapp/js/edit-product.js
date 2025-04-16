@@ -28,7 +28,7 @@
 
         const currentImage = $("#current-image").val();
         if (currentImage) {
-          $("#image-preview").attr("src", "images/product/electronic/" + currentImage);
+          $("#image-preview").attr("src", "webapp/images/product/electronic/" + currentImage);
         } else {
           $("#image-preview").attr("src", "images/product/electronic/default-product.jpg");
         }

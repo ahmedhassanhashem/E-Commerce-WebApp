@@ -5,6 +5,7 @@ import java.util.List;
 import com.ecommerce.webapp.entities.User;
 import com.ecommerce.webapp.utils.PersistenceManager;
 import jakarta.persistence.*;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class UserDAO {
 
@@ -38,18 +39,20 @@ public class UserDAO {
 
     public boolean validate(String email, String password) {
         User user = this.findByEmail(email);
-        return user != null && user.getPassword().equals(password);
+//        return user != null && user.getPassword().equals(password);
+        return user != null && BCrypt.checkpw(password, user.getPassword());
+
     }
 
-//    public boolean updateUser(User user) {
-//        try {
-//            EntityManager em = PersistenceManager.getEntityManager();
-//            em.merge(user);
-//            return true;
-//        } catch (Exception e) {
-//            return false;
-//        }
-//    }
+    public boolean updateUser(User user) {
+        try {
+            EntityManager em = PersistenceManager.getEntityManager();
+            em.merge(user);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
     public boolean updateUserProfile(int userId, String name, String email, String phone, String address) {
         try {
@@ -152,6 +155,18 @@ public class UserDAO {
         );
         return query.getSingleResult();
     }
+
+    public User findById(int userId) {
+        EntityManager em = PersistenceManager.getEntityManager();
+        try {
+            return em.find(User.class, userId);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
+
 
     public boolean emailExists(String email) {
         EntityManager em = PersistenceManager.getEntityManager();

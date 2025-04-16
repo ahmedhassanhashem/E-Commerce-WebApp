@@ -2,15 +2,17 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ page import="com.ecommerce.webapp.dao.OrderDAO" %>
 <%@ page import="com.ecommerce.webapp.entities.OrderStatus" %>
+<%@ page import="com.ecommerce.webapp.entities.User" %>
 
 <%
-    // Create OrderDAO instance
+    // Get user from session
+    User user = (User) session.getAttribute("user");
     OrderDAO orderDAO = new OrderDAO();
 
-    // Count orders by status
-    long pendingOrders = orderDAO.countByStatus(OrderStatus.PENDING);
-    long acceptedOrders = orderDAO.countByStatus(OrderStatus.ACCEPTED);
-    long cancelledOrders = orderDAO.countByStatus(OrderStatus.CANCELLED);
+    // Count orders by status for this specific user using user ID
+    long pendingOrders = orderDAO.countByUserAndStatus(user.getUserId(), OrderStatus.PENDING);
+    long acceptedOrders = orderDAO.countByUserAndStatus(user.getUserId(), OrderStatus.ACCEPTED);
+    long cancelledOrders = orderDAO.countByUserAndStatus(user.getUserId(), OrderStatus.CANCELLED);
 
     // Store in request scope for JSTL access
     request.setAttribute("pendingOrders", pendingOrders);
@@ -18,6 +20,7 @@
     request.setAttribute("cancelledOrders", cancelledOrders);
 %>
 
+<%-- The rest of the JSP remains the same --%>
 <div class="dash__box dash__box--bg-white dash__box--shadow dash__box--w">
     <div class="dash__pad-1">
         <ul class="dash__w-list">
