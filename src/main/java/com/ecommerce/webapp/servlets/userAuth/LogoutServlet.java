@@ -22,19 +22,7 @@ public class LogoutServlet extends HttpServlet {
         
         // Get session and invalidate it
         HttpSession session = request.getSession(false);
-        if(session != null) {
-            Cart cart = (Cart) session.getAttribute("cart");
-            User user = (User) session.getAttribute("user");
 
-
-            if (user != null && cart != null) {
-                cartDAO.clearCart(cart);
-                cart.getItems().forEach(item ->
-                        cartDAO.addItemToCart(cart, item.getProduct(), item.getQuantity()));
-            }
-
-            session.invalidate();
-        }
         
         // Delete remember-me cookie if exists
         Cookie[] cookies = request.getCookies();
@@ -49,7 +37,9 @@ public class LogoutServlet extends HttpServlet {
             }
         }
 
-
+        if(session != null) {
+            session.invalidate();
+        }
         response.sendRedirect("home");
     }
 }

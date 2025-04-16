@@ -1,80 +1,141 @@
-// Add to Cart
-$(document).on('click', '.add-to-cart-trigger', function(e) {
-    e.preventDefault();
-    const productId = $(this).data('id');
-    const quantity = $(this).closest('.input-counter').find('input').val() || 1;
+$(document).ready(function() {
+    // Function to update mini cart
+    function updateMiniCart(cart) {
+        $('.total-item-round').text(cart.items.length);
+        $('.subtotal-value').text('$' + cart.totalPrice.toFixed(2));
+        var itemsHtml = '';
+        cart.items.forEach(function(item) {
+            itemsHtml += `
+            <div class="card-mini-product">
+                <div class="mini-product">
+                    <div class="mini-product__image-wrapper">
+                        <a class="mini-product__link" href="${contextPath}/product-details?id=${item.product.productId}&name=${item.product.name}">
+                            <img class="u-img-fluid" src="${contextPath}/images/product/electronic/${item.product.image}.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="mini-product__info-wrapper">
+                        <span class="mini-product__category">
+                            <a href="${contextPath}/product-list?category=${item.product.category.toLowerCase()}">${item.product.category}</a>
+                        </span>
+                        <span class="mini-product__name">
+                            <a href="${contextPath}/product-details?id=${item.product.productId}&name=${item.product.name}">${item.product.name}</a>
+                        </span>
+                        <span class="mini-product__quantity">${item.quantity} x</span>
+                        <span class="mini-product__price">$${item.product.price}</span>
+                    </div>
+                </div>
+                <a class="remove-item mini-product__delete-link far fa-trash-alt" data-item-id="${item.id}"></a>
+            </div>`;
+        });
+        $('.mini-product-container').html(itemsHtml);
+    }
 
-    $.ajax({
-        url: contextPath + '/cart/add',
-        method: 'POST',
-        data: { productId: productId, quantity: quantity },
-        success: function(response) {
-            updateCartUI(response);
-            showSuccessModal('Item added to cart!');
-        },
-        error: function(xhr) {
-            showErrorModal(xhr.responseJSON?.message || 'Error adding to cart');
+
+    // Add to Cart from Modals
+    $(document).on('click', '.btn.btn--e-brand-b-2, .add-to-cart-trigger', function(e) {
+        e.preventDefault();
+        var $button = $(this);
+        var productId = $button.data('product-id') || $button.data('id'); // Fallback for different data attributes
+        var quantity = $('#modal-product-stock-input').val() || 1; // From quick look modal or default to 1
+
+        if (!productId) {
+            alert('Product ID not found');
+            return;
+        }
+
+        $.ajax({
+            url: contextPath + '/add-to-cart',
+            type: 'POST',
+            data: { productId: productId, quantity: quantity },
+            success: function(response) {
+                updateMiniCart(response);
+                // Show the "Add to Cart" modal
+                $('#add-to-cart').modal('show');
+                // Update modal content
+                $('#cart-modal-product-image').attr('src', 'images/product/electronic/' + $button.data('image') + '.jpg');
+                $('#cart-modal-product-name').text($button.data('name'));
+                $('#cart-modal-product-price').text('$' + $button.data('price'));
+            },
+            error: function(xhr) {
+                alert('Error adding to cart: ' + xhr.responseText);
+            }
+        });
+    });
+
+    // Update Quantity on Cart Page
+    $(document).on('blur', '.input-counter__text', function() {
+        var $input = $(this);
+        var cartItemId = $input.closest('tr').find('.remove-item').data('item-id') || $input.data('item-id');
+        var newQuantity = parseInt($input.val());
+        var max = parseInt($input.data('max'));
+
+        if (newQuantity < 1 || newQuantity > max) {
+            alert('Quantity must be between 1 and ' + max);
+            $input.val($input.data('original-value'));
+            return;
+        }
+
+        $.ajax({
+            url: contextPath + '/update-cart-item',
+            type: 'POST',
+            data: { cartItemId: cartItemId, quantity: newQuantity },
+            success: function(response) {
+                updateMiniCart(response);
+                if (window.location.pathname.endsWith('cart.jsp')) {
+                    location.reload(); // Optional: reload cart page or update UI dynamically
+                }
+            },
+            error: function(xhr) {
+                alert('Error updating quantity: ' + xhr.responseText);
+            }
+        });
+    });
+
+
+
+    // Store original value for quantity input
+    $(document).on('focus', '.input-counter__text', function() {
+        $(this).data('original-value', $(this).val());
+    });
+
+    // Remove Item
+    $(document).on('click', '.remove-item', function(e) {
+        e.preventDefault();
+        var cartItemId = $(this).data('item-id');
+        var $row = $(this).closest('.card-mini-product, tr'); // Works for mini cart and cart page
+
+        $.ajax({
+            url: contextPath + '/remove-from-cart',
+            type: 'POST',
+            data: { cartItemId: cartItemId },
+            success: function(response) {
+                updateMiniCart(response);
+                $row.remove(); // Remove the item from the UI
+            },
+            error: function(xhr) {
+                alert('Error removing item: ' + xhr.responseText);
+            }
+        });
+    });
+
+    // Clear Cart
+    $('#clear-cart-btn').on('click', function(e) {
+        e.preventDefault();
+        if (confirm('Are you sure you want to clear your cart?')) {
+            $.ajax({
+                url: contextPath + '/clear-cart',
+                type: 'POST',
+                success: function(response) {
+                    updateMiniCart(response);
+                    if (window.location.pathname.endsWith('cart.jsp')) {
+                        $('.table-p tbody').empty();
+                    }
+                },
+                error: function(xhr) {
+                    alert('Error clearing cart: ' + xhr.responseText);
+                }
+            });
         }
     });
 });
 
-// Update Quantity
-$(document).on('click', '.input-counter__minus, .input-counter__plus', function() {
-    const input = $(this).siblings('input');
-    const cartItemId = input.closest('tr').data('item-id');
-    const newQty = parseInt(input.val());
-
-    $.ajax({
-        url: contextPath + '/cart/update',
-        method: 'POST',
-        data: { cartItemId: cartItemId, quantity: newQty },
-        success: function(response) {
-            updateCartUI(response);
-        },
-        error: function(xhr) {
-            showErrorModal(xhr.responseJSON?.message || 'Error updating cart');
-        }
-    });
-});
-
-// Remove Item
-$(document).on('click', '.remove-item', function(e) {
-    e.preventDefault();
-    const cartItemId = $(this).data('item-id');
-
-    $.ajax({
-        url: contextPath + '/cart/remove',
-        method: 'POST',
-        data: { cartItemId: cartItemId },
-        success: function(response) {
-            updateCartUI(response);
-            $(this).closest('tr').remove();
-        },
-        error: function(xhr) {
-            showErrorModal(xhr.responseJSON?.message || 'Error removing item');
-        }
-    });
-});
-
-// Clear Cart
-$('#clear-cart-btn').click(function(e) {
-    e.preventDefault();
-
-    $.ajax({
-        url: contextPath + '/cart/clear',
-        method: 'POST',
-        success: function(response) {
-            updateCartUI(response);
-            $('.cart-item-row').remove();
-        },
-        error: function(xhr) {
-            showErrorModal(xhr.responseJSON?.message || 'Error clearing cart');
-        }
-    });
-});
-
-function updateCartUI(response) {
-    $('.total-item-round').text(response.totalItems);
-    $('.subtotal-value').text('$' + response.totalPrice);
-    $('#cart-total-price').text('$' + response.totalPrice);
-}

@@ -184,21 +184,52 @@ public class CartDAO {
 //        }
 //    }
 
+//    public boolean addItemToCart(Cart cart, Product product, int quantity) {
+//        EntityManager em = PersistenceManager.getEntityManager();
+//        try {
+//            // Check stock
+//            if(quantity > product.getStock()) {
+//                return false;
+//            }
+//
+//            // Check existing items
+//            CartItem existingItem = cart.getItems().stream()
+//                    .filter(item -> item.getProduct().getProductId() == product.getProductId())
+//                    .findFirst()
+//                    .orElse(null);
+//
+//            if(existingItem != null) {
+//                existingItem.setQuantity(existingItem.getQuantity() + quantity);
+//                em.merge(existingItem);
+//            } else {
+//                CartItem newItem = new CartItem();
+//                newItem.setCart(cart);
+//                newItem.setProduct(product);
+//                newItem.setQuantity(quantity);
+//                em.persist(newItem);
+//                cart.getItems().add(newItem);
+//            }
+//
+//            em.flush();
+//            return true;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return false;
+//        }
+//    }
+
     public boolean addItemToCart(Cart cart, Product product, int quantity) {
         EntityManager em = PersistenceManager.getEntityManager();
         try {
-            // Check stock
-            if(quantity > product.getStock()) {
+            if (quantity > product.getStock()) {
                 return false;
             }
 
-            // Check existing items
             CartItem existingItem = cart.getItems().stream()
                     .filter(item -> item.getProduct().getProductId() == product.getProductId())
-                    .findFirst()
-                    .orElse(null);
+                    .findFirst().orElse(null);
 
-            if(existingItem != null) {
+            if (existingItem != null) {
                 existingItem.setQuantity(existingItem.getQuantity() + quantity);
                 em.merge(existingItem);
             } else {
@@ -209,8 +240,6 @@ public class CartDAO {
                 em.persist(newItem);
                 cart.getItems().add(newItem);
             }
-
-            em.flush();
             return true;
         } catch (Exception e) {
             e.printStackTrace();

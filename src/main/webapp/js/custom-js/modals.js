@@ -23,6 +23,7 @@ $(document).on('click', '.quick-look-trigger', function(e) {
     $('#modal-product-image').attr('src', 'images/product/electronic/' + image + '.jpg');
     $('#modal-product-name').text(name);
     $('#modal-product-description').text(description);
+    $('#modal-product-id').text(id);
 
     // Update stock status and set the quantity input maximum value
     if (stock > 0) {
@@ -36,6 +37,9 @@ $(document).on('click', '.quick-look-trigger', function(e) {
     }
     $('#modal-product-stock-input').attr('data-max', stock).val(1);
 
+    // Set product ID on the Add to Cart button
+    $('#quick-look').find('.btn.btn--e-brand-b-2').data('product-id', id);
+
     // Manually open the modal (jQuery method)
     $(modalId).modal('show');
 });
@@ -43,18 +47,20 @@ $(document).on('click', '.quick-look-trigger', function(e) {
 // Do the same for other modal triggers with the appropriate modal ID
 $(document).on('click', '.add-to-cart-trigger', function(e) {
     e.preventDefault();
-
     const modalId = $(this).data('modal-id');
     const image = $(this).data('image');
     const name = $(this).data('name');
     const price = $(this).data('price');
-    const id = $(this).data('productId');
+    const id = $(this).data('id'); // Product ID from trigger
 
+    // Update modal content
     $('#cart-modal-product-image').attr('src', 'images/product/electronic/' + image + '.jpg');
     $('#cart-modal-product-name').text(name);
     $('#cart-modal-product-price').text('$' + price);
 
-    // Manually open the modal
+    // Set product ID on the modal's Add to Cart button
+    $('#add-to-cart').find('.btn.btn--e-brand-b-2').data('product-id', id);
+
     $(modalId).modal('show');
 });
 

@@ -174,8 +174,8 @@
 
 
 <!--====== Add to Cart Modal ======-->
-<div class="modal fade" id="add-to-cart">
-    <div class="modal-dialog modal-dialog-centered">
+<div class="modal fade" id="add-to-cart" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content modal-radius modal-shadow">
 
             <button class="btn dismiss-button fas fa-times" type="button" data-dismiss="modal"></button>

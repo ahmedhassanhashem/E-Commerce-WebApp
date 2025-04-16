@@ -1,8 +1,13 @@
 package com.ecommerce.webapp.servlets.cart;
 
 import com.ecommerce.webapp.dao.CartDAO;
+import com.ecommerce.webapp.dto.CartDTO;
+import com.ecommerce.webapp.dto.Mapper;
 import com.ecommerce.webapp.entities.Cart;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ecommerce.webapp.entities.User;
+import com.ecommerce.webapp.utils.PersistenceManager;
+import com.google.gson.Gson;
+import jakarta.persistence.EntityManager;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,39 +16,42 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.util.Map;
 
 @WebServlet("/clear-cart")
 public class ClearCartServlet extends HttpServlet {
+    private CartDAO cartDAO = new CartDAO();
+    private Gson gson = new Gson();
 
-    private final CartDAO cartDAO = new CartDAO();
-    private final CartService cartService = new CartService();
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "User not logged in");
+            return;
+        }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        HttpSession session = request.getSession();
-        Cart cart = cartService.getOrCreateCart(session);
-
+        EntityManager em = PersistenceManager.getEntityManager();
         try {
-            if(cart.getUser() != null) { // Logged-in user
-                cartDAO.clearCart(cart);
-            } else { // Guest user
-                cart.getItems().clear();
+            em.getTransaction().begin();
+            Cart cart = cartDAO.getCartByUser(user);
+            boolean success = cartDAO.clearCart(cart);
+            if (!success) {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Failed to clear cart");
+                return;
             }
 
-            response.setContentType("application/json");
-            new ObjectMapper().writeValue(response.getWriter(), Map.of(
-                    "success", true,
-                    "totalItems", 0,
-                    "totalPrice", 0.0
-            ));
+            cart = cartDAO.getCartByUser(user);
+            session.setAttribute("cart", cart);
+            CartDTO cartDTO = Mapper.mapToDTO(cart);
 
+            em.getTransaction().commit();
+
+            response.setContentType("application/json");
+            response.getWriter().write(gson.toJson(cartDTO));
         } catch (Exception e) {
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            new ObjectMapper().writeValue(response.getWriter(), Map.of(
-                    "error", "Failed to clear cart"
-            ));
+            if (em.getTransaction().isActive()) em.getTransaction().rollback();
+            throw new ServletException(e);
         }
     }
 }

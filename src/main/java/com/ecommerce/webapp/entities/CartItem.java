@@ -14,9 +14,7 @@ import lombok.*;
 @Table(name = "cart_items")
 public class CartItem {
 
-    @Version
-    @Transient
-    private int version;
+//x
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
