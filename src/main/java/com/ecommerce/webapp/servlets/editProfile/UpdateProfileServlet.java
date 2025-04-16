@@ -1,5 +1,6 @@
 package com.ecommerce.webapp.servlets.editProfile;
 
+import com.ecommerce.webapp.dao.UserDAO;
 import com.google.gson.JsonObject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -18,17 +19,16 @@ import com.ecommerce.webapp.entities.User;
 @MultipartConfig
 public class UpdateProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
+        JsonObject jsonResponse = new JsonObject();
 
         if (user == null) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            JsonObject errorResponse = new JsonObject();
-            errorResponse.addProperty("success", false);
-            errorResponse.addProperty("message", "User is not logged in.");
+            jsonResponse.addProperty("success", false);
+            jsonResponse.addProperty("message", "User is not logged in.");
             response.setContentType("application/json");
-            response.getWriter().write(errorResponse.toString());
+            response.getWriter().write(jsonResponse.toString());
             return;
         }
 
@@ -46,27 +46,31 @@ public class UpdateProfileServlet extends HttpServlet {
         String phone = formData.get("phone");
         String address = formData.get("address");
 
-
-        JsonObject jsonResponse = new JsonObject();
-
         if (name == null || name.isEmpty() || email == null || email.isEmpty() || phone == null || phone.isEmpty()) {
             jsonResponse.addProperty("success", false);
             jsonResponse.addProperty("message", "All fields are required!");
         } else {
-            user.setName(name);
-            user.setEmail(email);
-            user.setPhone(phone);
-            user.setAddress(address);
-            session.setAttribute("user", user);
+            // Update user in database first
+            UserDAO userDAO = new UserDAO();
+            boolean updated = userDAO.updateUserProfile(user.getUserId(), name, email, phone, address);
 
+            if (updated) {
+                // Update session after successful DB update
+                user.setName(name);
+                user.setEmail(email);
+                user.setPhone(phone);
+                user.setAddress(address);
+                session.setAttribute("user", user);
 
-            jsonResponse.addProperty("success", true);
-            jsonResponse.addProperty("message", "Profile updated successfully!");
+                jsonResponse.addProperty("success", true);
+                jsonResponse.addProperty("message", "Profile updated successfully!");
+            } else {
+                jsonResponse.addProperty("success", false);
+                jsonResponse.addProperty("message", "Failed to update profile in database.");
+            }
         }
-
 
         response.setContentType("application/json");
         response.getWriter().write(jsonResponse.toString());
-
     }
 }

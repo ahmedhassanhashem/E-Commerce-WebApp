@@ -1,5 +1,6 @@
 package com.ecommerce.webapp.servlets.editProfile;
 
+import com.ecommerce.webapp.dao.UserDAO;
 import com.ecommerce.webapp.entities.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -7,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,12 +39,6 @@ public class UpdatePasswordServlet extends HttpServlet {
         String newPassword = request.getParameter("newPassword");
         String confirmPassword = request.getParameter("confirmPassword");
 
-        // Validate current password
-        if (!user.getPassword().equals(currentPassword)) {
-            response.setStatus(400);
-            out.print("{\"success\": false, \"message\": \"Current password is incorrect\"}");
-            return;
-        }
 
         // Validate new passwords match
         if (!newPassword.equals(confirmPassword)) {
@@ -58,11 +54,21 @@ public class UpdatePasswordServlet extends HttpServlet {
             return;
         }
 
-        // Update session
-        user.setPassword(newPassword);
-        session.setAttribute("user", user);
+        // Update password in database
+        UserDAO userDAO = new UserDAO();
+        String newHashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt(12));
+        boolean updated = userDAO.updatePassword(user.getEmail(), newHashedPassword);
 
-        response.setStatus(200);
-        out.print("{\"success\": true, \"message\": \"Password updated successfully\"}");
+        if (updated) {
+            // Update session
+            user.setPassword(newHashedPassword);
+            session.setAttribute("user", user);
+
+            response.setStatus(200);
+            out.print("{\"success\": true, \"message\": \"Password updated successfully\"}");
+        } else {
+            response.setStatus(500);
+            out.print("{\"success\": false, \"message\": \"Failed to update password in database\"}");
+        }
     }
 }

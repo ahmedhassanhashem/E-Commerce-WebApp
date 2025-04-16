@@ -6,11 +6,24 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import com.ecommerce.webapp.entities.User;
 import com.ecommerce.webapp.utils.PersistenceManager;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class UserDAO {
+
+//    public User findByEmail(String email) {
+//        EntityManager em = PersistenceManager.getEntityManager();
+//        TypedQuery<User> query = em.createQuery(
+//                "SELECT u FROM User u WHERE u.email = :email",
+//                User.class
+//        );
+//        query.setParameter("email", email);
+//        try {
+//            return query.getSingleResult();
+//        } catch (NoResultException e) {
+//            return null;
+//        }
+//    }
 
     public User findByEmail(String email) {
         EntityManager em = PersistenceManager.getEntityManager();
@@ -43,6 +56,44 @@ public class UserDAO {
         }
     }
 
+    public boolean updateUserProfile(int userId, String name, String email, String phone, String address) {
+        try {
+            EntityManager em = PersistenceManager.getEntityManager();
+
+            // First, check if the email or phone is already in use by a different user
+            TypedQuery<Long> duplicateQuery = em.createQuery(
+                    "SELECT COUNT(u) FROM User u WHERE (u.email = :email OR u.phone = :phone) AND u.userId != :userId",
+                    Long.class);
+            duplicateQuery.setParameter("email", email);
+            duplicateQuery.setParameter("phone", phone);
+            duplicateQuery.setParameter("userId", userId);
+
+            Long duplicateCount = duplicateQuery.getSingleResult();
+
+            if (duplicateCount > 0) {
+                return false;
+            }
+
+            // Now perform the update
+            int updated = em.createQuery(
+                            "UPDATE User u SET u.name = :name, u.email = :email, " +
+                                    "u.phone = :phone, u.address = :address " +
+                                    "WHERE u.userId = :userId")
+                    .setParameter("name", name)
+                    .setParameter("email", email)
+                    .setParameter("phone", phone)
+                    .setParameter("address", address)
+                    .setParameter("userId", userId)
+                    .executeUpdate();
+
+            return updated > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
     public boolean registerUser(User user) {
         try {
             EntityManager em = PersistenceManager.getEntityManager();
@@ -55,18 +106,37 @@ public class UserDAO {
         }
     }
 
+//    public boolean updatePassword(String email, String newPassword) {
+//        EntityManager em = PersistenceManager.getEntityManager();
+//        TypedQuery<User> query = em.createQuery(
+//                "SELECT u FROM User u WHERE u.email = :email",
+//                User.class
+//        );
+//        query.setParameter("email", email);
+//        try {
+//            User user = query.getSingleResult();
+//            user.setPassword(newPassword);
+//            em.merge(user);
+//            return true;
+//        } catch (Exception e) {
+//            return false;
+//        }
+//    }
+
+
     public boolean updatePassword(String email, String newPassword) {
-        EntityManager em = PersistenceManager.getEntityManager();
-        TypedQuery<User> query = em.createQuery(
-                "SELECT u FROM User u WHERE u.email = :email",
-                User.class);
-        query.setParameter("email", email);
         try {
-            User user = query.getSingleResult();
-            user.setPassword(newPassword);
-            em.merge(user);
-            return true;
+            EntityManager em = PersistenceManager.getEntityManager();
+
+            int updated = em.createQuery(
+                            "UPDATE User u SET u.password = :newPassword WHERE u.email = :email")
+                    .setParameter("newPassword", newPassword)
+                    .setParameter("email", email)
+                    .executeUpdate();
+
+            return updated > 0;
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
@@ -77,6 +147,7 @@ public class UserDAO {
         return query.getResultList(); // returns empty list if no results
 
     }
+
 
     public long getUsersCount() {
         EntityManager em = PersistenceManager.getEntityManager();
@@ -95,4 +166,35 @@ public class UserDAO {
         }
     }
 
+
+
+
+    public boolean emailExists(String email) {
+        EntityManager em = PersistenceManager.getEntityManager();
+        TypedQuery<Long> query = em.createQuery(
+                "SELECT COUNT(u) FROM User u WHERE u.email = :email",
+                Long.class
+        );
+        query.setParameter("email", email);
+        return query.getSingleResult() > 0;
+    }
+
+    public boolean updateUserBalance(int userId, double newBalance) {
+        try {
+            EntityManager em = PersistenceManager.getEntityManager();
+            TypedQuery<User> query = em.createQuery(
+                    "SELECT u FROM User u WHERE u.userId = :userId",
+                    User.class
+            );
+            query.setParameter("userId", userId);
+
+            User user = query.getSingleResult();
+            user.setCreditBalance(newBalance);
+            em.merge(user);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

@@ -104,5 +104,8 @@
 <jsp:include page="commos/modals.jsp"/>
 <%@include file="commos/script.html" %>
 
+<!--====== add-balance-validations ======-->
+<script src="js/custom-js/add-balance-validations.js"></script>
+
 </body>
 </html>
