@@ -61,29 +61,42 @@ public class CartDAO {
     }
 
     public boolean removeItemFromCart(Long cartItemId) {
+        EntityManager em = PersistenceManager.getEntityManager();
         try {
-            EntityManager em = PersistenceManager.getEntityManager();
+            em.getTransaction().begin();
             CartItem item = em.find(CartItem.class, cartItemId);
             if(item != null) {
+                // Remove from both sides of the relationship
+                item.getCart().getItems().remove(item);
                 em.remove(item);
+                em.getTransaction().commit();
                 return true;
             }
             return false;
         } catch (Exception e) {
+            if(em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
             return false;
         }
     }
 
     public boolean clearCart(Cart cart) {
+        EntityManager em = PersistenceManager.getEntityManager();
         try {
-            EntityManager em = PersistenceManager.getEntityManager();
-            TypedQuery<CartItem> query = em.createQuery(
-                    "DELETE FROM CartItem ci WHERE ci.cart = :cart", CartItem.class);
-            query.setParameter("cart", cart);
-            query.executeUpdate();
+            em.getTransaction().begin();
+            em.createQuery("DELETE FROM CartItem ci WHERE ci.cart = :cart")
+                    .setParameter("cart", cart)
+                    .executeUpdate();
+            cart.getItems().clear(); // Clear in-memory list
+            em.getTransaction().commit();
             return true;
         } catch (Exception e) {
+            if(em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
             return false;
         }
     }
+
 }

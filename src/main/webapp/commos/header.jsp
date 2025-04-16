@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: AHMED
-  Date: 2025-03-28
-  Time: 05:38
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 
@@ -240,31 +233,32 @@
 
                   <!--====== Mini Product Container ======-->
                   <div class="mini-product-container gl-scroll u-s-m-b-15">
-
+                    <c:forEach items="${sessionScope.cart.items}" var="item">
                     <!--====== Card for mini cart ======-->
                     <div class="card-mini-product">
                       <div class="mini-product">
                         <div class="mini-product__image-wrapper">
 
-                          <a class="mini-product__link" href="product-details.jsp">
+                          <a class="mini-product__link" href="product-details?id=${item.product.productId}&name=${item.product.name}">
 
-                            <img class="u-img-fluid" src="images/product/men/product8.jpg" alt=""></a></div>
+                            <img class="u-img-fluid" src="images/product/electronic/${item.product.image}.jpg" alt=""></a></div>
                         <div class="mini-product__info-wrapper">
 
                                                             <span class="mini-product__category">
 
-                                                                <a href="product-list?category=${product.category.name().toLowerCase()}">Men Clothing</a></span>
+                                                                <a href="product-list?category=${item.product.category.name().toLowerCase()}">${item.product.category.name()}</a></span>
 
                           <span class="mini-product__name">
 
-                                                                <a href="product-details.jsp">New Fashion D Nice Elegant</a></span>
+                                                                <a href="product-details?id=${item.product.productId}&name=${item.product.name}">${item.product.name}</a></span>
 
-                          <span class="mini-product__quantity">1 x</span>
-                          <span class="mini-product__price">$8</span>
+                          <span class="mini-product__quantity">${item.quantity} x</span>
+                          <span class="mini-product__price">$${item.product.price}</span>
                         </div>
                       </div>
-                      <a class="mini-product__delete-link far fa-trash-alt"></a>
+                      <a class="remove-item mini-product__delete-link far fa-trash-alt" data-item-id="${item.id}"></a>
                     </div>
+                    </c:forEach>
                     <!--====== End - Card for mini cart ======-->
                   </div>
                   <!--====== End - Mini Product Container ======-->
@@ -273,7 +267,7 @@
                   <div class="mini-product-stat">
                     <div class="mini-total">
                       <span class="subtotal-text">SUBTOTAL</span>
-                      <span class="subtotal-value">$16</span>
+                      <span class="subtotal-value">$${sessionScope.cart.totalPrice}</span>
                     </div>
                     <div class="mini-action">
 

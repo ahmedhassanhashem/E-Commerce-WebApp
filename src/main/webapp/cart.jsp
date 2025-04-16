@@ -37,37 +37,30 @@
                         <div class="table-responsive">
                             <table class="table-p">
                                 <tbody>
-
+<c:forEach items="${sessionScope.cart.items}" var="item">
                                 <!--====== Row ======-->
                                 <tr>
                                     <td>
                                         <div class="table-p__box">
                                             <div class="table-p__img-wrap">
 
-                                                <img class="u-img-fluid" src="images/product/men/product8.jpg" alt=""></div>
+                                                <img class="u-img-fluid" src="images/product/electronic/${item.product.image}.jpg" alt=""></div>
                                             <div class="table-p__info">
 
                                                             <span class="table-p__name">
 
-                                                                <a href="product-details.jsp">New Fashion D Nice Elegant</a></span>
+                                                                <a href="product-details?id=${item.product.productId}&name=${item.product.name}">${item.product.name}</a></span>
 
                                                 <span class="table-p__category">
 
-                                                                <a href="product-list?category=${product.category.name().toLowerCase()}">Men Clothing</a></span>
-                                                <ul class="table-p__variant-list">
-                                                    <li>
+                                                                <a href="product-list?category=${item.product.category.name().toLowerCase()}">${item.product.category.name()}</a></span>
 
-                                                        <span>Size: 22</span></li>
-                                                    <li>
-
-                                                        <span>Color: Red</span></li>
-                                                </ul>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
 
-                                        <span class="table-p__price">$125.00</span></td>
+                                        <span class="table-p__price">$${item.product.price}</span></td>
                                     <td>
                                         <div class="table-p__input-counter-wrap">
 
@@ -85,10 +78,11 @@
                                     <td>
                                         <div class="table-p__del-wrap">
 
-                                            <a class="far fa-trash-alt table-p__delete-link" href="#"></a></div>
+                                            <a data-item-id="${item.id}" class="remove-item far fa-trash-alt table-p__delete-link" href="#"></a></div>
                                     </td>
                                 </tr>
                                 <!--====== End - Row ======-->
+</c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -109,7 +103,7 @@
                                                         <tbody>
                                                         <tr>
                                                             <td>TOTAL</td>
-                                                            <td>$379.00</td>
+                                                            <td>$${sessionScope.cart.totalPrice}</td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
@@ -137,7 +131,7 @@
                                     <span>CONTINUE SHOPPING</span></a></div>
                             <div class="route-box__g2">
 
-                                <a class="route-box__link" href="#"><i class="fas fa-trash"></i>
+                                <a id="clear-cart-btn" class="route-box__link" href="#"><i class="fas fa-trash"></i>
 
                                     <span>CLEAR CART</span></a>
 

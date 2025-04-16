@@ -2,18 +2,15 @@ package com.ecommerce.webapp.servlets.products;
 
 import com.ecommerce.webapp.dao.ProductDAO;
 import com.ecommerce.webapp.entities.Product;
-import com.ecommerce.webapp.entities.User;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @WebServlet("/product-details")
@@ -37,7 +34,7 @@ public class ProductDetailsServlet extends HttpServlet {
 
 
         // Get the selected product based on id
-        Product selectedProduct = ProductFactory.getProductsById(Integer.parseInt(productIdParam));
+        Product selectedProduct = ProductFactory.getProductById(Integer.parseInt(productIdParam));
 
         if (selectedProduct == null) {
             response.sendRedirect("404.jsp"); // Product not found

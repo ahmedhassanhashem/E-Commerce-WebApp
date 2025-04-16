@@ -18,7 +18,7 @@ public class ProductFactory {
         return productDAO.findByCategory(category);
     }
 
-    public static Product getProductsById(int id) {
+    public static Product getProductById(int id) {
         return productDAO.findById(id);
     }
 
