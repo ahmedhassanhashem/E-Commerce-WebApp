@@ -122,6 +122,7 @@ public class OrderDAO {
             return false;
         }
     }
+
     public long countByStatus(OrderStatus status) {
         EntityManager em = PersistenceManager.getEntityManager();
         TypedQuery<Long> query = em.createQuery(

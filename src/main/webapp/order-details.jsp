@@ -142,6 +142,27 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <!-- Order Actions -->
+                                        <c:if test="${order.status == 'PENDING'}">
+                                            <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
+                                                <div class="dash__pad-2">
+                                                    <h2 class="dash__h2 u-s-m-b-10">Order Actions</h2>
+                                                    <div class="u-s-m-b-15">
+                                                        <form id="cancelOrderForm">
+                                                            <input type="hidden" name="orderId"
+                                                                   value="${order.orderId}">
+                                                            <input type="hidden" name="status" value="CANCELLED">
+                                                            <button class="btn btn--e-brand-b-2" type="button"
+                                                                    id="cancelOrderBtn">Cancel Order
+                                                            </button>
+                                                        </form>
+                                                        <div id="statusMessage" style="margin-top: 10px;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:if>
+
                                     </c:otherwise>
                                 </c:choose>
                             </div>
@@ -162,6 +183,12 @@
 <jsp:include page="commos/modals.jsp"/>
 
 <%@include file="commos/script.html" %>
+
+<script>
+    const contextPath = '${pageContext.request.contextPath}';
+</script>
+<script src="js/custom-js/cancel-order.js"></script>
+
 
 </body>
 </html>
