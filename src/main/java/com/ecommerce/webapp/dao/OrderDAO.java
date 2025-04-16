@@ -130,4 +130,13 @@ public class OrderDAO {
         return query.getSingleResult();
     }
 
+    public long countByUserAndStatus(int userId, OrderStatus status) {
+        EntityManager em = PersistenceManager.getEntityManager();
+        TypedQuery<Long> query = em.createQuery(
+                "SELECT COUNT(o) FROM Order o WHERE o.user.userId = :userId AND o.status = :status", Long.class);
+        query.setParameter("userId", userId);
+        query.setParameter("status", status);
+        return query.getSingleResult();
+    }
+
 }
