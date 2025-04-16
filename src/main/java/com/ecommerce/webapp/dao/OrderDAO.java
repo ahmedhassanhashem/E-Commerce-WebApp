@@ -28,7 +28,6 @@ public class OrderDAO {
         return query.getSingleResult();
     }
 
-
     public List<Order> findByUser(User user) {
         EntityManager em = PersistenceManager.getEntityManager();
         return em.createQuery(

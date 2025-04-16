@@ -153,6 +153,18 @@ public class UserDAO {
         return query.getSingleResult();
     }
 
+    public User findById(int userId) {
+        EntityManager em = PersistenceManager.getEntityManager();
+        try {
+            return em.find(User.class, userId);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
+
+
     public boolean emailExists(String email) {
         EntityManager em = PersistenceManager.getEntityManager();
         TypedQuery<Long> query = em.createQuery(

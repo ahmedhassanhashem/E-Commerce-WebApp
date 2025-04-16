@@ -1,7 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  %>
-<c:if test="${empty sessionScope.user}">
-    <c:redirect url="${pageContext.request.contextPath}/home" />
-</c:if>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -56,11 +54,11 @@
                                             <div id="email-validation-message"></div>
                                         </div>
                                         
-                                        <div class="u-s-m-b-30">
+                                        <!-- <div class="u-s-m-b-30">
                                             <label class="gl-label" for="reset-cc">PHONE NUMBER *</label>
                                             <input class="input-text input-text--primary-style" type="text" id="reset-cc" name="reset-cc" placeholder="Enter Phone Number" required>
                                             <div id="phone-error" style="color: red; display: none;">Please enter a valid phone number</div>
-                                        </div>
+                                        </div> -->
                                         
                                         <div class="u-s-m-b-30">
                                             <button class="btn btn--e-transparent-brand-b-2" type="submit">SUBMIT</button>
