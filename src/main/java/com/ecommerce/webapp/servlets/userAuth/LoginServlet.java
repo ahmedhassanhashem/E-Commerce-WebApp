@@ -23,9 +23,6 @@ public class LoginServlet extends HttpServlet {
     private UserDAO userDAO;
     
     private static final List<String> ADMIN_EMAILS = Arrays.asList(
-        "hadeer@gmail.com",
-        "ahmed@gmail.com",
-        "kerollos@gmail.com",
         "admin@gmail.com"
     );
     

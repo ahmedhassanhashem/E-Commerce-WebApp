@@ -2,6 +2,8 @@ package com.ecommerce.webapp.dao;
 
 import java.util.List;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.ecommerce.webapp.entities.User;
 import com.ecommerce.webapp.utils.PersistenceManager;
 import jakarta.persistence.EntityManager;
@@ -14,8 +16,7 @@ public class UserDAO {
         EntityManager em = PersistenceManager.getEntityManager();
         TypedQuery<User> query = em.createQuery(
                 "SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.orders WHERE u.email = :email",
-                User.class
-        );
+                User.class);
         query.setParameter("email", email);
         try {
             return query.getSingleResult();
@@ -23,10 +24,13 @@ public class UserDAO {
             return null;
         }
     }
-
     public boolean validate(String email, String password) {
         User user = this.findByEmail(email);
-        return user != null && user.getPassword().equals(password);
+        if (user == null) {
+            return false;
+        }
+        String hashedPassword = user.getPassword();
+        return BCrypt.checkpw(password, hashedPassword);
     }
 
     public boolean updateUser(User user) {
@@ -45,7 +49,7 @@ public class UserDAO {
             em.persist(user);
             return true;
         } catch (Exception e) {
-            System.out.println("\n\n\n\n"+ e.getMessage() +"\n\n\n\n");
+            System.out.println("\n\n\n\n" + e.getMessage() + "\n\n\n\n");
             e.printStackTrace();
             return false;
         }
@@ -55,8 +59,7 @@ public class UserDAO {
         EntityManager em = PersistenceManager.getEntityManager();
         TypedQuery<User> query = em.createQuery(
                 "SELECT u FROM User u WHERE u.email = :email",
-                User.class
-        );
+                User.class);
         query.setParameter("email", email);
         try {
             User user = query.getSingleResult();
@@ -79,11 +82,10 @@ public class UserDAO {
         EntityManager em = PersistenceManager.getEntityManager();
         TypedQuery<Long> query = em.createQuery(
                 "SELECT COUNT(u) FROM User u",
-                Long.class
-        );
+                Long.class);
         return query.getSingleResult();
     }
-    
+
     public User findById(int userId) {
         EntityManager em = PersistenceManager.getEntityManager();
         try {
@@ -92,7 +94,5 @@ public class UserDAO {
             return null;
         }
     }
-
-
 
 }
