@@ -1,5 +1,6 @@
 package com.ecommerce.webapp.servlets.editProfile;
 
+import com.ecommerce.webapp.dao.UserDAO;
 import com.ecommerce.webapp.entities.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -58,11 +59,20 @@ public class UpdatePasswordServlet extends HttpServlet {
             return;
         }
 
-        // Update session
-        user.setPassword(newPassword);
-        session.setAttribute("user", user);
+        // Update password in database
+        UserDAO userDAO = new UserDAO();
+        boolean updated = userDAO.updatePassword(user.getEmail(), newPassword);
 
-        response.setStatus(200);
-        out.print("{\"success\": true, \"message\": \"Password updated successfully\"}");
+        if (updated) {
+            // Update session
+            user.setPassword(newPassword);
+            session.setAttribute("user", user);
+
+            response.setStatus(200);
+            out.print("{\"success\": true, \"message\": \"Password updated successfully\"}");
+        } else {
+            response.setStatus(500);
+            out.print("{\"success\": false, \"message\": \"Failed to update password in database\"}");
+        }
     }
 }
