@@ -1,17 +1,15 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
 <c:if test="${empty sessionScope.user}">
-    <c:redirect url="/home" />
+    <c:redirect url="/home"/>
 </c:if>
-
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
-
 <%@include file="commos/head.html" %>
-
 
 <body class="config" id="js-scrollspy-trigger">
 
@@ -20,14 +18,10 @@
 <!--====== Main App ======-->
 <div id="app">
 
-
     <jsp:include page="commos/header.jsp"/>
-
 
     <!--====== App Content ======-->
     <div class="app-content">
-
-
 
         <!-- page content -->
         <br>
@@ -38,125 +32,132 @@
                     <div class="container">
                         <div class="row">
 
-
-
-
-
                             <div class="col-lg-3 col-md-12">
-
-
-                                <%@include file="commos/dashboard-sidebar-links.html"%>
+                                <%@include file="commos/dashboard-sidebar-links.html" %>
                                 <jsp:include page="commos/dashboard-sidebar-orders-statistics.jsp"/>
-
-
                             </div>
 
-
-
-
-
                             <div class="col-lg-9 col-md-12">
+                                <h1 class="dash__h1 u-s-m-b-30">Order Details</h1>
 
-
-
-                                <div class="col-lg-9 col-md-12">
-                                    <h1 class="dash__h1 u-s-m-b-30">Order Details</h1>
-
-                                    <!-- Order Details: Order # and Total -->
-                                    <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
-                                        <div class="dash__pad-2">
-                                            <div class="dash-l-r">
-                                                <div>
-                                                    <div class="manage-o__text-2 u-c-secondary">Order #305423126</div>
-                                                    <!-- Date removed -->
-                                                </div>
-                                                <div>
-                                                    <div class="manage-o__text-2 u-c-silver">
-                                                        Total: <span class="manage-o__text-2 u-c-secondary">$16.00</span>
+                                <c:choose>
+                                    <c:when test="${not empty errorMessage}">
+                                        <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
+                                            <div class="dash__pad-2">
+                                                <div class="dash-l-r">
+                                                    <div>
+                                                        <div class="manage-o__text-2 u-c-secondary">${errorMessage}</div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <!-- Shipping Address Section -->
-                                    <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
-                                        <div class="dash__pad-3">
-                                            <h2 class="dash__h2 u-s-m-b-8">Shipping Address</h2><br>
-                                            <h2 class="dash__h2 u-s-m-b-8">John Doe</h2>
-                                            <span class="dash__text-2">4247 Ashford Drive Virginia - VA-20006 - USA</span>
-                                            <span class="dash__text-2">(+0) 900901904</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Items Section (Scrollable Table) -->
-                                    <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
-                                        <div class="dash__pad-2">
-                                            <div class="manage-o__header u-s-m-b-20">
-                                                <div class="manage-o__icon">
-                                                    <i class="fas fa-box u-s-m-r-5"></i>
-                                                    <span class="manage-o__text">Items Ordered</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <!-- Order Details: Order # and Total -->
+                                        <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
+                                            <div class="dash__pad-2">
+                                                <div class="dash-l-r">
+                                                    <div>
+                                                        <div class="manage-o__text-2 u-c-secondary">Order
+                                                            #${order.orderId}</div>
+                                                        <div class="manage-o__text u-c-silver">Status:
+                                                            <span class="manage-o__text u-c-brand">
+                                                                    ${order.status}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="manage-o__text-2 u-c-silver">
+                                                            Total: <span
+                                                                class="manage-o__text-2 u-c-secondary">$<fmt:formatNumber
+                                                                value="${order.totalPrice}"
+                                                                type="currency"
+                                                                currencySymbol=""
+                                                                minFractionDigits="2"
+                                                                maxFractionDigits="2"/></span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
+                                        </div>
 
-                                            <div class="dash__table-wrap gl-scroll">
-                                                <table class="dash__table">
-                                                    <thead>
-                                                    <tr>
-                                                        <th>Item</th>
-                                                        <th>Quantity</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>Yellow Wireless Headphone</td>
-                                                        <td>1</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Bluetooth Speaker</td>
-                                                        <td>2</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>USB Type-C Charger</td>
-                                                        <td>3</td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
+                                        <!-- Shipping Address Section -->
+                                        <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
+                                            <div class="dash__pad-3">
+                                                <h2 class="dash__h2 u-s-m-b-8">Shipping Address</h2><br>
+                                                <h2 class="dash__h2 u-s-m-b-8">${order.user.name}</h2>
+                                                <span class="dash__text-2">${order.user.address}</span>
+                                                <span class="dash__text-2">${order.user.phone}</span>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
 
+                                        <!-- Items Section (Scrollable Table) -->
+                                        <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
+                                            <div class="dash__pad-2">
+                                                <div class="manage-o__header u-s-m-b-20">
+                                                    <div class="manage-o__icon">
+                                                        <i class="fas fa-box u-s-m-r-5"></i>
+                                                        <span class="manage-o__text">Items Ordered</span>
+                                                    </div>
+                                                </div>
 
-
+                                                <div class="dash__table-wrap gl-scroll">
+                                                    <table class="dash__table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Item</th>
+                                                            <th>Price</th>
+                                                            <th>Quantity</th>
+                                                            <th>Subtotal</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <c:choose>
+                                                            <c:when test="${not empty order.items}">
+                                                                <c:forEach items="${order.items}" var="item">
+                                                                    <tr>
+                                                                        <td>${item.product.name}</td>
+                                                                        <td>$<fmt:formatNumber value="${item.itemPrice}"
+                                                                                               type="currency"
+                                                                                               currencySymbol=""
+                                                                                               minFractionDigits="2"
+                                                                                               maxFractionDigits="2"/></td>
+                                                                        <td>${item.quantity}</td>
+                                                                        <td>$<fmt:formatNumber
+                                                                                value="${item.itemPrice * item.quantity}"
+                                                                                type="currency" currencySymbol=""
+                                                                                minFractionDigits="2"
+                                                                                maxFractionDigits="2"/></td>
+                                                                    </tr>
+                                                                </c:forEach>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <tr>
+                                                                    <td colspan="4">No items found for this order</td>
+                                                                </tr>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
-
-
-
                         </div>
                     </div>
                 </div>
             </div>
             <!--====== End - Section Content ======-->
         </div>
-
-
-
-
-
-
-
-
-
     </div>
     <!--====== End -App Content ======-->
-
 
     <%@include file="commos/footer.jsp" %>
 
 </div>
 <!--====== End - Main App  ======-->
-
 
 <jsp:include page="commos/modals.jsp"/>
 

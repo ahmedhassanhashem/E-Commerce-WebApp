@@ -1,5 +1,6 @@
 package com.ecommerce.webapp.servlets.editProfile;
 
+import com.ecommerce.webapp.dao.UserDAO;
 import com.google.gson.JsonObject;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,7 +11,6 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 import com.ecommerce.webapp.entities.User;
-
 @WebServlet("/add-balance")
 public class AddBalanceServlet extends HttpServlet {
     @Override
@@ -40,7 +40,6 @@ public class AddBalanceServlet extends HttpServlet {
             return;
         }
 
-
         try {
             double amount = Double.parseDouble(amountStr);
             if (amount <= 0) {
@@ -49,12 +48,24 @@ public class AddBalanceServlet extends HttpServlet {
                 jsonResponse.addProperty("message", "Amount must be greater than zero.");
             } else {
                 double newBalance = user.getCreditBalance() + amount;
-                user.setCreditBalance(newBalance);
-                session.setAttribute("user", user);
 
-                jsonResponse.addProperty("success", true);
-                jsonResponse.addProperty("message", "Balance updated successfully.");
-                jsonResponse.addProperty("newBalance", newBalance);
+                // Update user balance in database
+                UserDAO userDAO = new UserDAO();
+                boolean updated = userDAO.updateUserBalance(user.getUserId(), newBalance);
+
+                if (updated) {
+                    // Update session only after successful DB update
+                    user.setCreditBalance(newBalance);
+                    session.setAttribute("user", user);
+
+                    jsonResponse.addProperty("success", true);
+                    jsonResponse.addProperty("message", "Balance updated successfully.");
+                    jsonResponse.addProperty("newBalance", newBalance);
+                } else {
+                    response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                    jsonResponse.addProperty("success", false);
+                    jsonResponse.addProperty("message", "Failed to update balance in database.");
+                }
             }
         } catch (NumberFormatException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
