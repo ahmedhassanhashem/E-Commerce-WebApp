@@ -19,12 +19,14 @@ public class CartDAO {
     public Cart getCartByUser(User user) {
         EntityManager em = PersistenceManager.getEntityManager();
         try {
-            TypedQuery<Cart> query = em.createQuery(
-                            "SELECT c FROM Cart c LEFT JOIN FETCH c.items WHERE c.user = :user", Cart.class)
-                    .setParameter("user", user);
-            return query.getSingleResult();
+            return em.createQuery(
+                            "SELECT c FROM Cart c " +
+                                    "LEFT JOIN FETCH c.items ci " +
+                                    "LEFT JOIN FETCH ci.product " +
+                                    "WHERE c.user = :user", Cart.class)
+                    .setParameter("user", user)
+                    .getSingleResult();
         } catch (NoResultException e) {
-            // Create new cart if none exists
             Cart cart = new Cart();
             cart.setUser(user);
             user.setCart(cart);
@@ -139,45 +141,79 @@ public class CartDAO {
 
 
 
+//    public boolean addItemToCart(Cart cart, Product product, int quantity) {
+//        EntityManager em = PersistenceManager.getEntityManager();
+//        try {
+//            // Basic validation
+//            if (quantity <= 0 || quantity > product.getStock()) {
+//                return false;
+//            }
+//
+//            // Check if the product is already in the cart
+//            CartItem existingItem = null;
+//            for (CartItem item : cart.getItems()) {
+//                if (item.getProduct().getProductId() == product.getProductId()) {
+//                    existingItem = item;
+//                    break;
+//                }
+//            }
+//
+//            if (existingItem != null) {
+//                // Update existing item
+//                int newQty = existingItem.getQuantity() + quantity;
+//                if (newQty > product.getStock()) return false;
+//                existingItem.setQuantity(newQty);
+//                em.merge(existingItem);
+//            } else {
+//                // Create new item
+//                CartItem newItem = new CartItem();
+//                newItem.setCart(cart);
+//                newItem.setProduct(product);
+//                newItem.setQuantity(quantity);
+//                em.persist(newItem);
+//
+//                // Important: Update both sides of bidirectional relationship
+//                cart.getItems().add(newItem);
+//            }
+//
+//            em.flush(); // Force database write
+//            return true;
+//        } catch (Exception e) {
+//            e.printStackTrace(); // Better error logging
+//            return false;
+//        }
+//    }
+
     public boolean addItemToCart(Cart cart, Product product, int quantity) {
         EntityManager em = PersistenceManager.getEntityManager();
         try {
-            // Basic validation
-            if (quantity <= 0 || quantity > product.getStock()) {
+            // Check stock
+            if(quantity > product.getStock()) {
                 return false;
             }
 
-            // Check if the product is already in the cart
-            CartItem existingItem = null;
-            for (CartItem item : cart.getItems()) {
-                if (item.getProduct().getProductId() == product.getProductId()) {
-                    existingItem = item;
-                    break;
-                }
-            }
+            // Check existing items
+            CartItem existingItem = cart.getItems().stream()
+                    .filter(item -> item.getProduct().getProductId() == product.getProductId())
+                    .findFirst()
+                    .orElse(null);
 
-            if (existingItem != null) {
-                // Update existing item
-                int newQty = existingItem.getQuantity() + quantity;
-                if (newQty > product.getStock()) return false;
-                existingItem.setQuantity(newQty);
+            if(existingItem != null) {
+                existingItem.setQuantity(existingItem.getQuantity() + quantity);
                 em.merge(existingItem);
             } else {
-                // Create new item
                 CartItem newItem = new CartItem();
                 newItem.setCart(cart);
                 newItem.setProduct(product);
                 newItem.setQuantity(quantity);
                 em.persist(newItem);
-
-                // Important: Update both sides of bidirectional relationship
                 cart.getItems().add(newItem);
             }
 
-            em.flush(); // Force database write
+            em.flush();
             return true;
         } catch (Exception e) {
-            e.printStackTrace(); // Better error logging
+            e.printStackTrace();
             return false;
         }
     }

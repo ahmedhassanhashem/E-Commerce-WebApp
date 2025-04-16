@@ -102,17 +102,16 @@
                                                 </div>
                                             </div>
                                                 <div class="u-s-m-b-15">
-                                                    <button class="btn btn--e-brand-b-2" type="button"
-                                                            onclick="addToCartFromDetails('${requestScope.product.productId}')">
+                                                    <button data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top"
+                                                            class="add-to-cart-trigger btn btn--e-brand-b-2" type="button"
+                                                            data-image="${requestScope.product.image}"
+                                                            data-name="${requestScope.product.name}"
+                                                            data-price="${requestScope.product.price}"
+                                                            >
                                                         Add To Cart
                                                     </button>
                                                 </div>
-                                                <script>
-                                                    function addToCartFromDetails(productId) {
-                                                        const quantity = document.querySelector('.input-counter__text').value;
-                                                        addToCart(productId, quantity);
-                                                    }
-                                                </script>
+
                                             </c:if>
 
                                             <div class="u-s-m-b-15">

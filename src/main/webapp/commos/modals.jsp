@@ -104,7 +104,13 @@
                                         </div>
 
                                         <div class="u-s-m-b-15">
-                                            <button class="btn btn--e-brand-b-2" type="submit">Add To Cart</button>
+                                            <button data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top"
+                                                    class="add-to-cart-trigger btn btn--e-brand-b-2" type="button"
+                                                    data-image="${requestScope.product.image}"
+                                                    data-name="${requestScope.product.name}"
+                                                    data-price="${requestScope.product.price}">
+                                                Add To Cart
+                                            </button>
                                         </div>
                                         </c:if>
 
@@ -182,14 +188,14 @@
                                 <span>Item is added successfully!</span></div>
                             <div class="success__img-wrap">
 
-                                <img id="cart-modal-product-image" class="u-img-fluid" src="" alt=""></div>
+                                <img id="cart-modal-product-image" class="modal-product-image u-img-fluid" src="" alt=""></div>
                             <div class="success__info-wrap">
 
-                                <span id="cart-modal-product-name" class="success__name"></span>
+                                <span id="cart-modal-product-name" class="modal-product-name success__name"></span>
 
 <%--                                <span id="cart-modal-product-quantity" class="success__quantity"></span>--%>
 
-                                <span id="cart-modal-product-price" class="success__price"></span></div>
+                                <span id="cart-modal-product-price" class="modal-product-price success__price"></span></div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12">

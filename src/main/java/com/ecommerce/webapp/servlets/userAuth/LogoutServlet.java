@@ -28,10 +28,12 @@ public class LogoutServlet extends HttpServlet {
 
 
             if (user != null && cart != null) {
-                new CartDAO().clearCart(cart);
+                cartDAO.clearCart(cart);
                 cart.getItems().forEach(item ->
                         cartDAO.addItemToCart(cart, item.getProduct(), item.getQuantity()));
             }
+
+            session.invalidate();
         }
         
         // Delete remember-me cookie if exists
@@ -46,6 +48,8 @@ public class LogoutServlet extends HttpServlet {
                 }
             }
         }
+
+
         response.sendRedirect("home");
     }
 }

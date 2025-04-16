@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class CartService {
     private final CartDAO cartDAO = new CartDAO();
     // Counter for guest cart items
-    private static final AtomicInteger GUEST_ITEM_ID_COUNTER = new AtomicInteger(1000000);
+//    private static final AtomicInteger GUEST_ITEM_ID_COUNTER = new AtomicInteger(1000000);
 
     public Cart getOrCreateCart(HttpSession session) {
         User user = (User) session.getAttribute("user");
@@ -47,7 +47,7 @@ public class CartService {
         }
     }
 
-    public int generateGuestItemId() {
-        return GUEST_ITEM_ID_COUNTER.incrementAndGet();
-    }
+//    public int generateGuestItemId() {
+//        return GUEST_ITEM_ID_COUNTER.incrementAndGet();
+//    }
 }

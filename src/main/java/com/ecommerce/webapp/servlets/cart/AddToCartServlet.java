@@ -38,24 +38,25 @@ public class AddToCartServlet extends HttpServlet {
             boolean success = false;
             if(cart.getUser() != null) { // Logged in user
                 success = new CartDAO().addItemToCart(cart, product, quantity);
-            } else { // Guest user
-                Optional<CartItem> existingItem = cart.getItems().stream()
-                        .filter(item -> item.getProduct().getProductId() == productId)
-                        .findFirst();
-
-                if(existingItem.isPresent()) {
-                    existingItem.get().setQuantity(existingItem.get().getQuantity() + quantity);
-                    success = true;
-                } else {
-                    CartItem newItem = new CartItem();
-                    newItem.setId(cartService.generateGuestItemId());
-                    newItem.setProduct(product);
-                    newItem.setQuantity(quantity);
-                    newItem.setCart(cart);
-                    cart.getItems().add(newItem);
-                    success = true;
-                }
             }
+//            else { // Guest user
+//                Optional<CartItem> existingItem = cart.getItems().stream()
+//                        .filter(item -> item.getProduct().getProductId() == productId)
+//                        .findFirst();
+//
+//                if(existingItem.isPresent()) {
+//                    existingItem.get().setQuantity(existingItem.get().getQuantity() + quantity);
+//                    success = true;
+//                } else {
+//                    CartItem newItem = new CartItem();
+//                    newItem.setId(cartService.generateGuestItemId());
+//                    newItem.setProduct(product);
+//                    newItem.setQuantity(quantity);
+//                    newItem.setCart(cart);
+//                    cart.getItems().add(newItem);
+//                    success = true;
+//                }
+//            }
 
             if(!success) {
                 response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

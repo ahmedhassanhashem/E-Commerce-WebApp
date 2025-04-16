@@ -24,8 +24,18 @@ public class Cart {
     @JoinColumn(name = "cart_id")
     private User user;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(
+            mappedBy = "cart",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private List<CartItem> items = new ArrayList<>();
+
+    @Transient
+    public void clearItems() {
+        items.clear();
+    }
 
     @Transient
     public double getTotalPrice() {

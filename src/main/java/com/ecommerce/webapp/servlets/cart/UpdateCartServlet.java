@@ -24,6 +24,8 @@ public class UpdateCartServlet extends HttpServlet {
             int itemId = Integer.parseInt(request.getParameter("itemId"));
             int quantity = Integer.parseInt(request.getParameter("quantity"));
 
+
+
             HttpSession session = request.getSession();
             Cart cart = (Cart) session.getAttribute("cart");
 
