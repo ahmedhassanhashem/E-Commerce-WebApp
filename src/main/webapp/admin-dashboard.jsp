@@ -44,37 +44,40 @@ if ("true".equals(request.getParameter("logout"))) {
                 <h2>Dashboard</h2>
             </div>
             <div class="panel-body">
-                <!-- First row - 3 divs -->
-                <div style="display: flex; gap: 20px; margin-bottom: 20px;">
-                    <div style="flex: 1; background: #2ecc71; color: white; padding: 50px; border-radius: 5px; text-align: center;">
-                        <h3>Products In Stock</h3>
-                        <h2 id="product-in-stock">0</h2>
-                    </div>
-                    <div style="flex: 1; background: #ff1900; color: white; padding: 50px; border-radius: 5px; text-align: center;">
-                        <h3>Products Out of Stock</h3>
-                        <h2 id="product-out-stock">0</h2>
-                    </div>
-                    <div style="flex: 1; background: #f885d5; color: white; padding: 50px; border-radius: 5px; text-align: center;">
-                        <h3>Users</h3>
-                        <h2 id="users-count">0</h2>
-                    </div>
+               <!-- First row - 3 divs -->
+            <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+                <div style="flex: 1; background: #f5e9e5; color: #ff5500; padding: 50px; border-radius: 5px; text-align: center; border: 2px solid #ff5500;">
+                    <h3>Products In Stock</h3>
+                    <h2 id="product-in-stock">0</h2>
                 </div>
-                
-                <!-- Second row - 3 divs -->
-                <div style="display: flex; gap: 20px; margin-bottom: 20px;">
-                    <div style="flex: 1; background: #3498db; color: white; padding: 50px; border-radius: 5px; text-align: center;">
-                        <h3>Orders Pending</h3>
-                        <h2 id="orders-processing-count">0</h2>
-                    </div>
-                    <div style="flex: 1; background: #2ecc71; color: white; padding: 50px; border-radius: 5px; text-align: center;">
-                        <h3>Orders Completed</h3>
-                        <h2 id="orders-completed-count">0</h2>
-                    </div>
-                    <div style="flex: 1; background: #ff1900; color: white; padding: 50px; border-radius: 5px; text-align: center;">
-                        <h3>Orders Cancelled</h3>
-                        <h2 id="orders-cancelled-count">0</h2>
-                    </div>
+                <div style="flex: 1; background: #f5e9e5; color: #ff5500; padding: 50px; border-radius: 5px; text-align: center; border: 2px solid #ff5500;">
+                    <h3>Products Out of Stock</h3>
+                    <h2 id="product-out-stock">0</h2>
                 </div>
+                <div style="flex: 1; background: #f5e9e5; color: #ff5500; padding: 50px; border-radius: 5px; text-align: center; border: 2px solid #ff5500;">
+                    <h3>Customers</h3>
+                    <h2 id="users-count">0</h2>
+                </div>
+            </div>
+
+            <!-- Second row - 3 divs -->
+            <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+                <div style="flex: 1; background: #f5e9e5; color: #ff5500; padding: 50px; border-radius: 5px; text-align: center; border: 2px solid #ff5500;">
+                    <h3>Orders Pending</h3>
+                    <h2 id="orders-processing-count">0</h2>
+                </div>
+                <div style="flex: 1; background: #f5e9e5; color: #ff5500; padding: 50px; border-radius: 5px; text-align: center; border: 2px solid #ff5500;">
+                    <h3>Orders Completed</h3>
+                    <h2 id="orders-completed-count">0</h2>
+                </div>
+                <div style="flex: 1; background: #f5e9e5; color: #ff5500; padding: 50px; border-radius: 5px; text-align: center; border: 2px solid #ff5500;">
+                    <h3>Orders Cancelled</h3>
+                    <h2 id="orders-cancelled-count">0</h2>
+                </div>
+            </div>
+
+               
+                                
             </div>
         </div>
     </div>

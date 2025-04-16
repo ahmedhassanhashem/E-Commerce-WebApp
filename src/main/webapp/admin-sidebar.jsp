@@ -57,6 +57,9 @@ if ("true".equals(request.getParameter("logout"))) {
         <li class="nav-item ${activePage eq 'orders' ? 'active' : ''}">
             <a href="orders-history.jsp"><i class="fas fa-shopping-cart"></i>View Orders</a>
         </li>
+        <li class="nav-item ${activePage eq 'users' ? 'active' : ''}">
+            <a href="get-users-profiles.jsp"><i class="fas fa-shopping-cart"></i>Customer's Profile</a>
+        </li>
         <li class="nav-item">
             <%-- Add logout parameter to the link --%>
             <a href="?logout=true"><i class="fas fa-sign-out-alt"></i> Logout</a>

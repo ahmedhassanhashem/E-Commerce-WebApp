@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-
+import org.mindrot.jbcrypt.BCrypt;
 
 
 @WebServlet("/register")
@@ -45,7 +45,15 @@ public class RegisterServlet extends HttpServlet {
             request.getRequestDispatcher("/register.jsp").forward(request, response);
             return;
         }
-        
+        // Hash the password using BCrypt
+        String hashedPassword;
+        try {
+            hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
+        } catch (Exception e) {
+            request.setAttribute("errorMessage", "Error hashing password");
+            request.getRequestDispatcher("/register.jsp").forward(request, response);
+            return;
+        }
         // Create user object
         User user = new User();
         Cart cart = new Cart();
@@ -53,7 +61,7 @@ public class RegisterServlet extends HttpServlet {
         user.setEmail(email);
         user.setPhone(phone);
         user.setAddress(address);
-        user.setPassword(password);
+        user.setPassword(hashedPassword);
         user.setCreditBalance(creditLimit);
         user.setCart(cart);
         cart.setUser(user);
