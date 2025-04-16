@@ -76,13 +76,15 @@
   
   .panel-header h2 {
     font-size: 18px;
-    color: var(--primary-color);
+    color: var(--secondary-color);
   }
   
   .filter-section {
     padding: 15px 20px;
     border-bottom: 1px solid #eee;
     background-color: #f9f9f9;
+    margin-left: 18px;
+    margin-right: 18px;
   }
   
   .filter-row {
