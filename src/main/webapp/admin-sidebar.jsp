@@ -48,17 +48,17 @@ if ("true".equals(request.getParameter("logout"))) {
         <li class="nav-item ${activePage eq 'dashboard' ? 'active' : ''}">
             <a href="admin-dashboard.jsp"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
         </li>
-        <li class="nav-item ${activePage eq 'products' ? 'active' : ''}">
-            <a href="get-Allproducts.jsp"><i class="fas fa-box-open"></i>View Products</a>
-        </li>
         <li class="nav-item ${activePage eq 'addProduct' ? 'active' : ''}">
             <a href="add_product.jsp"><i class="fas fa-tags"></i> Add Product</a>
+        </li>
+        <li class="nav-item ${activePage eq 'products' ? 'active' : ''}">
+            <a href="get-Allproducts.jsp"><i class="fas fa-box-open"></i>View Products</a>
         </li>
         <li class="nav-item ${activePage eq 'orders' ? 'active' : ''}">
             <a href="orders-history.jsp"><i class="fas fa-shopping-cart"></i>View Orders</a>
         </li>
         <li class="nav-item ${activePage eq 'users' ? 'active' : ''}">
-            <a href="get-users-profiles.jsp"><i class="fas fa-shopping-cart"></i>Customer's Profile</a>
+            <a href="get-users-profiles.jsp"><i class="fas fa-user"></i>View Profiles</a>
         </li>
         <li class="nav-item">
             <%-- Add logout parameter to the link --%>
