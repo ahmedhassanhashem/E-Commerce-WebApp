@@ -71,7 +71,7 @@ public class CheckoutServlet extends HttpServlet {
             Order order = new Order();
             order.setUser(user);
             order.setTotalPrice(total);
-            order.setStatus(OrderStatus.ACCEPTED);
+            order.setStatus(OrderStatus.PENDING);
             order.setItems(new ArrayList<>());
 
             // Add items to order
