@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <c:if test="${empty sessionScope.user}">
-    <c:redirect url="$/home" />
+    <c:redirect url="/home" />
 </c:if>
 
 
@@ -50,12 +50,12 @@
                                                 <div class="o-card__flex">
                                                     <div class="o-card__img-wrap">
 
-                                                        <img class="u-img-fluid" src="images/product/electronic/${item.image}.jpg" alt=""></div>
+                                                        <img class="u-img-fluid" src="images/product/electronic/${item.product.image}.jpg" alt=""></div>
                                                     <div class="o-card__info-wrap">
 
                                                             <span class="o-card__name">
 
-                                                                <a href="product-details?id=name=${item.productId}&name=${item.name}">${item.product.name}</a></span>
+                                                                <a href="product-details?id=name=${item.product.productId}&name=${item.product.name}">${item.product.name}</a></span>
 
                                                         <span class="o-card__quantity">Quantity x ${item.quantity}</span>
 
@@ -81,7 +81,6 @@
                                                 <span class="ship-b__text">Ship to:</span>
                                                 <div class="ship-b__box u-s-m-b-10">
                                                     <p class="ship-b__p">${sessionScope.user.address}</p>
-                                                    <p class="ship-b__p">${sessionScope.user.phone}</p>
 
                                                     <a class="ship-b__edit btn--e-transparent-platinum-b-2" data-modal="modal" data-modal-id="#edit-ship-address" href="my-profile.jsp">Edit</a>
                                                 </div>
@@ -89,13 +88,13 @@
                                             </div>
                                         </div>
                                         <div class="o-summary__section u-s-m-b-30">
-                                            <form class="checkout-f" action="checkout">
+                                            <form class="checkout-f" action="checkout" method="post">
                                                 <div class="o-summary__box">
                                                     <table class="o-summary__table">
                                                         <tbody>
                                                         <tr>
                                                             <td>TOTAL</td>
-                                                            <td>${sessionScope.user.cart.TotalPrice}</td>
+                                                            <td>${sessionScope.cart.totalPrice}</td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
