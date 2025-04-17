@@ -54,22 +54,15 @@ public class LoginServlet extends HttpServlet {
         if (userDAO.validate(email, password)) {
 
             User user = userDAO.findByEmail(email);
-<<<<<<< HEAD
-
-            HttpSession session = request.getSession();
-            session.setAttribute("user", user);
-
-=======
             Cart cart = cartDAO.getCartByUser(user);
             
             // Check if user is admin based on static email list
-            boolean isAdmin = ADMIN_EMAILS.contains(email);
+            // boolean isAdmin = ADMIN_EMAILS.contains(email);
             
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             session.setAttribute("cart", cart);
             
->>>>>>> cart-logout
             if (rememberMe != null) {
                 String token = generateSecureToken();
 
