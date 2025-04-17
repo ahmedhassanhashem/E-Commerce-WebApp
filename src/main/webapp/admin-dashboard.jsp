@@ -54,15 +54,15 @@
                 <div class="panel-body">
                    <!-- First row - 3 divs -->
                 <div style="display: flex; gap: 20px; margin-bottom: 20px;">
-                    <div style="flex: 1; background: #f5f4f4; color: #ff5500; padding: 30px; border-radius: 5px; text-align: center; border: 2px solid #ff5500;">
+                    <div style="flex: 1; background: #ffffff; color: #ff5500; padding: 30px; border-radius: 5px; text-align: center; border: 2px solid #ff5500;">
                         <h3>Products In Stock</h3>
                         <h2 id="product-in-stock">0</h2>
                     </div>
-                    <div style="flex: 1; background: #f5f4f4; color: #ff5500; padding: 30px; border-radius: 5px; text-align: center; border: 2px solid #ff5500;">
+                    <div style="flex: 1; background: #ffffff; color: #ff5500; padding: 30px; border-radius: 5px; text-align: center; border: 2px solid #ff5500;">
                         <h3>Products Out of Stock</h3>
                         <h2 id="product-out-stock">0</h2>
                     </div>
-                    <div style="flex: 1; background: #f5f4f4; color: #ff5500; padding: 30px; border-radius: 5px; text-align: center; border: 2px solid #ff5500;">
+                    <div style="flex: 1; background: #ffffff; color: #ff5500; padding: 30px; border-radius: 5px; text-align: center; border: 2px solid #ff5500;">
                         <h3>Customers</h3>
                         <h2 id="users-count">0</h2>
                     </div>
@@ -70,15 +70,15 @@
     
                 <!-- Second row - 3 divs -->
                 <div style="display: flex; gap: 20px; margin-bottom: 20px;">
-                    <div style="flex: 1; background: #f5f4f4; color: #ff5500; padding: 30px; border-radius: 5px; text-align: center; border: 2px solid #ff5500;">
+                    <div style="flex: 1; background: #ffffff; color: #ff5500; padding: 30px; border-radius: 5px; text-align: center; border: 2px solid #ff5500;">
                         <h3>Orders Pending</h3>
                         <h2 id="orders-processing-count">0</h2>
                     </div>
-                    <div style="flex: 1; background: #f5f4f4; color: #ff5500; padding: 30px; border-radius: 5px; text-align: center; border: 2px solid #ff5500;">
+                    <div style="flex: 1; background: #ffffff; color: #ff5500; padding: 30px; border-radius: 5px; text-align: center; border: 2px solid #ff5500;">
                         <h3>Orders Completed</h3>
                         <h2 id="orders-completed-count">0</h2>
                     </div>
-                    <div style="flex: 1; background: #f5f4f4; color: #ff5500; padding: 30px; border-radius: 5px; text-align: center; border: 2px solid #ff5500;">
+                    <div style="flex: 1; background: #ffffff; color: #ff5500; padding: 30px; border-radius: 5px; text-align: center; border: 2px solid #ff5500;">
                         <h3>Orders Cancelled</h3>
                         <h2 id="orders-cancelled-count">0</h2>
                     </div>
