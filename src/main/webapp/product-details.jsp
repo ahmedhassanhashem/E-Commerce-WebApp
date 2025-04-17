@@ -97,13 +97,21 @@
                                                 <!-- Input Counter -->
                                                 <div class="input-counter">
                                                     <span class="input-counter__minus fas fa-minus"></span>
-                                                    <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="${requestScope.product.stock}">
+                                                    <input class="input-counter__text input-counter--text-primary-style" id="modal-product-stock-input" type="text" value="1" data-min="1" data-max="${requestScope.product.stock}">
                                                     <span class="input-counter__plus fas fa-plus"></span>
                                                 </div>
                                             </div>
-                                            <div class="u-s-m-b-15">
-                                                <button class="btn btn--e-brand-b-2" type="submit">Add To Cart</button>
-                                            </div>
+                                                <div class="u-s-m-b-15">
+                                                    <button data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top"
+                                                            class="add-to-cart-trigger btn btn--e-brand-b-2" type="button"
+                                                            data-image="${requestScope.product.image}"
+                                                            data-name="${requestScope.product.name}"
+                                                            data-price="${requestScope.product.price}"
+                                                            data-product-id="${requestScope.product.productId}"
+                                                            >
+                                                        Add To Cart
+                                                    </button>
+                                                </div>
 
                                             </c:if>
 
@@ -203,12 +211,14 @@
                                                         <div class="product-o__wrap">
                                                             <!-- Use the loop variable "similarProduct" here -->
                                                             <a class="aspect aspect--bg-grey aspect--square u-d-block product-detail-link"
-                                                               href="product-details?name=${similarProduct.name}"
+                                                               href="product-details?id=name=${similarProduct.productId}&name=${similarProduct.name}"
                                                                data-name="${similarProduct.name}"
                                                                data-image="${similarProduct.image}"
                                                                data-price="${similarProduct.price}"
                                                                data-description="${similarProduct.description}"
-                                                               data-stock="${similarProduct.stock}">
+                                                               data-stock="${similarProduct.stock}"
+                                                               data-id="${similarProduct.productId}"
+                                                            >
                                                                 <img class="aspect__img" src="images/product/electronic/${similarProduct.image}.jpg" alt="">
                                                             </a>
                                                             <div class="product-o__action-wrap">
@@ -220,6 +230,7 @@
                                                                            data-description="${similarProduct.description}"
                                                                            data-stock="${similarProduct.stock}"
                                                                            data-price="${similarProduct.price}"
+                                                                           data-id="${similarProduct.productId}"
                                                                            data-modal="modal" data-modal-id="#quick-look"
                                                                            data-tooltip="tooltip" data-placement="top"
                                                                            title="Quick View"><i class="fas fa-search-plus"></i></a>
@@ -231,6 +242,7 @@
                                                                            data-name="${similarProduct.name}"
                                                                            data-stock="${similarProduct.stock}"
                                                                            data-price="${similarProduct.price}"
+                                                                           data-id="${similarProduct.productId}"
                                                                            data-modal="modal" data-modal-id="#add-to-cart"
                                                                            data-tooltip="tooltip" data-placement="top"
                                                                            title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
@@ -260,12 +272,14 @@
                                                           </span>
                                                         <span class="product-o__name">
                                                               <a class="product-detail-link"
-                                                                 href="product-details?name=${similarProduct.name}"
+                                                                 href="product-details?id=name=${similarProduct.productId}&name=${similarProduct.name}"
                                                                  data-name="${similarProduct.name}"
                                                                  data-image="${similarProduct.image}"
                                                                  data-price="${similarProduct.price}"
                                                                  data-description="${similarProduct.description}"
-                                                                 data-stock="${similarProduct.stock}">
+                                                                 data-stock="${similarProduct.stock}"
+                                                                 data-id="${similarProduct.productId}"
+                                                              >
                                                                       ${similarProduct.name}
                                                               </a>
                                                           </span>

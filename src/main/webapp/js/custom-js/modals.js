@@ -14,7 +14,7 @@ $(document).on('click', '.quick-look-trigger', function(e) {
     const description = $(this).data('description');
     const stock = $(this).data('stock');
     const price = $(this).data('price');
-    const id = $(this).data('productId');
+    const id = $(this).data('id');
 
     // Store the price in the global variable for later use
     currentPrice = price;
@@ -23,6 +23,7 @@ $(document).on('click', '.quick-look-trigger', function(e) {
     $('#modal-product-image').attr('src', 'images/product/electronic/' + image + '.jpg');
     $('#modal-product-name').text(name);
     $('#modal-product-description').text(description);
+    $('#modal-product-id').text(id);
 
     // Update stock status and set the quantity input maximum value
     if (stock > 0) {
@@ -35,12 +36,18 @@ $(document).on('click', '.quick-look-trigger', function(e) {
             .addClass('pd-detail__left');
     }
     $('#modal-product-stock-input').attr('data-max', stock).val(1);
+    $('#quick-look').find('.add-to-cart2-trigger')
+  .attr('data-product-id', id)
+  .attr('data-id', id)
+  .attr('data-image',    image)
+  .attr('data-name',     name)
+  .attr('data-price',    price);
+
 
     // Manually open the modal (jQuery method)
     $(modalId).modal('show');
 });
 
-// Do the same for other modal triggers with the appropriate modal ID
 $(document).on('click', '.add-to-cart-trigger', function(e) {
     e.preventDefault();
 
@@ -48,11 +55,17 @@ $(document).on('click', '.add-to-cart-trigger', function(e) {
     const image = $(this).data('image');
     const name = $(this).data('name');
     const price = $(this).data('price');
-    const id = $(this).data('productId');
+    const id = $(this).data('product-id');
 
+    $('#cart-modal-product-id').text(id);
     $('#cart-modal-product-image').attr('src', 'images/product/electronic/' + image + '.jpg');
     $('#cart-modal-product-name').text(name);
     $('#cart-modal-product-price').text('$' + price);
+    $('#quick-look').find('.add-to-cart-trigger')
+        .attr('data-product-id', id)
+        .attr('data-image', image)
+        .attr('data-name', name)
+        .attr('data-price', price);
 
     // Manually open the modal
     $(modalId).modal('show');
@@ -66,7 +79,7 @@ $(document).on('click', '.add-to-cart-trigger', function(e) {
 //     const image = $(this).data('image');
 //     const name = $(this).data('name');
 //     const price = $(this).data('price');
-//     const id = $(this).data('productId');
+//     const id = $(this).data('product-id');
 //
 //     $('#wishlist-modal-product-image').attr('src', 'images/product/electronic/' + image + '.jpg');
 //     $('#wishlist-modal-product-name').text(name);
@@ -75,29 +88,29 @@ $(document).on('click', '.add-to-cart-trigger', function(e) {
 //     // Manually open the modal
 //     $(modalId).modal('show');
 // });
-
-$(document).on('click', '.add-to-cart2-trigger', function(e) {
-    e.preventDefault();
-
-    const modalId = $(this).data('modal-id');
-    const quantity = $('#modal-product-stock-input').val();
-    const name = $('#modal-product-name').text();
-    const id = $(this).data('productId');
-
-    $('#cart2-modal-product-name').text(name);
-    $('#cart2-modal-product-price').text('$' + currentPrice);
-    $('#cart2-modal-product-quantity').text('Quantity: ' + quantity);
-
-    // Manually open the modal
-    $(modalId).modal('show');
-});
+//
+// $(document).on('click', '.add-to-cart2-trigger', function(e) {
+//     e.preventDefault();
+//
+//     const modalId = $(this).data('modal-id');
+//     const quantity = $('#modal-product-stock-input').val();
+//     const name = $('#modal-product-name').text();
+//     const id = $(this).data('product-id');
+//
+//     $('#cart2-modal-product-name').text(name);
+//     $('#cart2-modal-product-price').text('$' + currentPrice);
+//     $('#cart2-modal-product-quantity').text('Quantity: ' + quantity);
+//
+//     // Manually open the modal
+//     $(modalId).modal('show');
+// });
 
 // $(document).on('click', '.add-to-wishlist2-trigger', function(e) {
 //     e.preventDefault();
 //
 //     const modalId = $(this).data('modal-id');
 //     const name = $('#modal-product-name').text();
-//     const id = $(this).data('productId');
+//     const id = $(this).data('product-id');
 //
 //     $('#wishlist2-modal-product-name').text(name);
 //     $('#wishlist2-modal-product-price').text('$' + currentPrice);

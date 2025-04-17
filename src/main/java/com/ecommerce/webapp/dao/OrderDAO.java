@@ -40,7 +40,6 @@ public class OrderDAO {
                 .getResultList();
     }
 
-
     /**
      * Find orders by user specifically for display in session.
      * This version detaches the orders from persistence context to avoid circular references
@@ -87,22 +86,38 @@ public class OrderDAO {
         return orders;
     }
 
-
-//    public List<Order> findByUser(User user) {
-//        EntityManager em = PersistenceManager.getEntityManager();
-//        TypedQuery<Order> query = em.createQuery(
-//                "SELECT o FROM Order o WHERE o.user = :user ORDER BY o.orderId DESC", Order.class);
-//        query.setParameter("user", user);
-//        return query.getResultList();
-//    }
-
-
     public boolean addOrder(Order order) {
         try {
             EntityManager em = PersistenceManager.getEntityManager();
+
+            // Ensure order has a user reference
+            if (order.getUser() == null) {
+                return false;
+            }
+
+            // Make sure we're using a managed user entity
+            User user = em.find(User.class, order.getUser().getUserId());
+            if (user == null) {
+                return false;
+            }
+
+            order.setUser(user);
+
+            // Persist the order first
             em.persist(order);
+
+            // Ensure each OrderItem has a reference to the persisted order
+            if (order.getItems() != null) {
+                order.getItems().forEach(item -> {
+                    item.setOrder(order);
+                    // Make sure we have a managed product entity
+                    item.setProduct(em.find(item.getProduct().getClass(), item.getProduct().getProductId()));
+                });
+            }
+
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
@@ -118,6 +133,7 @@ public class OrderDAO {
             }
             return false;
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
@@ -130,6 +146,7 @@ public class OrderDAO {
         return query.getSingleResult();
     }
 
+
     public long countByUserAndStatus(int userId, OrderStatus status) {
         EntityManager em = PersistenceManager.getEntityManager();
         TypedQuery<Long> query = em.createQuery(
@@ -140,3 +157,5 @@ public class OrderDAO {
     }
 
 }
+
+

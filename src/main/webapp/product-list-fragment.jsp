@@ -15,6 +15,7 @@
                                data-description="${product.description}"
                                data-stock="${product.stock}"
                                data-price="${product.price}"
+                               data-id="${product.productId}"
                                class="fas fa-search quick-look-trigger"
                                data-modal="modal"
                                data-modal-id="#quick-look"
@@ -28,6 +29,7 @@
                                data-name="${product.name}"
                                data-stock="${product.stock}"
                                data-price="${product.price}"
+                               data-id="${product.productId}"
                                class="btn--e-brand add-to-cart-trigger"
                                data-modal="modal"
                                data-modal-id="#add-to-cart">Add to Cart</a>

@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <c:if test="${empty sessionScope.user}">
-    <c:redirect url="${pageContext.request.contextPath}/home" />
+    <c:redirect url="/home" />
 </c:if>
 
 
@@ -37,31 +39,33 @@
 
                             <div class="col-lg-12">
 
+
                                 <!--====== Order Summary ======-->
                                 <div class="o-summary">
                                     <div class="o-summary__section u-s-m-b-30">
                                         <div class="o-summary__item-wrap gl-scroll">
+<c:forEach items="${sessionScope.cart.items}" var="item">
 
                                             <div class="o-card">
                                                 <div class="o-card__flex">
                                                     <div class="o-card__img-wrap">
 
-                                                        <img class="u-img-fluid" src="images/product/men/product8.jpg" alt=""></div>
+                                                        <img class="u-img-fluid" src="images/product/electronic/${item.product.image}.jpg" alt=""></div>
                                                     <div class="o-card__info-wrap">
 
                                                             <span class="o-card__name">
 
-                                                                <a href="product-details.jsp">New Fashion D Nice Elegant</a></span>
+                                                                <a href="product-details?id=name=${item.product.productId}&name=${item.product.name}">${item.product.name}</a></span>
 
-                                                        <span class="o-card__quantity">Quantity x 1</span>
+                                                        <span class="o-card__quantity">Quantity x ${item.quantity}</span>
 
-                                                        <span class="o-card__price">$150.00</span></div>
+                                                        <span class="o-card__price">${item.product.price}</span></div>
                                                 </div>
 
-                                                <a class="o-card__del far fa-trash-alt"></a>
+                                                <a class="remove-item o-card__del far fa-trash-alt"></a>
                                             </div>
 
-
+</c:forEach>
                                         </div>
 
                                     </div>
@@ -76,21 +80,21 @@
 
                                                 <span class="ship-b__text">Ship to:</span>
                                                 <div class="ship-b__box u-s-m-b-10">
-                                                    <p class="ship-b__p">4247 Ashford Drive Virginia VA-20006 USA (+0) 900901904</p>
+                                                    <p class="ship-b__p">${sessionScope.user.address}</p>
 
-                                                    <a class="ship-b__edit btn--e-transparent-platinum-b-2" data-modal="modal" data-modal-id="#edit-ship-address">Edit</a>
+                                                    <a class="ship-b__edit btn--e-transparent-platinum-b-2" data-modal="modal" data-modal-id="#edit-ship-address" href="my-profile.jsp">Edit</a>
                                                 </div>
 
                                             </div>
                                         </div>
                                         <div class="o-summary__section u-s-m-b-30">
-                                            <form class="checkout-f">
+                                            <form class="checkout-f" action="checkout" method="post">
                                                 <div class="o-summary__box">
                                                     <table class="o-summary__table">
                                                         <tbody>
                                                         <tr>
                                                             <td>TOTAL</td>
-                                                            <td>$379.00</td>
+                                                            <td>${sessionScope.cart.totalPrice}</td>
                                                         </tr>
                                                         </tbody>
                                                     </table>

@@ -48,9 +48,9 @@
 
                                     <span id="modal-product-stock" class="pd-detail__stock"></span>
 
-<%--                                            <span class="pd-detail__stock">In Stock</span>--%>
-<%--                                       --%>
-<%--                                            <span class="pd-detail__left">Out of Stock</span>--%>
+                                    <%--                                            <span class="pd-detail__stock">In Stock</span>--%>
+                                    <%--                                       --%>
+                                    <%--                                            <span class="pd-detail__left">Out of Stock</span>--%>
 
 
 
@@ -62,26 +62,26 @@
 
                                 <span id="modal-product-description" class="pd-detail__preview-desc"></span></div>
 
-<%--                            <div class="u-s-m-b-15">--%>
-<%--                                <div class="pd-detail__inline">--%>
+                            <%--                            <div class="u-s-m-b-15">--%>
+                            <%--                                <div class="pd-detail__inline">--%>
 
-<%--                                    <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i></span>--%>
+                            <%--                                    <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i></span>--%>
 
-<%--                                    <a data-modal="modal" class="add-to-wishlist2-trigger" data-modal-id="#add-to-wishlist2" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist">Add to Wishlist</a>--%>
+                            <%--                                    <a data-modal="modal" class="add-to-wishlist2-trigger" data-modal-id="#add-to-wishlist2" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist">Add to Wishlist</a>--%>
 
-<%--                                </div>--%>
+                            <%--                                </div>--%>
 
-<%--                            </div>--%>
+                            <%--                            </div>--%>
 
-<%--                            <div class="u-s-m-b-15">--%>
-<%--                                <div class="pd-detail__inline">--%>
+                            <%--                            <div class="u-s-m-b-15">--%>
+                            <%--                                <div class="pd-detail__inline">--%>
 
-<%--                                    <span class="pd-detail__click-wrap"><i class="fas fa-shopping-cart u-s-m-r-6"></i></span>--%>
+                            <%--                                    <span class="pd-detail__click-wrap"><i class="fas fa-shopping-cart u-s-m-r-6"></i></span>--%>
 
-<%--                                    <a data-modal="modal" class="add-to-cart2-trigger" data-modal-id="#add-to-cart2" data-tooltip="tooltip" data-placement="top" title="Add to Cart">Add to Cart</a>--%>
-<%--                                </div>--%>
+                            <%--                                    <a data-modal="modal" class="add-to-cart2-trigger" data-modal-id="#add-to-cart2" data-tooltip="tooltip" data-placement="top" title="Add to Cart">Add to Cart</a>--%>
+                            <%--                                </div>--%>
 
-<%--                            </div>--%>
+                            <%--                            </div>--%>
 
 
                             <div class="u-s-m-b-15">
@@ -89,23 +89,31 @@
                                     <div class="pd-detail-inline-2">
 
                                         <c:if test="${sessionScope.user != null}">
-                                        <div class="u-s-m-b-15">
+                                            <div class="u-s-m-b-15">
 
-                                            <!--====== Input Counter ======-->
-                                            <div class="input-counter">
+                                                <!--====== Input Counter ======-->
+                                                <div class="input-counter">
 
-                                                <span class="input-counter__minus fas fa-minus"></span>
+                                                    <span class="input-counter__minus fas fa-minus"></span>
 
-                                                <input id="modal-product-stock-input" class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1">
+                                                    <input id="modal-product-stock-input" class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1">
 
-                                                <span class="input-counter__plus fas fa-plus"></span>
+                                                    <span class="input-counter__plus fas fa-plus"></span>
+                                                </div>
+                                                <!--====== End - Input Counter ======-->
                                             </div>
-                                            <!--====== End - Input Counter ======-->
-                                        </div>
 
-                                        <div class="u-s-m-b-15">
-                                            <button class="btn btn--e-brand-b-2" type="submit">Add To Cart</button>
-                                        </div>
+                                            <div class="u-s-m-b-15">
+                                                <button data-modal="modal" data-modal-id="#add-to-cart2"
+                                                        class="add-to-cart2-trigger btn btn--e-brand-b-2" type="button"
+                                                        data-product-id="${requestScope.product.productId}"
+                                                        data-image="${requestScope.product.image}"
+                                                        data-name="${requestScope.product.name}"
+
+                                                        data-price="${requestScope.product.price}">
+                                                    Add To Cart
+                                                </button>
+                                            </div>
                                         </c:if>
 
                                         <div class="u-s-m-b-15">
@@ -187,7 +195,7 @@
 
                                 <span id="cart-modal-product-name" class="success__name"></span>
 
-<%--                                <span id="cart-modal-product-quantity" class="success__quantity"></span>--%>
+                                <%--                                <span id="cart-modal-product-quantity" class="success__quantity"></span>--%>
 
                                 <span id="cart-modal-product-price" class="success__price"></span></div>
                         </div>
@@ -293,6 +301,5 @@
 <%--    </div>--%>
 <%--</div>--%>
 <!--====== End - Add to Wishlist Modal ======-->
-
 
 

@@ -1,6 +1,8 @@
 package com.ecommerce.webapp.servlets.userAuth;
 
+import com.ecommerce.webapp.dao.CartDAO;
 import com.ecommerce.webapp.dao.UserDAO;
+import com.ecommerce.webapp.entities.Cart;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -19,6 +21,7 @@ import com.ecommerce.webapp.entities.User;
 public class LoginServlet extends HttpServlet {
     
     private UserDAO userDAO;
+    private CartDAO cartDAO;
     
     private static final Map<String, String> REMEMBER_ME_TOKENS = new HashMap<>();
     
@@ -26,6 +29,8 @@ public class LoginServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         userDAO = new UserDAO();
+        cartDAO = new CartDAO();
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -49,10 +54,22 @@ public class LoginServlet extends HttpServlet {
         if (userDAO.validate(email, password)) {
 
             User user = userDAO.findByEmail(email);
+<<<<<<< HEAD
 
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
 
+=======
+            Cart cart = cartDAO.getCartByUser(user);
+            
+            // Check if user is admin based on static email list
+            boolean isAdmin = ADMIN_EMAILS.contains(email);
+            
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
+            session.setAttribute("cart", cart);
+            
+>>>>>>> cart-logout
             if (rememberMe != null) {
                 String token = generateSecureToken();
 

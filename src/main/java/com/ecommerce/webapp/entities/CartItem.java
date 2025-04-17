@@ -13,6 +13,9 @@ import lombok.*;
 @Entity
 @Table(name = "cart_items")
 public class CartItem {
+
+//x
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cart_item_id")

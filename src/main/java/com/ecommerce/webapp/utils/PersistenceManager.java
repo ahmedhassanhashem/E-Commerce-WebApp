@@ -3,17 +3,27 @@ package com.ecommerce.webapp.utils;
 import jakarta.persistence.EntityManager;
 
 public class PersistenceManager {
-    private static final ThreadLocal<EntityManager> ENTITY_MANAGER = new ThreadLocal<>();
+    private static final ThreadLocal<EntityManager> threadLocal = new ThreadLocal<>();
 
     public static void setEntityManager(EntityManager em) {
-        ENTITY_MANAGER.set(em);
+        threadLocal.set(em);
     }
 
     public static EntityManager getEntityManager() {
-        return ENTITY_MANAGER.get();
+        EntityManager em = threadLocal.get();
+        if (em == null) {
+            throw new IllegalStateException("No EntityManager bound to this thread. Make sure requests go through TransactionFilter.");
+        }
+        return em;
     }
 
     public static void clearEntityManager() {
-        ENTITY_MANAGER.remove();
+        threadLocal.remove();
+    }
+
+    // Helper method to check if transaction is active
+    public static boolean isTransactionActive() {
+        EntityManager em = threadLocal.get();
+        return em != null && em.getTransaction().isActive();
     }
 }

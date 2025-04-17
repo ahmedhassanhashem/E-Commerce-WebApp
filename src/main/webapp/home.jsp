@@ -295,7 +295,12 @@
                                                       data-name="${product.name}"
                                                       data-stock="${product.stock}"
                                                       data-id="${product.productId}"
-                                                      data-price="${product.price}" data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
+                                                      data-price="${product.price}"
+                                                      data-modal="modal"
+                                                      data-modal-id="#add-to-cart"
+                                                      data-tooltip="tooltip" data-placement="top"
+                                                      title="Add to Cart">
+                                                       <i class="fas fa-shopping-cart"></i></a>
                                                </li>
                                                </c:if>
 
@@ -434,7 +439,11 @@
                                                        data-description="${product.description}"
                                                        data-stock="${product.stock}"
                                                        data-id="${product.productId}"
-                                                       data-price="${product.price}" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a></li>
+                                                       data-price="${product.price}"
+                                                       data-modal="modal"
+                                                       data-modal-id="#quick-look"
+                                                       data-tooltip="tooltip" data-placement="top"
+                                                       title="Quick View"><i class="fas fa-search-plus"></i></a></li>
 
                                                 <c:if test="${sessionScope.user != null}">
                                                 <li>
@@ -444,7 +453,8 @@
                                                        data-name="${product.name}"
                                                        data-id="${product.productId}"
                                                        data-stock="${product.stock}"
-                                                       data-price="${product.price}" data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
+                                                       data-price="${product.price}"
+                                                       data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
                                                 </li>
                                                 </c:if>
 

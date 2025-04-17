@@ -1,5 +1,8 @@
 package com.ecommerce.webapp.servlets.userAuth;
 
+import com.ecommerce.webapp.dao.CartDAO;
+import com.ecommerce.webapp.entities.Cart;
+import com.ecommerce.webapp.entities.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -12,8 +15,15 @@ import java.io.IOException;
 
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
+<<<<<<< HEAD
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
+=======
+    private final CartDAO cartDAO = new CartDAO();
+
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+>>>>>>> cart-logout
             throws ServletException, IOException {
 
         // Get the referer (the page user was on before logout)
@@ -22,10 +32,15 @@ public class LogoutServlet extends HttpServlet {
 
         // Get session and invalidate it
         HttpSession session = request.getSession(false);
+<<<<<<< HEAD
         if (session != null) {
             session.invalidate();
         }
 
+=======
+
+        
+>>>>>>> cart-logout
         // Delete remember-me cookie if exists
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
@@ -39,7 +54,14 @@ public class LogoutServlet extends HttpServlet {
             }
         }
 
+<<<<<<< HEAD
         // Redirect to login page with the return URL as a parameter
         response.sendRedirect("login.jsp?returnUrl=" + response.encodeRedirectURL(returnUrl));
+=======
+        if(session != null) {
+            session.invalidate();
+        }
+        response.sendRedirect("home");
+>>>>>>> cart-logout
     }
 }
