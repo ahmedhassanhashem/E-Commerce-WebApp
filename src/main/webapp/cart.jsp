@@ -7,6 +7,9 @@
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
+    <script>
+        var contextPath = '${pageContext.request.contextPath}';
+    </script>
 <%@include file="commos/head.html" %>
 <body class="config" id="js-scrollspy-trigger">
 <%@include file="commos/preloader.html" %>

@@ -34,9 +34,9 @@ public class UpdateCartServlet extends HttpServlet {
         int cartItemId = Integer.parseInt(request.getParameter("cartItemId"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
-        EntityManager em = PersistenceManager.getEntityManager();
+//        EntityManager em = PersistenceManager.getEntityManager();
         try {
-            em.getTransaction().begin();
+//            em.getTransaction().begin();
             boolean success = cartDAO.updateItemQuantity(cartItemId, quantity);
             if (!success) {
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Failed to update item quantity");
@@ -47,12 +47,12 @@ public class UpdateCartServlet extends HttpServlet {
             session.setAttribute("cart", cart);
             CartDTO cartDTO = Mapper.mapToDTO(cart);
 
-            em.getTransaction().commit();
+//            em.getTransaction().commit();
 
             response.setContentType("application/json");
             response.getWriter().write(gson.toJson(cartDTO));
         } catch (Exception e) {
-            if (em.getTransaction().isActive()) em.getTransaction().rollback();
+//            if (em.getTransaction().isActive()) em.getTransaction().rollback();
             throw new ServletException(e);
         }
     }

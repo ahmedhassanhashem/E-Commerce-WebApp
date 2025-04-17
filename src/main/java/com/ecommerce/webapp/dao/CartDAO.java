@@ -218,21 +218,57 @@ public class CartDAO {
 //        }
 //    }
 
+//    public boolean addItemToCart(Cart cart, Product product, int quantity) {
+//        EntityManager em = PersistenceManager.getEntityManager();
+//        try {
+//            if (quantity > product.getStock()) {
+//                return false;
+//            }
+//
+//            CartItem existingItem = cart.getItems().stream()
+//                    .filter(item -> item.getProduct().getProductId() == product.getProductId())
+//                    .findFirst().orElse(null);
+//
+//            if (existingItem != null) {
+//                existingItem.setQuantity(existingItem.getQuantity() + quantity);
+//                em.merge(existingItem);
+//            } else {
+//                CartItem newItem = new CartItem();
+//                newItem.setCart(cart);
+//                newItem.setProduct(product);
+//                newItem.setQuantity(quantity);
+//                em.persist(newItem);
+//                cart.getItems().add(newItem);
+//            }
+//            return true;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return false;
+//        }
+//    }
+
+
     public boolean addItemToCart(Cart cart, Product product, int quantity) {
         EntityManager em = PersistenceManager.getEntityManager();
         try {
-            if (quantity > product.getStock()) {
-                return false;
+            if (quantity <= 0 || quantity > product.getStock()) {
+                return false; // Check if requested quantity is valid
             }
 
+            // Find existing item
             CartItem existingItem = cart.getItems().stream()
                     .filter(item -> item.getProduct().getProductId() == product.getProductId())
                     .findFirst().orElse(null);
 
             if (existingItem != null) {
-                existingItem.setQuantity(existingItem.getQuantity() + quantity);
+                int newQty = existingItem.getQuantity() + quantity;
+                if (newQty > product.getStock()) {
+                    return false; // Total exceeds stock
+                }
+                existingItem.setQuantity(newQty);
                 em.merge(existingItem);
             } else {
+                // Create new item
                 CartItem newItem = new CartItem();
                 newItem.setCart(cart);
                 newItem.setProduct(product);
@@ -246,7 +282,6 @@ public class CartDAO {
             return false;
         }
     }
-
 
 
 //    public boolean updateItemQuantity(int cartItemId, int newQuantity) {

@@ -32,11 +32,59 @@ $(document).ready(function() {
 
 
     // Add to Cart from Modals
-    $(document).on('click', '.btn.btn--e-brand-b-2, .add-to-cart-trigger', function(e) {
+    $(document).on('click', '.add-to-cart2-trigger', function(e) {
         e.preventDefault();
         var $button = $(this);
-        var productId = $button.data('product-id') || $button.data('id'); // Fallback for different data attributes
-        var quantity = $('#modal-product-stock-input').val() || 1; // From quick look modal or default to 1
+        // var productId = $button.data('product-id') || $button.data('id'); // Fallback for different data attributes
+        // var quantity = $('#modal-product-stock-input').val() || 1; // From quick look modal or default to 1
+        var productId = $button.attr('data-product-id') || $button.attr('data-id');
+        var quantity = $('#modal-product-stock-input').val() || 1;
+        var image = $button.attr('data-image');
+        var name = $button.attr('data-name');
+        var price = $button.attr('data-price');
+
+        console.log('ProductID:', productId, 'Quantity:', quantity, 'Image:', image, 'Name:', name, 'Price:', price);
+
+
+        if (!productId) {
+            alert('Product ID not found');
+            return;
+        }
+
+        $.ajax({
+            url: contextPath + '/add-to-cart',
+            type: 'POST',
+            data: { productId: productId, quantity: quantity },
+            success: function(response) {
+                updateMiniCart(response);
+                // Show the "Add to Cart" modal
+                $('#add-to-cart2').modal('show');
+                // Update modal content with the variables we retrieved earlier
+                $('#cart2-modal-product-image').attr('src', 'images/product/electronic/' + image + '.jpg');
+                $('#cart2-modal-product-name').text(name);
+                $('#cart2-modal-product-price').text('$' + price);
+                $('#cart2-modal-product-quantity').text(quantity + ' x');
+            },
+            error: function(xhr) {
+                alert('Error adding to cart: ' + xhr.responseText);
+            }
+        });
+    });
+
+
+
+    $(document).on('click', '.add-to-cart-trigger', function(e) {
+        e.preventDefault();
+        var $button = $(this);
+        
+        var productId = $button.attr('data-product-id') || $button.attr('data-id');
+        var quantity = $('#modal-product-stock-input').val() || 1;
+        var image = $button.attr('data-image');
+        var name = $button.attr('data-name');
+        var price = $button.attr('data-price');
+
+        console.log('ProductID:', productId, 'Quantity:', quantity, 'Image:', image, 'Name:', name, 'Price:', price);
+
 
         if (!productId) {
             alert('Product ID not found');
@@ -51,16 +99,20 @@ $(document).ready(function() {
                 updateMiniCart(response);
                 // Show the "Add to Cart" modal
                 $('#add-to-cart').modal('show');
-                // Update modal content
-                $('#cart-modal-product-image').attr('src', 'images/product/electronic/' + $button.data('image') + '.jpg');
-                $('#cart-modal-product-name').text($button.data('name'));
-                $('#cart-modal-product-price').text('$' + $button.data('price'));
+                // Update modal content with the variables we retrieved earlier
+                $('#cart-modal-product-image').attr('src', 'images/product/electronic/' + image + '.jpg');
+                $('#cart-modal-product-name').text(name);
+                $('#cart-modal-product-price').text('$' + price);
+                $('#cart-modal-product-quantity').text(quantity + ' x');
             },
             error: function(xhr) {
                 alert('Error adding to cart: ' + xhr.responseText);
             }
         });
     });
+
+
+
 
     // Update Quantity on Cart Page
     $(document).on('blur', '.input-counter__text', function() {
@@ -101,7 +153,7 @@ $(document).ready(function() {
     // Remove Item
     $(document).on('click', '.remove-item', function(e) {
         e.preventDefault();
-        var cartItemId = $(this).data('item-id');
+        var cartItemId = $(this).attr('data-item-id');
         var $row = $(this).closest('.card-mini-product, tr'); // Works for mini cart and cart page
 
         $.ajax({

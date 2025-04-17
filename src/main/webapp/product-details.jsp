@@ -97,7 +97,7 @@
                                                 <!-- Input Counter -->
                                                 <div class="input-counter">
                                                     <span class="input-counter__minus fas fa-minus"></span>
-                                                    <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="${requestScope.product.stock}">
+                                                    <input class="input-counter__text input-counter--text-primary-style" id="modal-product-stock-input" type="text" value="1" data-min="1" data-max="${requestScope.product.stock}">
                                                     <span class="input-counter__plus fas fa-plus"></span>
                                                 </div>
                                             </div>
@@ -107,7 +107,7 @@
                                                             data-image="${requestScope.product.image}"
                                                             data-name="${requestScope.product.name}"
                                                             data-price="${requestScope.product.price}"
-                                                            data-id="${requestScope.product.productId}"
+                                                            data-product-id="${requestScope.product.productId}"
                                                             >
                                                         Add To Cart
                                                     </button>

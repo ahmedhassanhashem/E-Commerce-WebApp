@@ -31,9 +31,9 @@ public class ClearCartServlet extends HttpServlet {
             return;
         }
 
-        EntityManager em = PersistenceManager.getEntityManager();
+//        EntityManager em = PersistenceManager.getEntityManager();
         try {
-            em.getTransaction().begin();
+//            em.getTransaction().begin();
             Cart cart = cartDAO.getCartByUser(user);
             boolean success = cartDAO.clearCart(cart);
             if (!success) {
@@ -45,12 +45,12 @@ public class ClearCartServlet extends HttpServlet {
             session.setAttribute("cart", cart);
             CartDTO cartDTO = Mapper.mapToDTO(cart);
 
-            em.getTransaction().commit();
+//            em.getTransaction().commit();
 
             response.setContentType("application/json");
             response.getWriter().write(gson.toJson(cartDTO));
         } catch (Exception e) {
-            if (em.getTransaction().isActive()) em.getTransaction().rollback();
+//            if (em.getTransaction().isActive()) em.getTransaction().rollback();
             throw new ServletException(e);
         }
     }
