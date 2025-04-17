@@ -47,8 +47,13 @@ function displayProducts(products) {
     let tableContent = '';
     
     products.forEach(function(product) {
-        let imageUrl = product.image ? 'images/product/electronic/' + product.image + '.jpg' : '/images/preloader.png';
-        
+        // let imageUrl = product.image ? 'images/product/electronic/' + product.image + '.jpg' : '/images/preloader.png';
+        let imageUrl = product.image ? 
+        (product.image.toLowerCase().endsWith('.jpg') || product.image.toLowerCase().endsWith('.jpeg') ? 
+            'images/product/electronic/' + product.image : 
+            'images/product/electronic/' + product.image + '.jpg') : 
+        '/images/preloader.png';
+
         tableContent += `
             <tr data-id="${product.productId}" data-category="${product.category}">
                 <td>${product.productId}</td>
