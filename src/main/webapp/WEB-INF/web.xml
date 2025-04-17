@@ -7,24 +7,24 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>admin panel</web-resource-name>
-            <url-pattern>/admin/*</url-pattern>
+            <url-pattern>/admin</url-pattern>
+            <url-pattern>/add-product.jsp</url-pattern>
+            <url-pattern>/edit-product.jsp</url-pattern>
+            <url-pattern>/admin-sidebar.jsp</url-pattern>
+            <url-pattern>/admin-dashboard.jsp</url-pattern>
+            <url-pattern>/orders-history.jsp</url-pattern>
+                       
         </web-resource-collection>
         <auth-constraint>
             <role-name>manager-gui</role-name>
+            <role-name>hotcoffee</role-name>
         </auth-constraint>
     </security-constraint>
 
     <login-config>
-        <auth-method>FORM</auth-method>
+        <auth-method>DIGEST</auth-method>
         <realm-name>Admin Authentication</realm-name>
-<!--        <form-login-config>-->
-<!--            <form-login-page>  </form-login-page>-->
-<!--            <form-error-page>  </form-error-page>-->
-<!--        </form-login-config>-->
     </login-config>
-
-    
-    
     <welcome-file-list>
         <welcome-file>home</welcome-file>
     </welcome-file-list>

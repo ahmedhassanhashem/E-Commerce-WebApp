@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -46,7 +47,10 @@ public class ValidatePasswordServlet extends HttpServlet {
         }
 
         // Validate if the submitted password matches the user's password with exact string comparison
-        if (user.getPassword().equals(currentPassword)) {
+//        if (user.getPassword().equals(currentPassword)) {
+//            isValid = true;
+//        }
+        if (BCrypt.checkpw(currentPassword, user.getPassword())) {
             isValid = true;
         }
 

@@ -1,7 +1,10 @@
 package com.ecommerce.webapp.servlets.Admin;
 
 import com.ecommerce.webapp.dao.OrderDAO;
+import com.ecommerce.webapp.dao.UserDAO;
+import com.ecommerce.webapp.entities.Order;
 import com.ecommerce.webapp.entities.OrderStatus;
+import com.ecommerce.webapp.entities.User;
 import com.google.gson.JsonObject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,6 +19,7 @@ import java.io.PrintWriter;
 public class UpdateOrderStatusServlet extends HttpServlet {
     
     private OrderDAO orderDAO = new OrderDAO();
+    UserDAO userDAO = new UserDAO();
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,6 +40,23 @@ public class UpdateOrderStatusServlet extends HttpServlet {
             
             int orderId = Integer.parseInt(orderIdStr);
             OrderStatus newStatus = OrderStatus.valueOf(statusStr);
+            
+             if (newStatus == OrderStatus.CANCELLED) {
+
+                Order order = orderDAO.findById(orderId);
+                User user = order.getUser();
+                double totalPrice = order.getTotalPrice();
+                user.setCreditBalance(user.getCreditBalance() + totalPrice);
+                
+                // Update the user's credit balance in the database
+                boolean userUpdated = userDAO.updateUser(user);
+                if (!userUpdated) {
+                    jsonResponse.addProperty("success", false);
+                    jsonResponse.addProperty("message", "Failed to update user credit balance");
+                    out.print(jsonResponse.toString());
+                    return;
+                }
+            }
             
             boolean updated = orderDAO.updateStatus(orderId, newStatus);
             

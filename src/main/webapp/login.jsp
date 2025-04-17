@@ -31,18 +31,20 @@
 
                                 <span class="gl-text u-s-m-b-30">If you have an account with us, please log in.</span>
                                 <form class="l-f-o__form" action="login" method="post">
+                                    <!-- Add hidden field for returnUrl -->
+                                    <input type="hidden" name="returnUrl" value="${returnUrl != null ? returnUrl : param.returnUrl}">
 
                                     <div class="u-s-m-b-30">
                                         <label class="gl-label" for="login-email">E-MAIL *</label>
                                         <input class="input-text input-text--primary-style" type="text" id="login-email" name="email" placeholder="Enter E-mail">
                                         <div id="email-validation-message" class="u-s-m-t-10" style="min-height: 20px;"></div>
                                     </div>
-                                    
+
                                     <div class="u-s-m-b-30">
                                         <label class="gl-label" for="login-password">PASSWORD *</label>
                                         <input class="input-text input-text--primary-style" type="password" id="login-password" name="password" placeholder="Enter Password">
                                     </div>
-                                    
+
                                     <div class="gl-inline">
                                         <div class="u-s-m-b-30">
                                             <button class="btn btn--e-transparent-brand-b-2" type="submit">LOGIN</button>
@@ -51,7 +53,7 @@
                                             <a class="gl-link" href="forgot-password.jsp">Lost Your Password?</a>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="u-s-m-b-30">
                                         <!--====== Check Box ======-->
                                         <div class="check-box">
@@ -62,15 +64,15 @@
                                         </div>
                                         <!--====== End - Check Box ======-->
                                     </div>
-                                    
+
                                     <!-- Display error message if any -->
                                     <% if(request.getAttribute("errorMessage") != null) { %>
-                                        <div class="u-s-m-b-30">
-                                            <p style="color: red;"><%= request.getAttribute("errorMessage") %></p>
-                                        </div>
+                                    <div class="u-s-m-b-30">
+                                        <p style="color: red;"><%= request.getAttribute("errorMessage") %></p>
+                                    </div>
                                     <% } %>
                                 </form>
-                                
+
                                 <h1 class="gl-h1">NEW CUSTOMER?</h1>
                                 <span class="gl-text u-s-m-b-30">By creating an account with our store, you will be able to move through the checkout process faster, store shipping addresses, view and track your orders in your account and more.</span>
                                 <div class="u-s-m-b-15">

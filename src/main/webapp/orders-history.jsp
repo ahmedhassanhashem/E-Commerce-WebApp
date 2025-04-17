@@ -1,5 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <%-- =============== LOGOUT LOGIC =============== --%>
+ <%
+ // Handle logout logic
+ if ("true".equals(request.getParameter("logout"))) {
+     // 1. Invalidate session
+     session.invalidate();
+     
+     // 2. Clear authentication cache
+     response.setHeader("WWW-Authenticate", "Digest realm=\"Admin Authentication\"");
+     response.setStatus(401);
+     
+     // 3. Redirect to admin URL after authentication challenge
+     response.setHeader("Refresh", "0; URL=http://localhost:9999/webapp/admin");
+     return;
+ }
+ %>
+    <c:set var="activePage" value="${param.activePage}" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +26,8 @@
     <title>Coffee Shop Admin - Orders</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
+    <link href="css/responsive-admin-gui.css" rel="stylesheet">
+
 </head>
 <body>
 <div class="container">
@@ -82,5 +102,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="js/orders.js"></script>
+<script src="js/responsive-admin-gui.js"></script>
+
 </body>
 </html>

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <c:if test="${empty sessionScope.user}">
-    <c:redirect url="/home" />
+    <c:redirect url="/home"/>
 </c:if>
 
 
@@ -27,7 +27,6 @@
     <div class="app-content">
 
 
-
         <!-- page content -->
         <br>
         <div class="u-s-p-b-60">
@@ -37,7 +36,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-3 col-md-12">
-                                <%@include file="commos/dashboard-sidebar-links.html"%>
+                                <%@include file="commos/dashboard-sidebar-links.html" %>
                                 <jsp:include page="commos/dashboard-sidebar-orders-statistics.jsp"/>
                             </div>
                             <div class="col-lg-9 col-md-12">
@@ -51,20 +50,23 @@
                                                     <!-- Current Password -->
                                                     <div class="gl-inline">
                                                         <div class="u-s-m-b-30">
-                                                            <label class="gl-label" for="current-password">CURRENT PASSWORD</label>
+                                                            <label class="gl-label" for="current-password">CURRENT
+                                                                PASSWORD</label>
                                                             <input class="input-text input-text--primary-style"
                                                                    type="password"
                                                                    id="current-password"
                                                                    name="currentPassword"
                                                                    required>
-                                                            <span id="current-password-status" class="error-message"></span>
+                                                            <span id="current-password-status"
+                                                                  class="error-message"></span>
                                                         </div>
                                                     </div>
 
                                                     <!-- New Password -->
                                                     <div class="gl-inline">
                                                         <div class="u-s-m-b-30">
-                                                            <label class="gl-label" for="new-password">NEW PASSWORD</label>
+                                                            <label class="gl-label" for="new-password">NEW
+                                                                PASSWORD</label>
                                                             <input class="input-text input-text--primary-style"
                                                                    type="password"
                                                                    id="new-password"
@@ -77,13 +79,15 @@
                                                     <!-- Confirm Password -->
                                                     <div class="gl-inline">
                                                         <div class="u-s-m-b-30">
-                                                            <label class="gl-label" for="confirm-new-password">CONFIRM NEW PASSWORD</label>
+                                                            <label class="gl-label" for="confirm-new-password">CONFIRM
+                                                                NEW PASSWORD</label>
                                                             <input class="input-text input-text--primary-style"
                                                                    type="password"
                                                                    id="confirm-new-password"
                                                                    name="confirmPassword"
                                                                    required>
-                                                            <span id="confirm-password-status" class="error-message"></span>
+                                                            <span id="confirm-password-status"
+                                                                  class="error-message"></span>
                                                         </div>
                                                     </div>
 
@@ -96,9 +100,7 @@
                                 </div>
 
 
-
                             </div>
-
 
 
                         </div>
@@ -121,6 +123,9 @@
 <jsp:include page="commos/modals.jsp"/>
 
 <%@include file="commos/script.html" %>
+
+<!--====== change-password-validations ======-->
+<script src="js/custom-js/change-password-validations.js"></script>
 
 </body>
 </html>

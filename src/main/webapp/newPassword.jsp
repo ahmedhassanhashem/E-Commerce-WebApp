@@ -1,10 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
-<c:if test="${empty sessionScope.user}">
-    <c:redirect url="/home" />
-</c:if>
-
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
@@ -44,22 +40,22 @@
                                     <% } %>
                                     
                                     <% 
-                                    // Check if session has the required reset attributes
-                                    if(session.getAttribute("resetEmail") == null || session.getAttribute("resetToken") == null) {
+                                    // Verify if OTP validation was successful
+                                    if(request.getAttribute("status") == null || !request.getAttribute("status").equals("success")) {
                                     %>
                                         <div class="alert alert-danger" style="color: red; margin-bottom: 20px;">
-                                            Invalid or expired password reset session. Please try again.
+                                            Invalid access to this page. Please start the password reset process again.
                                         </div>
                                         <div class="u-s-m-b-30">
-                                            <a class="btn btn--e-transparent-brand-b-2" href="forgotPassword">Return to Password Reset</a>
+                                            <a class="btn btn--e-transparent-brand-b-2" href="forgot-password.jsp">Return to Password Reset</a>
                                         </div>
                                     <% } else { %>
-                                        <form class="l-f-o__form" action="forgotPassword" method="post" onsubmit="return validateResetForm()">
-                                            <input type="hidden" name="action" value="reset">
+                                        <form class="l-f-o__form" action="newPassword" method="post" onsubmit="return setupPasswordStrengthMeter()">
+                                            <input type="hidden" name="email" value="<%= request.getAttribute("email") %>">
                                             
                                             <div class="u-s-m-b-30">
-                                                <label class="gl-label" for="new-password">NEW PASSWORD *</label>
-                                                <input class="input-text input-text--primary-style" type="password" id="new-password" name="new-password" placeholder="Enter New Password">
+                                                <label class="gl-label" for="password">NEW PASSWORD *</label>
+                                                <input class="input-text input-text--primary-style" type="password" id="password" name="password" placeholder="Enter New Password">
                                                 <div id="password-strength" style="height: 5px; margin-top: 5px; width: 0%;"></div>
                                                 <div id="password-requirements" style="font-size: 12px; margin-top: 5px; color: #666;">
                                                     Password must contain at least 8 characters with uppercase, lowercase, and numbers
@@ -67,8 +63,8 @@
                                             </div>
                                             
                                             <div class="u-s-m-b-30">
-                                                <label class="gl-label" for="confirm-password">CONFIRM PASSWORD *</label>
-                                                <input class="input-text input-text--primary-style" type="password" id="confirm-password" name="confirm-password" placeholder="Confirm New Password">
+                                                <label class="gl-label" for="confPassword">CONFIRM PASSWORD *</label>
+                                                <input class="input-text input-text--primary-style" type="password" id="confPassword" name="confPassword" placeholder="Confirm New Password">
                                                 <div id="password-error" style="color: red; display: none;">Passwords do not match</div>
                                             </div>
                                             
@@ -102,7 +98,7 @@
 <jsp:include page="commos/modals.jsp"/>
 
 <%@include file="commos/script.html" %>
-<script src="js/forgotpassword.js"></script>
+<script src="js/resetPassword.js"></script>
 
 </body>
 </html>

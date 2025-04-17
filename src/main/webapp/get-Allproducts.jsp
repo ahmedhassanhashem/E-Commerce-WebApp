@@ -1,5 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <%-- =============== LOGOUT LOGIC =============== --%>
+ <%
+ // Handle logout logic
+ if ("true".equals(request.getParameter("logout"))) {
+     // 1. Invalidate session
+     session.invalidate();
+     
+     // 2. Clear authentication cache
+     response.setHeader("WWW-Authenticate", "Digest realm=\"Admin Authentication\"");
+     response.setStatus(401);
+     
+     // 3. Redirect to admin URL after authentication challenge
+     response.setHeader("Refresh", "0; URL=http://localhost:9999/webapp/admin");
+     return;
+ }
+ %>
+    <c:set var="activePage" value="${param.activePage}" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +27,8 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link href="css/responsive-admin-gui.css" rel="stylesheet">
+
 </head>
 <body>
 <div class="container">
@@ -56,7 +76,7 @@
         <table>
           <thead>
           <tr>
-            <th>Product ID</th>
+            <th>ID</th>
             <th>Image</th>
             <th>Name</th>
             <th>Category</th>
@@ -65,7 +85,7 @@
             <th>Actions</th>
           </tr>
           </thead>
-          <tbody id="products-table">
+          <tbody id="products-table"> <!--  id="products-table"-->
           <c:choose>
             <c:when test="${empty products}">
               <tr>
@@ -79,7 +99,8 @@
                   <td>
                     <c:choose>
                       <c:when test="${not empty product.image}">
-                        <img src="images/product/electronic/${product.image}" class="product-image" alt="${product.name}">
+                        <!-- <img src="images/product/electronic/${product.image}.jpg" class="product-image" alt="${product.name}"> -->
+                        <img src="images/product/electronic/${product.image}${product.image.toLowerCase().endsWith('.jpg') || product.image.toLowerCase().endsWith('.jpeg') ? '' : '.jpg'}" class="product-image" alt="${product.name}">
                       </c:when>
                       <c:otherwise>
                         <img src="images/preloader.png" class="product-image" alt="No Image">
@@ -117,5 +138,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
 <script src="js/getAllProducts.js"></script>
+<script src="js/responsive-admin-gui.js"></script>
+
 </body>
 </html>

@@ -25,6 +25,8 @@ public class EmailCheckServlet extends HttpServlet {
             throws ServletException, IOException {
         
         String email = request.getParameter("email");
+        String mode = request.getParameter("mode"); // "login" or "register"
+        
         response.setContentType("text/plain");
         PrintWriter out = response.getWriter();
         
@@ -41,10 +43,21 @@ public class EmailCheckServlet extends HttpServlet {
         
         User user = userDAO.findByEmail(email);
         
-        if (user != null) {
-            out.print("Valid user!");
-        } else {
-            out.print("Email not found. Please <a href='register.jsp'>register</a> first");
+        // Different responses based on mode
+        if ("register".equals(mode)) {
+            // For registration: email should NOT exist
+            if (user != null) {
+                out.print("User already exists with this email");
+            } else {
+                out.print("Valid email address for registration");
+            }
+        } else{
+            // For login: email SHOULD exist
+            if (user != null) {
+                out.print("Valid user!");
+            } else {
+                out.print("Email not found. Please <a href='register.jsp'>register</a> first");
+            }
         }
     }
 }

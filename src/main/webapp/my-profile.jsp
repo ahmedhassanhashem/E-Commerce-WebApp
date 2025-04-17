@@ -139,5 +139,8 @@
 
 <%@include file="commos/script.html" %>
 
+<!--====== edit-profile-validations ======-->
+<script src="js/custom-js/edit-profile-validations.js"></script>
+
 </body>
 </html>

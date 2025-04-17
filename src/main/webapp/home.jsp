@@ -536,6 +536,6 @@
 <%@include file="commos/script.html"%>
       <script src="js/custom-js/modals.js"></script>
 
-
+      <script src="js/custom-js/home-refresher.js"></script>
 </body>
 </html>
