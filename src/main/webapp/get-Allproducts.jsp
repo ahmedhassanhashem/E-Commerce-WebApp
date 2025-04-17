@@ -99,7 +99,8 @@
                   <td>
                     <c:choose>
                       <c:when test="${not empty product.image}">
-                        <img src="images/product/electronic/${product.image}.jpg" class="product-image" alt="${product.name}">
+                        <!-- <img src="images/product/electronic/${product.image}.jpg" class="product-image" alt="${product.name}"> -->
+                        <img src="images/product/electronic/${product.image}${product.image.toLowerCase().endsWith('.jpg') || product.image.toLowerCase().endsWith('.jpeg') ? '' : '.jpg'}" class="product-image" alt="${product.name}">
                       </c:when>
                       <c:otherwise>
                         <img src="images/preloader.png" class="product-image" alt="No Image">
