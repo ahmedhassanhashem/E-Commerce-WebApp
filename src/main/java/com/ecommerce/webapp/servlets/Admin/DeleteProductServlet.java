@@ -29,6 +29,7 @@ public class DeleteProductServlet extends HttpServlet {
             Product product = productDAO.findById(productId);
 
             product.setStock(0);
+            product.setPrice(0.0);  
             product.setStatus();
             
             boolean deleted = productDAO.updateProduct(product);

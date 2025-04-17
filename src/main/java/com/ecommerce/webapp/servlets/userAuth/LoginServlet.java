@@ -13,18 +13,12 @@ import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Arrays;
-import java.util.List;
 import com.ecommerce.webapp.entities.User;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     
     private UserDAO userDAO;
-    
-    private static final List<String> ADMIN_EMAILS = Arrays.asList(
-        "admin@gmail.com"
-    );
     
     private static final Map<String, String> REMEMBER_ME_TOKENS = new HashMap<>();
     
@@ -56,12 +50,8 @@ public class LoginServlet extends HttpServlet {
 
             User user = userDAO.findByEmail(email);
 
-            // Check if user is admin based on static email list
-            boolean isAdmin = ADMIN_EMAILS.contains(email);
-
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-            session.setAttribute("isAdmin", isAdmin);
 
             if (rememberMe != null) {
                 String token = generateSecureToken();
@@ -76,10 +66,6 @@ public class LoginServlet extends HttpServlet {
                 response.addCookie(rememberMeCookie);
             }
 
-            // Determine where to redirect the user
-            if (isAdmin) {
-                response.sendRedirect("admin-dashboard.jsp");
-            } else {
                 // Check for last visited URL in the session
                 String lastVisitedUrl = (String) session.getAttribute("lastVisitedUrl");
 
@@ -96,7 +82,6 @@ public class LoginServlet extends HttpServlet {
                 else {
                     response.sendRedirect("home");
                 }
-            }
         } else {
             request.setAttribute("errorMessage", "Invalid email or password");
 
