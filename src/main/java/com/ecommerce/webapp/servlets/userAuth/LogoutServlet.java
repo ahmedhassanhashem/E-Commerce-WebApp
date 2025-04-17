@@ -9,18 +9,23 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
+
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
-    
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
+        // Get the referer (the page user was on before logout)
+        String referer = request.getHeader("Referer");
+        String returnUrl = (referer != null) ? referer : "home";
+
         // Get session and invalidate it
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
         }
-        
+
         // Delete remember-me cookie if exists
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
@@ -33,6 +38,8 @@ public class LogoutServlet extends HttpServlet {
                 }
             }
         }
-        response.sendRedirect("home");
+
+        // Redirect to login page with the return URL as a parameter
+        response.sendRedirect("login.jsp?returnUrl=" + response.encodeRedirectURL(returnUrl));
     }
 }

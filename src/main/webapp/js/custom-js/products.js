@@ -10,7 +10,8 @@ $(document).ready(function () {
             priceMin: '',
             priceMax: '',
             search: ''
-        }
+        },
+        lastUpdate: new Date().getTime() // Track last update time
     };
 
     // DOM Elements cache
@@ -42,7 +43,8 @@ $(document).ready(function () {
             page: productState.currentPage,
             show: productState.itemsPerPage,
             sort: productState.sortBy,
-            ...productState.filters
+            ...productState.filters,
+            timestamp: new Date().getTime() // Add timestamp to prevent caching
         });
 
         if (preserveScroll) {
@@ -58,9 +60,73 @@ $(document).ready(function () {
                 updateViewMode();
                 restoreScrollPosition(preserveScroll);
                 updateActivePagination();
+                productState.lastUpdate = new Date().getTime();
             },
             error: handleAjaxError
         });
+    }
+
+    // Auto refresh function
+    function autoRefreshProducts() {
+        // Only refresh if we're on the product list page
+        if (domElements.productContainer.length > 0) {
+            const params = new URLSearchParams({
+                action: 'filter',
+                page: productState.currentPage,
+                show: productState.itemsPerPage,
+                sort: productState.sortBy,
+                ...productState.filters,
+                timestamp: new Date().getTime() // Add timestamp to prevent caching
+            });
+
+            $.ajax({
+                url: 'product-list',
+                type: 'GET',
+                data: params.toString(),
+                success: function(data) {
+                    // Update the product list without affecting scroll position
+                    domElements.productContainer.html(data);
+                    updateViewMode();
+                    updateActivePagination();
+                    productState.lastUpdate = new Date().getTime();
+
+                    // Optional: show a subtle notification that products were updated
+                    showUpdateNotification();
+                },
+                error: handleAjaxError
+            });
+        }
+    }
+
+    // Optional: Show a subtle notification when products are updated
+    function showUpdateNotification() {
+        const notification = $('<div class="update-notification">Products updated</div>');
+        notification.css({
+            'position': 'fixed',
+            'bottom': '20px',
+            'right': '20px',
+            'background-color': '#4CAF50',
+            'color': 'white',
+            'padding': '10px 20px',
+            'border-radius': '4px',
+            'box-shadow': '0 2px 5px rgba(0,0,0,0.2)',
+            'z-index': '9999',
+            'opacity': '0',
+            'transition': 'opacity 0.3s ease'
+        });
+
+        $('body').append(notification);
+
+        // Fade in and out
+        setTimeout(() => {
+            notification.css('opacity', '1');
+            setTimeout(() => {
+                notification.css('opacity', '0');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 2000);
+        }, 100);
     }
 
     // View mode management
@@ -154,4 +220,7 @@ $(document).ready(function () {
     initFiltersFromURL();
     bindEvents();
     loadProducts();
+
+    // Set up auto-refresh every 30 seconds
+    setInterval(autoRefreshProducts, 30000);
 });
