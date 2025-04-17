@@ -26,20 +26,35 @@ public class CheckoutServlet extends HttpServlet {
 
         CartDAO cartDAO = new CartDAO();
         OrderDAO orderDAO = new OrderDAO();
-        ProductDAO productDAO = new ProductDAO(); // Assume this exists
+        ProductDAO productDAO = new ProductDAO();
+        UserDAO userDAO = new UserDAO();
 
-        Cart cart = cartDAO.getCartByUser(user);
-        List<CartItem> cartItems = cart.getItems();
-
-        // Validate stock and calculate total
         try {
+            // Ensure we're working with a fresh managed entity
+            user = userDAO.findByEmail(user.getEmail());
+            if (user == null) {
+                request.setAttribute("error", "User session invalid. Please login again.");
+                request.getRequestDispatcher("/login.jsp").forward(request, response);
+                return;
+            }
+
+            Cart cart = cartDAO.getCartByUser(user);
+            if (cart == null || cart.getItems().isEmpty()) {
+                request.setAttribute("error", "Your cart is empty");
+                request.getRequestDispatcher("/cart.jsp").forward(request, response);
+                return;
+            }
+
+            List<CartItem> cartItems = cart.getItems();
             double total = cart.getTotalPrice();
 
             // Check product stock
             for (CartItem item : cartItems) {
                 Product product = item.getProduct();
-                if (item.getQuantity() > product.getStock()) {
-                    request.setAttribute("error", "Insufficient stock for " + product.getName());
+                // Get fresh product data to ensure current stock level
+                Product freshProduct = productDAO.findById(product.getProductId());
+                if (item.getQuantity() > freshProduct.getStock()) {
+                    request.setAttribute("error", "Insufficient stock for " + freshProduct.getName());
                     request.getRequestDispatcher("/checkout.jsp").forward(request, response);
                     return;
                 }
@@ -52,42 +67,61 @@ public class CheckoutServlet extends HttpServlet {
                 return;
             }
 
-            // Deduct stock and update user balance
-            for (CartItem item : cartItems) {
-                Product product = item.getProduct();
-                product.setStock(product.getStock() - item.getQuantity());
-                productDAO.updateProduct(product); // Implement this in ProductDAO
-            }
-
-            user.setCreditBalance(user.getCreditBalance() - total);
-            new UserDAO().updateUser(user);
-
-            // Create and save order
+            // Create order first
             Order order = new Order();
             order.setUser(user);
             order.setTotalPrice(total);
             order.setStatus(OrderStatus.ACCEPTED);
+            order.setItems(new ArrayList<>());
 
-            List<OrderItem> orderItems = new ArrayList<>();
+            // Add items to order
             for (CartItem cartItem : cartItems) {
+                Product product = productDAO.findById(cartItem.getProduct().getProductId());
+
+                // Update product stock
+                product.setStock(product.getStock() - cartItem.getQuantity());
+                productDAO.updateProduct(product);
+
+                // Create order item
                 OrderItem orderItem = new OrderItem();
                 orderItem.setOrder(order);
-                orderItem.setProduct(cartItem.getProduct());
+                orderItem.setProduct(product);
                 orderItem.setQuantity(cartItem.getQuantity());
-                orderItem.setItemPrice(cartItem.getProduct().getPrice());
-                orderItems.add(orderItem);
+                orderItem.setItemPrice(product.getPrice());
+
+                order.getItems().add(orderItem);
             }
-            order.setItems(orderItems);
 
-            orderDAO.addOrder(order);
+            // Save the order
+            boolean orderSaved = orderDAO.addOrder(order);
+            if (!orderSaved) {
+                throw new ServletException("Failed to save order");
+            }
 
-            // Clear the cart
-            cartDAO.clearCart(cart);
+            // Update user balance
+            user.setCreditBalance(user.getCreditBalance() - total);
+            userDAO.updateUser(user);
 
+            // Update session user
+            session.setAttribute("user", user);
+
+            // Clear the cart after successful order creation
+            boolean cartCleared = cartDAO.clearCart(cart);
+            if (!cartCleared) {
+                // Log the error but continue - order is already saved
+                System.err.println("Warning: Failed to clear cart after checkout");
+            }
+
+            // Update cart in session
+            session.setAttribute("cart", cartDAO.getCartByUser(user));
+
+            // Redirect to orders page
             response.sendRedirect("my-orders.jsp");
 
         } catch (Exception e) {
-            throw new ServletException("Checkout failed", e);
+            e.printStackTrace();
+            request.setAttribute("error", "Checkout failed: " + e.getMessage());
+            request.getRequestDispatcher("/checkout.jsp").forward(request, response);
         }
     }
 }
