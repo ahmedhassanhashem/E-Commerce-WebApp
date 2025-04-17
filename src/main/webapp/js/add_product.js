@@ -1,5 +1,14 @@
-// Form submission handler
+
 $(document).ready(function() {
+    $('.file-input-button').on('click', function() {
+        $('#product-image').click();
+    });
+    
+    // Add direct event listener for file input change
+    $('#product-image').on('change', function() {
+        previewImage(this);
+    });
+
     $('#add-product-form').on('submit', function (e) {
         e.preventDefault();
 
@@ -29,16 +38,38 @@ $(document).ready(function() {
         });
     });
 });
+    // function previewImage(input) {
+    //     const fileDisplay = document.getElementById('file-name-display');
+    //     const previewImg = document.getElementById('preview-img');
+    //     const previewText = document.querySelector('.image-preview-text');
+
+    //     if (input.files && input.files[0]) {
+    //         fileDisplay.textContent = input.files[0].name;
+
+    //         const reader = new FileReader();
+
+    //         reader.onload = function(e) {
+    //             previewImg.src = e.target.result;
+    //             previewImg.style.display = 'block';
+    //             previewText.style.display = 'none';
+    //         }
+    //         reader.readAsDataURL(input.files[0]);
+    //     } else {
+    //         fileDisplay.textContent = 'No file chosen';
+    //         previewImg.style.display = 'none';
+    //         previewText.style.display = 'block';
+    //     }
+    // }
     function previewImage(input) {
         const fileDisplay = document.getElementById('file-name-display');
         const previewImg = document.getElementById('preview-img');
         const previewText = document.querySelector('.image-preview-text');
-
+    
         if (input.files && input.files[0]) {
             fileDisplay.textContent = input.files[0].name;
-
+    
             const reader = new FileReader();
-
+    
             reader.onload = function(e) {
                 previewImg.src = e.target.result;
                 previewImg.style.display = 'block';

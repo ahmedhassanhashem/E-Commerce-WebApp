@@ -92,7 +92,7 @@
                 <div class="file-input-button">
                   <i class="fas fa-upload"></i> Choose Image
                 </div>
-                <input type="file" id="product-image" name="product-image" accept="image/jpg" onchange="previewImage(this)">
+                <input type="file" id="product-image" name="product-image" accept="image/jpg, image/jpeg" onchange="previewImage(this)">
                 <span class="file-name" id="file-name-display">No file chosen</span>
               </div>
               <div class="image-preview" id="image-preview">
@@ -122,7 +122,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="js/add_product.js"></script>
-<script src="js/responsive-admin-gui.js"></script>
+<!-- <script src="js/responsive-admin-gui.js"></script> -->
 
 </body>
 </html>
