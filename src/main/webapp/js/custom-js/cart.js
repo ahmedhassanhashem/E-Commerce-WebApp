@@ -114,34 +114,64 @@ $(document).ready(function() {
 
 
 
+    // // Update Quantity on Cart Page
+    // $(document).on('blur', '.input-counter__text', function() {
+    //     var $input = $(this);
+    //     var cartItemId = $input.closest('tr').find('.remove-item').data('item-id') || $input.data('item-id');
+    //     var newQuantity = parseInt($input.val());
+    //     var max = parseInt($input.data('max'));
+
+    //     if (newQuantity < 1 || newQuantity > max) {
+    //         alert('Quantity must be between 1 and ' + max);
+    //         $input.val($input.data('original-value'));
+    //         return;
+    //     }
+
+    //     $.ajax({
+    //         url: contextPath + '/update-cart-item',
+    //         type: 'POST',
+    //         data: { cartItemId: cartItemId, quantity: newQuantity },
+    //         success: function(response) {
+    //             updateMiniCart(response);
+    //             if (window.location.pathname.endsWith('cart.jsp')) {
+    //                 location.reload(); // Optional: reload cart page or update UI dynamically
+    //             }
+    //         },
+    //         error: function(xhr) {
+    //             // alert('Error updating quantity: ' + xhr.responseText);
+    //         }
+    //     });
+    // });
+
     // Update Quantity on Cart Page
-    $(document).on('blur', '.input-counter__text', function() {
-        var $input = $(this);
-        var cartItemId = $input.closest('tr').find('.remove-item').data('item-id') || $input.data('item-id');
-        var newQuantity = parseInt($input.val());
-        var max = parseInt($input.data('max'));
+$(document).on('blur', '.input-counter__text', function() {
+    var $input = $(this);
+    var cartItemId = $input.closest('tr').find('.remove-item').data('item-id') || $input.data('item-id');
+    var newQuantity = parseInt($input.val());
+    var max = parseInt($input.data('max'));
 
-        if (newQuantity < 1 || newQuantity > max) {
-            alert('Quantity must be between 1 and ' + max);
-            $input.val($input.data('original-value'));
-            return;
-        }
+    if (newQuantity < 1 || newQuantity > max) {
+        alert('Quantity must be between 1 and ' + max);
+        $input.val($input.data('original-value'));
+        return;
+    }
 
-        $.ajax({
-            url: contextPath + '/update-cart-item',
-            type: 'POST',
-            data: { cartItemId: cartItemId, quantity: newQuantity },
-            success: function(response) {
-                updateMiniCart(response);
-                if (window.location.pathname.endsWith('cart.jsp')) {
-                    location.reload(); // Optional: reload cart page or update UI dynamically
-                }
-            },
-            error: function(xhr) {
-                alert('Error updating quantity: ' + xhr.responseText);
+    $.ajax({
+        url: contextPath + '/update-cart-item',
+        type: 'POST',
+        data: { cartItemId: cartItemId, quantity: newQuantity },
+        success: function(response) {
+            updateMiniCart(response);
+            if (window.location.pathname.endsWith('cart.jsp')) {
+                location.reload(); // Reload the cart page to reflect the latest state
             }
-        });
+        },
+        error: function(xhr) {
+            alert('Error updating quantity: ' + xhr.statusText);
+            $input.val($input.data('original-value')); // Revert on error
+        }
     });
+});
 
 
 
@@ -165,7 +195,7 @@ $(document).ready(function() {
                 $row.remove(); // Remove the item from the UI
             },
             error: function(xhr) {
-                alert('Error removing item: ' + xhr.responseText);
+                // alert('Error removing item: ' + xhr.responseText);
             }
         });
     });
@@ -184,7 +214,7 @@ $(document).ready(function() {
                     }
                 },
                 error: function(xhr) {
-                    alert('Error clearing cart: ' + xhr.responseText);
+                    // alert('Error clearing cart: ' + xhr.responseText);
                 }
             });
         }

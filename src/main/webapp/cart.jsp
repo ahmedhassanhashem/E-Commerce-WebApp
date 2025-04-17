@@ -71,7 +71,7 @@
 
                     <div class="container">
                         <div class="col-lg-12 col-md-12 col-sm-12 u-s-m-b-30">
-                            <form class="f-cart">
+                            <form class="f-cart" action="checkout.jsp">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 u-s-m-b-30">
                                         <div class="f-cart__pad-box">
@@ -102,7 +102,7 @@
                                     <span>CONTINUE SHOPPING</span></a>
                             </div>
                             <div class="route-box__g2">
-                                <a id="clear-cart-btn" class="route-box__link" href="#"><i class="fas fa-trash"></i>
+                                <a id="clear-cart-btn" class="route-box__link" href="checkout.jsp"><i class="fas fa-trash"></i>
                                     <span>CLEAR CART</span></a>
                             </div>
                         </div>
