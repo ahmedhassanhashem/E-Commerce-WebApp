@@ -66,6 +66,5 @@
         <!-- Your page content goes here -->
     </div>
 
-    <script src="js/responsive-admin-gui.js"></script>
 </body>
 </html>

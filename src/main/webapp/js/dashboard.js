@@ -1,55 +1,85 @@
 $(document).ready(function() {
-    // Load dashboard statistics on page load
     loadDashboardData();
     
-    // Function to fetch dashboard data from the servlet
+    $('#refresh-btn').click(function() {
+      loadDashboardData();
+    });
+    
     function loadDashboardData() {
-        // Log to ensure function is being called
-        console.log("Loading dashboard data...");
-        
-        $.ajax({
-            url: 'dashboard-data',
-            type: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                // Log received data for debugging
-                console.log("Received dashboard data:", data);
-                
-                // Update dashboard counters
-                $('#product-in-stock').text(data.productsInStock);
-                $('#product-out-stock').text(data.productsOutOfStock);
-                $('#users-count').text(data.userCount);
-                $('#orders-processing-count').text(data.processingOrders);
-                $('#orders-completed-count').text(data.completedOrders);
-                $('#orders-cancelled-count').text(data.cancelledOrders);
-                
-                // Show success notification
-                showNotification('Dashboard data loaded successfully', 'success');
-            },
-            error: function(xhr, status, error) {
-                // Log error for debugging
-                console.error("Error loading dashboard data:", error);
-                console.error("Response:", xhr.responseText);
-                
-                // Show error notification
-                showNotification('Error loading dashboard data: ' + error, 'error');
-            }
-        });
+    
+      $.ajax({
+        url: 'dashboard-data',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+          console.log("Received dashboard data:", data);
+          
+          updateDashboard(data);
+          
+          showNotification('Dashboard data loaded successfully', 'success');
+        },
+        error: function(xhr, status, error) {
+          console.error("Error loading dashboard data:", error);
+          console.error("Response:", xhr.responseText);
+          
+          showNotification('Error loading dashboard data: ' + error, 'error');
+        }
+      });
+    
     }
     
-    // Function to display notifications
-    function showNotification(message, type) {
-        const notification = $('#notification');
-        notification.text(message);
-        notification.removeClass('hide success error warning');
-        notification.addClass(type);
-        
-        // Show notification
-        notification.slideDown();
-        
-        // Auto-hide after 5 seconds
-        setTimeout(function() {
-            notification.slideUp();
-        }, 5000);
+    function updateDashboard(data) {
+      // Simple counter animation for numbers
+      animateCounter('product-in-stock', 0, data.productsInStock);
+      animateCounter('product-out-stock', 0, data.productsOutOfStock);
+      animateCounter('users-count', 0, data.userCount);
+      animateCounter('orders-processing-count', 0, data.processingOrders);
+      animateCounter('orders-completed-count', 0, data.completedOrders);
+      animateCounter('orders-cancelled-count', 0, data.cancelledOrders);
+      
+      const totalProducts = data.productsInStock + data.productsOutOfStock;
+      $('#stock-progress').css('width', (data.productsInStock / totalProducts * 100) + '%');
+      $('#out-stock-progress').css('width', (data.productsOutOfStock / totalProducts * 100) + '%');
+      $('#users-progress').css('width', (data.userCount / 10 * 100) + '%'); // Assuming target is 10 users
+      
+      const totalOrders = data.processingOrders + data.completedOrders + data.cancelledOrders;
+      if (totalOrders > 0) {
+        $('#pending-progress').css('width', (data.processingOrders / totalOrders * 100) + '%');
+        $('#completed-progress').css('width', (data.completedOrders / totalOrders * 100) + '%');
+        $('#cancelled-progress').css('width', (data.cancelledOrders / totalOrders * 100) + '%');
+      }
     }
-});
+    
+    function animateCounter(elementId, startVal, endVal) {
+      const duration = 1500;
+      const stepTime = 50;
+      const steps = duration / stepTime;
+      const increment = (endVal - startVal) / steps;
+      let current = startVal;
+      const element = document.getElementById(elementId);
+      
+      const timer = setInterval(function() {
+        current += increment;
+        element.textContent = Math.round(current);
+        
+        if ((increment > 0 && current >= endVal) || (increment < 0 && current <= endVal)) {
+          clearInterval(timer);
+          element.textContent = endVal;
+        }
+      }, stepTime);
+    }
+    
+    function showNotification(message, type) {
+      const notification = $('#notification');
+      notification.text(message);
+      notification.removeClass('hide success error warning');
+      notification.addClass(type + ' show');
+      
+      setTimeout(function() {
+        notification.removeClass('show');
+        setTimeout(function() {
+          notification.addClass('hide');
+        }, 500);
+      }, 5000);
+    }
+  });
