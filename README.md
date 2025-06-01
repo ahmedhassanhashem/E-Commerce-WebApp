@@ -41,3 +41,6 @@ The system includes user authentication, profile management, and an admin interf
 - **ORM**: Hibernate
 - **Build/Deployment**: Maven
 - **Web Server**: Tomcat
+
+  ## Demo
+  [View Design on Canva](https://www.canva.com/design/DAGpGmvn-Co/nRBAq5bw7ACW1_zANSMOdQ/view?utm_content=DAGpGmvn-Co&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hde6ca5f9d5)
